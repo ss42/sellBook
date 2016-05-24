@@ -58,11 +58,15 @@ class SellBooksViewController: UIViewController {
     func getCurrentSellerInfo(){
         if let user = FIRAuth.auth()?.currentUser {
             //change this later to full name
+            print(user.email)
             let name = user.email
             let email = user.email
             let profileImage = "male"
-            let uid = user.uid
-            currentUserDictionary = ["fullName": name!, "email": email!, "profilePhoto": profileImage, "uid": uid]
+            //let uid = user.uid
+            currentUserDictionary = ["fullName": name!, "email": email!, "profilePhoto": profileImage, "bookTitle": bookTitle.text!, "bookDetail": detail.text!, "bookCondition": bookCondition.text!, "price": price.text!, "bookImage": "male", "postedTime": "5:50"]
+            // moved from donePressed
+            //currentUserDictionary = []
+            ref.child("SellBooksPost").childByAutoId().setValue(currentUserDictionary)
         } else {
             // No user is signed in.
         }
@@ -88,8 +92,7 @@ class SellBooksViewController: UIViewController {
     
     @IBAction func donePressed(sender: AnyObject) {
         self.getCurrentSellerInfo()
-        currentUserDictionary = ["bookTitle": bookTitle.text!, "bookDetail": detail.text!, "bookCondition": bookCondition.text!, "price": price.text!, "bookImage": "male"]
-        ref.child("SellBooksPost").setValue(currentUserDictionary)
+        
     }
 
 

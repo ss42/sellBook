@@ -13,15 +13,16 @@ class HomeViewController: UIViewController {
     
     var ref = FIRDatabase.database().reference()
     
-    
+   
 
     
     @IBOutlet weak var tableView: UITableView!
     
-    var sellBookArray: NSMutableArray?
+    var sellBookArray: NSMutableArray = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         fetchPost()
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -47,27 +48,32 @@ class HomeViewController: UIViewController {
     }
     func fetchPost()
     {
+        let tempUser = User(fullName: "test", email: "test@test.com", profileImage: "none")
+        self.sellBookArray.addObject(Book(user: tempUser , title: "fgdfg", price: 5.0, pictures: "none", condition: "ok", postedTime: "time", detail: "detail"))
         ref.child("SellBooksPost").queryOrderedByKey().observeEventType(.ChildAdded, withBlock: {
             snapshot in
+            
             let title = snapshot.value!["bookTitle"] as! String
             let detail = snapshot.value!["bookDetail"] as! String
             let condition = snapshot.value!["bookCondition"] as! String
             let bookImage = snapshot.value!["bookImage"] as! String
             let price = snapshot.value!["price"] as! String
             let sellerName = snapshot.value!["fullName"] as! String
-            let sellerEmail = snapshot.value!["fullName"] as! String
-            let sellerProfilePhoto = snapshot.value!["fullName"] as! String
+            let sellerEmail = snapshot.value!["email"] as! String
+            let sellerProfilePhoto = snapshot.value!["profilePhoto"] as! String
             let postedTime = snapshot.value!["postedTime"] as! String
-            let sellerInfo = User(fullName: "Sanjay", email: "testFIXme", profileImage: "NOimageFixME")
-            self.sellBookArray?.addObject(Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: postedTime, detail: detail))
+            print(title)
+            let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
+            self.sellBookArray.addObject(Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: postedTime, detail: detail))
 
             
-            
+            self.tableView.reloadData()
             })
         
         
     }
     
+
 
 
 }
@@ -77,13 +83,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
         return 1
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if sellBookArray?.count == 0 {
+        //return 1
+        if sellBookArray.count == 0 {
+            print("sell book array is empty")
             return 0
         }
             
         else {
-            
-        return 10
+         //need to change this to return sellBookArray.count
+        return sellBookArray.count
         
         }
     }
@@ -93,7 +101,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: PostTableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell") as! PostTableViewCell
         
-        let book = sellBookArray![indexPath.row] as? Book
+        let book = sellBookArray[indexPath.row] as? Book
         cell.fullName.text = book!.sellerInfo?.email
         cell.title.text = book!.title
         cell.detail.text = book!.detail

@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+        // crash fix maybe
     override init() {
         FIRApp.configure()
         FIRDatabase.database().persistenceEnabled = true
@@ -21,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         //FIRApp.configure()
+        print("after config")
         // Override point for customization after application launch.
         return true
     }

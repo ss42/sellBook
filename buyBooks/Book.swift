@@ -20,7 +20,7 @@ class Book{
     
     init(user: User, title: String, price: Double, pictures: String, condition: String, postedTime: String, detail: String)
     {
-        self.sellerInfo = User()
+        self.sellerInfo = user
         self.title = title
         self.price = price
         self.pictures = pictures
