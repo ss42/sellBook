@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "0D3909497D99AB5D966AFAD09C7D3299DF5877FF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "0D3909497D99AB5D966AFAD09C7D3299DF5877FF" : 0,
+    "8A5516A548EF0666BBD4879F53BF5C424544F1DA" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "85A57906-4AC9-4F67-8F63-DF4960DEF4CF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "0D3909497D99AB5D966AFAD09C7D3299DF5877FF" : "Swift\/",
+    "8A5516A548EF0666BBD4879F53BF5C424544F1DA" : "Swift\/Carpooling\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "buyBooks",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "buyBooks\/buyBooks.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/AdminSpare\/SPAREv3-Intro-Team.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0D3909497D99AB5D966AFAD09C7D3299DF5877FF"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ss42\/Carpooling.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8A5516A548EF0666BBD4879F53BF5C424544F1DA"
+    }
+  ]
+}
