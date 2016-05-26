@@ -56,10 +56,9 @@ class MyBooksViewController: UIViewController {
         
         if(!isUserLoggedIn)
         {
-            //make the user sign in first
+            let ViewController = self.storyboard!.instantiateViewControllerWithIdentifier("LoginView") as! LoginViewController
+            self.presentViewController(ViewController, animated: true, completion: nil)
         }
-        
-        
     }
     func fetchPost()
     {
@@ -162,7 +161,7 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource{
         cell.title.text = book!.title
         //cell.detail.text = book!.detail
         cell.postedTime.text = book!.postedTime
-        cell.price.text = String(book!.price)
+        cell.price.text = String(book!.price!)
         
         return cell
     }

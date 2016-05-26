@@ -106,7 +106,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
         cell.title.text = book!.title
         cell.detail.text = book!.detail
         cell.postedTime.text = book!.postedTime
-        cell.price.text = String(book!.price)
+        cell.price.text = String(book!.price!)
         
         return cell
     }
