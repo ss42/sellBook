@@ -22,6 +22,19 @@ class ProfileViewController: UIViewController , UITextFieldDelegate{
     
     var imageString = ""
     var currentUser = ""
+    
+    var ref = FIRDatabase.database().reference()
+    
+    func confirmDelegate(){
+        self.firstName.delegate = self
+        self.lastName.delegate = self
+        self.phoneNumber.delegate = self
+        self.emailAddress.delegate = self
+        
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let imageData = NSUserDefaults.standardUserDefaults().objectForKey("image") as? NSData{
@@ -50,13 +63,7 @@ class ProfileViewController: UIViewController , UITextFieldDelegate{
         //if (NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String == DataService.dataService.userRef
     }
     
-    func confirmDelegate(){
-        self.firstName.delegate = self
-        self.lastName.delegate = self
-        self.phoneNumber.delegate = self
-        self.emailAddress.delegate = self
-        
-    }
+    
     
     
     override func viewWillAppear(animated: Bool) {

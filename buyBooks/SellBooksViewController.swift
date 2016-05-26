@@ -59,14 +59,19 @@ class SellBooksViewController: UIViewController {
         if let user = FIRAuth.auth()?.currentUser {
             //change this later to full name
             print(user.email)
+            print(user.photoURL)
             let name = user.email
             let email = user.email
+            let uid = user.uid
             let profileImage = "male"
             //let uid = user.uid
-            currentUserDictionary = ["fullName": name!, "email": email!, "profilePhoto": profileImage, "bookTitle": bookTitle.text!, "bookDetail": detail.text!, "bookCondition": bookCondition.text!, "price": price.text!, "bookImage": "male", "postedTime": "5:50"]
+            
+            let postId = ref.child("SellBooksPost").childByAutoId()
+            
+            currentUserDictionary = ["fullName": name!, "email": email!, "profilePhoto": profileImage, "bookTitle": bookTitle.text!, "bookDetail": detail.text!, "bookCondition": bookCondition.text!, "price": price.text!, "bookImage": "male", "postedTime": "5:50", "uid":uid, "SellBooksPostId": postId.key]
             // moved from donePressed
             //currentUserDictionary = []
-            ref.child("SellBooksPost").childByAutoId().setValue(currentUserDictionary)
+            postId.setValue(currentUserDictionary)
         } else {
             // No user is signed in.
         }
@@ -92,6 +97,8 @@ class SellBooksViewController: UIViewController {
     
     @IBAction func donePressed(sender: AnyObject) {
         self.getCurrentSellerInfo()
+        self.performSegueWithIdentifier("backHome", sender: nil)
+
         
     }
 
