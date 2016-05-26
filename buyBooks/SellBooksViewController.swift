@@ -105,3 +105,24 @@ class SellBooksViewController: UIViewController {
 
 
 }
+
+extension SellBooksViewController: UITextFieldDelegate{
+    func textFieldDidEndEditing(textField: UITextField) {
+        //add something may be?
+        
+    }
+    
+    func textFieldShouldClear(textField: UITextField) -> Bool {
+        return true
+    }
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+        return true
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
+    
+}
