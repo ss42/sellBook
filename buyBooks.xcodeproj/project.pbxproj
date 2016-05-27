@@ -23,7 +23,8 @@
 		10C6E6FC1CF65C55007BFF69 /* MyBooksViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E6FB1CF65C55007BFF69 /* MyBooksViewCell.swift */; };
 		10C6E6FE1CF670A2007BFF69 /* EditBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E6FD1CF670A2007BFF69 /* EditBooksViewController.swift */; };
 		10C6E7031CF79FEF007BFF69 /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E7021CF79FEF007BFF69 /* BarcodeScannerViewController.swift */; };
-		10C6E7051CF7A907007BFF69 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E7041CF7A907007BFF69 /* NetworkService.swift */; };
+		10C6E7071CF8DEC3007BFF69 /* CreatePostMethodSelectionVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E7061CF8DEC3007BFF69 /* CreatePostMethodSelectionVIewController.swift */; };
+		10C6E7091CF8EA18007BFF69 /* PresentSearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E7081CF8EA18007BFF69 /* PresentSearchResultsViewController.swift */; };
 		10E2FD411CF3DA7300B6EAE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10E2FD401CF3DA7300B6EAE0 /* GoogleService-Info.plist */; };
 		10E2FD451CF3DCA700B6EAE0 /* SellBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E2FD441CF3DCA700B6EAE0 /* SellBooksViewController.swift */; };
 		344F72721272BDEA70598AFD /* libPods-buyBooks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40AF727BB302E4406D9693F7 /* libPods-buyBooks.a */; };
@@ -51,7 +52,8 @@
 		10C6E6FB1CF65C55007BFF69 /* MyBooksViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBooksViewCell.swift; sourceTree = "<group>"; };
 		10C6E6FD1CF670A2007BFF69 /* EditBooksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBooksViewController.swift; sourceTree = "<group>"; };
 		10C6E7021CF79FEF007BFF69 /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
-		10C6E7041CF7A907007BFF69 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		10C6E7061CF8DEC3007BFF69 /* CreatePostMethodSelectionVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostMethodSelectionVIewController.swift; sourceTree = "<group>"; };
+		10C6E7081CF8EA18007BFF69 /* PresentSearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentSearchResultsViewController.swift; sourceTree = "<group>"; };
 		10E2FD3F1CF3D21900B6EAE0 /* buyBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = buyBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10E2FD401CF3DA7300B6EAE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		10E2FD441CF3DCA700B6EAE0 /* SellBooksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellBooksViewController.swift; sourceTree = "<group>"; };
@@ -94,8 +96,7 @@
 			children = (
 				1063A9E41CF3A6EB00BFB4E0 /* DataService.swift */,
 				1063A9C91CF3A67500BFB4E0 /* Main.storyboard */,
-				10C6E7021CF79FEF007BFF69 /* BarcodeScannerViewController.swift */,
-				10C6E7041CF7A907007BFF69 /* NetworkService.swift */,
+				10C6E70A1CF8EDC3007BFF69 /* barcode and search results */,
 				10E2FD441CF3DCA700B6EAE0 /* SellBooksViewController.swift */,
 				10E2FD431CF3DAA900B6EAE0 /* Supporting Files */,
 				1063A9CC1CF3A67500BFB4E0 /* Assets.xcassets */,
@@ -152,9 +153,19 @@
 			name = "view all books";
 			sourceTree = "<group>";
 		};
+		10C6E70A1CF8EDC3007BFF69 /* barcode and search results */ = {
+			isa = PBXGroup;
+			children = (
+				10C6E7021CF79FEF007BFF69 /* BarcodeScannerViewController.swift */,
+				10C6E7081CF8EA18007BFF69 /* PresentSearchResultsViewController.swift */,
+			);
+			name = "barcode and search results";
+			sourceTree = "<group>";
+		};
 		10E2FD421CF3DA9200B6EAE0 /* MainPAge */ = {
 			isa = PBXGroup;
 			children = (
+				10C6E7061CF8DEC3007BFF69 /* CreatePostMethodSelectionVIewController.swift */,
 				10C6E7011CF6752C007BFF69 /* view all books */,
 				10C6E7001CF6751E007BFF69 /* view my books */,
 			);
@@ -219,6 +230,7 @@
 				TargetAttributes = {
 					1063A9C11CF3A67500BFB4E0 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 467MTJSPA6;
 					};
 				};
 			};
@@ -312,12 +324,13 @@
 				1063A9EF1CF3A72600BFB4E0 /* LoginViewController.swift in Sources */,
 				10C6E6FC1CF65C55007BFF69 /* MyBooksViewCell.swift in Sources */,
 				1063A9E51CF3A6EB00BFB4E0 /* DataService.swift in Sources */,
+				10C6E7091CF8EA18007BFF69 /* PresentSearchResultsViewController.swift in Sources */,
 				1063A9C81CF3A67500BFB4E0 /* HomeViewController.swift in Sources */,
 				10E2FD451CF3DCA700B6EAE0 /* SellBooksViewController.swift in Sources */,
 				1063A9F31CF3B10400BFB4E0 /* PostTableViewCell.swift in Sources */,
+				10C6E7071CF8DEC3007BFF69 /* CreatePostMethodSelectionVIewController.swift in Sources */,
 				1063A9F51CF3B1DB00BFB4E0 /* Book.swift in Sources */,
 				10C6E7031CF79FEF007BFF69 /* BarcodeScannerViewController.swift in Sources */,
-				10C6E7051CF7A907007BFF69 /* NetworkService.swift in Sources */,
 				10C6E6FA1CF65BC3007BFF69 /* MyBooksViewController.swift in Sources */,
 				1063A9C61CF3A67500BFB4E0 /* AppDelegate.swift in Sources */,
 				10C6E6FE1CF670A2007BFF69 /* EditBooksViewController.swift in Sources */,
@@ -435,6 +448,8 @@
 			baseConfigurationReference = 02ADF71089E9F04C8FDACE96 /* Pods-buyBooks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(inherited)",
@@ -443,6 +458,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "St-Marys.buyBooks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				STRIPFLAGS = "-ObjC flag";
 			};
 			name = Debug;
@@ -452,6 +468,8 @@
 			baseConfigurationReference = A496016CBABC8B84555D241A /* Pods-buyBooks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(inherited)",
@@ -460,6 +478,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "St-Marys.buyBooks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				STRIPFLAGS = "-ObjC flag";
 			};
 			name = Release;

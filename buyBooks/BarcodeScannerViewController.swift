@@ -15,6 +15,8 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
     var previewLayer: AVCaptureVideoPreviewLayer!
     var bookInfoDict = [String:String]()
     
+    @IBOutlet weak var backButtonView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,6 +56,9 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
         view.layer.addSublayer(previewLayer);
         
+        // this is the back button, it sits on top of the camera stuff
+        view.addSubview(backButtonView);
+        
         captureSession.startRunning();
     }
     
@@ -90,12 +95,20 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
             foundCode(readableObject.stringValue);
         }
         
-        dismissViewControllerAnimated(true, completion: nil)
+        // changed from true to false
+        //dismissViewControllerAnimated(true, completion: nil)
     }
     
     func foundCode(code: String) {
+        
         print(code)
         lookUpData(code)
+        
+        // add a little processing wheel or something
+        //activity indicator view starts here
+        
+        //dismissViewControllerAnimated(false, completion: nil)
+        
         
     }
     
@@ -115,7 +128,7 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
     {
         let lookupURL = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN
         print(lookupURL)
-        bookInfoDict = ["isbn" : ISBN, "title" : "", "description" : "", "authors": "", "imageURL": "", "pageCount": ""]
+        bookInfoDict = ["isbn" : ISBN, "gtitle" : "", "description" : "", "authors": "", "imageURL": "", "pageCount": ""]
     
             
             let requestURL: NSURL = NSURL(string: lookupURL)!
@@ -144,12 +157,12 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
                                         if let title = volumeInfo["title"]{
                                             //assignment
                                             print(title)
-                                            self.bookInfoDict["title"] = title as? String
+                                            self.bookInfoDict["gtitle"] = (title as! String)
                                         }
                                         if let bookDescription = volumeInfo["description"]{
                                             //assignment
                                             print(bookDescription)
-                                            self.bookInfoDict["description"] = bookDescription as? String
+                                            self.bookInfoDict["description"] = (bookDescription as! String)
                                         }
                                         if let authors = volumeInfo["authors"] as? NSArray{
                                             let authorArray:NSMutableArray = []
@@ -164,23 +177,31 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
                                         }
                                         if let picLinks = volumeInfo["imageLinks"]{
                                             if let imageURL = picLinks!["thumbnail"]{
+                                                self.bookInfoDict["imageURL"] = (imageURL as! String)
                                                 print (imageURL)
                                             }
                                         }
                                         if let pageCount = volumeInfo["pageCount"]{
+                                            self.bookInfoDict["pageCount"] = String(pageCount)
                                             print(pageCount)
                                         }
+                                        //self.dismissViewControllerAnimated(false, completion: nil)
+
+                                        self.performSegueWithIdentifier("cameraToDetail", sender: nil)
                                         // possible additions are 1. catagories, 2. publication date
                                     }
                                     
                                  
                                     
                                 }
+                                
                             }
                             
                         }
-                       
+                        //task.suspend()
+                        //self.performSegueWithIdentifier("cameraToDetail", sender: nil)
                     // there should be a segue here, that sends the dictionary.
+                        
                         // maybe to some kind of conformation page
                     }catch {
                         print("Error with Json: \(error)")
@@ -189,15 +210,44 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
                 
                 }
             }
-            
+        
+        
         task.resume()
             
     }
     
     
-    func goBackToWhereWeCameFrom(){
-        
+    func topController() ->UIViewController{
+        var top = UIApplication.sharedApplication().keyWindow?.rootViewController
+        while ((top!.presentedViewController) != nil){
+            top = top!.presentedViewController
+        }
+        return top!
     }
+    /*- (UIViewController*) topMostController
+    {
+    UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    
+    while (topController.presentedViewController) {
+    topController = topController.presentedViewController;
+    }
+    
+    return topController;
+    }
+    
+    */
+
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        captureSession.stopRunning()
+        if segue.identifier == "cameraToDetail"{
+            let vc = segue.destinationViewController as! PresentSearchResultsViewController
+            vc.bookInfoDict = self.bookInfoDict
+            //self.presentViewController(vc, animated: true, completion: nil)
+            print("going to detail view")
+        }
+    }
+    
     
     override func prefersStatusBarHidden() -> Bool {
         return true

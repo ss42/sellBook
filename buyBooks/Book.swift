@@ -18,6 +18,15 @@ class Book{
     var postedTime: String?
     var detail: String?
     var postId: String?
+    var webDescription: String?
+    var webPrice: String?
+    var webTitle: String?
+    var webAuthors: String?
+    var webBookThumbnail: String?
+    var webPageCount: String?
+    var webISBN: String?
+    
+    
     
     init(user: User, title: String, price: Double, pictures: String, condition: String, postedTime: String, detail: String, postId:String)
     {
@@ -29,5 +38,40 @@ class Book{
         self.postedTime = postedTime
         self.detail = detail
         self.postId = postId
+        //self.webPageCount =
     }
+    init(user: User, title: String, price: Double, pictures: String, condition: String, postedTime: String, detail: String, postId:String, isbn:String, authors: String, imageURL: String, pageCount:String, description:String)
+    {
+        self.sellerInfo = user
+        self.title = title
+        self.price = price
+        self.pictures = pictures
+        self.condition = condition
+        self.postedTime = postedTime
+        self.detail = detail
+        self.postId = postId
+        self.webPageCount = pageCount
+        self.webDescription = description
+        self.webBookThumbnail = imageURL
+        self.webAuthors = authors
+        self.webISBN = isbn
+        
+    }
+    
+    //bookInfoDict = ["isbn" : ISBN, "title" : "", "description" : "", "authors": "", "imageURL": "", "pageCount": ""]
+
+    /*init(user: User, info: Dictionary<String, String>)
+    {
+        self.sellerInfo = user
+        self.webISBN = info["isbn"]
+        self.webTitle = info["title"]
+        self.webDescription = info["description"]
+        self.webAuthors = info["authors"]
+        self.webBookThumbnail = info["imageURL"]
+        self.webPageCount = info["pageCount"]
+        self.webPrice = "IMPLIMENT LATER"
+        self.postId = 
+    }*/
 }
+
+

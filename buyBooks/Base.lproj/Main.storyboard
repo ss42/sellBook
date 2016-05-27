@@ -138,7 +138,9 @@
                     <navigationItem key="navigationItem" id="TtN-xT-eGw">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0wV-JI-39s">
                             <connections>
-                                <segue destination="mBs-VY-AxC" kind="show" id="Jj4-A5-8Jz"/>
+                                <segue destination="PEe-ze-aLj" kind="popoverPresentation" identifier="popoverMenu" popoverAnchorBarButtonItem="0wV-JI-39s" id="4EH-s4-9A2">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -205,18 +207,103 @@
                         <color key="backgroundColor" red="0.91372549020000005" green="0.94901960780000005" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="more" id="Mop-Ud-RXr"/>
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="bookCondition" destination="b1r-ue-EwK" id="dBx-Qr-DM7"/>
                         <outlet property="bookConditionSlider" destination="HTG-jK-Kts" id="7RD-ZA-HMy"/>
                         <outlet property="bookTitle" destination="yUp-Ye-TXm" id="c6y-MO-Gdn"/>
                         <outlet property="detail" destination="qKi-dv-wYB" id="x5o-pZ-NK0"/>
                         <outlet property="price" destination="gKL-VF-Hsl" id="DjF-2X-uEe"/>
-                        <segue destination="OlM-dk-EJm" kind="show" identifier="backHome" id="EEx-p9-eLG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LE9-2l-AEF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2659" y="1344"/>
+            <point key="canvasLocation" x="1543" y="247"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="J7H-eb-pGg">
+            <objects>
+                <viewController id="1Qt-GI-VY9" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="M4X-QA-GoC"/>
+                        <viewControllerLayoutGuide type="bottom" id="V8d-YS-QqB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NsP-ha-tog">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q25-IT-w77">
+                                <rect key="frame" x="252" y="285" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please enter your 10 or 13 digit ISBN number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eo4-GG-jq8">
+                                <rect key="frame" x="130" y="146" width="341" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <segue destination="hkc-E3-Yp2" kind="show" identifier="ISBNToDetail" id="wCK-p9-2SF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DUf-An-UVo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2297" y="1022"/>
+        </scene>
+        <!--Present Search Results View Controller-->
+        <scene sceneID="Rkx-Yc-nET">
+            <objects>
+                <viewController id="hkc-E3-Yp2" customClass="PresentSearchResultsViewController" customModule="buyBooks" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="woL-MS-y8G"/>
+                        <viewControllerLayoutGuide type="bottom" id="zWi-h7-smC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BLg-se-a24">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHE-Wm-Qhm">
+                                <rect key="frame" x="270" y="115" width="60" height="30"/>
+                                <state key="normal" title="continue"/>
+                                <connections>
+                                    <action selector="continuePressed:" destination="hkc-E3-Yp2" eventType="touchUpInside" id="m81-RQ-ZW9"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yda-J8-NHA">
+                                <rect key="frame" x="279" y="290" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AH0-xX-69m">
+                                <rect key="frame" x="276" y="417" width="45" height="30"/>
+                                <state key="normal" title="cancel"/>
+                                <connections>
+                                    <action selector="cancelPressed:" destination="hkc-E3-Yp2" eventType="touchUpInside" id="hTh-CY-b04"/>
+                                    <segue destination="OlM-dk-EJm" kind="show" id="byK-B7-xc0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="yda-J8-NHA" firstAttribute="centerY" secondItem="BLg-se-a24" secondAttribute="centerY" id="7Xk-fU-lCN"/>
+                            <constraint firstItem="yda-J8-NHA" firstAttribute="centerX" secondItem="BLg-se-a24" secondAttribute="centerX" id="ir4-71-CC5"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="bookTitle" destination="yda-J8-NHA" id="0y1-Xt-rmD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jaa-fS-sGh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2269" y="1858"/>
         </scene>
         <!--Barcode Scanner View Controller-->
         <scene sceneID="YEL-NA-QJ2">
@@ -229,14 +316,33 @@
                     <view key="view" contentMode="scaleToFill" id="7gD-KI-YV0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tlq-2U-nAW">
+                                <rect key="frame" x="9" y="20" width="50" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPM-OO-E7i">
+                                        <rect key="frame" x="8" y="0.0" width="34" height="30"/>
+                                        <state key="normal" title="Back"/>
+                                        <connections>
+                                            <segue destination="OlM-dk-EJm" kind="show" id="tlo-HV-xWX"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="mwo-Ye-Dwx"/>
                     <navigationItem key="navigationItem" id="Wxz-K8-FjP"/>
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="backButtonView" destination="tlq-2U-nAW" id="XGE-gp-DLX"/>
+                        <segue destination="hkc-E3-Yp2" kind="show" identifier="cameraToDetail" id="Qfq-pA-Sw7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TdV-MP-tmu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-767" y="2682"/>
+            <point key="canvasLocation" x="891" y="1218"/>
         </scene>
         <!--Edit Books View Controller-->
         <scene sceneID="Hrx-kO-Gi8">
@@ -556,7 +662,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hof-bL-eIh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="871" y="1895"/>
+            <point key="canvasLocation" x="871" y="2043"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="olp-vP-Fqq">
@@ -569,9 +675,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="9kr-Zo-CMl" kind="relationship" relationship="viewControllers" id="qQ1-uE-27w"/>
-                        <segue destination="mBs-VY-AxC" kind="relationship" relationship="viewControllers" id="Oxi-on-Mj6"/>
                         <segue destination="XKY-Wc-9Hm" kind="relationship" relationship="viewControllers" id="QLq-CM-gLT"/>
-                        <segue destination="WuG-RU-6Zn" kind="relationship" relationship="viewControllers" id="Fpf-7g-WMF"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aGK-ZN-rW7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -597,13 +701,64 @@
             </objects>
             <point key="canvasLocation" x="59" y="1895"/>
         </scene>
+        <!--Create Post Method Selection View Controller-->
+        <scene sceneID="jdB-uS-gvS">
+            <objects>
+                <viewController id="PEe-ze-aLj" customClass="CreatePostMethodSelectionViewController" customModule="buyBooks" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Nve-V5-9Vp"/>
+                        <viewControllerLayoutGuide type="bottom" id="qeO-Li-0EF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cpd-Qk-ive">
+                        <rect key="frame" x="0.0" y="0.0" width="175" height="152"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFZ-Gj-oxK">
+                                <rect key="frame" x="50" y="0.0" width="125" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="manual entry"/>
+                                <connections>
+                                    <action selector="manualEntry:" destination="PEe-ze-aLj" eventType="touchUpInside" id="xh7-GN-Smn"/>
+                                    <segue destination="mBs-VY-AxC" kind="show" id="bwg-12-Yo0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkK-e5-Wou">
+                                <rect key="frame" x="50" y="51" width="125" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="barcode scan"/>
+                                <connections>
+                                    <action selector="barcodeScan:" destination="PEe-ze-aLj" eventType="touchUpInside" id="RB0-3V-Kgw"/>
+                                    <segue destination="WuG-RU-6Zn" kind="show" id="PCP-nM-CjS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5uH-9T-lzt">
+                                <rect key="frame" x="50" y="102" width="125" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="ISBN entry"/>
+                                <connections>
+                                    <action selector="ISBNEntry:" destination="PEe-ze-aLj" eventType="touchUpInside" id="s7h-5r-o4b"/>
+                                    <segue destination="1Qt-GI-VY9" kind="show" id="Lpa-5W-Xa0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="175" height="152"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="175" height="152"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z39-ME-yFy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="614.5" y="240"/>
+        </scene>
     </scenes>
     <resources>
         <image name="logo" width="136" height="136"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Oxi-on-Mj6"/>
-        <segue reference="EEx-p9-eLG"/>
+        <segue reference="byK-B7-xc0"/>
+        <segue reference="Qfq-pA-Sw7"/>
         <segue reference="qI3-R4-zK5"/>
     </inferredMetricsTieBreakers>
 </document>

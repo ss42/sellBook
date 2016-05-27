@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UIPopoverPresentationControllerDelegate{
     
     var ref = FIRDatabase.database().reference()
     
@@ -72,6 +72,15 @@ class HomeViewController: UIViewController {
         
         
     }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        if segue.identifier == "popoverMenu"{
+            let vc = segue.destinationViewController
+            let controller = vc.popoverPresentationController
+            if controller != nil{
+                controller?.delegate = self
+            }
+        }
+    }
     
 
 
@@ -110,4 +119,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
         
         return cell
     }
+    
+    // for the popover in the upper right
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle
+    {
+        return .None
+    }
 }
+
+
