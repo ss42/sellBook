@@ -71,9 +71,9 @@ class MyBooksViewController: UIViewController {
             
             let title = snapshot.value!["bookTitle"] as! String
             
-            let detail = snapshot.value!["bookDetail"] as! String
+            //let detail = snapshot.value!["bookDetail"] as! String //removed 5/31
             let condition = snapshot.value!["bookCondition"] as! String
-            let bookImage = snapshot.value!["bookImage"] as! String
+            let bookImage = snapshot.value!["imageURL"] as! String
             let price = snapshot.value!["price"] as! String
             let sellerName = snapshot.value!["fullName"] as! String
             let sellerEmail = snapshot.value!["email"] as! String

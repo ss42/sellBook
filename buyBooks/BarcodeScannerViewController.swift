@@ -222,6 +222,10 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
                         }
                         else{
                             print("no info, say something")
+                            dispatch_async(dispatch_get_main_queue(), {
+                                
+                            self.displayMyAlertMessage("Scan Error", message: "No results found from barcode scan, please enter info manually")
+                                })
                             // maybe do a popup/alert and a confirm button
                         }
                         //task.suspend()
@@ -240,6 +244,27 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         
         task.resume()
             
+    }
+    
+    func displayMyAlertMessage(title: String, message: String) {
+        let myAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: tryScanAgain)
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: cancelScan)
+
+        myAlert.addAction(okAction)
+        myAlert.addAction(cancelAction)
+        self.presentViewController(myAlert, animated: true, completion: nil);
+    }
+    
+    func tryScanAgain(alert:UIAlertAction!)
+    {
+        print("ok")
+        captureSession.startRunning()
+    }
+    func cancelScan(alert:UIAlertAction!)
+    {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func fetchImage(){

@@ -24,6 +24,7 @@ class SellBooksViewController: UIViewController {
     @IBOutlet weak var bookCondition: UILabel!
     
     var currentUserDictionary: NSDictionary?
+    var bookInfoDict = [String:String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +56,7 @@ class SellBooksViewController: UIViewController {
         
     }
     
-    func getCurrentSellerInfo(){
+    /*func getCurrentSellerInfo(){
         if let user = FIRAuth.auth()?.currentUser {
             //change this later to full name
             print(user.email)
@@ -68,14 +69,23 @@ class SellBooksViewController: UIViewController {
             
             let postId = ref.child("SellBooksPost").childByAutoId()
             
-            currentUserDictionary = ["fullName": name!, "email": email!, "profilePhoto": profileImage, "bookTitle": bookTitle.text!, "bookDetail": detail.text!, "bookCondition": bookCondition.text!, "price": price.text!, "bookImage": "male", "postedTime": "5:50", "uid":uid, "SellBooksPostId": postId.key]
+            currentUserDictionary = ["fullName": name!, "email": email!, "profilePhoto": profileImage, "bookTitle": bookTitle.text!, "bookDetail": detail.text!, "bookCondition": bookCondition.text!, "price": price.text!, "imageURL": "male", "postedTime": getCurrentTime(), "uid":uid, "SellBooksPostId": postId.key]
             // moved from donePressed
             //currentUserDictionary = []
             postId.setValue(currentUserDictionary)
         } else {
             // No user is signed in.
+            
         }
 
+    }*/
+    
+    func getCurrentTime()-> String{
+        let todaysDate:NSDate = NSDate()
+        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let currentTimeAndDate:String = dateFormatter.stringFromDate(todaysDate)
+        return currentTimeAndDate
     }
     
     @IBAction func bookCondition(sender: UISlider) {
@@ -91,17 +101,47 @@ class SellBooksViewController: UIViewController {
         else if bookConditionSlider.value > 75 {
             bookCondition.text = "Excellent"
         }
-        
+    }
+    
+    func setDict(){
+        //self.bookInfoDict["bookCondition"] = self.bookCondition.text!
+        self.bookInfoDict["bookTitle"] = self.bookTitle.text!
+        //self.bookInfoDict["price"] = self.price.text!
+        self.bookInfoDict["description"] = self.detail.text!
+        // we can get these from search results later 5/31
+        self.bookInfoDict["isbn"] = "N/A"
+        self.bookInfoDict["authors"] = "some author"
+        self.bookInfoDict["imageURL"] = "http://i.imgur.com/zTFEK3c.png"
         
     }
     
     @IBAction func donePressed(sender: AnyObject) {
-        self.getCurrentSellerInfo()
-        self.performSegueWithIdentifier("backHome", sender: nil)
+        //self.getCurrentSellerInfo()
+        self.setDict()
+        self.performSegueWithIdentifier("toSetPrice", sender: nil)
 
         
     }
-
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        
+        if segue.identifier == "toSetPrice"{
+            let vc = segue.destinationViewController as! SetPriceAndConditionFromSearchViewController
+            
+            vc.bookInfoDict = self.bookInfoDict
+            //vc.image = self.bookImage.image
+            // commented out 5/31, need to pass the user uploaded image or just a placeholder image!
+            
+            
+            
+            
+            
+            
+            //vc.bookImage.image = self.bookImage!
+            //self.presentViewController(vc, animated: true, completion: nil)
+            print("going to detail view")
+        }
+    }
 
 
 }

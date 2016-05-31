@@ -78,9 +78,31 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
         bookAuthors.text = ("By, " + self.bookInfoDict["authors"]!)
         
     }
+    func load_image()
+    {
+        var tempString = self.bookInfoDict["imageURL"]!
+        if (tempString.hasPrefix("http:")){
+            tempString.insert("s", atIndex: tempString.startIndex.advancedBy(4))
+            print(tempString)
+        }
+        let urlString = tempString
+        let imgURL: NSURL = NSURL(string: urlString)!
+        let request: NSURLRequest = NSURLRequest(URL: imgURL)
+        NSURLConnection.sendAsynchronousRequest(
+            request, queue: NSOperationQueue.mainQueue(),
+            completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
+                if error == nil {
+                    self.bookImage.image = UIImage(data: data!)
+                }
+        })
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if image == nil{
+            load_image()
+        }
         price.delegate = self
         
         bookConditionSlider.minimumValue = 0.0

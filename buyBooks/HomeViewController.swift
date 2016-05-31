@@ -28,6 +28,26 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         self.tableView.dataSource = self
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    /*func load_image(url:String)
+    {
+        var tempString = url
+        if (tempString.hasPrefix("http:")){
+            tempString.insert("s", atIndex: tempString.startIndex.advancedBy(4))
+            print(tempString)
+        }
+        let urlString = tempString
+        let imgURL: NSURL = NSURL(string: urlString)!
+        let request: NSURLRequest = NSURLRequest(URL: imgURL)
+        NSURLConnection.sendAsynchronousRequest(
+            request, queue: NSOperationQueue.mainQueue(),
+            completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
+                if error == nil {
+                    self.bookImage.image = UIImage(data: data!)
+                }
+        })
+        
+    }*/
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -56,7 +76,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             let title = snapshot.value!["bookTitle"] as! String
             //let detail = snapshot.value!["bookDetail"] as! String
             let condition = snapshot.value!["bookCondition"] as! String
-            let bookImage = snapshot.value!["bookImage"] as! String
+            let bookImage = snapshot.value!["imageURL"] as! String
             let price = snapshot.value!["price"] as! String
             let sellerName = snapshot.value!["fullName"] as! String
             let sellerEmail = snapshot.value!["email"] as! String
@@ -117,8 +137,89 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
         cell.postedTime.text = book!.postedTime
         cell.price.text = String(book!.price!)
         
+        
         return cell
     }
+    
+    
+    
+    
+    /*
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+       
+           let requestedRide = self.tempArray[indexPath.row] as! Trips
+            let driver = "\(requestedRide.driver!.firstName) \(requestedRide.driver!.lastName)"
+            let contactAction = UITableViewRowAction(style: .Normal, title: "Contact \(requestedRide.driver!.firstName)"){(action: UITableViewRowAction!, indexPath: NSIndexPath) -> Void in
+                
+                let contactAlertController = UIAlertController(title: "Contact  \(driver)", message: ":)", preferredStyle: .ActionSheet )
+                
+                let callAction = UIAlertAction(title: "Call the Driver", style: UIAlertActionStyle.Default){(action)-> Void in
+                    // the phone number is default.
+                    // need to check for correct phone number when inputed and add below
+                    var url:NSURL = NSURL(string: "tel://+15106954976")!
+                    UIApplication.sharedApplication().openURL(url)
+                }
+                let textAction = UIAlertAction(title: "Text", style: UIAlertActionStyle.Default){(action)-> Void in
+                    //message hard coded for now
+                    
+                    let msgVC = MFMessageComposeViewController()
+                    msgVC.body = "Hello World"
+                    msgVC.recipients = ["+15103675660"]
+                    msgVC.messageComposeDelegate = self
+                    self.presentViewController(msgVC, animated: true, completion: nil)
+                }
+                let emailAction = UIAlertAction(title: "Email", style: UIAlertActionStyle.Default){(action)-> Void in
+                    
+                    let vc: SendMailViewController = self.storyboard!.instantiateViewControllerWithIdentifier("sendMail") as! SendMailViewController
+                    let trip = self.tempArray[indexPath.row] as! Trips
+                    vc.emailAddress = trip.email
+                    self.presentViewController(vc, animated: true, completion: nil)
+                    
+                    //do stuff
+                    //segue to sendmailcontroller and send data or driver's email add thru segue
+                }
+                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default){(action)-> Void in
+                    
+                }
+                contactAlertController.addAction(callAction)
+                contactAlertController.addAction(textAction)
+                contactAlertController.addAction(emailAction)
+                contactAlertController.addAction(cancelAction)
+                
+                self.presentViewController(contactAlertController, animated: true, completion: nil)
+                
+            }
+            let requestAction = UITableViewRowAction(style: .Normal, title: "Request Ride"){(action: UITableViewRowAction!, indexPath: NSIndexPath) -> Void in
+                
+                let requestAlertController = UIAlertController(title: nil, message: "Are you sure you want to request this ride?", preferredStyle: .ActionSheet)
+                
+                let requestAction = UIAlertAction(title: "Confirm Request", style: UIAlertActionStyle.Default){(action)-> Void in
+                    let vc: RideHistoryViewController = self.storyboard!.instantiateViewControllerWithIdentifier("myRide") as! RideHistoryViewController
+                    
+                    vc.myRideArray.addObject(requestedRide)
+                    
+                    
+                    
+                    self.tableView.reloadData()
+                    
+                }
+                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+                requestAlertController.addAction(requestAction)
+                requestAlertController.addAction(cancelAction)
+                
+                self.presentViewController(requestAlertController, animated: true, completion: nil)
+                
+            }
+            
+            contactAction.backgroundColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1.0)
+            requestAction.backgroundColor = UIColor(red: 82/255, green: 69/255, blue: 105/255, alpha: 1.0)
+            
+            return [contactAction, requestAction]
+        return 0
+    }
+     */
+
+
     
     // for the popover in the upper right
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle

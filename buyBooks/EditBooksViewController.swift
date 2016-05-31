@@ -52,7 +52,7 @@ class EditBooksViewController: UIViewController {
              self.currentUserDictionary["bookTitle"] = snapshot.value!["bookTitle"] as! String
              self.currentUserDictionary["bookDetail"] = snapshot.value!["bookDetail"] as! String
              self.currentUserDictionary["bookCondition"] = snapshot.value!["bookCondition"] as! String
-             self.currentUserDictionary["bookImage"] = snapshot.value!["bookImage"] as! String
+             self.currentUserDictionary["imageURL"] = snapshot.value!["imageURL"] as! String
              self.currentUserDictionary["price"] = snapshot.value!["price"] as! String
              self.currentUserDictionary["fullName"] = snapshot.value!["fullName"] as! String
              self.currentUserDictionary["email"] = snapshot.value!["email"] as! String

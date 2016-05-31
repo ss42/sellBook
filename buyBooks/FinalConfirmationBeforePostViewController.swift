@@ -57,9 +57,11 @@ class FinalConfirmationBeforePostViewController: UIViewController {
             var tempDict = self.bookInfoDict
             tempDict["fullName"] = name!
             tempDict["email"] = email!
-            tempDict["profilePhoto"] = "male"
-            
+            tempDict["profilePhoto"] = profileImage
+            tempDict["uid"] = uid
             tempDict["SellBooksPostId"] = postId.key
+            tempDict["postedTime"] = getCurrentTime()
+            
             //currentUserDictionary = ["fullName": name!, "email": email!, "profilePhoto": profileImage, "bookTitle": bookTitle.text!, "bookDetail": detail.text!, "bookCondition": bookCondition.text!, "price": price.text!, "bookImage": "male", "postedTime": "5:50", "uid":uid, "SellBooksPostId": postId.key]
             // moved from donePressed
             //currentUserDictionary = []
@@ -100,6 +102,9 @@ class FinalConfirmationBeforePostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if image == nil{
+            print("no image! we shouldnt see this!")
+        }
         populateFields()
 
         // Do any additional setup after loading the view.
@@ -123,8 +128,30 @@ class FinalConfirmationBeforePostViewController: UIViewController {
         }
     }
 
+    func getCurrentTime()-> String{
+        let todaysDate:NSDate = NSDate()
+        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let currentTimeAndDate:String = dateFormatter.stringFromDate(todaysDate)
+        return currentTimeAndDate
+    }
     
-
+    
+    func sayOk(alert: UIAlertAction!)
+    {
+        print("ok, okay, o k")
+    }
+    
+    //to display alert for errors
+    func displayMyAlertMessage(title: String, message: String) {
+        let myAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: sayOk)
+        myAlert.addAction(okAction)
+        print("here1")
+        self.presentViewController(myAlert, animated: true, completion: nil);
+        print("here")
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 
