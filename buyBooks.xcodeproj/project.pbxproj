@@ -12,11 +12,6 @@
 		1063A9CB1CF3A67500BFB4E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1063A9C91CF3A67500BFB4E0 /* Main.storyboard */; };
 		1063A9CD1CF3A67500BFB4E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1063A9CC1CF3A67500BFB4E0 /* Assets.xcassets */; };
 		1063A9D01CF3A67500BFB4E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1063A9CE1CF3A67500BFB4E0 /* LaunchScreen.storyboard */; };
-		1063A9E51CF3A6EB00BFB4E0 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1063A9E41CF3A6EB00BFB4E0 /* DataService.swift */; };
-		1063A9ED1CF3A72600BFB4E0 /* CreateNewAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1063A9EA1CF3A72600BFB4E0 /* CreateNewAccountViewController.swift */; };
-		1063A9EE1CF3A72600BFB4E0 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1063A9EB1CF3A72600BFB4E0 /* ForgotPasswordViewController.swift */; };
-		1063A9EF1CF3A72600BFB4E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1063A9EC1CF3A72600BFB4E0 /* LoginViewController.swift */; };
-		1063A9F31CF3B10400BFB4E0 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1063A9F21CF3B10400BFB4E0 /* PostTableViewCell.swift */; };
 		1063A9F51CF3B1DB00BFB4E0 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1063A9F41CF3B1DB00BFB4E0 /* Book.swift */; };
 		1063A9F71CF3B1EF00BFB4E0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1063A9F61CF3B1EF00BFB4E0 /* User.swift */; };
 		10C6E6FA1CF65BC3007BFF69 /* MyBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E6F91CF65BC3007BFF69 /* MyBooksViewController.swift */; };
@@ -27,6 +22,11 @@
 		10C6E7091CF8EA18007BFF69 /* PresentSearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E7081CF8EA18007BFF69 /* PresentSearchResultsViewController.swift */; };
 		10DA6EDE1CFCF88300D64DB2 /* SetPriceAndConditionFromSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DA6EDD1CFCF88300D64DB2 /* SetPriceAndConditionFromSearchViewController.swift */; };
 		10DA6EE01CFD07AA00D64DB2 /* FinalConfirmationBeforePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DA6EDF1CFD07AA00D64DB2 /* FinalConfirmationBeforePostViewController.swift */; };
+		10DA6EE21CFD5BFE00D64DB2 /* ForgotPasswordViewController 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DA6EE11CFD5BFE00D64DB2 /* ForgotPasswordViewController 2.swift */; };
+		10DA6EE41CFD5C1000D64DB2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DA6EE31CFD5C1000D64DB2 /* LoginViewController.swift */; };
+		10DA6EE61CFD5C1600D64DB2 /* CreateNewAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DA6EE51CFD5C1600D64DB2 /* CreateNewAccountViewController.swift */; };
+		10DA6EE81CFD5C3C00D64DB2 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DA6EE71CFD5C3C00D64DB2 /* PostTableViewCell.swift */; };
+		10DA6EEA1CFD5DFD00D64DB2 /* SellBySearchingISBNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DA6EE91CFD5DFD00D64DB2 /* SellBySearchingISBNViewController.swift */; };
 		10E2FD411CF3DA7300B6EAE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10E2FD401CF3DA7300B6EAE0 /* GoogleService-Info.plist */; };
 		10E2FD451CF3DCA700B6EAE0 /* SellBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E2FD441CF3DCA700B6EAE0 /* SellBooksViewController.swift */; };
 		344F72721272BDEA70598AFD /* libPods-buyBooks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40AF727BB302E4406D9693F7 /* libPods-buyBooks.a */; };
@@ -40,11 +40,6 @@
 		1063A9CC1CF3A67500BFB4E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1063A9CF1CF3A67500BFB4E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1063A9D11CF3A67500BFB4E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1063A9E41CF3A6EB00BFB4E0 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataService.swift; path = ../../Carpooling/DataService.swift; sourceTree = "<group>"; };
-		1063A9EA1CF3A72600BFB4E0 /* CreateNewAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateNewAccountViewController.swift; path = ../../Carpooling/Carpooling/CreateNewAccountViewController.swift; sourceTree = "<group>"; };
-		1063A9EB1CF3A72600BFB4E0 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ForgotPasswordViewController.swift; path = ../../Carpooling/Carpooling/ForgotPasswordViewController.swift; sourceTree = "<group>"; };
-		1063A9EC1CF3A72600BFB4E0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../../Carpooling/Carpooling/LoginViewController.swift; sourceTree = "<group>"; };
-		1063A9F21CF3B10400BFB4E0 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostTableViewCell.swift; path = ../../Carpooling/Carpooling/PostTableViewCell.swift; sourceTree = "<group>"; };
 		1063A9F41CF3B1DB00BFB4E0 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		1063A9F61CF3B1EF00BFB4E0 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1063A9FA1CF3C66200BFB4E0 /* buyBooks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "buyBooks-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
@@ -58,6 +53,11 @@
 		10C6E7081CF8EA18007BFF69 /* PresentSearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentSearchResultsViewController.swift; sourceTree = "<group>"; };
 		10DA6EDD1CFCF88300D64DB2 /* SetPriceAndConditionFromSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPriceAndConditionFromSearchViewController.swift; sourceTree = "<group>"; };
 		10DA6EDF1CFD07AA00D64DB2 /* FinalConfirmationBeforePostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalConfirmationBeforePostViewController.swift; sourceTree = "<group>"; };
+		10DA6EE11CFD5BFE00D64DB2 /* ForgotPasswordViewController 2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ForgotPasswordViewController 2.swift"; sourceTree = "<group>"; };
+		10DA6EE31CFD5C1000D64DB2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		10DA6EE51CFD5C1600D64DB2 /* CreateNewAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewAccountViewController.swift; sourceTree = "<group>"; };
+		10DA6EE71CFD5C3C00D64DB2 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		10DA6EE91CFD5DFD00D64DB2 /* SellBySearchingISBNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellBySearchingISBNViewController.swift; sourceTree = "<group>"; };
 		10E2FD3F1CF3D21900B6EAE0 /* buyBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = buyBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10E2FD401CF3DA7300B6EAE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		10E2FD441CF3DCA700B6EAE0 /* SellBooksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellBooksViewController.swift; sourceTree = "<group>"; };
@@ -98,8 +98,8 @@
 		1063A9C41CF3A67500BFB4E0 /* buyBooks */ = {
 			isa = PBXGroup;
 			children = (
-				1063A9E41CF3A6EB00BFB4E0 /* DataService.swift */,
 				1063A9C91CF3A67500BFB4E0 /* Main.storyboard */,
+				10DA6EE91CFD5DFD00D64DB2 /* SellBySearchingISBNViewController.swift */,
 				10C6E70A1CF8EDC3007BFF69 /* barcode and search results */,
 				10E2FD441CF3DCA700B6EAE0 /* SellBooksViewController.swift */,
 				10E2FD431CF3DAA900B6EAE0 /* Supporting Files */,
@@ -114,9 +114,9 @@
 		1063A9F01CF3B05D00BFB4E0 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				1063A9EA1CF3A72600BFB4E0 /* CreateNewAccountViewController.swift */,
-				1063A9EB1CF3A72600BFB4E0 /* ForgotPasswordViewController.swift */,
-				1063A9EC1CF3A72600BFB4E0 /* LoginViewController.swift */,
+				10DA6EE51CFD5C1600D64DB2 /* CreateNewAccountViewController.swift */,
+				10DA6EE11CFD5BFE00D64DB2 /* ForgotPasswordViewController 2.swift */,
+				10DA6EE31CFD5C1000D64DB2 /* LoginViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -152,7 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				1063A9C71CF3A67500BFB4E0 /* HomeViewController.swift */,
-				1063A9F21CF3B10400BFB4E0 /* PostTableViewCell.swift */,
+				10DA6EE71CFD5C3C00D64DB2 /* PostTableViewCell.swift */,
 			);
 			name = "view all books";
 			sourceTree = "<group>";
@@ -208,12 +208,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1063A9D41CF3A67500BFB4E0 /* Build configuration list for PBXNativeTarget "buyBooks" */;
 			buildPhases = (
-				581610CABF5EC075B3CFC3F8 /* Check Pods Manifest.lock */,
+				581610CABF5EC075B3CFC3F8 /* 📦 Check Pods Manifest.lock */,
 				1063A9BE1CF3A67500BFB4E0 /* Sources */,
 				1063A9BF1CF3A67500BFB4E0 /* Frameworks */,
 				1063A9C01CF3A67500BFB4E0 /* Resources */,
-				1B804533AC5640DCC16FF9A6 /* Embed Pods Frameworks */,
-				09EDC84E988B6DBF066112B1 /* Copy Pods Resources */,
+				1B804533AC5640DCC16FF9A6 /* 📦 Embed Pods Frameworks */,
+				09EDC84E988B6DBF066112B1 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -273,14 +273,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		09EDC84E988B6DBF066112B1 /* Copy Pods Resources */ = {
+		09EDC84E988B6DBF066112B1 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,14 +288,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-buyBooks/Pods-buyBooks-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1B804533AC5640DCC16FF9A6 /* Embed Pods Frameworks */ = {
+		1B804533AC5640DCC16FF9A6 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,14 +303,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-buyBooks/Pods-buyBooks-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		581610CABF5EC075B3CFC3F8 /* Check Pods Manifest.lock */ = {
+		581610CABF5EC075B3CFC3F8 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -325,23 +325,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1063A9EE1CF3A72600BFB4E0 /* ForgotPasswordViewController.swift in Sources */,
-				1063A9ED1CF3A72600BFB4E0 /* CreateNewAccountViewController.swift in Sources */,
-				1063A9EF1CF3A72600BFB4E0 /* LoginViewController.swift in Sources */,
 				10C6E6FC1CF65C55007BFF69 /* MyBooksViewCell.swift in Sources */,
-				1063A9E51CF3A6EB00BFB4E0 /* DataService.swift in Sources */,
+				10DA6EE41CFD5C1000D64DB2 /* LoginViewController.swift in Sources */,
+				10DA6EE61CFD5C1600D64DB2 /* CreateNewAccountViewController.swift in Sources */,
 				10DA6EE01CFD07AA00D64DB2 /* FinalConfirmationBeforePostViewController.swift in Sources */,
+				10DA6EE81CFD5C3C00D64DB2 /* PostTableViewCell.swift in Sources */,
 				10C6E7091CF8EA18007BFF69 /* PresentSearchResultsViewController.swift in Sources */,
 				10DA6EDE1CFCF88300D64DB2 /* SetPriceAndConditionFromSearchViewController.swift in Sources */,
+				10DA6EE21CFD5BFE00D64DB2 /* ForgotPasswordViewController 2.swift in Sources */,
 				1063A9C81CF3A67500BFB4E0 /* HomeViewController.swift in Sources */,
 				10E2FD451CF3DCA700B6EAE0 /* SellBooksViewController.swift in Sources */,
-				1063A9F31CF3B10400BFB4E0 /* PostTableViewCell.swift in Sources */,
 				10C6E7071CF8DEC3007BFF69 /* CreatePostMethodSelectionVIewController.swift in Sources */,
 				1063A9F51CF3B1DB00BFB4E0 /* Book.swift in Sources */,
 				10C6E7031CF79FEF007BFF69 /* BarcodeScannerViewController.swift in Sources */,
 				10C6E6FA1CF65BC3007BFF69 /* MyBooksViewController.swift in Sources */,
 				1063A9C61CF3A67500BFB4E0 /* AppDelegate.swift in Sources */,
 				10C6E6FE1CF670A2007BFF69 /* EditBooksViewController.swift in Sources */,
+				10DA6EEA1CFD5DFD00D64DB2 /* SellBySearchingISBNViewController.swift in Sources */,
 				1063A9F71CF3B1EF00BFB4E0 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

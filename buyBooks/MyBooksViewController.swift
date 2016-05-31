@@ -81,7 +81,7 @@ class MyBooksViewController: UIViewController {
             let postedTime = snapshot.value!["postedTime"] as! String
             let postId = snapshot.value!["SellBooksPostId"] as! String
             let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
-            self.sellBookArray.addObject(Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: postedTime, detail: detail, postId: postId))
+            self.sellBookArray.addObject(Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: postedTime, postId: postId))
             
             
             

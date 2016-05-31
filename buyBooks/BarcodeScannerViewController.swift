@@ -63,6 +63,21 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         captureSession.startRunning();
     }
     
+    override func viewDidAppear(animated: Bool)
+    {
+        let isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn");
+        
+        if(!isUserLoggedIn)
+        {
+            //make the user sign in first
+            print("here")
+            let ViewController = self.storyboard!.instantiateViewControllerWithIdentifier("LoginView") as! LoginViewController
+            self.presentViewController(ViewController, animated: true, completion: nil)
+        }
+        
+        
+    }
+    
     func failed() {
         let ac = UIAlertController(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .Alert)
         ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))

@@ -16,7 +16,7 @@ class Book{
     var pictures: String?
     var condition: String?
     var postedTime: String?
-    var detail: String?
+    //var detail: String?
     var postId: String?
     var webDescription: String?
     var webPrice: String?
@@ -28,7 +28,7 @@ class Book{
     
     
     
-    init(user: User, title: String, price: Double, pictures: String, condition: String, postedTime: String, detail: String, postId:String)
+    init(user: User, title: String, price: Double, pictures: String, condition: String, postedTime: String, postId:String)
     {
         self.sellerInfo = user
         self.title = title
@@ -36,11 +36,11 @@ class Book{
         self.pictures = pictures
         self.condition = condition
         self.postedTime = postedTime
-        self.detail = detail
+       // self.detail = detail
         self.postId = postId
         //self.webPageCount =
     }
-    init(user: User, title: String, price: Double, pictures: String, condition: String, postedTime: String, detail: String, postId:String, isbn:String, authors: String, imageURL: String, pageCount:String, description:String)
+    init(user: User, title: String, price: Double, pictures: String, condition: String, postedTime: String, postId:String, isbn:String, authors: String, imageURL: String, pageCount:String, description:String)
     {
         self.sellerInfo = user
         self.title = title
@@ -48,7 +48,7 @@ class Book{
         self.pictures = pictures
         self.condition = condition
         self.postedTime = postedTime
-        self.detail = detail
+        //self.detail = detail
         self.postId = postId
         self.webPageCount = pageCount
         self.webDescription = description

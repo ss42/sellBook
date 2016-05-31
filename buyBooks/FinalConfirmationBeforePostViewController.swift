@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 
 class FinalConfirmationBeforePostViewController: UIViewController {
+    var ref = FIRDatabase.database().reference()
 
     var bookInfoDict = [String:String]()
     var image:UIImage?
@@ -36,6 +37,8 @@ class FinalConfirmationBeforePostViewController: UIViewController {
     
     @IBAction func confirmPressed(sender: AnyObject) {
         getCurrentSellerInfo()
+        self.performSegueWithIdentifier("backToHome", sender: nil)
+
         
     }
     
@@ -54,7 +57,7 @@ class FinalConfirmationBeforePostViewController: UIViewController {
             var tempDict = self.bookInfoDict
             tempDict["fullName"] = name!
             tempDict["email"] = email!
-            tempDict["profilePhoto"] = profileImage
+            tempDict["profilePhoto"] = "male"
             
             tempDict["SellBooksPostId"] = postId.key
             //currentUserDictionary = ["fullName": name!, "email": email!, "profilePhoto": profileImage, "bookTitle": bookTitle.text!, "bookDetail": detail.text!, "bookCondition": bookCondition.text!, "price": price.text!, "bookImage": "male", "postedTime": "5:50", "uid":uid, "SellBooksPostId": postId.key]

@@ -54,7 +54,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             snapshot in
             
             let title = snapshot.value!["bookTitle"] as! String
-            let detail = snapshot.value!["bookDetail"] as! String
+            //let detail = snapshot.value!["bookDetail"] as! String
             let condition = snapshot.value!["bookCondition"] as! String
             let bookImage = snapshot.value!["bookImage"] as! String
             let price = snapshot.value!["price"] as! String
@@ -64,7 +64,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             let postedTime = snapshot.value!["postedTime"] as! String
             print(title)
             let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
-            self.sellBookArray.addObject(Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: postedTime, detail: detail, postId: ""))
+            self.sellBookArray.addObject(Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: postedTime, postId: ""))
 
             
             self.tableView.reloadData()
@@ -113,7 +113,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
         let book = sellBookArray[indexPath.row] as? Book
         cell.fullName.text = book!.sellerInfo?.email
         cell.title.text = book!.title
-        cell.detail.text = book!.detail
+       // cell.detail.text = book!.detail
         cell.postedTime.text = book!.postedTime
         cell.price.text = String(book!.price!)
         
