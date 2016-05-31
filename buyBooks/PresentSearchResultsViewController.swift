@@ -26,6 +26,7 @@ class PresentSearchResultsViewController: UIViewController {
     @IBOutlet weak var bookImage: UIImageView!
     
     var bookInfoDict = [String:String]()
+    //var bookPicture:UIImage?
     
     
     override func viewDidLoad() {
@@ -35,6 +36,11 @@ class PresentSearchResultsViewController: UIViewController {
         print("at detail view")
         populateFields()
         
+        /*
+ 
+ 2016-05-30 14:23:28.012 buyBooks[6305:2521457] *** Assertion failure in void _UIPerformResizeOfTextViewForTextContainer(NSLayoutManager *, UIView<NSTextContainerView> *, NSTextContainer *, NSUInteger)(), /BuildRoot/Library/Caches/com.apple.xbs/Sources/UIFoundation/UIFoundation-432.1/UIFoundation/TextSystem/NSLayoutManager_Private.m:1551
+ 2016-05-30 14:23:28.015 buyBooks[6305:2521457] *** Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'Only run on the main thread!'
+*/
 
         // Do any additional setup after loading the view.
     }
@@ -46,10 +52,14 @@ class PresentSearchResultsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func fetchImage(){
+    /*func fetchImage(){
         
-        
-        let requestURL: NSURL = NSURL(string: bookInfoDict["imageURL"]!)!
+        var tempString = self.bookInfoDict["imageURL"]!
+        if (tempString.hasPrefix("http:")){
+            tempString.insert("s", atIndex: tempString.startIndex.advancedBy(4))
+            print(tempString)
+        }
+        let requestURL: NSURL = NSURL(string: tempString)!
         let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(urlRequest) {
@@ -65,13 +75,17 @@ class PresentSearchResultsViewController: UIViewController {
                     let picture = UIImage(data:data!)
                     self.bookImage.image = picture
                     
-                                
+                    self.bookImage
                     
                                 
+                    print("after image assignment")
+                                
                     
                     
-                        
-                
+                    //dispatch_async(dispatch_get_main_queue(), {
+                        self.bookImage.setNeedsDisplay()
+                    //})
+                    
                     
               
                 }catch {
@@ -90,24 +104,65 @@ class PresentSearchResultsViewController: UIViewController {
         }
         task.resume()
     }
-
+*/
+    func load_image()
+    {
+        var tempString = self.bookInfoDict["imageURL"]!
+        if (tempString.hasPrefix("http:")){
+            tempString.insert("s", atIndex: tempString.startIndex.advancedBy(4))
+            print(tempString)
+        }
+        let urlString = tempString
+        let imgURL: NSURL = NSURL(string: urlString)!
+        let request: NSURLRequest = NSURLRequest(URL: imgURL)
+        NSURLConnection.sendAsynchronousRequest(
+            request, queue: NSOperationQueue.mainQueue(),
+            completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
+                if error == nil {
+                    self.bookImage.image = UIImage(data: data!)
+                }
+        })
+        
+    }
     func populateFields(){
         
         // bookInfoDict = ["isbn" : ISBN, "title" : "", "description" : "", "authors": "", "imageURL": "", "pageCount": ""]
-       bookTitle.text = self.bookInfoDict["gtitle"]
-        /*authors.text = bookInfoDict["authors"]
+       bookTitle.text = self.bookInfoDict["bookTitle"]
+        
+            self.bookDescription.text = self.bookInfoDict["description"]
+        
+        
+        authors.text = bookInfoDict["authors"]
         ISBN.text = bookInfoDict["isbn"]
         retailPrice.text = "fix later"
-        //bookDescription.text = bookInfoDict["description"]
+        //
         pageCount.text = bookInfoDict["pageCount"]
         print("populated fields")
         
         print(bookTitle.text!)
         print(ISBN.text!)
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            self.load_image()
+        })
         //fetchImage()
-        */
+        
         print("populated????")
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        
+        if segue.identifier == "continueToSetPrice"{
+            let vc = segue.destinationViewController as! SetPriceAndConditionFromSearchViewController
+            
+            vc.bookInfoDict = self.bookInfoDict
+            vc.image = self.bookImage.image
+            //vc.bookImage.image = self.bookImage!
+            //self.presentViewController(vc, animated: true, completion: nil)
+            print("going to detail view")
+        }
+    }
+
     
     @IBAction func continuePressed(sender: AnyObject) {
         

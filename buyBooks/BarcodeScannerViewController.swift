@@ -14,6 +14,7 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     var bookInfoDict = [String:String]()
+    var bookImage:UIImage?
     
     @IBOutlet weak var backButtonView: UIView!
     
@@ -128,7 +129,7 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
     {
         let lookupURL = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN
         print(lookupURL)
-        bookInfoDict = ["isbn" : ISBN, "gtitle" : "", "description" : "", "authors": "", "imageURL": "", "pageCount": ""]
+        bookInfoDict = ["isbn" : ISBN, "bookTitle" : "", "description" : "", "authors": "", "imageURL": "", "pageCount": ""]
     
             
             let requestURL: NSURL = NSURL(string: lookupURL)!
@@ -157,7 +158,7 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
                                         if let title = volumeInfo["title"]{
                                             //assignment
                                             print(title)
-                                            self.bookInfoDict["gtitle"] = (title as! String)
+                                            self.bookInfoDict["bookTitle"] = (title as! String)
                                         }
                                         if let bookDescription = volumeInfo["description"]{
                                             //assignment
@@ -186,8 +187,14 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
                                             print(pageCount)
                                         }
                                         //self.dismissViewControllerAnimated(false, completion: nil)
-
-                                        self.performSegueWithIdentifier("cameraToDetail", sender: nil)
+                                        
+                                        // required to use uitextview, this sends us to the main thread before setting the text view bounds. Probably.
+                                                                                
+                                        dispatch_async(dispatch_get_main_queue(), {
+                                            self.performSegueWithIdentifier("cameraToDetail", sender: self)
+                                        })
+                                        
+                                        //self.performSegueWithIdentifier("cameraToDetail", sender: nil)
                                         // possible additions are 1. catagories, 2. publication date
                                     }
                                     
@@ -197,6 +204,10 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
                                 
                             }
                             
+                        }
+                        else{
+                            print("no info, say something")
+                            // maybe do a popup/alert and a confirm button
                         }
                         //task.suspend()
                         //self.performSegueWithIdentifier("cameraToDetail", sender: nil)
@@ -215,6 +226,56 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         task.resume()
             
     }
+    
+    func fetchImage(){
+        
+        var tempString = self.bookInfoDict["imageURL"]!
+        if (tempString.hasPrefix("http:")){
+            tempString.insert("s", atIndex: tempString.startIndex.advancedBy(4))
+            print(tempString)
+        }
+        let requestURL: NSURL = NSURL(string: tempString)!
+        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(urlRequest) {
+            (data, response, error) -> Void in
+            
+            let httpResponse = response as! NSHTTPURLResponse
+            let statusCode = httpResponse.statusCode
+            
+            if (statusCode == 200) {
+                print("Everyone is fine, file downloaded successfully.")
+                do{
+                    
+                    let picture = UIImage(data:data!)
+                    self.bookImage = picture
+                    
+                    
+                    
+                    
+                    
+                    
+                   
+                    
+                    
+                    
+                }catch {
+                    print("Error with picture: \(error)")
+                }
+                
+                
+                
+                
+                
+                
+                
+            }
+            
+            
+        }
+        task.resume()
+    }
+
     
     
     func topController() ->UIViewController{
@@ -243,6 +304,7 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         if segue.identifier == "cameraToDetail"{
             let vc = segue.destinationViewController as! PresentSearchResultsViewController
             vc.bookInfoDict = self.bookInfoDict
+            //vc.bookImage.image = self.bookImage!
             //self.presentViewController(vc, animated: true, completion: nil)
             print("going to detail view")
         }

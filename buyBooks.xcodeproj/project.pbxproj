@@ -25,6 +25,8 @@
 		10C6E7031CF79FEF007BFF69 /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E7021CF79FEF007BFF69 /* BarcodeScannerViewController.swift */; };
 		10C6E7071CF8DEC3007BFF69 /* CreatePostMethodSelectionVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E7061CF8DEC3007BFF69 /* CreatePostMethodSelectionVIewController.swift */; };
 		10C6E7091CF8EA18007BFF69 /* PresentSearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E7081CF8EA18007BFF69 /* PresentSearchResultsViewController.swift */; };
+		10DA6EDE1CFCF88300D64DB2 /* SetPriceAndConditionFromSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DA6EDD1CFCF88300D64DB2 /* SetPriceAndConditionFromSearchViewController.swift */; };
+		10DA6EE01CFD07AA00D64DB2 /* FinalConfirmationBeforePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DA6EDF1CFD07AA00D64DB2 /* FinalConfirmationBeforePostViewController.swift */; };
 		10E2FD411CF3DA7300B6EAE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10E2FD401CF3DA7300B6EAE0 /* GoogleService-Info.plist */; };
 		10E2FD451CF3DCA700B6EAE0 /* SellBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E2FD441CF3DCA700B6EAE0 /* SellBooksViewController.swift */; };
 		344F72721272BDEA70598AFD /* libPods-buyBooks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40AF727BB302E4406D9693F7 /* libPods-buyBooks.a */; };
@@ -54,6 +56,8 @@
 		10C6E7021CF79FEF007BFF69 /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
 		10C6E7061CF8DEC3007BFF69 /* CreatePostMethodSelectionVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostMethodSelectionVIewController.swift; sourceTree = "<group>"; };
 		10C6E7081CF8EA18007BFF69 /* PresentSearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentSearchResultsViewController.swift; sourceTree = "<group>"; };
+		10DA6EDD1CFCF88300D64DB2 /* SetPriceAndConditionFromSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPriceAndConditionFromSearchViewController.swift; sourceTree = "<group>"; };
+		10DA6EDF1CFD07AA00D64DB2 /* FinalConfirmationBeforePostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalConfirmationBeforePostViewController.swift; sourceTree = "<group>"; };
 		10E2FD3F1CF3D21900B6EAE0 /* buyBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = buyBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10E2FD401CF3DA7300B6EAE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		10E2FD441CF3DCA700B6EAE0 /* SellBooksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellBooksViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +162,8 @@
 			children = (
 				10C6E7021CF79FEF007BFF69 /* BarcodeScannerViewController.swift */,
 				10C6E7081CF8EA18007BFF69 /* PresentSearchResultsViewController.swift */,
+				10DA6EDD1CFCF88300D64DB2 /* SetPriceAndConditionFromSearchViewController.swift */,
+				10DA6EDF1CFD07AA00D64DB2 /* FinalConfirmationBeforePostViewController.swift */,
 			);
 			name = "barcode and search results";
 			sourceTree = "<group>";
@@ -324,7 +330,9 @@
 				1063A9EF1CF3A72600BFB4E0 /* LoginViewController.swift in Sources */,
 				10C6E6FC1CF65C55007BFF69 /* MyBooksViewCell.swift in Sources */,
 				1063A9E51CF3A6EB00BFB4E0 /* DataService.swift in Sources */,
+				10DA6EE01CFD07AA00D64DB2 /* FinalConfirmationBeforePostViewController.swift in Sources */,
 				10C6E7091CF8EA18007BFF69 /* PresentSearchResultsViewController.swift in Sources */,
+				10DA6EDE1CFCF88300D64DB2 /* SetPriceAndConditionFromSearchViewController.swift in Sources */,
 				1063A9C81CF3A67500BFB4E0 /* HomeViewController.swift in Sources */,
 				10E2FD451CF3DCA700B6EAE0 /* SellBooksViewController.swift in Sources */,
 				1063A9F31CF3B10400BFB4E0 /* PostTableViewCell.swift in Sources */,

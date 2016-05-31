@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 
 class SellBooksViewController: UIViewController {
-    var ref = FIRDatabase.database().reference()
 
 
     @IBOutlet weak var bookTitle: UITextField!
