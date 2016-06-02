@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1039F4FC1CFEA14E0012C2C6 /* ViewDetailOfBooksOnSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039F4FB1CFEA14E0012C2C6 /* ViewDetailOfBooksOnSaleViewController.swift */; };
+		1039F4FE1CFEABB00012C2C6 /* CustomViewIBDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039F4FD1CFEABB00012C2C6 /* CustomViewIBDesignable.swift */; };
 		1063A9C61CF3A67500BFB4E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1063A9C51CF3A67500BFB4E0 /* AppDelegate.swift */; };
 		1063A9C81CF3A67500BFB4E0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1063A9C71CF3A67500BFB4E0 /* HomeViewController.swift */; };
 		1063A9CB1CF3A67500BFB4E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1063A9C91CF3A67500BFB4E0 /* Main.storyboard */; };
@@ -14,6 +16,7 @@
 		1063A9D01CF3A67500BFB4E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1063A9CE1CF3A67500BFB4E0 /* LaunchScreen.storyboard */; };
 		1063A9F51CF3B1DB00BFB4E0 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1063A9F41CF3B1DB00BFB4E0 /* Book.swift */; };
 		1063A9F71CF3B1EF00BFB4E0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1063A9F61CF3B1EF00BFB4E0 /* User.swift */; };
+		10AEB4D61CFF96850037E744 /* UIImageView+Letters.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AEB4D51CFF96850037E744 /* UIImageView+Letters.m */; };
 		10C6E6FA1CF65BC3007BFF69 /* MyBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E6F91CF65BC3007BFF69 /* MyBooksViewController.swift */; };
 		10C6E6FC1CF65C55007BFF69 /* MyBooksViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E6FB1CF65C55007BFF69 /* MyBooksViewCell.swift */; };
 		10C6E6FE1CF670A2007BFF69 /* EditBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E6FD1CF670A2007BFF69 /* EditBooksViewController.swift */; };
@@ -34,6 +37,9 @@
 
 /* Begin PBXFileReference section */
 		02ADF71089E9F04C8FDACE96 /* Pods-buyBooks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buyBooks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-buyBooks/Pods-buyBooks.debug.xcconfig"; sourceTree = "<group>"; };
+		1039F4FB1CFEA14E0012C2C6 /* ViewDetailOfBooksOnSaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewDetailOfBooksOnSaleViewController.swift; sourceTree = "<group>"; };
+		1039F4FD1CFEABB00012C2C6 /* CustomViewIBDesignable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewIBDesignable.swift; sourceTree = "<group>"; };
+		105330B61CFF9BB0000EC461 /* buyBooks-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "buyBooks-Bridging-Header.h"; sourceTree = "<group>"; };
 		1063A9C51CF3A67500BFB4E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1063A9C71CF3A67500BFB4E0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1063A9CA1CF3A67500BFB4E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -42,7 +48,8 @@
 		1063A9D11CF3A67500BFB4E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1063A9F41CF3B1DB00BFB4E0 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		1063A9F61CF3B1EF00BFB4E0 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		1063A9FA1CF3C66200BFB4E0 /* buyBooks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "buyBooks-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		10AEB4D41CFF96850037E744 /* UIImageView+Letters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Letters.h"; sourceTree = "<group>"; };
+		10AEB4D51CFF96850037E744 /* UIImageView+Letters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Letters.m"; sourceTree = "<group>"; };
 		10B91E111CF3CDBD005D19B3 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
 		10B91E121CF3CDD3005D19B3 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		10C6E6F91CF65BC3007BFF69 /* MyBooksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBooksViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +92,43 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1039F4F61CFEA02E0012C2C6 /* Sell Books */ = {
+			isa = PBXGroup;
+			children = (
+				1039F4F91CFEA0590012C2C6 /* Sell Books by ISBN Search */,
+				1039F4F71CFEA03E0012C2C6 /* Sell Books by Manual Entry */,
+				10C6E70A1CF8EDC3007BFF69 /* Sell Books by Barcode Scan */,
+				10C6E7081CF8EA18007BFF69 /* PresentSearchResultsViewController.swift */,
+				10DA6EDD1CFCF88300D64DB2 /* SetPriceAndConditionFromSearchViewController.swift */,
+				10DA6EDF1CFD07AA00D64DB2 /* FinalConfirmationBeforePostViewController.swift */,
+			);
+			name = "Sell Books";
+			sourceTree = "<group>";
+		};
+		1039F4F71CFEA03E0012C2C6 /* Sell Books by Manual Entry */ = {
+			isa = PBXGroup;
+			children = (
+				10E2FD441CF3DCA700B6EAE0 /* SellBooksViewController.swift */,
+			);
+			name = "Sell Books by Manual Entry";
+			sourceTree = "<group>";
+		};
+		1039F4F91CFEA0590012C2C6 /* Sell Books by ISBN Search */ = {
+			isa = PBXGroup;
+			children = (
+				10DA6EE91CFD5DFD00D64DB2 /* SellBySearchingISBNViewController.swift */,
+			);
+			name = "Sell Books by ISBN Search";
+			sourceTree = "<group>";
+		};
+		1039F4FA1CFEA0E00012C2C6 /* Menu(Popover) */ = {
+			isa = PBXGroup;
+			children = (
+				10C6E7061CF8DEC3007BFF69 /* CreatePostMethodSelectionVIewController.swift */,
+			);
+			name = "Menu(Popover)";
+			sourceTree = "<group>";
+		};
 		1063A9B91CF3A67500BFB4E0 = {
 			isa = PBXGroup;
 			children = (
@@ -99,12 +143,10 @@
 			isa = PBXGroup;
 			children = (
 				1063A9C91CF3A67500BFB4E0 /* Main.storyboard */,
-				10DA6EE91CFD5DFD00D64DB2 /* SellBySearchingISBNViewController.swift */,
-				10C6E70A1CF8EDC3007BFF69 /* barcode and search results */,
-				10E2FD441CF3DCA700B6EAE0 /* SellBooksViewController.swift */,
+				1039F4F61CFEA02E0012C2C6 /* Sell Books */,
 				10E2FD431CF3DAA900B6EAE0 /* Supporting Files */,
 				1063A9CC1CF3A67500BFB4E0 /* Assets.xcassets */,
-				10E2FD421CF3DA9200B6EAE0 /* MainPAge */,
+				10E2FD421CF3DA9200B6EAE0 /* Home Page */,
 				1063A9F11CF3B07100BFB4E0 /* Model */,
 				1063A9F01CF3B05D00BFB4E0 /* Login */,
 			);
@@ -152,42 +194,43 @@
 			isa = PBXGroup;
 			children = (
 				1063A9C71CF3A67500BFB4E0 /* HomeViewController.swift */,
+				1039F4FB1CFEA14E0012C2C6 /* ViewDetailOfBooksOnSaleViewController.swift */,
 				10DA6EE71CFD5C3C00D64DB2 /* PostTableViewCell.swift */,
 			);
 			name = "view all books";
 			sourceTree = "<group>";
 		};
-		10C6E70A1CF8EDC3007BFF69 /* barcode and search results */ = {
+		10C6E70A1CF8EDC3007BFF69 /* Sell Books by Barcode Scan */ = {
 			isa = PBXGroup;
 			children = (
 				10C6E7021CF79FEF007BFF69 /* BarcodeScannerViewController.swift */,
-				10C6E7081CF8EA18007BFF69 /* PresentSearchResultsViewController.swift */,
-				10DA6EDD1CFCF88300D64DB2 /* SetPriceAndConditionFromSearchViewController.swift */,
-				10DA6EDF1CFD07AA00D64DB2 /* FinalConfirmationBeforePostViewController.swift */,
 			);
-			name = "barcode and search results";
+			name = "Sell Books by Barcode Scan";
 			sourceTree = "<group>";
 		};
-		10E2FD421CF3DA9200B6EAE0 /* MainPAge */ = {
+		10E2FD421CF3DA9200B6EAE0 /* Home Page */ = {
 			isa = PBXGroup;
 			children = (
-				10C6E7061CF8DEC3007BFF69 /* CreatePostMethodSelectionVIewController.swift */,
+				1039F4FA1CFEA0E00012C2C6 /* Menu(Popover) */,
 				10C6E7011CF6752C007BFF69 /* view all books */,
 				10C6E7001CF6751E007BFF69 /* view my books */,
 			);
-			name = MainPAge;
+			name = "Home Page";
 			sourceTree = "<group>";
 		};
 		10E2FD431CF3DAA900B6EAE0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1039F4FD1CFEABB00012C2C6 /* CustomViewIBDesignable.swift */,
 				1063A9C51CF3A67500BFB4E0 /* AppDelegate.swift */,
 				10E2FD401CF3DA7300B6EAE0 /* GoogleService-Info.plist */,
 				10B91E111CF3CDBD005D19B3 /* Firebase.h */,
 				1063A9D11CF3A67500BFB4E0 /* Info.plist */,
+				10AEB4D41CFF96850037E744 /* UIImageView+Letters.h */,
+				10AEB4D51CFF96850037E744 /* UIImageView+Letters.m */,
 				1063A9CE1CF3A67500BFB4E0 /* LaunchScreen.storyboard */,
 				10B91E121CF3CDD3005D19B3 /* module.modulemap */,
-				1063A9FA1CF3C66200BFB4E0 /* buyBooks-Bridging-Header.h */,
+				105330B61CFF9BB0000EC461 /* buyBooks-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -325,7 +368,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1039F4FC1CFEA14E0012C2C6 /* ViewDetailOfBooksOnSaleViewController.swift in Sources */,
 				10C6E6FC1CF65C55007BFF69 /* MyBooksViewCell.swift in Sources */,
+				1039F4FE1CFEABB00012C2C6 /* CustomViewIBDesignable.swift in Sources */,
 				10DA6EE41CFD5C1000D64DB2 /* LoginViewController.swift in Sources */,
 				10DA6EE61CFD5C1600D64DB2 /* CreateNewAccountViewController.swift in Sources */,
 				10DA6EE01CFD07AA00D64DB2 /* FinalConfirmationBeforePostViewController.swift in Sources */,
@@ -336,6 +381,7 @@
 				1063A9C81CF3A67500BFB4E0 /* HomeViewController.swift in Sources */,
 				10E2FD451CF3DCA700B6EAE0 /* SellBooksViewController.swift in Sources */,
 				10C6E7071CF8DEC3007BFF69 /* CreatePostMethodSelectionVIewController.swift in Sources */,
+				10AEB4D61CFF96850037E744 /* UIImageView+Letters.m in Sources */,
 				1063A9F51CF3B1DB00BFB4E0 /* Book.swift in Sources */,
 				10C6E7031CF79FEF007BFF69 /* BarcodeScannerViewController.swift in Sources */,
 				10C6E6FA1CF65BC3007BFF69 /* MyBooksViewController.swift in Sources */,
@@ -455,7 +501,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 02ADF71089E9F04C8FDACE96 /* Pods-buyBooks.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -468,6 +516,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				STRIPFLAGS = "-ObjC flag";
+				SWIFT_OBJC_BRIDGING_HEADER = "buyBooks/buyBooks-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -475,7 +525,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A496016CBABC8B84555D241A /* Pods-buyBooks.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -488,6 +540,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				STRIPFLAGS = "-ObjC flag";
+				SWIFT_OBJC_BRIDGING_HEADER = "buyBooks/buyBooks-Bridging-Header.h";
 			};
 			name = Release;
 		};

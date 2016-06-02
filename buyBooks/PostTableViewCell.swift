@@ -9,12 +9,12 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
+    
 
-    
-    
+   
     @IBOutlet weak var title: UILabel!
     
-    @IBOutlet weak var detail: UILabel!
+    @IBOutlet weak var authors: UILabel!
     
     @IBOutlet weak var postedTime: UILabel!
     
@@ -25,6 +25,11 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
     
     @IBOutlet weak var price: UILabel!
+    
+    
+    
+    @IBOutlet weak var yearPublished: UILabel!
+    
     
     
     

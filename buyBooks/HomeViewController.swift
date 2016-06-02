@@ -9,12 +9,16 @@
 import UIKit
 import Firebase
 
+
+//import SDWebImage
+
 class HomeViewController: UIViewController, UIPopoverPresentationControllerDelegate{
     
     var ref = FIRDatabase.database().reference()
     
-   
+    //let myActivityIndicator = UIActivityIndicatorView()
 
+    var cache = ImageLoadingWithCache()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -24,10 +28,26 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         super.viewDidLoad()
         
         fetchPost()
+        tableView.separatorStyle = .None
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        tableView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+        tableView.rowHeight = 105
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+   /* override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        myActivityIndicator.center = self.view.center
+        myActivityIndicator.hidesWhenStopped = true
+        myActivityIndicator.activityIndicatorViewStyle = .Gray
+        self.view.addSubview(myActivityIndicator)
+        myActivityIndicator.startAnimating()
+        
+        //loadImages()
+    }*/
     
     /*func load_image(url:String)
     {
@@ -66,6 +86,44 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         
     }
+    func timeElapsed(date: String)-> String{
+        
+        let dateformatter = NSDateFormatter()
+        dateformatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateformatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let postedDate  = dateformatter.dateFromString(date)!
+        
+        
+        let elapsedTimeInSeconds = NSDate().timeIntervalSinceDate(postedDate)
+        
+        
+        let secondInDays: NSTimeInterval = 60 * 60 * 24
+        
+        
+        if elapsedTimeInSeconds > 7 * secondInDays {
+            dateformatter.dateFormat = "MM/dd/yy"
+            let timeToShow: String = dateformatter.stringFromDate(postedDate)
+            return timeToShow
+            
+        } else if elapsedTimeInSeconds > secondInDays{
+            dateformatter.dateFormat = "EEE"
+            // print("first if statement Time Elapsed > secinds indays ")
+            let timeToShow: String = dateformatter.stringFromDate(postedDate)
+            return timeToShow
+            
+            
+        } else if elapsedTimeInSeconds > secondInDays/60{
+            let timeToshow = Int(elapsedTimeInSeconds/3600)
+            
+            return "\(timeToshow) hour ago"
+            
+        }
+        else {
+            let timeToshow = Int(elapsedTimeInSeconds/60)
+            return "\(timeToshow) mins ago "
+        }
+        
+    }
     func fetchPost()
     {
         //let tempUser = User(fullName: "test", email: "test@test.com", profileImage: "none")
@@ -81,10 +139,24 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             let sellerName = snapshot.value!["fullName"] as! String
             let sellerEmail = snapshot.value!["email"] as! String
             let sellerProfilePhoto = snapshot.value!["profilePhoto"] as! String
+            
             let postedTime = snapshot.value!["postedTime"] as! String
+            let elapsedTime = self.timeElapsed(postedTime)
+            let isbn = snapshot.value!["isbn"] as! String
+            let pageCount = snapshot.value!["pageCount"] as! String
+            let authors = snapshot.value!["authors"] as! String
+            let imageURL = snapshot.value!["imageURL"] as! String
+            let description = snapshot.value!["description"] as! String
+            let publishedDate = snapshot.value!["publishedDate"] as! String
+            let postID = snapshot.value!["SellBooksPostId"] as! String
+            //let colorString = snapshot.value!["colorString"] as! String
+    
             print(title)
             let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
-            self.sellBookArray.addObject(Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: postedTime, postId: ""))
+            let tempBook = Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate)
+            
+            self.sellBookArray.addObject(tempBook)
+            //self.sellBookArray.addObject(Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: ""))
 
             
             self.tableView.reloadData()
@@ -99,6 +171,18 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             if controller != nil{
                 controller?.delegate = self
             }
+        }
+        else if segue.identifier == "homeToDetail"{
+            let vc = segue.destinationViewController as! ViewDetailOfBooksOnSaleViewController
+            let indexPath:NSIndexPath = tableView.indexPathForSelectedRow!
+            let tempBook = self.sellBookArray[indexPath.row]
+            vc.detailBook = tempBook as! Book
+            //let tempCell = tableView.cellForRowAtIndexPath(indexPath)?.imageView
+            let cell:PostTableViewCell = tableView.cellForRowAtIndexPath(indexPath) as! PostTableViewCell
+            let image = cell.mainImage.image
+            vc.bookPicture = image
+            
+            //let image = tableviewc as PostTableViewCell
         }
     }
     
@@ -126,24 +210,223 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //
+        self.performSegueWithIdentifier("homeToDetail", sender: nil)
+        
     }
+    
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        
+        
+        
+        
+        
         let cell: PostTableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell") as! PostTableViewCell
         
         let book = sellBookArray[indexPath.row] as? Book
         cell.fullName.text = book!.sellerInfo?.email
         cell.title.text = book!.title
-       // cell.detail.text = book!.detail
+        cell.authors.text = "By: " + book!.webAuthors!
         cell.postedTime.text = book!.postedTime
-        cell.price.text = String(book!.price!)
+        cell.price.text = "$ " + String(book!.price!)
+       
+        cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2
+        cell.profileImage.clipsToBounds = true
+        cell.yearPublished.text = book!.publishedYear
+        
+        var tempString = book!.webBookThumbnail!
+        if (tempString.hasPrefix("http:")){
+            tempString.insert("s", atIndex: tempString.startIndex.advancedBy(4))
+            print(tempString)
+        }
+        let name = book!.sellerInfo?.email
+        cell.profileImage.setImageWithString(cell.fullName.text, color: UIColor.init(hexString: User.generateColor(name!)))
+        
+        
+        cache.getImage(tempString, imageView: cell.mainImage, defaultImage: "noun_9280_cc")
+        print("after getimage")
+        
+        
+        /*let requestURL: NSURL = NSURL(string: book!.webBookThumbnail!)!
+        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(urlRequest) {
+            (data, response, error) -> Void in
+            
+            let httpResponse = response as! NSHTTPURLResponse
+            let statusCode = httpResponse.statusCode
+            
+            if (statusCode == 200) {
+                print("Everyone is fine, file downloaded successfully.")
+                do{
+                    
+                    let picture = UIImage(data:data!)
+                    cell.mainImage.image = picture
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.tableView.reloadData()
+                        print("tableview was reloaded")
+                        
+                        //self.myActivityIndicator.stopAnimating()
+                    }
+                    
+                    
+                    
+                    print("done with image load?")
+                    
+                    
+                    
+                    
+                    
+                }catch {
+                    print("Error with picture: \(error)")
+                }
+                
+                
+                
+                
+                
+                
+                
+            }
+            
+            
+        }
+        //task.resume()
+        
+        
+        
+        
+        */
+        
+        
+        
+        //cell.mainImage.image = self.load_image(book!.webBookThumbnail!)
+        
+        /*let remoteImageUrlString = book!.webBookThumbnail //imageCollection[indexPath.row]
+        let imageUrl = NSURL(string:remoteImageUrlString!)
+        
+        let myBlock: SDWebImageCompletionBlock! = {(image: UIImage!, error: NSError!, cacheType: SDImageCacheType!, imageURL: NSURL!) -> Void in
+            
+            print("Image with url \(imageURL.absoluteString) is loaded")
+            
+        }
+        
+        //myCell.myImageView.sd_setImageWithURL(imageUrl, completed: myBlock)
+        myCell.myImageView.sd_setImageWithURL(imageUrl, placeholderImage: UIImage(named: "no_image-128"), options: SDWebImageOptions.ProgressiveDownload, completed: myBlock)
+        
+        */
         
         
         return cell
     }
+    // for the popover in the upper right
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle
+    {
+        return .None
+    }
+}
+
+class ImageLoadingWithCache {
     
+    var imageCache = [String:UIImage]()
     
+    func getImage(url: String, imageView: UIImageView, defaultImage: String) {
+        if let img = imageCache[url] {
+            imageView.image = img
+        } else {
+            let request: NSURLRequest = NSURLRequest(URL: NSURL(string: url)!)
+            let mainQueue = NSOperationQueue.mainQueue()
+            
+            NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
+                if error == nil {
+                    let image = UIImage(data: data!)
+                    self.imageCache[url] = image
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        imageView.image = image
+                        print("sent image to view")
+                    })
+                }
+                else {
+                    imageView.image = UIImage(named: defaultImage)
+                    print("load failed")
+                }
+            })
+        }
+    }
+}
+    /*func loadImage()
+    {
+        let requestURL: NSURL = NSURL(string: tempString)!
+        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(urlRequest) {
+            (data, response, error) -> Void in
+            
+            let httpResponse = response as! NSHTTPURLResponse
+            let statusCode = httpResponse.statusCode
+            
+            if (statusCode == 200) {
+                print("Everyone is fine, file downloaded successfully.")
+                do{
+                    
+                    let picture = UIImage(data:data!)
+                    self.bookImage = picture
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                }catch {
+                    print("Error with picture: \(error)")
+                }
+                
+                
+                
+                
+                
+                
+                
+            }
+            
+            
+        }
+        task.resume()
+    }
     
+    */
+  /*
+    func load_image(url:String)->UIImage
+    {
+        let tempString = url
+        let urlString = tempString
+        let imgURL: NSURL = NSURL(string: urlString)!
+        let request: NSURLRequest = NSURLRequest(URL: imgURL)
+        var tempimage:UIImage?
+        NSURLConnection.sendAsynchronousRequest(
+            request, queue: NSOperationQueue.mainQueue(),
+            completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
+                if error == nil {
+                    tempimage = (UIImage(data: data!))
+                    print("loaded image")
+                }
+                else{
+                    print("image load failed?")
+                    self.load_image("http://i.imgur.com/zTFEK3c.png")
+                }
+        })
+        print("before return")
+        return tempimage!
+    }
     
+    */
     /*
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
        
@@ -221,11 +504,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
 
 
     
-    // for the popover in the upper right
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle
-    {
-        return .None
-    }
-}
+
 
 

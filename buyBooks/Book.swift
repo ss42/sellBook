@@ -25,6 +25,7 @@ class Book{
     var webBookThumbnail: String?
     var webPageCount: String?
     var webISBN: String?
+    var publishedYear: String?
     
     
     
@@ -40,7 +41,7 @@ class Book{
         self.postId = postId
         //self.webPageCount =
     }
-    init(user: User, title: String, price: Double, pictures: String, condition: String, postedTime: String, postId:String, isbn:String, authors: String, imageURL: String, pageCount:String, description:String)
+    init(user: User, title: String, price: Double, pictures: String, condition: String, postedTime: String, postId:String, isbn:String, authors: String, imageURL: String, pageCount:String, description:String, yearPublished:String)
     {
         self.sellerInfo = user
         self.title = title
@@ -55,6 +56,7 @@ class Book{
         self.webBookThumbnail = imageURL
         self.webAuthors = authors
         self.webISBN = isbn
+        self.publishedYear = yearPublished
         
     }
     

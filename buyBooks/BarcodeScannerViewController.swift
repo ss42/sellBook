@@ -178,7 +178,13 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
                                         if let bookDescription = volumeInfo["description"]{
                                             //assignment
                                             print(bookDescription)
-                                            self.bookInfoDict["description"] = (bookDescription as! String)
+                                            if bookDescription != nil{
+                                                self.bookInfoDict["description"] = (bookDescription as! String)
+                                            }
+                                            else{
+                                                self.bookInfoDict["description"] = "Unable to load description from google"
+                                            }
+                                            
                                         }
                                         if let authors = volumeInfo["authors"] as? NSArray{
                                             let authorArray:NSMutableArray = []
@@ -191,6 +197,10 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
                                             print(authorArray)
                                             self.bookInfoDict["authors"] = self.concatonateAuthors(authorArray)
                                         }
+                                        if let publishedDate = volumeInfo["publishedDate"]{
+                                            let date = (publishedDate as! String)
+                                            self.bookInfoDict["publishedDate"] = date.substringToIndex(date.startIndex.advancedBy(4))
+                                        }
                                         if let picLinks = volumeInfo["imageLinks"]{
                                             if let imageURL = picLinks!["thumbnail"]{
                                                 self.bookInfoDict["imageURL"] = (imageURL as! String)
@@ -198,7 +208,7 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
                                             }
                                         }
                                         if let pageCount = volumeInfo["pageCount"]{
-                                            self.bookInfoDict["pageCount"] = String(pageCount)
+                                            self.bookInfoDict["pageCount"] = String(pageCount!)
                                             print(pageCount)
                                         }
                                         //self.dismissViewControllerAnimated(false, completion: nil)

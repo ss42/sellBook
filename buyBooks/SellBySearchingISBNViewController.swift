@@ -104,6 +104,10 @@ class SellBySearchingISBNViewController: UIViewController {
                                         print(authorArray)
                                         self.bookInfoDict["authors"] = self.concatonateAuthors(authorArray)
                                     }
+                                    if let publishedDate = volumeInfo["publishedDate"]{
+                                        let date = (publishedDate as! String)
+                                        self.bookInfoDict["publishedDate"] = date.substringToIndex(date.startIndex.advancedBy(4))
+                                    }
                                     if let picLinks = volumeInfo["imageLinks"]{
                                         if let imageURL = picLinks!["thumbnail"]{
                                             self.bookInfoDict["imageURL"] = (imageURL as! String)
@@ -111,7 +115,7 @@ class SellBySearchingISBNViewController: UIViewController {
                                         }
                                     }
                                     if let pageCount = volumeInfo["pageCount"]{
-                                        self.bookInfoDict["pageCount"] = String(pageCount)
+                                        self.bookInfoDict["pageCount"] = String(pageCount!)
                                         print(pageCount)
                                     }
                                     //self.dismissViewControllerAnimated(false, completion: nil)
@@ -135,7 +139,9 @@ class SellBySearchingISBNViewController: UIViewController {
                     }
                     else{
                         print("no info, say something")
-                        // maybe do a popup/alert and a confirm button
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.displayMyAlertMessage("Not Found", message: "Please Try Again.")
+                        })
                     }
                     //task.suspend()
                     //self.performSegueWithIdentifier("cameraToDetail", sender: nil)
@@ -153,6 +159,26 @@ class SellBySearchingISBNViewController: UIViewController {
         
         task.resume()
         
+    }
+    func displayMyAlertMessage(title: String, message: String) {
+        let myAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: tryScanAgain)
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: cancelScan)
+        
+        myAlert.addAction(okAction)
+        myAlert.addAction(cancelAction)
+        self.presentViewController(myAlert, animated: true, completion: nil);
+    }
+    
+    func tryScanAgain(alert:UIAlertAction!)
+    {
+        print("ok")
+        isbnTextfield.text = ""
+    }
+    func cancelScan(alert:UIAlertAction!)
+    {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func fetchImage(){

@@ -34,6 +34,7 @@ class FinalConfirmationBeforePostViewController: UIViewController {
     @IBOutlet weak var bookCondition: UILabel!
     
     @IBOutlet weak var ourPrice: UILabel!
+    @IBOutlet weak var yearPublished: UILabel!
     
     @IBAction func confirmPressed(sender: AnyObject) {
         getCurrentSellerInfo()
@@ -88,6 +89,7 @@ class FinalConfirmationBeforePostViewController: UIViewController {
         bookCondition.text = bookInfoDict["bookCondition"]
         ourPrice.text = bookInfoDict["price"]
         bookImage.image = image
+        yearPublished.text = bookInfoDict["publishedDate"]
         
         
         print("populated fields")
