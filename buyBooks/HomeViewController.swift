@@ -28,6 +28,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         super.viewDidLoad()
         
         fetchPost()
+        let tbvc = self.tabBarController as! DataHoldingTabBarViewController // going to get data from here instead.
         tableView.separatorStyle = .None
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -72,6 +73,12 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    
+    override func viewWillDisappear(animated: Bool) {
+        
     }
     
     //Do the following if the user want to sell a book

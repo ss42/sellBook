@@ -64,13 +64,17 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController {
         
         switch result.rawValue{
         case MFMailComposeResultCancelled.rawValue:
-            alert("Ooops", msg: "Mail Cancelled")
+        break
+        //alert("Ooops", msg: "Mail Cancelled")
         case MFMailComposeResultSent.rawValue:
-            alert("Yes!", msg: "Mail Sent!")
+            break
+            //alert("Yes!", msg: "Mail Sent!")
         case MFMailComposeResultSaved.rawValue:
-            alert("Yes!", msg: "Mail Saved!")
+            break
+            //alert("Yes!", msg: "Mail Saved!")
         case MFMailComposeResultFailed.rawValue:
-            alert("Ooops", msg: "Mail Failed!")
+            break
+            //alert("Ooops", msg: "Mail Failed!")
             
         default: break
             
