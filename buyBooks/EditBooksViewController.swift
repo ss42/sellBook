@@ -50,7 +50,7 @@ class EditBooksViewController: UIViewController {
             snapshot in
             
              self.currentUserDictionary["bookTitle"] = snapshot.value!["bookTitle"] as! String
-             self.currentUserDictionary["bookDetail"] = snapshot.value!["bookDetail"] as! String
+             self.currentUserDictionary["description"] = snapshot.value!["description"] as! String
              self.currentUserDictionary["bookCondition"] = snapshot.value!["bookCondition"] as! String
              self.currentUserDictionary["imageURL"] = snapshot.value!["imageURL"] as! String
              self.currentUserDictionary["price"] = snapshot.value!["price"] as! String
@@ -65,7 +65,7 @@ class EditBooksViewController: UIViewController {
     
     func populateData(){
         bookTitle.text = currentUserDictionary["bookTitle"] as? String
-        detail.text = currentUserDictionary["bookDetail"] as? String
+        detail.text = currentUserDictionary["description"] as? String
         price.text = currentUserDictionary["price"] as? String
         bookCondition.text = currentUserDictionary["bookCondition"] as? String
         // may need to change photo (5/26)
@@ -168,9 +168,10 @@ class EditBooksViewController: UIViewController {
     
     func setDictValues(){
         self.currentUserDictionary["bookCondition"] = bookCondition.text
-        self.currentUserDictionary["bookDetail"] = detail.text
+        self.currentUserDictionary["description"] = detail.text
         self.currentUserDictionary["price"] = price.text
         self.currentUserDictionary["bookTitle"] = bookTitle.text
+        // maybe change "sold" to "no"
     }
     
     @IBAction func donePressed(sender: AnyObject) {

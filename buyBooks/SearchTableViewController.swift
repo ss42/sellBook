@@ -115,6 +115,10 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         cell.profileImage.setImageWithString(cell.fullName.text, color: UIColor.init(hexString: User.generateColor(name!)))
         
         
+        if (book!.bookSold == true){
+            cell.yearPublished.text = "SOLD" // remove this
+        }
+        
         cache.getImage(tempString, imageView: cell.mainImage, defaultImage: "noun_9280_cc")
         print("after getimage")
 
