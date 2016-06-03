@@ -10,6 +10,8 @@ import UIKit
 
 class DataHoldingTabBarViewController: UITabBarController {
 
+    var sellBookArray: NSMutableArray = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

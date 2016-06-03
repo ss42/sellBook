@@ -24,16 +24,24 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     var sellBookArray: NSMutableArray = []
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(false)
+        let tbvc = self.tabBarController as! DataHoldingTabBarViewController // going to get data from here instead.
+        tbvc.sellBookArray = self.sellBookArray
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         fetchPost()
-        let tbvc = self.tabBarController as! DataHoldingTabBarViewController // going to get data from here instead.
-        tableView.separatorStyle = .None
+                tableView.separatorStyle = .None
         self.tableView.delegate = self
         self.tableView.dataSource = self
         tableView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
         tableView.rowHeight = 105
+        tableView.reloadData()
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -77,9 +85,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     
     
-    override func viewWillDisappear(animated: Bool) {
-        
-    }
+    
     
     //Do the following if the user want to sell a book
     override func viewDidAppear(animated: Bool)
@@ -183,7 +189,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             let vc = segue.destinationViewController as! ViewDetailOfBooksOnSaleViewController
             let indexPath:NSIndexPath = tableView.indexPathForSelectedRow!
             let tempBook = self.sellBookArray[indexPath.row]
-            vc.detailBook = tempBook as! Book
+            vc.detailBook = (tempBook as! Book)
             //let tempCell = tableView.cellForRowAtIndexPath(indexPath)?.imageView
             let cell:PostTableViewCell = tableView.cellForRowAtIndexPath(indexPath) as! PostTableViewCell
             let image = cell.mainImage.image
@@ -335,35 +341,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     }
 }
 
-class ImageLoadingWithCache {
-    
-    var imageCache = [String:UIImage]()
-    
-    func getImage(url: String, imageView: UIImageView, defaultImage: String) {
-        if let img = imageCache[url] {
-            imageView.image = img
-        } else {
-            let request: NSURLRequest = NSURLRequest(URL: NSURL(string: url)!)
-            let mainQueue = NSOperationQueue.mainQueue()
-            
-            NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
-                if error == nil {
-                    let image = UIImage(data: data!)
-                    self.imageCache[url] = image
-                    
-                    dispatch_async(dispatch_get_main_queue(), {
-                        imageView.image = image
-                        print("sent image to view")
-                    })
-                }
-                else {
-                    imageView.image = UIImage(named: defaultImage)
-                    print("load failed")
-                }
-            })
-        }
-    }
-}
     /*func loadImage()
     {
         let requestURL: NSURL = NSURL(string: tempString)!

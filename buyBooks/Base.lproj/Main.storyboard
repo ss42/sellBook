@@ -227,7 +227,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-350" y="1131"/>
+            <point key="canvasLocation" x="-414" y="1301"/>
         </scene>
         <!--Sell Books View Controller-->
         <scene sceneID="KuD-UM-FnA">
@@ -335,6 +335,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7AK-oH-CFE">
                                         <rect key="frame" x="137" y="345" width="46" height="30"/>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <segue destination="OlM-dk-EJm" kind="show" id="xAf-w7-5J5"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rNX-aX-aXe">
                                         <rect key="frame" x="331" y="360" width="48" height="30"/>
@@ -1114,6 +1117,7 @@
                                 <connections>
                                     <action selector="confirmPressed:" destination="zAs-7u-n4Y" eventType="touchUpInside" id="4Ll-nb-plX"/>
                                     <action selector="continuePressed:" destination="hkc-E3-Yp2" eventType="touchUpInside" id="gde-ag-gEk"/>
+                                    <action selector="sendMail:" destination="grI-c6-DBm" eventType="touchUpInside" id="Ogv-q5-gKf"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brT-8F-EcD">
@@ -1221,7 +1225,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t1Q-Sf-Hsi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1773" y="2569"/>
+            <point key="canvasLocation" x="2635" y="2953"/>
         </scene>
         <!--Data Holding Tab Bar View Controller-->
         <scene sceneID="olp-vP-Fqq">
@@ -1453,6 +1457,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Search" id="h8F-lu-qaI"/>
+                    <connections>
+                        <segue destination="grI-c6-DBm" kind="show" identifier="searchToDetail" id="u0N-ne-dgp"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fnI-QG-nVb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1556,9 +1563,10 @@
         <image name="noun_9280_cc" width="700" height="700"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dc7-Ir-OFE"/>
+        <segue reference="xAf-w7-5J5"/>
         <segue reference="wCK-p9-2SF"/>
-        <segue reference="byK-B7-xc0"/>
         <segue reference="xAd-zR-Kt1"/>
+        <segue reference="MwP-Jt-xX6"/>
+        <segue reference="YTD-tK-Zfl"/>
     </inferredMetricsTieBreakers>
 </document>

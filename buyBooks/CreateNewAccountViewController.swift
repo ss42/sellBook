@@ -37,6 +37,9 @@ class CreateNewAccountViewController: UIViewController, UITextFieldDelegate {
         let email = emailField.text
         let password = passwordField.text
         let password2 = passwordField2.text
+        
+        // make a field for display name
+        
         //print(email)
         //print(password)
         //print(password2)

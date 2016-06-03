@@ -147,13 +147,11 @@
 			isa = PBXGroup;
 			children = (
 				1063A9C91CF3A67500BFB4E0 /* Main.storyboard */,
-				10F8E0201D00DD7900C944CD /* DataHoldingTabBarViewController.swift */,
-				10F8E01E1D00D01800C944CD /* SearchTableViewController.swift */,
+				10F8E0221D00EF9A00C944CD /* finishedStuff */,
 				1039F4F61CFEA02E0012C2C6 /* Sell Books */,
 				10E2FD431CF3DAA900B6EAE0 /* Supporting Files */,
 				1063A9CC1CF3A67500BFB4E0 /* Assets.xcassets */,
 				10E2FD421CF3DA9200B6EAE0 /* Home Page */,
-				1063A9F11CF3B07100BFB4E0 /* Model */,
 				1063A9F01CF3B05D00BFB4E0 /* Login */,
 			);
 			path = buyBooks;
@@ -217,7 +215,6 @@
 		10E2FD421CF3DA9200B6EAE0 /* Home Page */ = {
 			isa = PBXGroup;
 			children = (
-				1039F4FA1CFEA0E00012C2C6 /* Menu(Popover) */,
 				10C6E7011CF6752C007BFF69 /* view all books */,
 				10C6E7001CF6751E007BFF69 /* view my books */,
 			);
@@ -239,6 +236,17 @@
 				105330B61CFF9BB0000EC461 /* buyBooks-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		10F8E0221D00EF9A00C944CD /* finishedStuff */ = {
+			isa = PBXGroup;
+			children = (
+				10F8E01E1D00D01800C944CD /* SearchTableViewController.swift */,
+				1063A9F11CF3B07100BFB4E0 /* Model */,
+				1039F4FA1CFEA0E00012C2C6 /* Menu(Popover) */,
+				10F8E0201D00DD7900C944CD /* DataHoldingTabBarViewController.swift */,
+			);
+			name = finishedStuff;
 			sourceTree = "<group>";
 		};
 		ED97D7F9542E3B60A031376C /* Pods */ = {

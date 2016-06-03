@@ -20,7 +20,6 @@ class Book{
     var postId: String?
     var webDescription: String?
     var webPrice: String?
-    var webTitle: String?
     var webAuthors: String?
     var webBookThumbnail: String?
     var webPageCount: String?
