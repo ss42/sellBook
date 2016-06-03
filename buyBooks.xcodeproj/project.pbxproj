@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1006FE041D0168570015A206 /* Keytin-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1006FE021D0166C00015A206 /* Keytin-Light.ttf */; };
+		1006FE071D0169EC0015A206 /* OstrichSans-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1006FE061D0169BC0015A206 /* OstrichSans-Light.otf */; };
+		1006FE081D0169EC0015A206 /* ostrich-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1006FE051D01699F0015A206 /* ostrich-regular.ttf */; };
 		1039F4FC1CFEA14E0012C2C6 /* ViewDetailOfBooksOnSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039F4FB1CFEA14E0012C2C6 /* ViewDetailOfBooksOnSaleViewController.swift */; };
 		1039F4FE1CFEABB00012C2C6 /* CustomViewIBDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039F4FD1CFEABB00012C2C6 /* CustomViewIBDesignable.swift */; };
 		1063A9C61CF3A67500BFB4E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1063A9C51CF3A67500BFB4E0 /* AppDelegate.swift */; };
@@ -39,6 +42,9 @@
 
 /* Begin PBXFileReference section */
 		02ADF71089E9F04C8FDACE96 /* Pods-buyBooks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buyBooks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-buyBooks/Pods-buyBooks.debug.xcconfig"; sourceTree = "<group>"; };
+		1006FE021D0166C00015A206 /* Keytin-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Keytin-Light.ttf"; sourceTree = "<group>"; };
+		1006FE051D01699F0015A206 /* ostrich-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ostrich-regular.ttf"; sourceTree = "<group>"; };
+		1006FE061D0169BC0015A206 /* OstrichSans-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OstrichSans-Light.otf"; sourceTree = "<group>"; };
 		1039F4FB1CFEA14E0012C2C6 /* ViewDetailOfBooksOnSaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewDetailOfBooksOnSaleViewController.swift; sourceTree = "<group>"; };
 		1039F4FD1CFEABB00012C2C6 /* CustomViewIBDesignable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewIBDesignable.swift; sourceTree = "<group>"; };
 		105330B61CFF9BB0000EC461 /* buyBooks-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "buyBooks-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -224,6 +230,9 @@
 		10E2FD431CF3DAA900B6EAE0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1006FE021D0166C00015A206 /* Keytin-Light.ttf */,
+				1006FE061D0169BC0015A206 /* OstrichSans-Light.otf */,
+				1006FE051D01699F0015A206 /* ostrich-regular.ttf */,
 				1039F4FD1CFEABB00012C2C6 /* CustomViewIBDesignable.swift */,
 				1063A9C51CF3A67500BFB4E0 /* AppDelegate.swift */,
 				10E2FD401CF3DA7300B6EAE0 /* GoogleService-Info.plist */,
@@ -320,6 +329,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1006FE071D0169EC0015A206 /* OstrichSans-Light.otf in Resources */,
+				1006FE081D0169EC0015A206 /* ostrich-regular.ttf in Resources */,
+				1006FE041D0168570015A206 /* Keytin-Light.ttf in Resources */,
 				1063A9D01CF3A67500BFB4E0 /* LaunchScreen.storyboard in Resources */,
 				10E2FD411CF3DA7300B6EAE0 /* GoogleService-Info.plist in Resources */,
 				1063A9CD1CF3A67500BFB4E0 /* Assets.xcassets in Resources */,

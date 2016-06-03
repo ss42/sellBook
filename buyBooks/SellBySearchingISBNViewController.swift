@@ -19,7 +19,8 @@ class SellBySearchingISBNViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        self.view.backgroundColor = UIColor(red: 66/255, green: 75/255, blue: 77/255, alpha: 1)
         // Do any additional setup after loading the view.
     }
 
@@ -104,6 +105,7 @@ class SellBySearchingISBNViewController: UIViewController {
                                         print(authorArray)
                                         self.bookInfoDict["authors"] = self.concatonateAuthors(authorArray)
                                     }
+                                    
                                     if let publishedDate = volumeInfo["publishedDate"]{
                                         let date = (publishedDate as! String)
                                         self.bookInfoDict["publishedDate"] = date.substringToIndex(date.startIndex.advancedBy(4))

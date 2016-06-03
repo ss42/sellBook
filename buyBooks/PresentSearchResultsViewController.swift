@@ -25,7 +25,6 @@ class PresentSearchResultsViewController: UIViewController {
     
     @IBOutlet weak var bookImage: UIImageView!
     
-    @IBOutlet weak var publishedDate: UILabel!
     var bookInfoDict = [String:String]()
     //var bookPicture:UIImage?
     
@@ -128,7 +127,7 @@ class PresentSearchResultsViewController: UIViewController {
     func populateFields(){
         
         // bookInfoDict = ["isbn" : ISBN, "title" : "", "description" : "", "authors": "", "imageURL": "", "pageCount": ""]
-       bookTitle.text = self.bookInfoDict["bookTitle"]
+       bookTitle.text = self.bookInfoDict["bookTitle"]! + "(" + bookInfoDict["publishedDate"]! + ")"
         
             self.bookDescription.text = self.bookInfoDict["description"]
         
@@ -138,7 +137,6 @@ class PresentSearchResultsViewController: UIViewController {
         retailPrice.text = "fix later"
         //
         pageCount.text = bookInfoDict["pageCount"]
-        publishedDate.text = bookInfoDict["publishedDate"]
         print("populated fields")
         
         print(bookTitle.text!)
