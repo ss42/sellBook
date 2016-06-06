@@ -29,11 +29,22 @@ class EditBooksViewController: UIViewController {
     
     var currentUserDictionary = [String:AnyObject]()
     
+    func dismissKeyboard(){
+        view.endEditing(true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
         bookConditionSlider.minimumValue = 0
         bookConditionSlider.maximumValue = 100
+        
+        self.price.delegate = self
+        self.bookTitle.delegate = self
+        // add more if needed
         
         loadDataFromPreviousViewController()
         
@@ -161,11 +172,6 @@ class EditBooksViewController: UIViewController {
         
         
     }
-    
-    @IBAction func deletePost(sender: UIButton) {
-        // later
-    }
-    
     func setDictValues(){
         self.currentUserDictionary["bookCondition"] = bookCondition.text
         self.currentUserDictionary["description"] = detail.text
@@ -174,16 +180,100 @@ class EditBooksViewController: UIViewController {
         // maybe change "sold" to "no"
     }
     
+    @IBAction func deletePost(sender: UIButton) {
+        // later
+        dispatch_async(dispatch_get_main_queue(), {
+            
+            self.displayDeleteAlertMessage("Scan Error", message: "No results found from barcode scan, please enter info manually")
+        })
+    }
+    
+    
+    
+    @IBAction func confirmSale(sender: AnyObject) {
+        //self.currentUserDictionary["bookStatus"] = "sold"
+        dispatch_async(dispatch_get_main_queue(), {
+            
+            self.displayConfirmAlertMessage("Scan Error", message: "No results found from barcode scan, please enter info manually")
+        })
+        /*self.setDictValues()
+        self.updatePostOnDatabase()
+        
+        navigationController?.popViewControllerAnimated(true)
+ */
+    }
     @IBAction func donePressed(sender: AnyObject) {
         //self.getCurrentSellerInfo()
         self.setDictValues()
         self.updatePostOnDatabase()
-        self.performSegueWithIdentifier("myBookListings", sender: nil)
+        //self.performSegueWithIdentifier("myBookListings", sender: nil)
+        navigationController?.popViewControllerAnimated(true)
+
         // try different segue types to make sure that the navbar and stuff works
         
         
         
     }
+    
+    func displayConfirmAlertMessage(title: String, message: String) {
+        let myAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title: "Confirm Sale", style: UIAlertActionStyle.Default, handler: confirmButton) // change title
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: cancelButton)
+        
+        myAlert.addAction(okAction)
+        myAlert.addAction(cancelAction)
+        self.presentViewController(myAlert, animated: true, completion: nil);
+    }
+    
+    
+    func confirmButton(alert:UIAlertAction!)
+    {
+        print("ok")
+        //captureSession.startRunning()
+        self.currentUserDictionary["bookStatus"] = "sold"
+        self.setDictValues()
+        self.updatePostOnDatabase()
+        
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
+    
+    func cancelButton(alert:UIAlertAction!)
+    {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    func displayDeleteAlertMessage(title: String, message: String) {
+        let myAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title: "Confirm Delete", style: UIAlertActionStyle.Default, handler: deleteButton) // change title
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: cancelButton)
+        
+        myAlert.addAction(okAction)
+        myAlert.addAction(cancelAction)
+        self.presentViewController(myAlert, animated: true, completion: nil);
+    }
+    func deleteButton(alert:UIAlertAction!)
+    {
+        print("ok")
+        //captureSession.startRunning()
+        self.currentUserDictionary["bookStatus"] = "deleted"
+        self.setDictValues()
+        self.updatePostOnDatabase()
+        
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
+    
+    /*func alert(title: String, msg: String){
+        
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: title, style: .Default, handler: nil))
+        
+        presentViewController(alertController, animated: true, completion: nil)
+        
+    }*/
 
     
 }
@@ -201,7 +291,8 @@ extension EditBooksViewController: UITextFieldDelegate{
         return true
     }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        print("keyboard should go away")
+        self.view.endEditing(true)
         return true
     }
     

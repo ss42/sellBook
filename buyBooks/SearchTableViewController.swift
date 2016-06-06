@@ -115,8 +115,17 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         cell.profileImage.setImageWithString(cell.fullName.text, color: UIColor.init(hexString: User.generateColor(name!)))
         
         
-        if (book!.bookSold == true){
-            cell.yearPublished.text = "SOLD" // remove this
+        if (book!.bookStatus == "sold"){
+            cell.yearPublished.text = "SOLD"
+        }
+        else if(book!.bookStatus == "reserved")
+        {
+            cell.yearPublished.text = "reserved"
+        }
+        else if(book!.bookStatus == "deleted")
+        {
+            cell.yearPublished.text = "deleted" // should be elsewhere, before making the cell probably
+            
         }
         
         cache.getImage(tempString, imageView: cell.mainImage, defaultImage: "noun_9280_cc")

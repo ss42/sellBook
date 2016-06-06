@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Social
+import MessageUI
 
 
 //import SDWebImage
@@ -163,23 +164,24 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             let description = snapshot.value!["description"] as! String
             let publishedDate = snapshot.value!["publishedDate"] as! String
             let postID = snapshot.value!["SellBooksPostId"] as! String
-            let bookSold = snapshot.value!["bookSold"] as! String
-            var tempBool: Bool?
-            if bookSold == "no"{
-                tempBool = false
+            
+            
+            let bookStatus = snapshot.value!["bookStatus"] as! String
+    
+            print(title)
+            
+            if bookStatus != "deleted"{
+                
+                let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
+                let tempBook = Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus)
+            
+            
+                self.sellBookArray.addObject(tempBook)
             }
             else
             {
-                tempBool = true
-                print("sold book found")
+                print("saw a deleted book")
             }
-            //let colorString = snapshot.value!["colorString"] as! String
-    
-            print(title)
-            let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
-            let tempBook = Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, sold: tempBool!)
-            
-            self.sellBookArray.addObject(tempBook)
             //self.sellBookArray.addObject(Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: ""))
 
             
@@ -215,112 +217,78 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
 
 }
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMessageComposeViewControllerDelegate{
     
+    func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        tableView.reloadData()
+    }
+    
+    
+    func facebookShare(alert:UIAlertAction!)
+    {
+        if (FBSDKAccessToken.currentAccessToken() != nil)
+        {
+            // User is already logged in, do work such as go to next view controller.
+            print("logged in?")
+            if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){ // this works, but it checks the app (to see if you are logged in) first.
+                let facebookComposer = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+                facebookComposer.setInitialText("initial text")
+                facebookComposer.addImage(UIImage(named: "male"))
+                
+                self.presentViewController(facebookComposer, animated: true, completion: nil)
+            }
+        }
+        else
+        {
+            print("else")
+            let loginView : FBSDKLoginButton = FBSDKLoginButton()
+            
+            loginView.readPermissions = ["public_profile", "email", "user_friends"]
+            loginView.sendActionsForControlEvents(.TouchUpInside)
+        }
+    }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
         
         let book = self.sellBookArray[indexPath.row] as! Book
-        //let driver = "\(requestedRide.driver!.firstName) \(requestedRide.driver!.lastName)"
         let shareAction = UITableViewRowAction(style: .Normal, title: "Share"){(action: UITableViewRowAction!, indexPath: NSIndexPath) -> Void in
             
-            if (FBSDKAccessToken.currentAccessToken() != nil)
-            {
-                // User is already logged in, do work such as go to next view controller.
-                print("logged in?")
-                //let vc = storyboard?.instantiateViewControllerWithIdentifier("home")
-                //self.presentViewController(vc!, animated: true, completion: nil)
-                //self.buttonLocation.removeFromSuperview()
-                //self.performSegueWithIdentifier("toHome", sender: nil)
-                // call button function?
-                if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){ // this works, but it checks the app (to see if you are logged in) first.
-                    let facebookComposer = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-                    facebookComposer.setInitialText("initial text")
-                    facebookComposer.addImage(UIImage(named: "male"))
-                    
-                    self.presentViewController(facebookComposer, animated: true, completion: nil)
-                }
-                
-                /*let content : FBSDKShareLinkContent = FBSDKShareLinkContent() // this sort of works
-                content.contentURL = NSURL(string: "<INSERT STRING HERE>")
-                content.contentTitle = "<INSERT STRING HERE>"
-                content.contentDescription = "<INSERT STRING HERE>"
-                content.imageURL = NSURL(string: "<INSERT STRING HERE>")
-                
-                let button : FBSDKShareButton = FBSDKShareButton()
-                button.shareContent = content
-                button.sendActionsForControlEvents(.TouchUpInside)
- */
-                //button.frame = CGRectMake((UIScreen.mainScreen().bounds.width - 100) * 0.5, 50, 100, 25)
-                //self.view.addSubview(button)
-            }
-            else
-            {
-                print("else")
-                let loginView : FBSDKLoginButton = FBSDKLoginButton()
-                //self.view.addSubview(loginView)
-                //loginView.center = self.buttonLocation.center
-                loginView.readPermissions = ["public_profile", "email", "user_friends"]
-                loginView.sendActionsForControlEvents(.TouchUpInside)
-                //loginView.delegate = self
-                
-                
-            }
-            
-            /*if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
-                let facebookComposer = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-                facebookComposer.setInitialText("initial text")
-                facebookComposer.addImage(UIImage(named: "male"))
-                self.presentViewController(facebookComposer, animated: true, completion: nil)
-            }*/
-            
-            /*let content : FBSDKShareLinkContent = FBSDKShareLinkContent()
-            content.contentURL = NSURL(string: "<INSERT STRING HERE>")
-            content.contentTitle = "<INSERT STRING HERE>"
-            content.contentDescription = "<INSERT STRING HERE>"
-            content.imageURL = NSURL(string: "<INSERT STRING HERE>")
-            
-            let button : FBSDKShareButton = FBSDKShareButton()
-            button.shareContent = content
-            button.
-            button.frame = CGRectMake((UIScreen.mainScreen().bounds.width - 100) * 0.5, 50, 100, 25)
-            self.view.addSubview(button)
-            */
             
             
-            
-            }
-            
-            //let contactAlertController = UIAlertController(title: "Contact  \(driver)", message: ":)", preferredStyle: .ActionSheet )
-            
-            
-            //let emailAction = UIAlertAction(title: "Email", style: UIAlertActionStyle.Default){(action)-> Void in
-            
-            
-            
-            // we are doing a popup window for facebook shares on the home page, instead of a new page.
-                /*let vc: SendMailViewController = self.storyboard!.instantiateViewControllerWithIdentifier("sendMail") as! SendMailViewController
-                let trip = self.tempArray[indexPath.row] as! Trips
-                vc.emailAddress = trip.email
-                self.presentViewController(vc, animated: true, completion: nil)
- 
-                //do stuff
-                //segue to sendmailcontroller and send data or driver's email add thru segue
-            }
+            // add more options
+            let shareAlertController = UIAlertController(title: "share something (Temp)", message: "stuff (change)", preferredStyle: .ActionSheet)
+            let faceBookShareAction = UIAlertAction(title: "facebook", style: UIAlertActionStyle.Default, handler: self.facebookShare)
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default){(action)-> Void in
                 
             }
-            contactAlertController.addAction(callAction)
+            
+            let textAction = UIAlertAction(title: "Text", style: UIAlertActionStyle.Default){(action)-> Void in
+                //do stuff
+                
+                let msgVC = MFMessageComposeViewController()
+                msgVC.body = "Hello World"// create a message similiar to view detail view controllers message or facebook's message
+                msgVC.recipients = [" "]
+                msgVC.messageComposeDelegate = self
+                self.presentViewController(msgVC, animated: true, completion: nil)
+            }
+            
+            
+            
+            
+            shareAlertController.addAction(faceBookShareAction)
+            
+            shareAlertController.addAction(textAction)
+            shareAlertController.addAction(cancelAction)
+            
+            
+            self.presentViewController(shareAlertController, animated: true, completion: nil)
+            
            
-            
-            self.presentViewController(contactAlertController, animated: true, completion: nil)
-            
-        }
-        */
         
     
-        
+        }
         return [shareAction]
         
         
@@ -378,8 +346,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
         }
         let name = book!.sellerInfo?.email
         cell.profileImage.setImageWithString(cell.fullName.text, color: UIColor.init(hexString: User.generateColor(name!)))
-        if (book!.bookSold == true){
-            cell.yearPublished.text = "SOLD" // remove this
+        if (book!.bookStatus == "sold"){
+            cell.yearPublished.text = "SOLD"
         }
         
         cache.getImage(tempString, imageView: cell.mainImage, defaultImage: "noun_9280_cc")

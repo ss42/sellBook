@@ -115,15 +115,18 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
  
     }
     
+    
+    
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         
         switch result.rawValue{
         case MFMailComposeResultCancelled.rawValue:
-        
+        print("cancelled mail")
         alert("Ooops", msg: "Mail Cancelled")
         case MFMailComposeResultSent.rawValue:
             
-            alert("Yes!", msg: "Mail Sent!")
+            //alert("Yes!", msg: "Mail Sent!")
+            print("mail was sent")
         case MFMailComposeResultSaved.rawValue:
             
             alert("Yes!", msg: "Mail Saved!")
@@ -131,7 +134,9 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
             
             alert("Ooops", msg: "Mail Failed!")
             
-        default: break
+        default:
+            print("default case")
+            break
             
         }
         

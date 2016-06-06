@@ -62,7 +62,7 @@ class FinalConfirmationBeforePostViewController: UIViewController {
             tempDict["uid"] = uid
             tempDict["SellBooksPostId"] = postId.key
             tempDict["postedTime"] = getCurrentTime()
-            tempDict["bookSold"] = "no"
+            tempDict["bookStatus"] = "no"
             
             //currentUserDictionary = ["fullName": name!, "email": email!, "profilePhoto": profileImage, "bookTitle": bookTitle.text!, "bookDetail": detail.text!, "bookCondition": bookCondition.text!, "price": price.text!, "bookImage": "male", "postedTime": "5:50", "uid":uid, "SellBooksPostId": postId.key]
             // moved from donePressed

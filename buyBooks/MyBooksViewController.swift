@@ -12,6 +12,9 @@ import Firebase
 
 class MyBooksViewController: UIViewController {
     
+    
+    var cache = ImageLoadingWithCache()
+
     var ref = FIRDatabase.database().reference()
     
     
@@ -60,65 +63,96 @@ class MyBooksViewController: UIViewController {
             self.presentViewController(ViewController, animated: true, completion: nil)
         }
     }
+    
+    func timeElapsed(date: String)-> String{
+        
+        let dateformatter = NSDateFormatter()
+        dateformatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateformatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let postedDate  = dateformatter.dateFromString(date)!
+        
+        
+        let elapsedTimeInSeconds = NSDate().timeIntervalSinceDate(postedDate)
+        
+        
+        let secondInDays: NSTimeInterval = 60 * 60 * 24
+        
+        
+        if elapsedTimeInSeconds > 7 * secondInDays {
+            dateformatter.dateFormat = "MM/dd/yy"
+            let timeToShow: String = dateformatter.stringFromDate(postedDate)
+            return timeToShow
+            
+        } else if elapsedTimeInSeconds > secondInDays{
+            dateformatter.dateFormat = "EEE"
+            // print("first if statement Time Elapsed > secinds indays ")
+            let timeToShow: String = dateformatter.stringFromDate(postedDate)
+            return timeToShow
+            
+            
+        } else if elapsedTimeInSeconds > secondInDays/60{
+            let timeToshow = Int(elapsedTimeInSeconds/3600)
+            
+            return "\(timeToshow) hour ago"
+            
+        }
+        else {
+            let timeToshow = Int(elapsedTimeInSeconds/60)
+            return "\(timeToshow) mins ago "
+        }
+        
+    }
+
     func fetchPost()
     {
+        //let tempUser = User(fullName: "test", email: "test@test.com", profileImage: "none")
+        //self.sellBookArray.addObject(Book(user: tempUser , title: "fgdfg", price: 5.0, pictures: "none", condition: "ok", postedTime: "time", detail: "detail"))
         let uid = getUID()
-        
-        //ref.child("SellBooksPost").queryEqualToValue(uid).observeEventType(.Value, withBlock: {
-        //ref.queryOrderedByChild("uid").observeEventType(.ChildAdded, withBlock: {
         ref.child("SellBooksPost").queryOrderedByChild("uid").queryEqualToValue(uid).observeEventType(.ChildAdded, withBlock: {
             snapshot in
             
             let title = snapshot.value!["bookTitle"] as! String
-            
-            //let detail = snapshot.value!["bookDetail"] as! String //removed 5/31
+            //let detail = snapshot.value!["bookDetail"] as! String
             let condition = snapshot.value!["bookCondition"] as! String
             let bookImage = snapshot.value!["imageURL"] as! String
             let price = snapshot.value!["price"] as! String
             let sellerName = snapshot.value!["fullName"] as! String
             let sellerEmail = snapshot.value!["email"] as! String
             let sellerProfilePhoto = snapshot.value!["profilePhoto"] as! String
+            
             let postedTime = snapshot.value!["postedTime"] as! String
-            let postId = snapshot.value!["SellBooksPostId"] as! String
-            let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
-            self.sellBookArray.addObject(Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: postedTime, postId: postId))
+            let elapsedTime = self.timeElapsed(postedTime)
+            let isbn = snapshot.value!["isbn"] as! String
+            let pageCount = snapshot.value!["pageCount"] as! String
+            let authors = snapshot.value!["authors"] as! String
+            let imageURL = snapshot.value!["imageURL"] as! String
+            let description = snapshot.value!["description"] as! String
+            let publishedDate = snapshot.value!["publishedDate"] as! String
+            let postID = snapshot.value!["SellBooksPostId"] as! String
+            //let bookSold = snapshot.value!["bookSold"] as! String
+            let bookStatus = snapshot.value!["bookStatus"] as! String
             
             
-            
-            
-            
-            self.tableView.reloadData()
-            
-        
-        })
-    
-        /*let tempUser = User(fullName: "test", email: "test@test.com", profileImage: "none")
-        self.sellBookArray.addObject(Book(user: tempUser , title: "fgdfg", price: 5.0, pictures: "none", condition: "ok", postedTime: "time", detail: "detail"))
-        ref.child("SellBooksPost").queryOrderedByKey().observeEventType(.ChildAdded, withBlock: {
-            snapshot in
-            
-            let title = snapshot.value!["bookTitle"] as! String
-            let detail = snapshot.value!["bookDetail"] as! String
-            let condition = snapshot.value!["bookCondition"] as! String
-            let bookImage = snapshot.value!["bookImage"] as! String
-            let price = snapshot.value!["price"] as! String
-            let sellerName = snapshot.value!["fullName"] as! String
-            let sellerEmail = snapshot.value!["email"] as! String
-            let sellerProfilePhoto = snapshot.value!["profilePhoto"] as! String
-            let postedTime = snapshot.value!["postedTime"] as! String
             print(title)
-            let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
-            self.sellBookArray.addObject(Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: postedTime, detail: detail))
-            
- 
-        
-        
+            if (bookStatus != "deleted"){
+                
+                let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
+                let tempBook = Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus)
+                
+                
+                self.sellBookArray.addObject(tempBook)
+            }
+            else
+            {
+                print("saw a deleted book")
+            }
             
             self.tableView.reloadData()
-        }//)
+        })
         
-        */
+        
     }
+
 
     func getUID() -> String
     {
@@ -157,13 +191,41 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource{
         let cell: MyBooksViewCell = tableView.dequeueReusableCellWithIdentifier("BookCell") as! MyBooksViewCell
         
         let book = sellBookArray[indexPath.row] as? Book
-        //cell.fullName.text = book!.sellerInfo?.email
+        cell.fullName.text = book!.sellerInfo?.email
         cell.title.text = book!.title
-        //cell.detail.text = book!.detail
+        cell.authors.text = "By: " + book!.webAuthors!
         cell.postedTime.text = book!.postedTime
-        cell.price.text = String(book!.price!)
+        cell.price.text = "$ " + String(book!.price!)
+        
+        cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2
+        cell.profileImage.clipsToBounds = true
+        cell.yearPublished.text = book!.publishedYear
+        
+        var tempString = book!.webBookThumbnail!
+        if (tempString.hasPrefix("http:")){
+            tempString.insert("s", atIndex: tempString.startIndex.advancedBy(4))
+            print(tempString)
+        }
+        let name = book!.sellerInfo?.email
+        cell.profileImage.setImageWithString(cell.fullName.text, color: UIColor.init(hexString: User.generateColor(name!)))
+        
+        
+        /*if (book!.bookSold == true){
+            cell.yearPublished.text = "SOLD" // remove this
+        }*/
+        
+        if (book!.bookStatus == "sold"){
+            cell.yearPublished.text = "SOLD"
+        }
+        
+        
+        cache.getImage(tempString, imageView: cell.mainImage, defaultImage: "noun_9280_cc")
+        print("after getimage")
+        
+        
         
         return cell
+
     }
  
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

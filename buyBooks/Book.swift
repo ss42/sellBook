@@ -26,6 +26,7 @@ class Book{
     var webISBN: String?
     var publishedYear: String?
     var bookSold:Bool?
+    var bookStatus:String?
     
     
     
@@ -77,6 +78,27 @@ class Book{
         self.publishedYear = yearPublished
         self.bookSold = sold
     }
+    
+    init(user: User, title: String, price: Double, pictures: String, condition: String, postedTime: String, postId:String, isbn:String, authors: String, imageURL: String, pageCount:String, description:String, yearPublished:String, status:String)
+    {
+        self.sellerInfo = user
+        self.title = title
+        self.price = price
+        self.pictures = pictures
+        self.condition = condition
+        self.postedTime = postedTime
+        //self.detail = detail
+        self.postId = postId
+        self.webPageCount = pageCount
+        self.webDescription = description
+        self.webBookThumbnail = imageURL
+        self.webAuthors = authors
+        self.webISBN = isbn
+        self.publishedYear = yearPublished
+        self.bookStatus = status
+    }
+    
+    
 
     
     //bookInfoDict = ["isbn" : ISBN, "title" : "", "description" : "", "authors": "", "imageURL": "", "pageCount": ""]
