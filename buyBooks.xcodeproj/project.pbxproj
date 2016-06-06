@@ -42,6 +42,8 @@
 		10F8E01F1D00D01800C944CD /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F8E01E1D00D01800C944CD /* SearchTableViewController.swift */; };
 		10F8E0211D00DD7900C944CD /* DataHoldingTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F8E0201D00DD7900C944CD /* DataHoldingTabBarViewController.swift */; };
 		344F72721272BDEA70598AFD /* libPods-buyBooks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40AF727BB302E4406D9693F7 /* libPods-buyBooks.a */; };
+		924F0D711D0502F200F46D1F /* Nexa Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 924F0D6F1D0502A000F46D1F /* Nexa Bold.otf */; };
+		924F0D721D0502F200F46D1F /* Nexa Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 924F0D701D0502A000F46D1F /* Nexa Light.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +89,8 @@
 		10F8E01E1D00D01800C944CD /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		10F8E0201D00DD7900C944CD /* DataHoldingTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHoldingTabBarViewController.swift; sourceTree = "<group>"; };
 		40AF727BB302E4406D9693F7 /* libPods-buyBooks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-buyBooks.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		924F0D6F1D0502A000F46D1F /* Nexa Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nexa Bold.otf"; sourceTree = "<group>"; };
+		924F0D701D0502A000F46D1F /* Nexa Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nexa Light.otf"; sourceTree = "<group>"; };
 		A496016CBABC8B84555D241A /* Pods-buyBooks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buyBooks.release.xcconfig"; path = "Pods/Target Support Files/Pods-buyBooks/Pods-buyBooks.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -247,6 +251,8 @@
 			children = (
 				1006FE021D0166C00015A206 /* Keytin-Light.ttf */,
 				1006FE061D0169BC0015A206 /* OstrichSans-Light.otf */,
+				924F0D6F1D0502A000F46D1F /* Nexa Bold.otf */,
+				924F0D701D0502A000F46D1F /* Nexa Light.otf */,
 				1006FE051D01699F0015A206 /* ostrich-regular.ttf */,
 				1039F4FD1CFEABB00012C2C6 /* CustomViewIBDesignable.swift */,
 				1063A9C51CF3A67500BFB4E0 /* AppDelegate.swift */,
@@ -344,6 +350,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				924F0D711D0502F200F46D1F /* Nexa Bold.otf in Resources */,
+				924F0D721D0502F200F46D1F /* Nexa Light.otf in Resources */,
 				1006FE071D0169EC0015A206 /* OstrichSans-Light.otf in Resources */,
 				1006FE081D0169EC0015A206 /* ostrich-regular.ttf in Resources */,
 				1006FE041D0168570015A206 /* Keytin-Light.ttf in Resources */,

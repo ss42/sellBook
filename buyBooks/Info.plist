@@ -4,32 +4,34 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Nexa Light.otf</string>
+		<string>Nexa Bold.otf</string>
 		<string>OstrichSans-Light.otf</string>
 		<string>ostrich-regular.ttf</string>
 		<string>Keytin-Light.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
-    <key>CFBundleURLTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>fb1033539930026963</string>
-            </array>
-        </dict>
-    </array>
-    <key>FacebookAppID</key>
-    <string>1033539930026963</string>
-    <key>FacebookDisplayName</key>
-    <string>Buy and Sell Textbooks</string>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>fbapi</string>
-        <string>fb-messenger-api</string>
-        <string>fbauth2</string>
-        <string>fbshareextension</string>
-    </array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb1033539930026963</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>1033539930026963</string>
+	<key>FacebookDisplayName</key>
+	<string>Buy and Sell Textbooks</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
