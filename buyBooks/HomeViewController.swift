@@ -22,6 +22,9 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
 
     var cache = ImageLoadingWithCache()
     
+    var activityView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+    
+    
     @IBOutlet weak var tableView: UITableView!
     
     var sellBookArray: NSMutableArray = []
@@ -50,6 +53,16 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         
         navigationController?.hidesBarsOnSwipe = true
+        
+        
+        //Activity Indicator
+        activityView.color = UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0)
+        activityView.center = self.view.center
+        
+        activityView.startAnimating()
+        
+        self.view.addSubview(activityView)
+        
     
         //self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         //self.navigationController!.navigationBar.shadowImage = UIImage()
@@ -114,6 +127,8 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         
     }
+    
+    
     func timeElapsed(date: String)-> String{
         
         let dateformatter = NSDateFormatter()
@@ -121,13 +136,8 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         dateformatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let postedDate  = dateformatter.dateFromString(date)!
         
-        
         let elapsedTimeInSeconds = NSDate().timeIntervalSinceDate(postedDate)
-        
-        
         let secondInDays: NSTimeInterval = 60 * 60 * 24
-        
-        
         if elapsedTimeInSeconds > 7 * secondInDays {
             dateformatter.dateFormat = "MM/dd/yy"
             let timeToShow: String = dateformatter.stringFromDate(postedDate)
@@ -138,8 +148,6 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             // print("first if statement Time Elapsed > secinds indays ")
             let timeToShow: String = dateformatter.stringFromDate(postedDate)
             return timeToShow
-            
-            
         } else if elapsedTimeInSeconds > secondInDays/60{
             let timeToshow = Int(elapsedTimeInSeconds/3600)
             
@@ -366,6 +374,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
         cache.getImage(tempString, imageView: cell.mainImage, defaultImage: "noun_9280_cc")
         print("after getimage")
         
+        activityView.stopAnimating()
+        print("Stopped the activity indicator")
         
         /*let requestURL: NSURL = NSURL(string: book!.webBookThumbnail!)!
         let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)

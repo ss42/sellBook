@@ -25,7 +25,10 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         emailField.delegate = self
-        
+        emailField.attributedPlaceholder = NSAttributedString(string:"Enter email here.",
+                                                               attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
+        passwordField.attributedPlaceholder = NSAttributedString(string:"Password",
+                                                               attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
         passwordField.delegate = self
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))

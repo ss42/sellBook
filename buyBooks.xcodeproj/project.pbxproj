@@ -10,6 +10,9 @@
 		1006FE041D0168570015A206 /* Keytin-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1006FE021D0166C00015A206 /* Keytin-Light.ttf */; };
 		1006FE071D0169EC0015A206 /* OstrichSans-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1006FE061D0169BC0015A206 /* OstrichSans-Light.otf */; };
 		1006FE081D0169EC0015A206 /* ostrich-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1006FE051D01699F0015A206 /* ostrich-regular.ttf */; };
+		102C91241D0778FF00D5B9F1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102C91231D0778FF00D5B9F1 /* SettingsViewController.swift */; };
+		102C91261D07808D00D5B9F1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102C91251D07808D00D5B9F1 /* AboutViewController.swift */; };
+		102C91281D07809A00D5B9F1 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102C91271D07809A00D5B9F1 /* EditProfileViewController.swift */; };
 		1039F4FC1CFEA14E0012C2C6 /* ViewDetailOfBooksOnSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039F4FB1CFEA14E0012C2C6 /* ViewDetailOfBooksOnSaleViewController.swift */; };
 		1039F4FE1CFEABB00012C2C6 /* CustomViewIBDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039F4FD1CFEABB00012C2C6 /* CustomViewIBDesignable.swift */; };
 		1063A9C61CF3A67500BFB4E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1063A9C51CF3A67500BFB4E0 /* AppDelegate.swift */; };
@@ -56,6 +59,9 @@
 		1006FE021D0166C00015A206 /* Keytin-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Keytin-Light.ttf"; sourceTree = "<group>"; };
 		1006FE051D01699F0015A206 /* ostrich-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ostrich-regular.ttf"; sourceTree = "<group>"; };
 		1006FE061D0169BC0015A206 /* OstrichSans-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OstrichSans-Light.otf"; sourceTree = "<group>"; };
+		102C91231D0778FF00D5B9F1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		102C91251D07808D00D5B9F1 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		102C91271D07809A00D5B9F1 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		1039F4FB1CFEA14E0012C2C6 /* ViewDetailOfBooksOnSaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewDetailOfBooksOnSaleViewController.swift; sourceTree = "<group>"; };
 		1039F4FD1CFEABB00012C2C6 /* CustomViewIBDesignable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewIBDesignable.swift; sourceTree = "<group>"; };
 		105330B61CFF9BB0000EC461 /* buyBooks-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "buyBooks-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -130,6 +136,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		102C91221D0778E300D5B9F1 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				102C91231D0778FF00D5B9F1 /* SettingsViewController.swift */,
+				102C91251D07808D00D5B9F1 /* AboutViewController.swift */,
+				102C91271D07809A00D5B9F1 /* EditProfileViewController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		1039F4F61CFEA02E0012C2C6 /* Sell Books */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,8 +196,9 @@
 		1063A9C41CF3A67500BFB4E0 /* buyBooks */ = {
 			isa = PBXGroup;
 			children = (
-				1063A9C91CF3A67500BFB4E0 /* Main.storyboard */,
+				102C91221D0778E300D5B9F1 /* Settings */,
 				1063A9C51CF3A67500BFB4E0 /* AppDelegate.swift */,
+				1063A9C91CF3A67500BFB4E0 /* Main.storyboard */,
 				107D79511D02316B00661B91 /* FaceBookLoginViewController.swift */,
 				10F8E0221D00EF9A00C944CD /* finishedStuff */,
 				1039F4F61CFEA02E0012C2C6 /* Sell Books */,
@@ -445,6 +462,7 @@
 				10DA6EE01CFD07AA00D64DB2 /* FinalConfirmationBeforePostViewController.swift in Sources */,
 				10DA6EE81CFD5C3C00D64DB2 /* PostTableViewCell.swift in Sources */,
 				10C6E7091CF8EA18007BFF69 /* PresentSearchResultsViewController.swift in Sources */,
+				102C91241D0778FF00D5B9F1 /* SettingsViewController.swift in Sources */,
 				10DA6EDE1CFCF88300D64DB2 /* SetPriceAndConditionFromSearchViewController.swift in Sources */,
 				10DA6EE21CFD5BFE00D64DB2 /* ForgotPasswordViewController 2.swift in Sources */,
 				1063A9C81CF3A67500BFB4E0 /* HomeViewController.swift in Sources */,
@@ -460,7 +478,9 @@
 				10F8E01F1D00D01800C944CD /* SearchTableViewController.swift in Sources */,
 				10F8E0211D00DD7900C944CD /* DataHoldingTabBarViewController.swift in Sources */,
 				10DA6EEA1CFD5DFD00D64DB2 /* SellBySearchingISBNViewController.swift in Sources */,
+				102C91261D07808D00D5B9F1 /* AboutViewController.swift in Sources */,
 				1063A9F71CF3B1EF00BFB4E0 /* User.swift in Sources */,
+				102C91281D07809A00D5B9F1 /* EditProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

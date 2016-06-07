@@ -16,7 +16,8 @@ class MyBooksViewController: UIViewController {
     var cache = ImageLoadingWithCache()
 
     var ref = FIRDatabase.database().reference()
-    
+    var activityView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "editBook"
@@ -39,7 +40,14 @@ class MyBooksViewController: UIViewController {
         //fetchPost()
         navigationController?.hidesBarsOnSwipe = true
 
-        print("after fetch")
+        //Activity Indicator
+        activityView.color = UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0)
+        activityView.center = self.view.center
+        
+        activityView.startAnimating()
+        
+        self.view.addSubview(activityView)
+        
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -224,6 +232,7 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource{
         cache.getImage(tempString, imageView: cell.mainImage, defaultImage: "noun_9280_cc")
         print("after getimage")
         
+        activityView.stopAnimating()
         
         
         return cell

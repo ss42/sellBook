@@ -34,8 +34,9 @@ class UnderlinedLabel: UILabel {
         }
     }
 }
- 
-/*
+
+
+
 extension UIView {
 	
 
@@ -91,7 +92,7 @@ extension UIView {
         }
     }
 }
- */
+ 
 // added some uicolor to hex thing from https://gist.github.com/arshad/de147c42d7b3063ef7bc
 
 extension UIColor {

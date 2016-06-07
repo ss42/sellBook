@@ -13,6 +13,9 @@ class SellBySearchingISBNViewController: UIViewController {
     var bookInfoDict = [String:String]()
     var bookImage:UIImage?
     
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var popupView: UIView!
     
     @IBOutlet weak var isbnTextfield: UITextField!
     
@@ -24,6 +27,17 @@ class SellBySearchingISBNViewController: UIViewController {
         self.view.backgroundColor = UIColor(red: 66/255, green: 75/255, blue: 77/255, alpha: 1)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
+        //view.sendSubviewToBack(blurEffectView)
+        view.addSubview(blurEffectView)
+        view.addSubview(popupView)
+        view.addSubview(titleLabel)
         // Do any additional setup after loading the view.
     }
 
