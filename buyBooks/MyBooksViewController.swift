@@ -37,6 +37,8 @@ class MyBooksViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         //fetchPost()
+        navigationController?.hidesBarsOnSwipe = true
+
         print("after fetch")
         
         // Do any additional setup after loading the view, typically from a nib.

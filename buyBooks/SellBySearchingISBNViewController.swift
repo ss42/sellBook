@@ -19,7 +19,8 @@ class SellBySearchingISBNViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        self.view.backgroundColor = UIColor(white: 1.0, alpha: 0.5)
         self.view.backgroundColor = UIColor(red: 66/255, green: 75/255, blue: 77/255, alpha: 1)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)

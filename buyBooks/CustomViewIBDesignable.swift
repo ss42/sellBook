@@ -18,7 +18,7 @@ import UIKit
 	}
 }
 
-/*
+
 class UnderlinedLabel: UILabel {
     
     override var text: String! {
@@ -34,7 +34,7 @@ class UnderlinedLabel: UILabel {
         }
     }
 }
- */
+ 
 /*
 extension UIView {
 	

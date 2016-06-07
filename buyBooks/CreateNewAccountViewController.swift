@@ -10,7 +10,7 @@
 import UIKit
 import Firebase
 
-class CreateNewAccountViewController: UIViewController, UITextFieldDelegate {
+class CreateNewAccountViewController: UIViewController {
     
     
     @IBOutlet weak var emailField: UITextField!
@@ -25,7 +25,8 @@ class CreateNewAccountViewController: UIViewController, UITextFieldDelegate {
         passwordField2.delegate = self
         // Do any additional setup after loading the view.
         
-       
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     override func didReceiveMemoryWarning() {
@@ -97,10 +98,7 @@ class CreateNewAccountViewController: UIViewController, UITextFieldDelegate {
         self.dismissViewControllerAnimated(true, completion: {})
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
-    }
+  
     
     func signupErrorAlert(title: String, message: String) {
         
@@ -112,7 +110,29 @@ class CreateNewAccountViewController: UIViewController, UITextFieldDelegate {
         presentViewController(alert, animated: true, completion: nil)
     }
     
- 
+    func dismissKeyboard(){
+        view.endEditing(true)
+    }
+    
+    
+}
+extension CreateNewAccountViewController: UITextFieldDelegate{
+    func textFieldDidEndEditing(textField: UITextField) {
+        //add something may be?
+        
+    }
+    
+    func textFieldShouldClear(textField: UITextField) -> Bool {
+        return true
+    }
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+        return true
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
     
     
 }

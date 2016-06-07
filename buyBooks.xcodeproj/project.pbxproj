@@ -181,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				1063A9C91CF3A67500BFB4E0 /* Main.storyboard */,
+				1063A9C51CF3A67500BFB4E0 /* AppDelegate.swift */,
 				107D79511D02316B00661B91 /* FaceBookLoginViewController.swift */,
 				10F8E0221D00EF9A00C944CD /* finishedStuff */,
 				1039F4F61CFEA02E0012C2C6 /* Sell Books */,
@@ -268,7 +269,6 @@
 				10D0FFF11D06281300726041 /* SF-UI-Display-Regular.otf */,
 				10D0FFF21D06287100726041 /* SF-UI-Display-Thin.otf */,
 				1039F4FD1CFEABB00012C2C6 /* CustomViewIBDesignable.swift */,
-				1063A9C51CF3A67500BFB4E0 /* AppDelegate.swift */,
 				10D0FFEF1D06280100726041 /* SF-UI-Text-Light.otf */,
 				10E2FD401CF3DA7300B6EAE0 /* GoogleService-Info.plist */,
 				10D0FFEE1D0627EB00726041 /* SF-UI-Text-Regular.otf */,

@@ -18,13 +18,31 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    @IBOutlet weak var stackView: UIStackView!
    
+    @IBOutlet weak var signUp: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         emailField.delegate = self
         
         passwordField.delegate = self
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
+        //view.sendSubviewToBack(blurEffectView)
+        view.addSubview(blurEffectView)
+        view.addSubview(stackView)
+        view.addSubview(signUp)
+
+        
 
     }
 
@@ -132,6 +150,9 @@ class LoginViewController: UIViewController {
     
     
   
+    }
+    func dismissKeyboard(){
+        view.endEditing(true)
     }
 }
 

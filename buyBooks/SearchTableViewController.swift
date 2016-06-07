@@ -43,9 +43,11 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         self.tableView.rowHeight = 105
         tableView.separatorStyle = .None
         tableView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+        navigationController?.hidesBarsOnSwipe = true
 
         
-        
+        resultsSearchController.searchBar.barTintColor = UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0)
+        //resultsSearchController.searchBar.backgroundColor = UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0)
         self.tableView.reloadData()
         
         

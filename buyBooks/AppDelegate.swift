@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         */
                 
-        if let barFont = UIFont(name: "SFUIDisplay-Regular", size: 22.0){
+        if let barFont = UIFont(name: "Avenir Light", size: 22.0){
             print("font stuff")
             UINavigationBar.appearance().titleTextAttributes = [ NSFontAttributeName: barFont]
             print("after setting font for navbar")
