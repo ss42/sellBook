@@ -18,7 +18,7 @@ import UIKit
 	}
 }
 
-
+/*
 class UnderlinedLabel: UILabel {
     
     override var text: String! {
@@ -34,6 +34,8 @@ class UnderlinedLabel: UILabel {
         }
     }
 }
+ */
+/*
 extension UIView {
 	
 
@@ -89,6 +91,7 @@ extension UIView {
         }
     }
 }
+ */
 // added some uicolor to hex thing from https://gist.github.com/arshad/de147c42d7b3063ef7bc
 
 extension UIColor {
@@ -117,4 +120,13 @@ extension UIColor {
         
         
     }
+}
+
+extension UILabel {
+    
+    var substituteFontName : String {
+        get { return self.font.fontName }
+        set { self.font = UIFont(name: newValue, size: self.font.pointSize) }
+    }
+    
 }

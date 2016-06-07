@@ -36,6 +36,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         
         self.resultsSearchController.searchBar.sizeToFit()
         self.resultsSearchController.searchBar.placeholder = "Search by: Title or Author or ISBN" // maybe no colon?
+        //self.resultsSearchController.searchBar.searchBarStyle = UISearchBarStyle.Minimal
         
         self.tableView.tableHeaderView = self.resultsSearchController.searchBar
         

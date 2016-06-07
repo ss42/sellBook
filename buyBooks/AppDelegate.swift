@@ -25,6 +25,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         //FIRApp.configure()
         print("after config")
+        //UILabel.appearance().substituteFontName = "SF-UI-Text-Regular"
+        
+        // previous line for setting a default text font and size
+        
+        
+        
+        
+        
+        
+        
+        
+        UINavigationBar.appearance().barTintColor = UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0)//UIColor(red: 41/255, green: 176/255, blue: 206/255, alpha: 1.0) // this changes the heading thing
+        
+        //UINavigationBar.appearance().tintColor = UIColor.blackColor() // this changes the icons on the nav bar (changes the color of them).
+        
+        
+        
+        
+        // used to print all font names and their internal identifiers
+        /*for family: String in UIFont.familyNames()
+        {
+            print("\(family)")
+            for names: String in UIFont.fontNamesForFamilyName(family)
+            {
+                print("==\(names)")
+            }
+        }
+        */
+                
+        if let barFont = UIFont(name: "SFUIDisplay-Regular", size: 22.0){
+            print("font stuff")
+            UINavigationBar.appearance().titleTextAttributes = [ NSFontAttributeName: barFont]
+            print("after setting font for navbar")
+        }
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         // Override point for customization after application launch.

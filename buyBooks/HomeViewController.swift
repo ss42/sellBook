@@ -37,13 +37,26 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        
         fetchPost()
-                tableView.separatorStyle = .None
+           //     tableView.separatorStyle = .None
         self.tableView.delegate = self
         self.tableView.dataSource = self
         tableView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
         tableView.rowHeight = 105
         tableView.reloadData()
+        
+        
+        navigationController?.hidesBarsOnSwipe = true
+    
+        //self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        //self.navigationController!.navigationBar.shadowImage = UIImage()
+        //self.navigationController!.navigationBar.translucent = true
+        //self.navigationController!.view.backgroundColor = UIColor.blueColor()
+        //UINavigationBar.appearance().barTintColor = UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0)
+        
         
         // Do any additional setup after loading the view, typically from a nib.
     }

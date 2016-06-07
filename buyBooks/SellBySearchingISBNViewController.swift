@@ -21,6 +21,8 @@ class SellBySearchingISBNViewController: UIViewController {
         super.viewDidLoad()
         //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         self.view.backgroundColor = UIColor(red: 66/255, green: 75/255, blue: 77/255, alpha: 1)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
         // Do any additional setup after loading the view.
     }
 
@@ -29,6 +31,9 @@ class SellBySearchingISBNViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func dismissKeyboard(){
+        view.endEditing(true)
+    } 
     
     
     @IBAction func search(sender: AnyObject) {
