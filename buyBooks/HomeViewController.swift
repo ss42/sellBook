@@ -34,8 +34,11 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     // holds an array of books, loaded from firebase
     var sellBookArray: NSMutableArray = []
     
+
+    // we load the data into the superview here, this will be used in the serach vc
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(false)
+
         let tbvc = self.tabBarController as! DataHoldingTabBarViewController // going to get data from here instead.
         tbvc.sellBookArray = self.sellBookArray
         
@@ -47,16 +50,19 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         
         
-        
+        // get the data from firebase
         fetchPost()
            //     tableView.separatorStyle = .None
+
+        // prepare the table view
         self.tableView.delegate = self
         self.tableView.dataSource = self
         tableView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
         tableView.rowHeight = 105
+        // populate the table
         tableView.reloadData()
         
-        
+        // for hiding the nav bar when we scroll
         navigationController?.hidesBarsOnSwipe = true
         
         
@@ -118,7 +124,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     
     
-    
+    // THIS FUNCTION IS NEVER CALLED!!!!!!!!!!!
     
     //Do the following if the user want to sell a book
     override func viewDidAppear(animated: Bool)
@@ -133,7 +139,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
     }
     
-    
+    // format the time
     func timeElapsed(date: String)-> String{
         
         let dateformatter = NSDateFormatter()
@@ -165,6 +171,8 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         }
         
     }
+
+    // get the data from firebase
     func fetchPost()
     {
         //let tempUser = User(fullName: "test", email: "test@test.com", profileImage: "none")
@@ -216,6 +224,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         
     }
+    // send data to the next view controllers
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
         if segue.identifier == "popoverMenu"{
             let vc = segue.destinationViewController
@@ -244,13 +253,14 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMessageComposeViewControllerDelegate{
-    
+    // for facebook stuff
     func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
         self.dismissViewControllerAnimated(true, completion: nil)
         tableView.reloadData()
     }
     
-    
+    // facebook stuff, checks to see if logged in and then posts a message. We currently need to change the message and the picture that is posted
+    //TODO: Fix facebook message and picture
     func facebookShare(alert:UIAlertAction!)
     {
         if (FBSDKAccessToken.currentAccessToken() != nil)
