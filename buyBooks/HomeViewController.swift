@@ -16,17 +16,22 @@ import MessageUI
 
 class HomeViewController: UIViewController, UIPopoverPresentationControllerDelegate{
     
+
+    // firebase ref
     var ref = FIRDatabase.database().reference()
     
     //let myActivityIndicator = UIActivityIndicatorView()
 
+    // for loading images, this creates a single instance of the class ImageLoadingWithCache
     var cache = ImageLoadingWithCache()
     
+    // activity indicator, stopped when images load
     var activityView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
     
     
     @IBOutlet weak var tableView: UITableView!
     
+    // holds an array of books, loaded from firebase
     var sellBookArray: NSMutableArray = []
     
     override func viewWillDisappear(animated: Bool) {
