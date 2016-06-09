@@ -69,7 +69,7 @@ class MyBooksViewController: UIViewController {
         print("refreshing view")
         fetchPost()
  
-        tableView.reloadData()
+        tableView.reloadData() // this saves us from a crash
     }
     //Do the following if the user want to sell a book
     override func viewDidAppear(animated: Bool)
