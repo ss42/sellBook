@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+// very similar to home view controller, it loads all of its data from the superview (dataholdingtabbarviewcontroller. Maybe this is a really bad way of doing this.)
 class SearchTableViewController: UITableViewController, UISearchResultsUpdating {
 
     var cache = ImageLoadingWithCache()
@@ -21,8 +23,11 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
             self.resultsSearchController.active = false
         //})
     }*/
-    
+    // holds search results
+    // TODO: add default search results or something so that its not empty
     var resultsSearchController = UISearchController()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
