@@ -32,10 +32,16 @@ class EditBooksViewController: UIViewController {
     func dismissKeyboard(){
         view.endEditing(true)
     }
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.hidesBarsOnSwipe = false
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //navigationController?.navigationBar.hidden = false
+
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
@@ -184,7 +190,7 @@ class EditBooksViewController: UIViewController {
         // later
         dispatch_async(dispatch_get_main_queue(), {
             
-            self.displayDeleteAlertMessage("Scan Error", message: "No results found from barcode scan, please enter info manually")
+            self.displayDeleteAlertMessage("Listing deleted!", message: "If you deleted the post in error, please relist it!")
         })
     }
     
@@ -194,7 +200,7 @@ class EditBooksViewController: UIViewController {
         //self.currentUserDictionary["bookStatus"] = "sold"
         dispatch_async(dispatch_get_main_queue(), {
             
-            self.displayConfirmAlertMessage("Scan Error", message: "No results found from barcode scan, please enter info manually")
+            self.displayConfirmAlertMessage("Sale confirmed!", message: "Thank you for using the Book-Rack app! Please relist the book if the sale falls through (also rate us on the app store)")
         })
         /*self.setDictValues()
         self.updatePostOnDatabase()
@@ -218,7 +224,7 @@ class EditBooksViewController: UIViewController {
     func displayConfirmAlertMessage(title: String, message: String) {
         let myAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         
-        let okAction = UIAlertAction(title: "Confirm Sale", style: UIAlertActionStyle.Default, handler: confirmButton) // change title
+        let okAction = UIAlertAction(title: "Confirm Sale of Book", style: UIAlertActionStyle.Default, handler: confirmButton) // change title
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: cancelButton)
         
         myAlert.addAction(okAction)
@@ -247,7 +253,7 @@ class EditBooksViewController: UIViewController {
     func displayDeleteAlertMessage(title: String, message: String) {
         let myAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         
-        let okAction = UIAlertAction(title: "Confirm Delete", style: UIAlertActionStyle.Default, handler: deleteButton) // change title
+        let okAction = UIAlertAction(title: "Confirm Deletion", style: UIAlertActionStyle.Default, handler: deleteButton) // change title
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: cancelButton)
         
         myAlert.addAction(okAction)

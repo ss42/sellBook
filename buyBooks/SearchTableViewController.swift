@@ -13,8 +13,7 @@ import UIKit
 class SearchTableViewController: UITableViewController, UISearchResultsUpdating {
 
     var cache = ImageLoadingWithCache()
-    //let appleProducts = ["mac", "ipjhone", "computers", "gala", "ipad", "washington", "granny smith"]
-    //var filteredAppleProducts = [String]()
+   
     var sellBookArray: NSMutableArray = []
     var filteredSellBookArray = [Book]()
     

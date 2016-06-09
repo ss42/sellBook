@@ -20,11 +20,13 @@ class CreateNewAccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //confirming to the textfield delegate
         emailField.delegate = self
         passwordField.delegate = self
         passwordField2.delegate = self
-        // Do any additional setup after loading the view.
-        
+
+        //a tap dissmisses the keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
@@ -34,16 +36,13 @@ class CreateNewAccountViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+     // MARK: - Create account with Firebase
+    
     @IBAction func createAccount(sender: AnyObject) {
         let email = emailField.text
         let password = passwordField.text
         let password2 = passwordField2.text
-        
-        // make a field for display name
-        
-        //print(email)
-        //print(password)
-        //print(password2)
         
         if (email != "" && password != "" && password2 != "" ) && (password == password2){
             
@@ -61,29 +60,9 @@ class CreateNewAccountViewController: UIViewController {
                 }
                 else
                 {
-                   /*
-                    // Create and Login the New User with authUser
-                    DataService.dataService.baseRef.authUser(email, password: password, withCompletionBlock: {(error, authData) -> Void in
-                        
-                        let user = ["provider": authData.provider!, "email": email!]
-                        
-                        // Seal the deal in DataService.swift.
-                        DataService.dataService.createNewAccount(authData.uid, user: user)
-                    })
-                    */
+                  
                     // make the class then store the data locally
-                    //let currentUser = DataService.dataService.
-                    //let tempUser = Rider(authData: DataService.dataService.CURRENT_USER_REF)
-                    
-                    
-                    
-                    // Store the uid for future access - handy! 
-                    //let storage = NSUserDefaults.standardUserDefaults()//.setValue(authData ["uid"], forKey: "uid")
-                    
-                    
-                    //storage.setObject(, forKey: )
-                    
-                    // Enter the app.
+                    // and use the user data throughout the app
                     self.performSegueWithIdentifier("NewUserLoggedIn", sender: nil)
                 }
             })
@@ -99,29 +78,25 @@ class CreateNewAccountViewController: UIViewController {
     }
     
   
+     // MARK: - signupErrorAlert 
     
     func signupErrorAlert(title: String, message: String) {
-        
-        // Called upon signup error to let the user know signup didn't work.
-        
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
     }
     
+     // MARK: - dismissKeyboard
     func dismissKeyboard(){
         view.endEditing(true)
     }
-    
-    
 }
+
+
+ // MARK: - UITextFieldDelegate (used to make the keyboard return)
 extension CreateNewAccountViewController: UITextFieldDelegate{
-    func textFieldDidEndEditing(textField: UITextField) {
-        //add something may be?
-        
-    }
-    
+ 
     func textFieldShouldClear(textField: UITextField) -> Bool {
         return true
     }

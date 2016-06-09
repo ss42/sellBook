@@ -22,6 +22,8 @@ class MyBooksViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "editBook"
         {
+            //navigationController?.hidesBarsOnSwipe = false
+
             let indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow!
             let destinationVC = segue.destinationViewController as! EditBooksViewController
             destinationVC.postId = (sellBookArray[indexPath.row] as! Book).postId!
@@ -37,7 +39,8 @@ class MyBooksViewController: UIViewController {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        //fetchPost()
+
+        
         navigationController?.hidesBarsOnSwipe = true
 
         //Activity Indicator
@@ -47,6 +50,8 @@ class MyBooksViewController: UIViewController {
         activityView.startAnimating()
         
         self.view.addSubview(activityView)
+        //fetchPost()
+
         
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -57,14 +62,20 @@ class MyBooksViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     override func viewWillAppear(animated: Bool) {
+        navigationController?.hidesBarsOnSwipe = true
+
         super.viewWillAppear(animated)
         self.sellBookArray = []
         print("refreshing view")
         fetchPost()
+ 
+        tableView.reloadData()
     }
     //Do the following if the user want to sell a book
     override func viewDidAppear(animated: Bool)
     {
+        //navigationController?.hidesBarsOnSwipe = true
+
         let isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn");
         
         if(!isUserLoggedIn)
@@ -241,6 +252,10 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource{
  
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("tapped")
+        //navigationController?.hidesBarsOnSwipe = false
+        //navigationController?.navigationBar.hidden = true
+        //navigationController?.navigationBar.hidden = false
+
         performSegueWithIdentifier("editBook", sender: sellBookArray[indexPath.row])
     }
     

@@ -356,11 +356,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        
-        
-        
-        
+    
         
         let cell: PostTableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell") as! PostTableViewCell
         
@@ -392,59 +388,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
         activityView.stopAnimating()
         print("Stopped the activity indicator")
         
-        /*let requestURL: NSURL = NSURL(string: book!.webBookThumbnail!)!
-        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(urlRequest) {
-            (data, response, error) -> Void in
-            
-            let httpResponse = response as! NSHTTPURLResponse
-            let statusCode = httpResponse.statusCode
-            
-            if (statusCode == 200) {
-                print("Everyone is fine, file downloaded successfully.")
-                do{
-                    
-                    let picture = UIImage(data:data!)
-                    cell.mainImage.image = picture
-                    
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.tableView.reloadData()
-                        print("tableview was reloaded")
-                        
-                        //self.myActivityIndicator.stopAnimating()
-                    }
-                    
-                    
-                    
-                    print("done with image load?")
-                    
-                    
-                    
-                    
-                    
-                }catch {
-                    print("Error with picture: \(error)")
-                }
-                
-                
-                
-                
-                
-                
-                
-            }
-            
-            
+        return cell
+        
         }
-        //task.resume()
-        
-        
-        
-        
-        */
-        
-        
+    
         
         //cell.mainImage.image = self.load_image(book!.webBookThumbnail!)
         
@@ -461,10 +408,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
         myCell.myImageView.sd_setImageWithURL(imageUrl, placeholderImage: UIImage(named: "no_image-128"), options: SDWebImageOptions.ProgressiveDownload, completed: myBlock)
         
         */
-        
-        
-        return cell
-    }
+    
     // for the popover in the upper right
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle
     {
@@ -489,29 +433,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
                     
                     let picture = UIImage(data:data!)
                     self.bookImage = picture
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+ 
                 }catch {
                     print("Error with picture: \(error)")
                 }
-                
-                
-                
-                
-                
-                
-                
+ 
             }
-            
-            
         }
         task.resume()
     }
@@ -542,83 +469,4 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
     }
     
     */
-    /*
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-       
-           let requestedRide = self.tempArray[indexPath.row] as! Trips
-            let driver = "\(requestedRide.driver!.firstName) \(requestedRide.driver!.lastName)"
-            let contactAction = UITableViewRowAction(style: .Normal, title: "Contact \(requestedRide.driver!.firstName)"){(action: UITableViewRowAction!, indexPath: NSIndexPath) -> Void in
-                
-                let contactAlertController = UIAlertController(title: "Contact  \(driver)", message: ":)", preferredStyle: .ActionSheet )
-                
-                let callAction = UIAlertAction(title: "Call the Driver", style: UIAlertActionStyle.Default){(action)-> Void in
-                    // the phone number is default.
-                    // need to check for correct phone number when inputed and add below
-                    var url:NSURL = NSURL(string: "tel://+15106954976")!
-                    UIApplication.sharedApplication().openURL(url)
-                }
-                let textAction = UIAlertAction(title: "Text", style: UIAlertActionStyle.Default){(action)-> Void in
-                    //message hard coded for now
-                    
-                    let msgVC = MFMessageComposeViewController()
-                    msgVC.body = "Hello World"
-                    msgVC.recipients = ["+15103675660"]
-                    msgVC.messageComposeDelegate = self
-                    self.presentViewController(msgVC, animated: true, completion: nil)
-                }
-                let emailAction = UIAlertAction(title: "Email", style: UIAlertActionStyle.Default){(action)-> Void in
-                    
-                    let vc: SendMailViewController = self.storyboard!.instantiateViewControllerWithIdentifier("sendMail") as! SendMailViewController
-                    let trip = self.tempArray[indexPath.row] as! Trips
-                    vc.emailAddress = trip.email
-                    self.presentViewController(vc, animated: true, completion: nil)
-                    
-                    //do stuff
-                    //segue to sendmailcontroller and send data or driver's email add thru segue
-                }
-                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default){(action)-> Void in
-                    
-                }
-                contactAlertController.addAction(callAction)
-                contactAlertController.addAction(textAction)
-                contactAlertController.addAction(emailAction)
-                contactAlertController.addAction(cancelAction)
-                
-                self.presentViewController(contactAlertController, animated: true, completion: nil)
-                
-            }
-            let requestAction = UITableViewRowAction(style: .Normal, title: "Request Ride"){(action: UITableViewRowAction!, indexPath: NSIndexPath) -> Void in
-                
-                let requestAlertController = UIAlertController(title: nil, message: "Are you sure you want to request this ride?", preferredStyle: .ActionSheet)
-                
-                let requestAction = UIAlertAction(title: "Confirm Request", style: UIAlertActionStyle.Default){(action)-> Void in
-                    let vc: RideHistoryViewController = self.storyboard!.instantiateViewControllerWithIdentifier("myRide") as! RideHistoryViewController
-                    
-                    vc.myRideArray.addObject(requestedRide)
-                    
-                    
-                    
-                    self.tableView.reloadData()
-                    
-                }
-                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-                requestAlertController.addAction(requestAction)
-                requestAlertController.addAction(cancelAction)
-                
-                self.presentViewController(requestAlertController, animated: true, completion: nil)
-                
-            }
-            
-            contactAction.backgroundColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1.0)
-            requestAction.backgroundColor = UIColor(red: 82/255, green: 69/255, blue: 105/255, alpha: 1.0)
-            
-            return [contactAction, requestAction]
-        return 0
-    }
-     */
-
-
-    
-
-
-
+   

@@ -10,37 +10,38 @@ import UIKit
 import Firebase
 
 
-
-
 class LoginViewController: UIViewController {
     
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    
     @IBOutlet weak var stackView: UIStackView!
-   
     @IBOutlet weak var signUp: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         emailField.delegate = self
+        //the following changes the placeholder's text color
         emailField.attributedPlaceholder = NSAttributedString(string:"Enter email here.",
                                                                attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
         passwordField.attributedPlaceholder = NSAttributedString(string:"Password",
                                                                attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
         passwordField.delegate = self
         
+        //dismisses keyboard when you tap outside.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
+        //sets the background as image
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         
-        
+        //sets the background blur
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
-        //view.sendSubviewToBack(blurEffectView)
         view.addSubview(blurEffectView)
         view.addSubview(stackView)
         view.addSubview(signUp)
@@ -52,38 +53,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        /**
-        // If we have the uid stored, the user is already logger in - no need to sign in again!
-        if NSUserDefaults.standardUserDefaults().valueForKey("uid") != nil && DataService.dataService.CURRENT_USER_REF.authData != nil {
-            DataService.dataService.CURRENT_USER_REF.queryOrderedByKey().observeEventType(.Value, withBlock: {
-                snapshot in
-                
-                /*
-                 let imageString = nil//snapshot.value["image"] as? String
-                
-                if  imageString != nil {
-                    print("image not empty")
-                    print(imageString)
-                    let image = self.convertBase64StringToUImage(imageString!)
-                  //  self.tempImage! = image
-                    //self.saveImageToNSUserDefault(self.tempImage!)
-                    
-                    
-                    let imageData = UIImageJPEGRepresentation(image, 0.75)
-                    //saveData.setObject(imageData, forKey: "image")
-                    NSUserDefaults.standardUserDefaults().setObject(imageData, forKey: "image")
-                }
-                else {
-                    print("No photo")
-                    //self.profileImage.image = UIImage(named: "male")
-                }
- */
-            })
-            
-            //go to next screen cuz the user is sign in
-           // self.performSegueWithIdentifier("CurrentlyLoggedIn", sender: nil)
-        }**/
-    }
+        
+           }
     
    
     
@@ -92,33 +63,9 @@ class LoginViewController: UIViewController {
         
     }
     
-    func convertBase64StringToUImage(baseString: String)-> UIImage {
-        let decodedData = NSData(base64EncodedString: baseString, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-        let decodedimage = UIImage(data: decodedData!)
-        //println(decodedimage)
-        return decodedimage! as UIImage
-    }
+// MARK: - Login (Authentication through Firebase) 
     
-  /*
-    func saveImageToNSUserDefault(image: UIImage){
-        let saveData = NSUserDefaults.standardUserDefaults()
-        let imageData = UIImageJPEGRepresentation(image, 0.75)
-        saveData.setObject(imageData, forKey: profileImage)
-    }
-    
-        
-    }
-    //To get info back from NSUSEr
-    
-    if let imageData = saveData.objectForKey(profileImage) as? NSData{
-        let storedImage = UIImage.init(data: imageData)
-     profileImage.image = storedImage
-     */
-    
-    // Implement the required GIDSignInDelegate methods
-  
-    
-    
+    // ## WARNING May be get all the user info at once and use it thru out the viewcontroller
     @IBAction func login(sender: AnyObject) {
         let email = emailField.text
         let password = passwordField.text
@@ -146,14 +93,15 @@ class LoginViewController: UIViewController {
             })
             
         } else {
+            
+            //TO DO: - Show error
+ 
            // Error.showError("test", "hello")
-    }
-    
-   
-    
-    
+        }
   
     }
+    
+    // MARK: - Dissmisses keyboard
     func dismissKeyboard(){
         view.endEditing(true)
     }
@@ -161,17 +109,18 @@ class LoginViewController: UIViewController {
 
 
 extension LoginViewController: UITextFieldDelegate{
-    func textFieldDidEndEditing(textField: UITextField) {
-        //add something may be?
-        
-    }
+ 
     
+    // MARK: - Testfieldshould clear (clears the textfield when tapped)
     func textFieldShouldClear(textField: UITextField) -> Bool {
         return true
     }
+    
+    //may be we don't need this
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
         return true
     }
+     // MARK: - Textfieldshouldreturn (make the return button on the keyboard work)
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
