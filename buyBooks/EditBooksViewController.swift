@@ -13,6 +13,8 @@ import Firebase
 class EditBooksViewController: UIViewController {
     
     
+    // TODO: maybe we can use property oberserves to stop the data reload when we change something
+    
     var ref = FIRDatabase.database().reference().child("SellBooksPost")
     var postId: String?
     

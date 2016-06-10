@@ -10,6 +10,28 @@ import Foundation
 
 
 class Book{
+    
+    // TODO: finish these cases and create a function for the initializer to set the value based on time and the string passed in
+    enum bookDisplayConditions{
+        case defaultCase
+        case confirmedSold
+        case mailSentToBuyer
+        case deleted
+        
+    }
+    
+    // TODO: have to update the database with this new field (time of mail)
+    static func howShouldBookBeDisplayed(timeOfMail:String, bookStatus:String)->String{
+        if timeOfMail != ""{
+            // if timeOfMail < 24 hours
+            return "attempted purchase x hours ago"
+            // if time of mail > 24 hours
+            //return "attempted purchase more than one day ago, remove listing tag?"
+            // if time of mail > 72 hours then the thing should not be listed maybe
+        }
+        return " "
+    }
+    
     var sellerInfo: User?
     var title: String?
     var price: Double?
@@ -27,6 +49,10 @@ class Book{
     var publishedYear: String?
     var bookSold:Bool?
     var bookStatus:String?
+    // added to calculate how long ago the mail was sent
+    // TODO: make space for both of these in the database
+    var timeOfMail:String?
+    var superimposedImage:String?
     
     
     
@@ -96,12 +122,13 @@ class Book{
         self.webISBN = isbn
         self.publishedYear = yearPublished
         self.bookStatus = status
+        self.timeOfMail = ""
     }
     
     
-
     
-    //bookInfoDict = ["isbn" : ISBN, "title" : "", "description" : "", "authors": "", "imageURL": "", "pageCount": ""]
+    
+       //bookInfoDict = ["isbn" : ISBN, "title" : "", "description" : "", "authors": "", "imageURL": "", "pageCount": ""]
 
     /*init(user: User, info: Dictionary<String, String>)
     {
