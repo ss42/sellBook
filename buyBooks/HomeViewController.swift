@@ -34,6 +34,9 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     // holds an array of books, loaded from firebase
     var sellBookArray: NSMutableArray = []
     
+    
+    // string that holds the facebook message
+    var facebookMessageString:String?
 
     // we load the data into the superview here, this will be used in the serach vc
     override func viewWillDisappear(animated: Bool) {
@@ -257,7 +260,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
             print("logged in?")
             if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){ // this works, but it checks the app (to see if you are logged in) first.
                 let facebookComposer = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-                facebookComposer.setInitialText("initial text")
+                facebookComposer.setInitialText(self.facebookMessageString!)
                 facebookComposer.addImage(UIImage(named: "male"))
                 
                 self.presentViewController(facebookComposer, animated: true, completion: nil)
@@ -273,10 +276,18 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
         }
     }
     
+    // TODO: function that formulates messages based on which book you selected
+    func setFacebookMessage(book:Book)
+    {
+        self.facebookMessageString = book.title
+    }
+    
+    
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
         
         let book = self.sellBookArray[indexPath.row] as! Book
+        setFacebookMessage(book)
         let shareAction = UITableViewRowAction(style: .Normal, title: "Share"){(action: UITableViewRowAction!, indexPath: NSIndexPath) -> Void in
             
             
