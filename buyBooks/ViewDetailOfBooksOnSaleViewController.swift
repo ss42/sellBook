@@ -34,6 +34,9 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
     var detailBook:Book?
     var bookPicture:UIImage?
     
+    var ref = FIRDatabase.database().reference()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.subject.delegate = self
@@ -102,6 +105,8 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
             
             let mc: MFMailComposeViewController = MFMailComposeViewController()
             mc.mailComposeDelegate = self
+            // TODO: set this to be our email
+            //mc.setCcRecipients(<#T##ccRecipients: [String]?##[String]?#>)
             mc.setSubject(subjectText)
             mc.setMessageBody(bodyText, isHTML: false)
             mc.setToRecipients(toRecipients)
@@ -115,7 +120,39 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
  
     }
     
+    func timeElapsed(date: String)-> Double{
+        
+        let dateformatter = NSDateFormatter()
+        dateformatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateformatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let postedDate  = dateformatter.dateFromString(date)!
+        
+        let elapsedTimeInSeconds = NSDate().timeIntervalSinceDate(postedDate)
+        return elapsedTimeInSeconds
+    }
     
+    func getCurrentTime()-> String{
+        let todaysDate:NSDate = NSDate()
+        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let currentTimeAndDate:String = dateFormatter.stringFromDate(todaysDate)
+        return currentTimeAndDate
+    }
+    
+    
+    func updateMailTimeForBook()
+    {
+        //let time = timeElapsed((detailBook?.postedTime)!)
+        //if time > (60 * 60 * 24 * 3)
+        if detailBook?.timeOfMail == " "{
+            // update time of mail
+            let postIdKey = detailBook?.postId
+            let updatePost = ref.child("SellBooksPost").child(postIdKey!)
+            let tempDict = ["timeOfMail":getCurrentTime(), "bookStatus":"emailSent"]
+            updatePost.updateChildValues(tempDict)
+            print("updated post (timeOfMail)")
+        }
+    }
     
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         
@@ -127,6 +164,8 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
             
             //alert("Yes!", msg: "Mail Sent!")
             print("mail was sent")
+            updateMailTimeForBook()
+            
         case MFMailComposeResultSaved.rawValue:
             
             alert("Yes!", msg: "Mail Saved!")
@@ -145,7 +184,13 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
         
         //
     }
+    /**
+     alert to be displayed as a popup
+     
+     - parameter title: title of alert box
+     - parameter msg: Message string to be displayed
     
+     */
     func alert(title: String, msg: String){
         
         let alertController = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
@@ -155,6 +200,10 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
         
     }
     
+    
+    /**
+     populates the text fields in the view
+     */
     func populateFields()
     {
         bookTitle.text = detailBook?.title

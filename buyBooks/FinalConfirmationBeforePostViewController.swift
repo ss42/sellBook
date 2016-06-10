@@ -48,7 +48,7 @@ class FinalConfirmationBeforePostViewController: UIViewController {
             //change this later to full name
             print(user.email)
             print(user.photoURL)
-            let name = user.email
+            let name = user.displayName
             let email = user.email
             let uid = user.uid
             let profileImage = "male"
@@ -62,7 +62,8 @@ class FinalConfirmationBeforePostViewController: UIViewController {
             tempDict["uid"] = uid
             tempDict["SellBooksPostId"] = postId.key
             tempDict["postedTime"] = getCurrentTime()
-            tempDict["bookStatus"] = "no"
+            tempDict["bookStatus"] = "default"
+            tempDict["timeOfMail"] = " "
             
             //currentUserDictionary = ["fullName": name!, "email": email!, "profilePhoto": profileImage, "bookTitle": bookTitle.text!, "bookDetail": detail.text!, "bookCondition": bookCondition.text!, "price": price.text!, "bookImage": "male", "postedTime": "5:50", "uid":uid, "SellBooksPostId": postId.key]
             // moved from donePressed
@@ -140,6 +141,14 @@ class FinalConfirmationBeforePostViewController: UIViewController {
     }
     
     
+    // TODO: do comments like this, see http://nshipster.com/swift-documentation/
+    /**
+     Lorem ipsum dolor sit amet.
+     
+     - parameter bar: Consectetur adipisicing elit.
+     
+     - returns: Sed do eiusmod tempor.
+     */
     func sayOk(alert: UIAlertAction!)
     {
         print("ok, okay, o k")

@@ -36,13 +36,17 @@ class PresentSearchResultsViewController: UIViewController {
         print("at detail view")
         populateFields()
         
-        /*
- 
- 2016-05-30 14:23:28.012 buyBooks[6305:2521457] *** Assertion failure in void _UIPerformResizeOfTextViewForTextContainer(NSLayoutManager *, UIView<NSTextContainerView> *, NSTextContainer *, NSUInteger)(), /BuildRoot/Library/Caches/com.apple.xbs/Sources/UIFoundation/UIFoundation-432.1/UIFoundation/TextSystem/NSLayoutManager_Private.m:1551
- 2016-05-30 14:23:28.015 buyBooks[6305:2521457] *** Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'Only run on the main thread!'
-*/
+        //sets the background as image
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        
+        //sets the background blur
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
+        view.addSubview(blurEffectView)
+        view.addSubview(popupView)
 
-        // Do any additional setup after loading the view.
     }
  
     

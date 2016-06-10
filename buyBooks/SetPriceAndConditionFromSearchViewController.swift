@@ -10,6 +10,7 @@ import UIKit
 
 class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var popView: UIView!
     @IBOutlet weak var bookImage: UIImageView!
     
     @IBOutlet weak var bookTitle: UILabel!
@@ -111,19 +112,17 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
-        /*let customView = UIView(frame: CGRectMake(0, 0, 5, 50))
+        //sets the background as image
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         
-        let button   = UIButton(type: UIButtonType.System) as UIButton
-        button.frame = CGRectMake(5, 0, 50, 10)
-        button.backgroundColor = UIColor.greenColor()
-        button.setTitle("Done", forState: UIControlState.Normal)
-        button.addTarget(self, action: #selector(self.doneButton(_:)), forControlEvents: .TouchUpInside)
-            //Selector("Action:"), forControlEvents: UIControlEvents.TouchUpInside)
-        customView.addSubview(button)
-        //cgrectmake
-        //customView.backgroundColor = UIColor.redColor()
-        price.inputAccessoryView = customView
-        */
+        //sets the background blur
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
+        view.addSubview(blurEffectView)
+        view.addSubview(popView)
+
         populateData()
         
         // Do any additional setup after loading the view.

@@ -103,7 +103,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
 
         // Configure the cell...
         
-        cell.fullName.text = book!.sellerInfo?.email
+        cell.fullName.text = book!.sellerInfo?.fullName
         cell.title.text = book!.title
         cell.authors.text = "By: " + book!.webAuthors!
         cell.postedTime.text = book!.postedTime
@@ -268,6 +268,14 @@ class ImageLoadingWithCache {
                     print("load failed")
                 }
             })
+        }
+    }
+    func getImage(url:String, defaultImage:String)->UIImage{
+        if let img = imageCache[url]{
+            return img
+        }
+        else{
+            return UIImage(named: "male")!
         }
     }
 }

@@ -13,8 +13,8 @@ class SellBySearchingISBNViewController: UIViewController {
     var bookInfoDict = [String:String]()
     var bookImage:UIImage?
     
+    @IBOutlet weak var stackView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var popupView: UIView!
     @IBOutlet weak var isbnTextfield: UITextField!
     @IBOutlet weak var cancelButton: UIButton!
     
@@ -85,7 +85,7 @@ class SellBySearchingISBNViewController: UIViewController {
         blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
         //view.sendSubviewToBack(blurEffectView)
         view.addSubview(blurEffectView)
-        view.addSubview(popupView)
+        view.addSubview(stackView)
         view.addSubview(titleLabel)
     }
 

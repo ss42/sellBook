@@ -13,10 +13,13 @@ import Firebase
 class CreateNewAccountViewController: UIViewController {
     
     
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var passwordField2: UITextField!
     
+    @IBOutlet weak var firstName: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +28,24 @@ class CreateNewAccountViewController: UIViewController {
         emailField.delegate = self
         passwordField.delegate = self
         passwordField2.delegate = self
+        firstName.delegate = self
 
         //a tap dissmisses the keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
+        //sets the background as image
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        
+        //sets the background blur
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
+        view.addSubview(blurEffectView)
+        view.addSubview(stackView)
+        view.addSubview(cancelButton)
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,8 +60,9 @@ class CreateNewAccountViewController: UIViewController {
         let email = emailField.text
         let password = passwordField.text
         let password2 = passwordField2.text
+        let userName = firstName.text
         
-        if (email != "" && password != "" && password2 != "" ) && (password == password2){
+        if (email != "" && password != "" && password2 != "" && userName != "") && (password == password2){
             
             // Set Email and Password for the New User.
             
@@ -60,15 +78,29 @@ class CreateNewAccountViewController: UIViewController {
                 }
                 else
                 {
-                  
-                    // make the class then store the data locally
-                    // and use the user data throughout the app
+                    NSUserDefaults.standardUserDefaults().setValue(true, forKey: "isUserLoggedIn")
+                        let changeRequest = authData!.profileChangeRequest()
+                    
+                        changeRequest.displayName = userName
+                    
+                    
+                        changeRequest.commitChangesWithCompletion { error in
+                            if error != nil {
+                                // An error happened.
+                            } else {
+                                // Profile updated.
+                            }
+                    }
+                    
+                    
+                    
+                    
                     self.performSegueWithIdentifier("NewUserLoggedIn", sender: nil)
                 }
             })
             
         } else {
-            signupErrorAlert("Oops!", message: "Don't forget to enter your email, password, and a username.")
+            signupErrorAlert("Oops!", message: "Don't forget to enter your email, password, and your first name!")
         }
         
     }

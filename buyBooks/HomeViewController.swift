@@ -37,6 +37,9 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     // string that holds the facebook message
     var facebookMessageString:String?
+    
+    // currently selected index in the tableview
+    var currIndex:NSIndexPath?
 
     // we load the data into the superview here, this will be used in the serach vc
     override func viewWillDisappear(animated: Bool) {
@@ -54,7 +57,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         
         // get the data from firebase
-        fetchPost()
+        //fetchPost()
            //     tableView.separatorStyle = .None
 
         // prepare the table view
@@ -115,13 +118,15 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     //Do the following if the user want to sell a book
     override func viewDidAppear(animated: Bool)
     {
-        let isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn");
+        /*let isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn");
         
         if(!isUserLoggedIn)
         {
            //make the user sign in first
-        }
-        
+        }*/
+        sellBookArray = []
+        fetchPost()
+        tableView.reloadData()
         
     }
     
@@ -145,7 +150,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             // print("first if statement Time Elapsed > secinds indays ")
             let timeToShow: String = dateformatter.stringFromDate(postedDate)
             return timeToShow
-        } else if elapsedTimeInSeconds > secondInDays/60{
+        } else if elapsedTimeInSeconds > secondInDays/24{
             let timeToshow = Int(elapsedTimeInSeconds/3600)
             
             return "\(timeToshow) hour ago"
@@ -190,18 +195,24 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
             print(title)
             
-            if (bookStatus != "deleted"){ //&& bookStatus != "sold"){
+            if (bookStatus != "deleted" && bookStatus != "sold"){
+                
                 
                 // TODO: be sure to make a space for this in the database and in the mybooks vc
-                //let timeOfMail = snapshot.value!["timeOfMail"] as! String
+                let timeOfMail = snapshot.value!["timeOfMail"] as! String
                 
                 //let condition = Book.howShouldBookBeDisplayed(timeOfMail, bookStatus: bookStatus)
                 
-                let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
-                let tempBook = Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus)
-            
-            
-                self.sellBookArray.addObject(tempBook)
+                if self.shouldBookBeDisplayed(bookStatus, timeOfMail: timeOfMail)
+                {
+                    let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
+                    let tempBook = Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus)
+                
+                
+                    self.sellBookArray.insertObject(tempBook, atIndex: 0)//.addObject(tempBook)
+                    
+                    
+                }
             }
             else
             {
@@ -214,6 +225,47 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             })
         
         
+    }
+   
+
+    
+    func timeElapsedinSeconds(date: String)-> Double{
+        
+        let dateformatter = NSDateFormatter()
+        dateformatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateformatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let postedDate  = dateformatter.dateFromString(date)!
+        
+        let elapsedTimeInSeconds = NSDate().timeIntervalSinceDate(postedDate)
+        return elapsedTimeInSeconds
+    }
+    
+    func shouldBookBeDisplayed(status:String, timeOfMail:String)->Bool{
+        //let postTime = timeElapsedinSeconds(timePosted)
+        if timeOfMail == " "
+        {
+            return true
+        }
+        let mailTime = timeElapsedinSeconds(timeOfMail)
+        
+        /*if status == "dormant"
+        {
+            return false
+        }*/
+        if status == "default"
+        {
+            return true
+        }
+        else if status == "emailSent"
+        {
+            let sevenDaysInSeconds:Double = (60 * 60 * 24 * 7)
+            if mailTime > sevenDaysInSeconds
+            {
+                return false
+            }
+        }
+        // TODO: add a condition, if the post is over a month old then it should be deleted from firebase entirely. maybe 2-3 months.
+        return true
     }
     // send data to the next view controllers
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
@@ -261,7 +313,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
             if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){ // this works, but it checks the app (to see if you are logged in) first.
                 let facebookComposer = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
                 facebookComposer.setInitialText(self.facebookMessageString!)
-                facebookComposer.addImage(UIImage(named: "male"))
+                let cell:PostTableViewCell = tableView.cellForRowAtIndexPath(currIndex!) as! PostTableViewCell
+                let image = cell.mainImage.image
+                
+                facebookComposer.addImage(image)
+                
+                   
+
                 
                 self.presentViewController(facebookComposer, animated: true, completion: nil)
             }
@@ -279,15 +337,18 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
     // TODO: function that formulates messages based on which book you selected
     func setFacebookMessage(book:Book)
     {
+        print("making facebook message")
         self.facebookMessageString = book.title
     }
-    
+        
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
         
         let book = self.sellBookArray[indexPath.row] as! Book
         setFacebookMessage(book)
+        currIndex = indexPath
+        
         let shareAction = UITableViewRowAction(style: .Normal, title: "Share"){(action: UITableViewRowAction!, indexPath: NSIndexPath) -> Void in
             
             
@@ -335,15 +396,18 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
         return 1
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return 1
+        // maybe sort the array here?
         if sellBookArray.count == 0 {
             print("sell book array is empty")
+            activityView.stopAnimating()
+
             return 0
         }
             
         else {
-         //need to change this to return sellBookArray.count
-        return sellBookArray.count
+            print("counting the array")
+            
+            return sellBookArray.count
         
         }
     }
@@ -360,7 +424,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
         let cell: PostTableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell") as! PostTableViewCell
         
         let book = sellBookArray[indexPath.row] as? Book
-        cell.fullName.text = book!.sellerInfo?.email
+        cell.fullName.text = book!.sellerInfo?.fullName
         cell.title.text = book!.title
         cell.authors.text = "By: " + book!.webAuthors!
         cell.postedTime.text = book!.postedTime

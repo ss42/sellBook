@@ -17,6 +17,7 @@ class Book{
         case confirmedSold
         case mailSentToBuyer
         case deleted
+        case dorment
         
     }
     
@@ -50,8 +51,8 @@ class Book{
     var bookSold:Bool?
     var bookStatus:String?
     // added to calculate how long ago the mail was sent
-    // TODO: make space for both of these in the database
     var timeOfMail:String?
+    // TODO: create superimposed images (banner in the table view, in the corner of each cell)
     var superimposedImage:String?
     
     
@@ -122,7 +123,7 @@ class Book{
         self.webISBN = isbn
         self.publishedYear = yearPublished
         self.bookStatus = status
-        self.timeOfMail = ""
+        self.timeOfMail = " "
     }
     
     

@@ -177,12 +177,13 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
                                         }
                                         if let bookDescription = volumeInfo["description"]{
                                             //assignment
-                                            print(bookDescription)
+                                            
                                             if bookDescription != nil{
+                                                print(bookDescription)
                                                 self.bookInfoDict["description"] = (bookDescription as! String)
                                             }
                                             else{
-                                                self.bookInfoDict["description"] = "Unable to load description from google"
+                                                self.bookInfoDict["description"] = "Unable to load description from google or this book has no description"
                                             }
                                             
                                         }

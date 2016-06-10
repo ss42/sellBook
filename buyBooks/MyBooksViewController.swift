@@ -12,7 +12,7 @@ import Firebase
 
 class MyBooksViewController: UIViewController {
     
-    
+    //TODO: relisting of books
     var cache = ImageLoadingWithCache()
 
     var ref = FIRDatabase.database().reference()
@@ -111,7 +111,7 @@ class MyBooksViewController: UIViewController {
             return timeToShow
             
             
-        } else if elapsedTimeInSeconds > secondInDays/60{
+        } else if elapsedTimeInSeconds > secondInDays/24{
             let timeToshow = Int(elapsedTimeInSeconds/3600)
             
             return "\(timeToshow) hour ago"
@@ -161,7 +161,7 @@ class MyBooksViewController: UIViewController {
                 let tempBook = Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus)
                 
                 
-                self.sellBookArray.addObject(tempBook)
+                self.sellBookArray.insertObject(tempBook, atIndex: 0)
             }
             else
             {
@@ -198,6 +198,7 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource{
         //return 1
         if sellBookArray.count == 0 {
             print("our book array is empty")
+            activityView.stopAnimating()
             return 0
         }
             
@@ -212,7 +213,7 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource{
         let cell: MyBooksViewCell = tableView.dequeueReusableCellWithIdentifier("BookCell") as! MyBooksViewCell
         
         let book = sellBookArray[indexPath.row] as? Book
-        cell.fullName.text = book!.sellerInfo?.email
+        cell.fullName.text = book!.sellerInfo?.fullName
         cell.title.text = book!.title
         cell.authors.text = "By: " + book!.webAuthors!
         cell.postedTime.text = book!.postedTime
