@@ -187,12 +187,12 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
             print(title)
             
-            if (bookStatus != "deleted" && bookStatus != "sold"){
+            if (bookStatus != "deleted"){ //&& bookStatus != "sold"){
                 
                 // TODO: be sure to make a space for this in the database and in the mybooks vc
-                let timeOfMail = snapshot.value!["timeOfMail"] as! String
+                //let timeOfMail = snapshot.value!["timeOfMail"] as! String
                 
-                let condition = Book.howShouldBookBeDisplayed(timeOfMail, bookStatus: bookStatus)
+                //let condition = Book.howShouldBookBeDisplayed(timeOfMail, bookStatus: bookStatus)
                 
                 let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
                 let tempBook = Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus)
