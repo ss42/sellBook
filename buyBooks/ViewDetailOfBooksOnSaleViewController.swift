@@ -56,6 +56,11 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
         
 
     }
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.hidesBarsOnSwipe = false
+        
+    }
     
     func getSellerEmail()->String{
         return (detailBook?.sellerInfo?.email)!
