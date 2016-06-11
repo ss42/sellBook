@@ -282,17 +282,10 @@ class SellBySearchingISBNViewController: UIViewController {
             
             if (statusCode == 200) {
                 print("Everyone is fine, file downloaded successfully.")
-                do{
-                    
-                    let picture = UIImage(data:data!)
-                    self.bookImage = picture
-                  
-                    
-                }catch {
-                    
-                    //TO DO :- Show error
-                    print("Error with picture: \(error)")
-                }
+             
+                let picture = UIImage(data:data!)
+                self.bookImage = picture
+                
    
             }
             

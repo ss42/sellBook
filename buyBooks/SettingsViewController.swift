@@ -76,7 +76,7 @@ class SettingsViewController: UIViewController {
             print(user.photoURL)
             usernameLabel.text = user.email
             emailLabel.text = user.email
-            let uid = user.uid
+            //let uid = user.uid
             profileImage.setImageWithString(usernameLabel.text, color: UIColor.init(hexString: User.generateColor(usernameLabel.text!)))
             }
         else {

@@ -32,7 +32,7 @@ class ForgotPasswordViewController: UIViewController {
     }
 
     @IBAction func sendPressed(sender: AnyObject) {
-        let email = emailTextField.text
+        //let email = emailTextField.text
       /**  DataService.dataService.userRef.resetPasswordForUser(email, withCompletionBlock: { error in
             if error != nil {
                 self.alertShow("Ops", message: "Email do not match.")

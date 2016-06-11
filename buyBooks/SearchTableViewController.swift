@@ -214,8 +214,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         
         if self.resultsSearchController.active{
             //cell!.textLabel?.text = self.filteredSellBookArray[indexPath.row]
-            book = self.filteredSellBookArray[indexPath.row] as? Book
-            
+            book = self.filteredSellBookArray[indexPath.row]
         }
         else{
             book = self.sellBookArray[indexPath.row] as? Book
@@ -302,14 +301,14 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
             
             if self.resultsSearchController.active{
                 //cell!.textLabel?.text = self.filteredSellBookArray[indexPath.row]
-                book = self.filteredSellBookArray[indexPath.row] as? Book
-                cell = tableView.cellForRowAtIndexPath(indexPath) as! PostTableViewCell
+                book = self.filteredSellBookArray[indexPath.row]
+                cell = tableView.cellForRowAtIndexPath(indexPath) as? PostTableViewCell
                 let image = cell!.mainImage.image
                 vc.bookPicture = image
             }
             else{
                 book = self.sellBookArray[indexPath.row] as? Book
-                cell = tableView.cellForRowAtIndexPath(indexPath) as! PostTableViewCell
+                cell = tableView.cellForRowAtIndexPath(indexPath) as? PostTableViewCell
                 let image = cell!.mainImage.image
                 vc.bookPicture = image
             }

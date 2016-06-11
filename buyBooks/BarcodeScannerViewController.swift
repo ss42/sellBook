@@ -296,7 +296,7 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
             
             if (statusCode == 200) {
                 print("Everyone is fine, file downloaded successfully.")
-                do{
+                
                     
                     let picture = UIImage(data:data!)
                     self.bookImage = picture
@@ -310,9 +310,7 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
                     
                     
                     
-                }catch {
-                    print("Error with picture: \(error)")
-                }
+                
                 
                 
                 

@@ -446,6 +446,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
         
         if book.bookStatus == "sold"{
             // img = UIImage(named: "soldBanner")!
+            img = UIImage(named:"barcode")!
         }
         
         // if the book has been up for less than one day then show the new banner
