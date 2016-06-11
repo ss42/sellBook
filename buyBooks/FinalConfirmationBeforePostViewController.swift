@@ -38,6 +38,10 @@ class FinalConfirmationBeforePostViewController: UIViewController {
     
     @IBAction func confirmPressed(sender: AnyObject) {
         getCurrentSellerInfo()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.dataChangedForMyBooks = true
+        appDelegate.dataChangedForHome = true
+
         self.performSegueWithIdentifier("backToHome", sender: nil)
 
         

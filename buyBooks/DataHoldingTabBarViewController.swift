@@ -11,6 +11,7 @@ import UIKit
 class DataHoldingTabBarViewController: UITabBarController {
 
     var sellBookArray: NSMutableArray = []
+    var cache = ImageLoadingWithCache()
     
     override func viewDidLoad() {
         super.viewDidLoad()

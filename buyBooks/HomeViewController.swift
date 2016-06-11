@@ -23,7 +23,10 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     //let myActivityIndicator = UIActivityIndicatorView()
 
     // for loading images, this creates a single instance of the class ImageLoadingWithCache
-    var cache = ImageLoadingWithCache()
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    //appDelegate.dataChangedForMyBooks = true
+
+    var cache:ImageLoadingWithCache?//
     
     // activity indicator, stopped when images load
     var activityView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
@@ -54,7 +57,8 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        let tbvc = self.tabBarController as! DataHoldingTabBarViewController // going to get data from here instead.
+        cache = tbvc.cache
         
         // get the data from firebase
         fetchPost()
@@ -116,8 +120,9 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     // THIS FUNCTION IS NEVER CALLED!!!!!!!!!!!
     
     //Do the following if the user want to sell a book
-    override func viewDidAppear(animated: Bool)
+    override func viewWillAppear(animated: Bool)
     {
+        super.viewWillAppear(animated)
         /*let isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn");
         
         if(!isUserLoggedIn)
@@ -125,19 +130,18 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
            //make the user sign in first
         }*/
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        if appDelegate.dataChanged{
-            
-            
+        if appDelegate.dataChangedForHome{
             //appDelegate.mainDic=response.mutableCopy() as? NSMutableDictionary
             sellBookArray = []
             fetchPost()
             tableView.reloadData()
-            appDelegate.dataChanged = false
+            appDelegate.dataChangedForHome = false
         }
         else{
             print("data didnt change")
         }
-        
+        tableView.reloadData()
+ 
     }
     
     // format the time
@@ -482,7 +486,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
         
         //cell.banner.image = setBanner(book!)
         
-        cache.getImage(tempString, imageView: cell.mainImage, defaultImage: "noun_9280_cc")
+        cache!.getImage(tempString, imageView: cell.mainImage, defaultImage: "noun_9280_cc")
         print("after getimage")
         
         activityView.stopAnimating()

@@ -216,7 +216,8 @@ class EditBooksViewController: UIViewController {
         self.setDictValues()
         self.updatePostOnDatabase()
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.dataChanged = true
+        appDelegate.dataChangedForHome = true
+        appDelegate.dataChangedForMyBooks = true
         //self.performSegueWithIdentifier("myBookListings", sender: nil)
         navigationController?.popViewControllerAnimated(true)
 

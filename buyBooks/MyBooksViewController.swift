@@ -13,7 +13,7 @@ import Firebase
 class MyBooksViewController: UIViewController {
     
     //TODO: relisting of books
-    var cache = ImageLoadingWithCache()
+    var cache:ImageLoadingWithCache?
 
     var ref = FIRDatabase.database().reference()
     var activityView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
@@ -37,9 +37,12 @@ class MyBooksViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tbvc = self.tabBarController as! DataHoldingTabBarViewController // going to get data from here instead.
+        cache = tbvc.cache
         self.tableView.delegate = self
         self.tableView.dataSource = self
-
+        fetchPost()
+        tableView.reloadData()
         
         navigationController?.hidesBarsOnSwipe = true
 
@@ -61,14 +64,27 @@ class MyBooksViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     override func viewWillAppear(animated: Bool) {
         navigationController?.hidesBarsOnSwipe = true
 
         super.viewWillAppear(animated)
-        self.sellBookArray = []
-        print("refreshing view")
-        fetchPost()
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if appDelegate.dataChangedForMyBooks{
+            
+            
+            //appDelegate.mainDic=response.mutableCopy() as? NSMutableDictionary
+            sellBookArray = []
+            fetchPost()
+            tableView.reloadData()
+            appDelegate.dataChangedForMyBooks = false
+        }
+        else{
+            print("data didnt change")
+        }
  
+        
         tableView.reloadData() // this saves us from a crash
     }
     //Do the following if the user want to sell a book
@@ -241,7 +257,7 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource{
         }
         
         
-        cache.getImage(tempString, imageView: cell.mainImage, defaultImage: "noun_9280_cc")
+        cache!.getImage(tempString, imageView: cell.mainImage, defaultImage: "noun_9280_cc")
         print("after getimage")
         
         activityView.stopAnimating()

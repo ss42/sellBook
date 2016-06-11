@@ -16,7 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var dataChanged: Bool = false
+    var dataChangedForHome: Bool = false
+    var dataChangedForMyBooks: Bool = false
+
+    var cache = ImageLoadingWithCache()
 
         // crash fix maybe
     override init() {
