@@ -85,7 +85,7 @@ class FinalConfirmationBeforePostViewController: UIViewController {
         
         authors.text = bookInfoDict["authors"]
         ISBN.text = bookInfoDict["isbn"]
-        retailPrice.text = "fix later"
+        //retailPrice.text = "fix later"
         //
         pageCount.text = bookInfoDict["pageCount"]
         bookCondition.text = bookInfoDict["bookCondition"]
@@ -110,6 +110,20 @@ class FinalConfirmationBeforePostViewController: UIViewController {
             print("no image! we shouldnt see this!")
         }
         populateFields()
+        
+        
+        //sets the background as image
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        
+        //sets the background blur
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
+        view.addSubview(blurEffectView)
+        view.addSubview(popupView)
+        //.addSubview(signUp)
+
 
         // Do any additional setup after loading the view.
     }
