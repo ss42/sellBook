@@ -17,6 +17,7 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
     
     @IBOutlet weak var ISBN: UILabel!
     
+    @IBOutlet weak var popUpView: UIView!
     @IBOutlet weak var retailPrice: UILabel!
     
     @IBOutlet weak var bookDescription: UITextView!
@@ -42,8 +43,18 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
         //self.subject.delegate = self
         populateFields()
         
+        //sets the background as image
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        
+        //sets the background blur
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
+        view.addSubview(blurEffectView)
+        view.addSubview(popUpView)
+        
 
-        // Do any additional setup after loading the view.
     }
     
     func getSellerEmail()->String{
