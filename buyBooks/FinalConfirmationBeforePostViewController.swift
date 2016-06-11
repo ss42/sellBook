@@ -40,7 +40,7 @@ class FinalConfirmationBeforePostViewController: UIViewController {
         getCurrentSellerInfo()
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.dataChangedForMyBooks = true
-        appDelegate.dataChangedForHome = true
+        appDelegate.dataChangedForHomeAndSearch = true
 
         self.performSegueWithIdentifier("backToHome", sender: nil)
 

@@ -84,7 +84,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         self.view.addSubview(activityView)
         
-    
+        tbvc.sellBookArray = self.sellBookArray
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -129,16 +129,25 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         {
            //make the user sign in first
         }*/
+        
+        let tbvc = self.tabBarController as! DataHoldingTabBarViewController
+        
+        
+        
+        
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        if appDelegate.dataChangedForHome{
+        if appDelegate.dataChangedForHomeAndSearch{
             //appDelegate.mainDic=response.mutableCopy() as? NSMutableDictionary
             sellBookArray = []
             fetchPost()
             tableView.reloadData()
-            appDelegate.dataChangedForHome = false
+            appDelegate.dataChangedForHomeAndSearch = false
+            tbvc.sellBookArray = self.sellBookArray
         }
         else{
             print("data didnt change")
+            self.sellBookArray = tbvc.sellBookArray
+            
         }
         tableView.reloadData()
  
