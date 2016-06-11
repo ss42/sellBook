@@ -11,7 +11,7 @@ import UIKit
 class AboutViewController: UIViewController {
 
     
-    @IBOutlet weak var aboutTitle: UILabel!
+    @IBOutlet weak var stackView: UIStackView!
     
     @IBOutlet weak var detail: UILabel!
     
@@ -30,9 +30,7 @@ class AboutViewController: UIViewController {
         // TODO: add what we need to add for the facebook and the google apis
         detail.text = "This app was made by Sanjay and Rahul! To get in touch with us please send us an email or with your favorite social media timesink!"
         view.addSubview(blurEffectView)
-        view.addSubview(aboutTitle)
-        view.addSubview(detail)
-        
+        view.addSubview(stackView)        
         
         // Do any additional setup after loading the view.
     }

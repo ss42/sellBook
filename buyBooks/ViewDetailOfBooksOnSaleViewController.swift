@@ -209,7 +209,7 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
         bookTitle.text = detailBook?.title
         authors.text = detailBook?.webAuthors
         ISBN.text = detailBook?.webISBN
-        retailPrice.text = detailBook?.webPrice
+        //retailPrice.text = detailBook?.webPrice
         bookDescription.text = detailBook?.webDescription
         pageCount.text = detailBook?.webPageCount
         bookImage.image = bookPicture
