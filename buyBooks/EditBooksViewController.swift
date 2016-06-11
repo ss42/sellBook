@@ -13,8 +13,6 @@ import Firebase
 class EditBooksViewController: UIViewController {
     
     
-    // TODO: maybe we can use property oberserves to stop the data reload when we change something
-    
     var ref = FIRDatabase.database().reference().child("SellBooksPost")
     var postId: String?
     
@@ -42,8 +40,9 @@ class EditBooksViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //navigationController?.navigationBar.hidden = false
-
+        
+        // tap to hide keyboard
+        // TODO: add keyboard hiding by hitting the return key, its around here somewhere
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
@@ -210,10 +209,14 @@ class EditBooksViewController: UIViewController {
         navigationController?.popViewControllerAnimated(true)
  */
     }
+    
+    // TODO: this should set something that causes the home vc to reload data.
     @IBAction func donePressed(sender: AnyObject) {
         //self.getCurrentSellerInfo()
         self.setDictValues()
         self.updatePostOnDatabase()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.dataChanged = true
         //self.performSegueWithIdentifier("myBookListings", sender: nil)
         navigationController?.popViewControllerAnimated(true)
 

@@ -26,7 +26,8 @@ class PostTableViewCell: UITableViewCell {
     
     @IBOutlet weak var price: UILabel!
     
-    
+    // TODO: unmark this when we are ready to do the banner
+    //@IBOutlet weak var banner:UIImageView!
     
     @IBOutlet weak var yearPublished: UILabel!
     

@@ -15,6 +15,8 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var dataChanged: Bool = false
 
         // crash fix maybe
     override init() {

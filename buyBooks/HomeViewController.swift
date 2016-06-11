@@ -57,7 +57,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         
         // get the data from firebase
-        //fetchPost()
+        fetchPost()
            //     tableView.separatorStyle = .None
 
         // prepare the table view
@@ -124,9 +124,19 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         {
            //make the user sign in first
         }*/
-        sellBookArray = []
-        fetchPost()
-        tableView.reloadData()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if appDelegate.dataChanged{
+            
+            
+            //appDelegate.mainDic=response.mutableCopy() as? NSMutableDictionary
+            sellBookArray = []
+            fetchPost()
+            tableView.reloadData()
+            appDelegate.dataChanged = false
+        }
+        else{
+            print("data didnt change")
+        }
         
     }
     
@@ -417,6 +427,31 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
         
     }
     
+    // TODO: this should return the overlay banner picture, the cell will position in it in a uiimageview
+    func setBanner(book:Book)->UIImage
+    {
+        var img:UIImage = UIImage(named: "male")!
+        
+        let timeInSeconds = timeElapsedinSeconds(book.postedTime!)
+        
+        // if book is sold show the sold image
+        
+        if book.bookStatus == "sold"{
+            // img = UIImage(named: "soldBanner")!
+        }
+        
+        // if the book has been up for less than one day then show the new banner
+        else if timeInSeconds < (60 * 60 * 24){
+            // img = UIImage(named: "soldBanner")!
+        }
+        
+        
+        // if book is new show the new banner
+        
+        
+        
+        return img
+    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
@@ -444,6 +479,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
         if (book!.bookStatus == "sold"){
             cell.yearPublished.text = "SOLD"
         }
+        
+        //cell.banner.image = setBanner(book!)
         
         cache.getImage(tempString, imageView: cell.mainImage, defaultImage: "noun_9280_cc")
         print("after getimage")
