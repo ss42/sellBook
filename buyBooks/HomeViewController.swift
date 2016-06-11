@@ -123,12 +123,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
-        /*let isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn");
         
-        if(!isUserLoggedIn)
-        {
-           //make the user sign in first
-        }*/
         
         let tbvc = self.tabBarController as! DataHoldingTabBarViewController
         
