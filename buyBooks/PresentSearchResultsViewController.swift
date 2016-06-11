@@ -36,6 +36,8 @@ class PresentSearchResultsViewController: UIViewController {
         print("at detail view")
         populateFields()
         
+        bookDescription.textColor = UIColor.whiteColor()
+        
         //sets the background as image
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         
@@ -56,60 +58,7 @@ class PresentSearchResultsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    /*func fetchImage(){
-        
-        var tempString = self.bookInfoDict["imageURL"]!
-        if (tempString.hasPrefix("http:")){
-            tempString.insert("s", atIndex: tempString.startIndex.advancedBy(4))
-            print(tempString)
-        }
-        let requestURL: NSURL = NSURL(string: tempString)!
-        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(urlRequest) {
-            (data, response, error) -> Void in
-            
-            let httpResponse = response as! NSHTTPURLResponse
-            let statusCode = httpResponse.statusCode
-            
-            if (statusCode == 200) {
-                print("Everyone is fine, file downloaded successfully.")
-                do{
-                    
-                    let picture = UIImage(data:data!)
-                    self.bookImage.image = picture
-                    
-                    self.bookImage
-                    
-                                
-                    print("after image assignment")
-                                
-                    
-                    
-                    //dispatch_async(dispatch_get_main_queue(), {
-                        self.bookImage.setNeedsDisplay()
-                    //})
-                    
-                    
-              
-                }catch {
-                    print("Error with picture: \(error)")
-                }
-                
-                
-            
-            
-        
-                
-        
-            }
-
-    
-        }
-        task.resume()
-    }
-*/
-    func load_image()
+        func load_image()
     {
         var tempString = self.bookInfoDict["imageURL"]!
         if (tempString.hasPrefix("http:")){
@@ -149,9 +98,7 @@ class PresentSearchResultsViewController: UIViewController {
         dispatch_async(dispatch_get_main_queue(), {
             self.load_image()
         })
-        //fetchImage()
-        
-        print("populated????")
+       
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
@@ -175,14 +122,6 @@ class PresentSearchResultsViewController: UIViewController {
 
     @IBAction func cancelPressed(sender: AnyObject) {
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
