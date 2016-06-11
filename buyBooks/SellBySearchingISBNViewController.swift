@@ -249,6 +249,7 @@ class SellBySearchingISBNViewController: UIViewController {
         myAlert.addAction(okAction)
         myAlert.addAction(cancelAction)
         self.presentViewController(myAlert, animated: true, completion: nil);
+        activityView.stopAnimating()
     }
     
     func tryScanAgain(alert:UIAlertAction!)

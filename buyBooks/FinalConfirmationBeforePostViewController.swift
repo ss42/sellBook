@@ -39,7 +39,7 @@ class FinalConfirmationBeforePostViewController: UIViewController {
     @IBAction func confirmPressed(sender: AnyObject) {
         getCurrentSellerInfo()
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.dataChangedForMyBooks = true
+        //appDelegate.dataChangedForMyBooks = true // if this is set true a newly created book will be listed twice.
         appDelegate.dataChangedForHomeAndSearch = true
 
         self.performSegueWithIdentifier("backToHome", sender: nil)
