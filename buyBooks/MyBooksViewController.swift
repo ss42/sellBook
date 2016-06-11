@@ -229,14 +229,14 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource{
         let cell: MyBooksViewCell = tableView.dequeueReusableCellWithIdentifier("BookCell") as! MyBooksViewCell
         
         let book = sellBookArray[indexPath.row] as? Book
-        cell.fullName.text = book!.sellerInfo?.fullName
+       // cell.fullName.text = book!.sellerInfo?.fullName
         cell.title.text = book!.title
         cell.authors.text = "By: " + book!.webAuthors!
         cell.postedTime.text = book!.postedTime
         cell.price.text = "$ " + String(book!.price!)
         
-        cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2
-        cell.profileImage.clipsToBounds = true
+       // cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2
+        //cell.profileImage.clipsToBounds = true
         cell.yearPublished.text = book!.publishedYear
         
         var tempString = book!.webBookThumbnail!
@@ -245,7 +245,7 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource{
             print(tempString)
         }
         let name = book!.sellerInfo?.email
-        cell.profileImage.setImageWithString(cell.fullName.text, color: UIColor.init(hexString: User.generateColor(name!)))
+       // cell.profileImage.setImageWithString(cell.fullName.text, color: UIColor.init(hexString: User.generateColor(name!)))
         
         
         /*if (book!.bookSold == true){

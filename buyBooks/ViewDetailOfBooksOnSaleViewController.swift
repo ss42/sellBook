@@ -223,18 +223,18 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
     func populateFields()
     {
         bookTitle.text = detailBook?.title
-        authors.text = detailBook?.webAuthors
-        ISBN.text = detailBook?.webISBN
+        authors.text = "By: " + (detailBook?.webAuthors)!
+        ISBN.text = "ISBN: " + (detailBook?.webISBN)!
         //retailPrice.text = detailBook?.webPrice
-        bookDescription.text = detailBook?.webDescription
-        pageCount.text = detailBook?.webPageCount
+        bookDescription.text = "Description: " + (detailBook?.webDescription)!
+        pageCount.text = "Page Count: " + (detailBook?.webPageCount)!
         bookImage.image = bookPicture
-        bookCondition.text = detailBook?.condition
+        bookCondition.text = "Book Condition: " + (detailBook?.condition)!
         
         print(String(detailBook!.price!))
        
  
-        ourPrice.text = String(detailBook!.price!)
+        ourPrice.text = "$ " + String(detailBook!.price!)
         
         
         yearPublished.text = detailBook?.publishedYear

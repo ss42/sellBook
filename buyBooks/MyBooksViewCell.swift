@@ -20,11 +20,9 @@ class MyBooksViewCell: UITableViewCell {
     
     @IBOutlet weak var postedTime: UILabel!
     
-    @IBOutlet weak var fullName: UILabel!
     
     @IBOutlet weak var mainImage: UIImageView!
     
-    @IBOutlet weak var profileImage: UIImageView!
     
     @IBOutlet weak var price: UILabel!
     

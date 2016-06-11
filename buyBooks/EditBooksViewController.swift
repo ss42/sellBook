@@ -17,6 +17,8 @@ class EditBooksViewController: UIViewController {
     var postId: String?
     
     
+    @IBOutlet weak var bottomView: UIStackView!
+    @IBOutlet weak var topView: UIStackView!
     @IBOutlet weak var bookTitle: UITextField!
     
     @IBOutlet weak var detail: UITextView!
@@ -55,7 +57,17 @@ class EditBooksViewController: UIViewController {
         
         loadDataFromPreviousViewController()
         
-        // Do any additional setup after loading the view.
+        //sets the background as image
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        
+        //sets the background blur
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
+        view.addSubview(blurEffectView)
+        view.addSubview(topView)
+        view.addSubview(bottomView)
     }
   
     
