@@ -23,17 +23,19 @@ class LoginViewController: UIViewController {
         
         
         emailField.delegate = self
-        //the following changes the placeholder's text color
+        /*
+ //the following changes the placeholder's text color
         emailField.attributedPlaceholder = NSAttributedString(string:"Enter email here.",
                                                                attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
         passwordField.attributedPlaceholder = NSAttributedString(string:"Password",
                                                                attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
+ */
         passwordField.delegate = self
         
         //dismisses keyboard when you tap outside.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
-        
+        /*
         //sets the background as image
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         
@@ -46,7 +48,7 @@ class LoginViewController: UIViewController {
         view.addSubview(stackView)
         view.addSubview(signUp)
 
-        
+        */
 
     }
 

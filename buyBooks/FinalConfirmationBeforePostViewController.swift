@@ -87,13 +87,13 @@ class FinalConfirmationBeforePostViewController: UIViewController {
         bookDescription.text = self.bookInfoDict["description"]
         
         
-        authors.text = bookInfoDict["authors"]
+        authors.text = "By: " + bookInfoDict["authors"]!
         ISBN.text = bookInfoDict["isbn"]
         //retailPrice.text = "fix later"
         //
-        pageCount.text = bookInfoDict["pageCount"]
-        bookCondition.text = bookInfoDict["bookCondition"]
-        ourPrice.text = bookInfoDict["price"]
+        pageCount.text = "Page Count: " + bookInfoDict["pageCount"]!
+        bookCondition.text = "Book is in " + bookInfoDict["bookCondition"]! + " condition."
+        ourPrice.text = "$ " +  bookInfoDict["price"]!
         bookImage.image = image
         yearPublished.text = bookInfoDict["publishedDate"]
         
@@ -115,7 +115,7 @@ class FinalConfirmationBeforePostViewController: UIViewController {
         }
         populateFields()
         
-        
+        /*
         //sets the background as image
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         
@@ -127,7 +127,7 @@ class FinalConfirmationBeforePostViewController: UIViewController {
         view.addSubview(blurEffectView)
         view.addSubview(popupView)
         //.addSubview(signUp)
-
+         */
 
         // Do any additional setup after loading the view.
     }

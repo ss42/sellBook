@@ -15,9 +15,9 @@ class PresentSearchResultsViewController: UIViewController {
     
     @IBOutlet weak var authors: UILabel!
     
+    @IBOutlet weak var year: UILabel!
     @IBOutlet weak var ISBN: UILabel!
     
-    @IBOutlet weak var retailPrice: UILabel!
     
     @IBOutlet weak var bookDescription: UITextView!
     
@@ -36,8 +36,8 @@ class PresentSearchResultsViewController: UIViewController {
         print("at detail view")
         populateFields()
         
-        bookDescription.textColor = UIColor.whiteColor()
-        
+        bookDescription.textColor = UIColor.darkGrayColor()
+      /*
         //sets the background as image
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         
@@ -47,7 +47,7 @@ class PresentSearchResultsViewController: UIViewController {
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
         view.addSubview(blurEffectView)
-        view.addSubview(popupView)
+        view.addSubview(popupView)*/
 
     }
  
@@ -80,16 +80,16 @@ class PresentSearchResultsViewController: UIViewController {
     func populateFields(){
         
         // bookInfoDict = ["isbn" : ISBN, "title" : "", "description" : "", "authors": "", "imageURL": "", "pageCount": ""]
-       bookTitle.text = self.bookInfoDict["bookTitle"]! + "(" + bookInfoDict["publishedDate"]! + ")"
+       bookTitle.text = self.bookInfoDict["bookTitle"]!
         
             self.bookDescription.text = self.bookInfoDict["description"]
+        year.text = "Year: " + bookInfoDict["publishedDate"]!
         
-        
-        authors.text = bookInfoDict["authors"]
-        ISBN.text = bookInfoDict["isbn"]
-        retailPrice.text = "fix later"
+        authors.text = "By: " + bookInfoDict["authors"]!
+        ISBN.text = "ISBN: " + bookInfoDict["isbn"]!
+        //retailPrice.text = "fix later"
         //
-        pageCount.text = bookInfoDict["pageCount"]
+        pageCount.text = "Page Count: " + bookInfoDict["pageCount"]!
         print("populated fields")
         
         print(bookTitle.text!)

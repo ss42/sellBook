@@ -111,7 +111,7 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
-        
+        /*
         //sets the background as image
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         
@@ -122,7 +122,7 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
         blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
         view.addSubview(blurEffectView)
         view.addSubview(popView)
-
+         */
         populateData()
         
         // Do any additional setup after loading the view.
