@@ -216,7 +216,6 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             if (bookStatus != "deleted" && bookStatus != "sold"){
                 
                 
-                // TODO: be sure to make a space for this in the database and in the mybooks vc
                 let timeOfMail = snapshot.value!["timeOfMail"] as! String
                 
                 //let condition = Book.howShouldBookBeDisplayed(timeOfMail, bookStatus: bookStatus)
@@ -356,7 +355,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
     func setFacebookMessage(book:Book)
     {
         print("making facebook message")
-        self.facebookMessageString = book.title
+        self.facebookMessageString = book.title! + ", by " + book.webAuthors! + " is currently listed for $" + String(book.price)
     }
         
     
@@ -364,6 +363,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
         
         
         let book = self.sellBookArray[indexPath.row] as! Book
+        // TODO: these are never called i dont think, because of how the slide action behaves. I'm not sure how we are going to get it to know which row the button was slid out at
         setFacebookMessage(book)
         currIndex = indexPath
         

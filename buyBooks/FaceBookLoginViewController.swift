@@ -89,7 +89,6 @@ class FaceBookLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 print("User Name is: \(userName)")
                 let userEmail : NSString = result.valueForKey("email") as! NSString
                 print("User Email is: \(userEmail)")
-                print("")
             }
         })
     }

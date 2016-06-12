@@ -21,7 +21,7 @@ class Book{
         
     }
     
-    // TODO: have to update the database with this new field (time of mail)
+    // function not used
     static func howShouldBookBeDisplayed(timeOfMail:String, bookStatus:String)->String{
         if timeOfMail != ""{
             // if timeOfMail < 24 hours
