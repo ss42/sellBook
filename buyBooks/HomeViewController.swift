@@ -14,6 +14,8 @@ import MessageUI
 
 //import SDWebImage
 
+// TODO: make background white color
+
 class HomeViewController: UIViewController, UIPopoverPresentationControllerDelegate{
     
 

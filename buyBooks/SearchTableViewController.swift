@@ -225,7 +225,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         cell.fullName.text = book!.sellerInfo?.fullName
         cell.title.text = book!.title
         cell.authors.text = "By: " + book!.webAuthors!
-        cell.postedTime.text = book!.postedTime
+        //cell.postedTime.text = book!.postedTime
         cell.price.text = "$ " + String(book!.price!)
         
         cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2
