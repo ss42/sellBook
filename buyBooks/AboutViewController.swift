@@ -18,7 +18,7 @@ class AboutViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        /*
         //blur background
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
@@ -31,7 +31,7 @@ class AboutViewController: UIViewController {
         detail.text = "This app was made by Sanjay and Rahul! To get in touch with us please send us an email or with your favorite social media timesink!"
         view.addSubview(blurEffectView)
         view.addSubview(stackView)        
-        
+        */
         // Do any additional setup after loading the view.
     }
 

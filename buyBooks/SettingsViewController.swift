@@ -26,7 +26,7 @@ class SettingsViewController: UIViewController {
         //make perfect round image
         profileImage.layer.cornerRadius = profileImage.frame.size.width/2
         profileImage.clipsToBounds = true
-        
+        /*
         
         //blur background
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
@@ -39,7 +39,7 @@ class SettingsViewController: UIViewController {
         view.addSubview(popUpview)
        // view.addSubview(signUp)
 
-
+*/
         // Do any additional setup after loading the view.
     }
 

@@ -49,16 +49,16 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
     
     @IBAction func bookCondition(sender: UISlider) {
         if bookConditionSlider.value < 25{
-            bookCondition.text = "okay"
+            bookCondition.text = "Used - Good"
         }
         else if bookConditionSlider.value > 25 && bookConditionSlider.value < 50{
-            bookCondition.text = "Average"
+            bookCondition.text = "Used - Very Good"
         }
         else if bookConditionSlider.value > 50 && bookConditionSlider.value < 75 {
-            bookCondition.text = "Very Good"
+            bookCondition.text = "Used - Excellent"
         }
         else if bookConditionSlider.value > 75 {
-            bookCondition.text = "Excellent"
+            bookCondition.text = "New"
         }
         
         

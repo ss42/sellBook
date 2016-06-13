@@ -68,7 +68,8 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         self.tableView.delegate = self
         self.tableView.dataSource = self
         tableView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
-        tableView.rowHeight = 105
+        tableView.rowHeight = 155
+        
         // populate the table
         tableView.reloadData()
         
@@ -85,6 +86,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         self.view.addSubview(activityView)
         
         tbvc.sellBookArray = self.sellBookArray
+        
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -164,19 +166,19 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             return timeToShow
             
         } else if elapsedTimeInSeconds > secondInDays{
-            dateformatter.dateFormat = "EEE"
+            dateformatter.dateFormat = "EEE."
             // print("first if statement Time Elapsed > secinds indays ")
             let timeToShow: String = dateformatter.stringFromDate(postedDate)
             return timeToShow
         } else if elapsedTimeInSeconds > secondInDays/24{
             let timeToshow = Int(elapsedTimeInSeconds/3600)
             
-            return "\(timeToshow) hour ago"
+            return "\(timeToshow) hour ago."
             
         }
         else {
             let timeToshow = Int(elapsedTimeInSeconds/60)
-            return "\(timeToshow) mins ago "
+            return "\(timeToshow) mins ago. "
         }
         
     }
@@ -321,7 +323,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
     
     // facebook stuff, checks to see if logged in and then posts a message. We currently need to change the message and the picture that is posted
     //TODO: Fix facebook message and picture
-    func facebookShare(alert:UIAlertAction!)
+    func facebookShare()
     {
         if (FBSDKAccessToken.currentAccessToken() != nil)
         {
@@ -364,8 +366,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
         
         let book = self.sellBookArray[indexPath.row] as! Book
         // TODO: these are never called i dont think, because of how the slide action behaves. I'm not sure how we are going to get it to know which row the button was slid out at
-        setFacebookMessage(book)
-        currIndex = indexPath
+       
         
         let shareAction = UITableViewRowAction(style: .Normal, title: "Share"){(action: UITableViewRowAction!, indexPath: NSIndexPath) -> Void in
             
@@ -373,7 +374,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
             
             // add more options
             let shareAlertController = UIAlertController(title: "share something (Temp)", message: "stuff (change)", preferredStyle: .ActionSheet)
-            let faceBookShareAction = UIAlertAction(title: "facebook", style: UIAlertActionStyle.Default, handler: self.facebookShare)
+            let faceBookShareAction = UIAlertAction(title: "facebook", style: UIAlertActionStyle.Default){(action) -> Void in
+            
+                self.setFacebookMessage(book)
+                self.currIndex = indexPath
+                self.facebookShare()
+        }
+        
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default){(action)-> Void in
                 
             }
@@ -468,15 +475,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
         let cell: PostTableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell") as! PostTableViewCell
         
         let book = sellBookArray[indexPath.row] as? Book
-        cell.fullName.text = book!.sellerInfo?.fullName
+        cell.fullName.text = (book!.sellerInfo?.fullName)
         cell.title.text = book!.title
-        cell.authors.text = "By: " + book!.webAuthors!
+        cell.authors.text = "  By: " + book!.webAuthors!
         cell.postedTime.text = book!.postedTime
         cell.price.text = "$ " + String(book!.price!)
        
         cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2
         cell.profileImage.clipsToBounds = true
-        cell.yearPublished.text = book!.publishedYear
+       // cell.yearPublished.text = book!.publishedYear
         
         var tempString = book!.webBookThumbnail!
         if (tempString.hasPrefix("http:")){
@@ -484,7 +491,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
             print(tempString)
         }
         let name = book!.sellerInfo?.email
-        cell.profileImage.setImageWithString(cell.fullName.text, color: UIColor.init(hexString: User.generateColor(name!)))
+        cell.profileImage.setImageWithString(book!.sellerInfo?.fullName, color: UIColor.init(hexString: User.generateColor(name!)))
         if (book!.bookStatus == "sold"){
             cell.yearPublished.text = "SOLD"
         }
