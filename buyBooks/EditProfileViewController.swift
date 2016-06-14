@@ -72,6 +72,7 @@ class EditProfileViewController: UIViewController {
                                 error2 in
                                     if error2 != nil{
                                         print(error2)
+                                        //TODO make a popup that says some error
                                     }
                                 
                                 }
@@ -81,6 +82,7 @@ class EditProfileViewController: UIViewController {
             })
         
         }
+        // TODO lets make a popup or segue out of here, right now we have to hit cancel to actually get out of here
         print("password changed")
     }
     
