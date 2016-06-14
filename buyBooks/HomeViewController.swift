@@ -135,7 +135,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        if appDelegate.dataChangedForHomeAndSearch == true{
+        if appDelegate.dataChangedForHomeAndSearch == true || sellBookArray.count == 0{
             //appDelegate.mainDic=response.mutableCopy() as? NSMutableDictionary
             sellBookArray = []
             fetchPost()
@@ -146,7 +146,8 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         }
         else{
             print("data didnt change")
-            self.sellBookArray = tbvc.sellBookArray
+            // TODO: why did i set our array to be our superviews array? It may have been important!
+            //self.sellBookArray = tbvc.sellBookArray
             
         }
         tableView.reloadData()
