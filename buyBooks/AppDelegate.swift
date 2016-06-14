@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var dataChangedForHomeAndSearch: Bool = false
+    var dataChangedForHomeAndSearch: Bool = true
     var dataChangedForMyBooks: Bool = false
 
     var cache = ImageLoadingWithCache()
