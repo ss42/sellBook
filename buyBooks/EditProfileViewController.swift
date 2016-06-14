@@ -115,7 +115,7 @@ class EditProfileViewController: UIViewController {
         
     }
     func passwordResetAction(action:UIAlertAction){
-        self.performSegueWithIdentifier("loginToHomeSegue", sender: nil)
+        self.performSegueWithIdentifier("passwordResetted", sender: nil)
 
     }
     
