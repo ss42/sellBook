@@ -222,7 +222,8 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         }
 
         // Configure the cell...
-        
+        cell.bannerImage.hidden = true
+        cell.postedTime.hidden = false
         cell.fullName.text = book!.sellerInfo?.fullName
         cell.title.text = book!.title
         cell.authors.text = "By: " + book!.webAuthors!
@@ -245,8 +246,21 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         
         cache!.getImage(tempString, imageView: cell.mainImage, defaultImage: "noun_9280_cc")
         print("after getimage")
-
         
+        if(book!.bookStatus == "sold")
+        {
+            print("sold book seen")
+            // cell.bannerImage.image = UIImage(named: "male")
+            //cache!.getImage(<#T##url: String##String#>, defaultImage: <#T##String#>)
+            cell.bannerImage.image = UIImage(named: "fixedBanner")
+            cell.bannerImage.hidden = false
+            cell.postedTime.hidden = true
+        }
+        else{
+            cell.postedTime.hidden = false
+            cell.postedTime.text = self.timeElapsed(book!.postedTime!)
+        }
+
         
         return cell
     }
