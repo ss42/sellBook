@@ -123,6 +123,7 @@ extension UIImage {
         return newImage  
     }  
 }
+
  
 // added some uicolor to hex thing from https://gist.github.com/arshad/de147c42d7b3063ef7bc
 
@@ -152,6 +153,61 @@ extension UIColor {
         
         
     }
+}
+class Underlined: UITextField {
+    
+   
+    
+    @IBInspectable var leftLine: Bool = true { didSet{ drawLines() } }
+    @IBInspectable var rightLine: Bool = true { didSet{ drawLines() } }
+    @IBInspectable var bottomLine: Bool = false { didSet{ drawLines() } }
+    @IBInspectable var topLine: Bool = true { didSet{ drawLines() } }
+    
+    func drawLines(){
+        var border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0).CGColor
+        border.frame = CGRect(x: 0, y: frame.size.height - width, width: frame.size.width, height: width)
+        border.borderWidth = width
+        layer.addSublayer(border)
+    }
+    
+}
+
+class UnderlinedButton: UIButton {
+    
+    @IBInspectable var leftLine: Bool = true { didSet{ drawLines() } }
+    @IBInspectable var rightLine: Bool = true { didSet{ drawLines() } }
+    @IBInspectable var bottomLine: Bool = false { didSet{ drawLines() } }
+    @IBInspectable var topLine: Bool = true { didSet{ drawLines() } }
+    
+    func drawLines(){
+        var border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.darkGrayColor().CGColor
+        border.frame = CGRect(x: 0, y: frame.size.height - width, width: frame.size.width, height: width)
+        border.borderWidth = width
+        layer.addSublayer(border)
+    }
+    
+}
+
+class UnderlinedStackView: UIStackView {
+    
+    @IBInspectable var leftLine: Bool = true { didSet{ drawLines() } }
+    @IBInspectable var rightLine: Bool = true { didSet{ drawLines() } }
+    @IBInspectable var bottomLine: Bool = false { didSet{ drawLines() } }
+    @IBInspectable var topLine: Bool = true { didSet{ drawLines() } }
+    
+    func drawLines(){
+        var border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.darkGrayColor().CGColor
+        border.frame = CGRect(x: 0, y: frame.size.height - width, width: frame.size.width, height: width)
+        border.borderWidth = width
+        layer.addSublayer(border)
+    }
+    
 }
 
 extension UILabel {

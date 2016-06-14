@@ -121,7 +121,7 @@ class MyBooksViewController: UIViewController {
             return timeToShow
             
         } else if elapsedTimeInSeconds > secondInDays{
-            dateformatter.dateFormat = "EEE"
+            dateformatter.dateFormat = "EEEE"
             // print("first if statement Time Elapsed > secinds indays ")
             let timeToShow: String = dateformatter.stringFromDate(postedDate)
             return timeToShow

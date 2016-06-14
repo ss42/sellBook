@@ -29,17 +29,8 @@ class EditProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*
-        //blur background
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
-        //view.sendSubviewToBack(blurEffectView)
-        view.addSubview(blurEffectView)
-        view.addSubview(popUpView)
-        */
+     
+        //resetStack.layer.masksToBounds = true
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)

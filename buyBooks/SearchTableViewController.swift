@@ -48,7 +48,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         
         self.tableView.tableHeaderView = self.resultsSearchController.searchBar
         
-        self.tableView.rowHeight = 105
+        self.tableView.rowHeight = 155
         tableView.separatorStyle = .None
         tableView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
         navigationController?.hidesBarsOnSwipe = true
@@ -240,7 +240,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         let name = book!.sellerInfo?.email
         cell.profileImage.setImageWithString(cell.fullName.text, color: UIColor.init(hexString: User.generateColor(name!)))
         
-        
+        /*
         if (book!.bookStatus == "sold"){
             cell.yearPublished.text = "SOLD"
         }
@@ -252,7 +252,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         {
             cell.yearPublished.text = "deleted" // should be elsewhere, before making the cell probably
             
-        }
+        }*/
         
         cache!.getImage(tempString, imageView: cell.mainImage, defaultImage: "noun_9280_cc")
         print("after getimage")

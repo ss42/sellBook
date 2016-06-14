@@ -35,20 +35,14 @@ class LoginViewController: UIViewController {
         //dismisses keyboard when you tap outside.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
-        /*
-        //sets the background as image
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.darkGrayColor().CGColor
+        border.frame = CGRect(x: 0, y: emailField.frame.size.height - width, width:  emailField.frame.size.width, height: width)
         
-        //sets the background blur
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
-        view.addSubview(blurEffectView)
-        view.addSubview(stackView)
-        view.addSubview(signUp)
-
-        */
+        border.borderWidth = width
+        emailField.layer.addSublayer(border)
+        passwordField.layer.addSublayer(border)
 
     }
 

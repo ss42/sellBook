@@ -16,6 +16,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     
+    @IBOutlet weak var resetStack: UIStackView!
     
     
     override func viewDidLoad() {
@@ -26,21 +27,17 @@ class SettingsViewController: UIViewController {
         //make perfect round image
         profileImage.layer.cornerRadius = profileImage.frame.size.width/2
         profileImage.clipsToBounds = true
-        /*
+     /*
         
-        //blur background
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
-        //view.sendSubviewToBack(blurEffectView)
-        view.addSubview(blurEffectView)
-        view.addSubview(popUpview)
-       // view.addSubview(signUp)
-
-*/
-        // Do any additional setup after loading the view.
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.darkGrayColor().CGColor
+        border.frame = CGRect(x: 0, y: resetStack.frame.size.height - width, width:  emailLabel.frame.size.width, height: width)
+        
+        border.borderWidth = width
+        resetStack.layer.addSublayer(border)
+        resetStack.layer.masksToBounds = true
+        // Do any additional setup after loading the view.*/
     }
 
     override func didReceiveMemoryWarning() {
