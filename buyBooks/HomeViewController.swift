@@ -483,6 +483,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
         
         let cell: PostTableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell") as! PostTableViewCell
         cell.bannerImage.hidden = true
+        cell.postedTime.hidden = false
         cell.mainImage.image = UIImage(named: "male")
         
         let book = sellBookArray[indexPath.row] as? Book
