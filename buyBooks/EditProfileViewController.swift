@@ -27,12 +27,16 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var popUpView: UIStackView!
     
     var email = ""
+    var user:FIRUser?
 
     override func viewDidLoad() {
         super.viewDidLoad()
      
         //resetStack.layer.masksToBounds = true
-        getUserInfo()
+        if(getUserInfo())
+        {
+            self.user = FIRAuth.auth()?.currentUser
+        }
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         //make perfect round image
@@ -55,9 +59,35 @@ class EditProfileViewController: UIViewController {
     @IBAction func changePassword(sender: AnyObject) {
        // if let user = FIRAuth.auth()?.currentUser{
          //   FIRUser.updatePassword(user)}
+        if (oldPassword.text!.characters.count >= 6)
+        {
+            FIRAuth.auth()?.signInWithEmail(user!.email!, password: oldPassword.text!, completion: {
+                localUser, error in
+
+            
+                if (localUser != nil){
+                    if self.newPassword.text! == self.repeatNewPassword.text!{
+                        if self.newPassword.text!.characters.count >= 6 {
+                            self.user?.updatePassword(self.newPassword.text!){
+                                error2 in
+                                    if error2 != nil{
+                                        print(error2)
+                                    }
+                                
+                                }
+                            }
+                        }
+                    }
+            })
+        
+        }
+        print("password changed")
     }
     
-    func getUserInfo(){
+        
+    
+    
+    func getUserInfo()->Bool{
         if let user = FIRAuth.auth()?.currentUser {
             //change this later to full name
             print(user.email)
@@ -67,9 +97,10 @@ class EditProfileViewController: UIViewController {
             displayName.text = user.displayName
            // let uid = user.uid
             profileImage.setImageWithString(displayName.text, color: UIColor.init(hexString: User.generateColor(displayName.text!)))
+            return true
         }
         else {
-            
+            return false
             // No user is signed in.
         }
         
