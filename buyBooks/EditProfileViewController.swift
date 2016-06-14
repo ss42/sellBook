@@ -65,28 +65,76 @@ class EditProfileViewController: UIViewController {
                 localUser, error in
 
             
-                if (localUser != nil){
-                    if self.newPassword.text! == self.repeatNewPassword.text!{
-                        if self.newPassword.text!.characters.count >= 6 {
-                            self.user?.updatePassword(self.newPassword.text!){
+                if (localUser != nil)
+                {
+                    if self.newPassword.text! == self.repeatNewPassword.text!
+                    {
+                        if self.newPassword.text!.characters.count >= 6
+                        {
+                            self.user?.updatePassword(self.newPassword.text!)
+                            {
                                 error2 in
-                                    if error2 != nil{
+                                
+                                    if error2 != nil
+                                    {
                                         print(error2)
+                                        self.passwordChangeAlertEntryError("error", message: "There was some strange error, please try again (this should not be seen)!")
                                         //TODO make a popup that says some error
                                     }
                                 
-                                }
                             }
                         }
+                        else
+                        {
+                            self.passwordChangeAlertEntryError("error", message: "New password is not long enough!")
+                            print("new password not long enough")
+                        }
                     }
+                    else
+                    {
+                        self.passwordChangeAlertEntryError("error", message: "New passwords do not match!")
+                        print("new password mismatch")
+                    }
+                }
+                else
+                {
+                    self.passwordChangeAlertEntryError("error", message: "Not signed in!")
+                    print("not signed in")
+                }
             })
         
         }
+        else{
+            self.passwordChangeAlertEntryError("error", message: "Please make sure that you have entered your password correctly")
+        }
+        // segue name = "passwordResetted"
         // TODO lets make a popup or segue out of here, right now we have to hit cancel to actually get out of here
+        self.passwordChangeAlertError("Password changed", message: "Your password has been successfully changed!")
+
         print("password changed")
+        
+    }
+    func passwordResetAction(action:UIAlertAction){
+        self.performSegueWithIdentifier("loginToHomeSegue", sender: nil)
+
     }
     
-        
+    func passwordChangeAlertEntryError(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        //let cancel = UIAlertAction
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func passwordChangeAlertError(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: passwordResetAction)
+        //let cancel = UIAlertAction
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+
     
     
     func getUserInfo()->Bool{
