@@ -27,17 +27,7 @@ class SettingsViewController: UIViewController {
         //make perfect round image
         profileImage.layer.cornerRadius = profileImage.frame.size.width/2
         profileImage.clipsToBounds = true
-     /*
-        
-        let border = CALayer()
-        let width = CGFloat(2.0)
-        border.borderColor = UIColor.darkGrayColor().CGColor
-        border.frame = CGRect(x: 0, y: resetStack.frame.size.height - width, width:  emailLabel.frame.size.width, height: width)
-        
-        border.borderWidth = width
-        resetStack.layer.addSublayer(border)
-        resetStack.layer.masksToBounds = true
-        // Do any additional setup after loading the view.*/
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,7 +61,7 @@ class SettingsViewController: UIViewController {
             //change this later to full name
             print(user.email)
             print(user.photoURL)
-            usernameLabel.text = user.email
+            usernameLabel.text = user.displayName
             emailLabel.text = user.email
             //let uid = user.uid
             profileImage.setImageWithString(usernameLabel.text, color: UIColor.init(hexString: User.generateColor(usernameLabel.text!)))

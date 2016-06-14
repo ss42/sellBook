@@ -69,7 +69,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         // prepare the table view
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        tableView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+        tableView.backgroundColor = UIColor.whiteColor()
         tableView.rowHeight = 155
         
         // populate the table
@@ -499,8 +499,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
             tempString.insert("s", atIndex: tempString.startIndex.advancedBy(4))
             print(tempString)
         }
-        let name = book!.sellerInfo?.email
-        cell.profileImage.setImageWithString(book!.sellerInfo?.fullName, color: UIColor.init(hexString: User.generateColor(name!)))
+        let name = book!.sellerInfo?.fullName
+        cell.profileImage.setImageWithString(name, color: UIColor.init(hexString: User.generateColor(name!)))
         /*if (book!.bookStatus == "sold"){
             cell.yearPublished.text = "SOLD"
         }*/

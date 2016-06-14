@@ -33,18 +33,13 @@ class CreateNewAccountViewController: UIViewController {
         //a tap dissmisses the keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
-        /*
-        //sets the background as image
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
-        
-        //sets the background blur
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
-        view.addSubview(blurEffectView)
-        view.addSubview(stackView)
-        view.addSubview(cancelButton)*/
+        //changes the placeholder's text color
+        emailField.attributedPlaceholder = NSAttributedString(string: "Enter SMC email Address" ,attributes: [NSForegroundColorAttributeName: UIColor.darkGrayColor()])
+        passwordField.attributedPlaceholder = NSAttributedString(string:"Enter Password",
+                                                                 attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()])
+        firstName.attributedPlaceholder = NSAttributedString(string: "Enter your name" ,attributes: [NSForegroundColorAttributeName: UIColor.darkGrayColor()])
+        passwordField2.attributedPlaceholder = NSAttributedString(string:"Enter Password again",
+                                                                 attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()])
 
     }
     

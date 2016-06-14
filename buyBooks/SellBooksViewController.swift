@@ -27,9 +27,11 @@ class SellBooksViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-                // Do any additional setup after loading the view.
-    }
+        bookTitle.attributedPlaceholder = NSAttributedString(string: "Enter the Title of the Book" ,attributes: [NSForegroundColorAttributeName: UIColor.darkGrayColor()])
+        authors.attributedPlaceholder = NSAttributedString(string:"Enter the authors",
+                                                                 attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()])
+        yearPublished.attributedPlaceholder = NSAttributedString(string: "Enter the year book was published" ,attributes: [NSForegroundColorAttributeName: UIColor.darkGrayColor()])
+            }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

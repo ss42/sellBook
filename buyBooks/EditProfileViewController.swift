@@ -22,6 +22,7 @@ class EditProfileViewController: UIViewController {
     
     @IBOutlet weak var repeatNewPassword: UITextField!
     
+    @IBOutlet weak var displayName: UILabel!
     
     @IBOutlet weak var popUpView: UIStackView!
     
@@ -31,11 +32,19 @@ class EditProfileViewController: UIViewController {
         super.viewDidLoad()
      
         //resetStack.layer.masksToBounds = true
-        
+        getUserInfo()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
-        
+        //make perfect round image
+        profileImage.layer.cornerRadius = profileImage.frame.size.width/2
+        profileImage.clipsToBounds = true
         // Do any additional setup after loading the view.
+        oldPassword.attributedPlaceholder = NSAttributedString(string: "Enter Old Password" ,attributes: [NSForegroundColorAttributeName: UIColor.darkGrayColor()])
+        newPassword.attributedPlaceholder = NSAttributedString(string:"Enter New Password",
+                                                                 attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()])
+    
+        repeatNewPassword.attributedPlaceholder = NSAttributedString(string:"Enter Password Again",
+                                                                 attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()])
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,8 +64,9 @@ class EditProfileViewController: UIViewController {
             print(user.photoURL)
             let username = user.email
             email = user.email!
+            displayName.text = user.displayName
            // let uid = user.uid
-            profileImage.setImageWithString(username, color: UIColor.init(hexString: User.generateColor(username!)))
+            profileImage.setImageWithString(displayName.text, color: UIColor.init(hexString: User.generateColor(displayName.text!)))
         }
         else {
             

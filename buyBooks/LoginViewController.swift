@@ -23,26 +23,19 @@ class LoginViewController: UIViewController {
         
         
         emailField.delegate = self
-        /*
- //the following changes the placeholder's text color
+        
+        //changes the placeholder's text color
         emailField.attributedPlaceholder = NSAttributedString(string:"Enter email here.",
-                                                               attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
+                                                               attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()])
         passwordField.attributedPlaceholder = NSAttributedString(string:"Password",
-                                                               attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
- */
+                                                               attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()])
+ 
         passwordField.delegate = self
         
         //dismisses keyboard when you tap outside.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
-        let border = CALayer()
-        let width = CGFloat(2.0)
-        border.borderColor = UIColor.darkGrayColor().CGColor
-        border.frame = CGRect(x: 0, y: emailField.frame.size.height - width, width:  emailField.frame.size.width, height: width)
-        
-        border.borderWidth = width
-        emailField.layer.addSublayer(border)
-        passwordField.layer.addSublayer(border)
+    
 
     }
 
@@ -75,6 +68,7 @@ class LoginViewController: UIViewController {
                 
                 if error != nil {
                     print("error signing in")
+                    self.signInErrorAlert("Sign in Failed.", message: "Please check your email and password and enter again.")
                     //self.loginErrorAlert("Oops!", message: "Check your username and password.")
                 } else {
                     
@@ -91,10 +85,17 @@ class LoginViewController: UIViewController {
         } else {
             
             //TO DO: - Show error
+            self.signInErrorAlert("Empty Field", message: "Please enter your email and password to sign in.")
  
            // Error.showError("test", "hello")
         }
   
+    }
+    func signInErrorAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     // MARK: - Dissmisses keyboard

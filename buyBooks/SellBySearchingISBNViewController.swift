@@ -62,6 +62,9 @@ class SellBySearchingISBNViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        isbnTextfield.attributedPlaceholder = NSAttributedString(string:"Enter your 10 or 13 digit ISBN number",
+        attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()])
+        
         //a tap dismisses a keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)

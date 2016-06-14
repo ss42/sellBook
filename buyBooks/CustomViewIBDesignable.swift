@@ -17,21 +17,36 @@ import UIKit
 	}
 	}
 }
+/*
 
+extension UITextField{
+    @IBInspectable
+    var placeholderTextColor: UIColor = UIColor.darkGrayColor(){
+        didSet{
+            guard let placeholder = placeholder else{
+                return
+            }
+            attributedPlaceholder = NSAttributedString(string: placeholder, attributes:
+                [NSForegroundColorAttributeName : placeholderTextColor])
+        }
+    }
+}*/
 
 class UnderlinedLabel: UILabel {
     
-    override var text: String! {
-        
-        didSet {
-            // swift < 2. : let textRange = NSMakeRange(0, count(text))
-            let textRange = NSMakeRange(0, text.characters.count)
-            let attributedText = NSMutableAttributedString(string: text)
-            attributedText.addAttribute(NSUnderlineStyleAttributeName , value:NSUnderlineStyle.StyleSingle.rawValue, range: textRange)
-            // Add other attributes if needed
-            
-            self.attributedText = attributedText
-        }
+    @IBInspectable var leftLine: Bool = true { didSet{ drawLines() } }
+    @IBInspectable var rightLine: Bool = true { didSet{ drawLines() } }
+    @IBInspectable var bottomLine: Bool = false { didSet{ drawLines() } }
+    @IBInspectable var topLine: Bool = true { didSet{ drawLines() } }
+    
+    func drawLines(){
+        var border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.darkGrayColor().CGColor
+        //UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0).CGColor
+        border.frame = CGRect(x: 0, y: frame.size.height - width, width: frame.size.width, height: width)
+        border.borderWidth = width
+        layer.addSublayer(border)
     }
 }
 
@@ -70,27 +85,47 @@ extension UIView {
 	}
 	}
     
+ 
+
+	
+}
+
+extension UIStackView {
+    
+    
     @IBInspectable
-    var shadowColor: UIColor?{
+    var stackBorderWidth: CGFloat{
+        get {
+            return layer.borderWidth
+        }
+        set(newBoarderWidth){
+            layer.borderWidth = newBoarderWidth
+        }
+    }
+    
+    @IBInspectable
+    var stackBorderColor: UIColor?{
+        get {
+            return layer.borderColor != nil ? UIColor(CGColor: layer.borderColor!) : nil
+        }
+        set {
+            layer.borderColor = newValue?.CGColor
+        }
+    }
+    @IBInspectable
+    var stackCornerRadius: CGFloat{
         get{
-            return layer.shadowColor != nil ? UIColor(CGColor: layer.shadowColor!) : nil
+            return layer.cornerRadius
         }
         set{
-            layer.backgroundColor = newValue?.CGColor
+            layer.cornerRadius = newValue
+            layer.masksToBounds = newValue != 0
         }
     }
-
-	@IBInspectable
-	var makeCircular: Bool?{
-	get {
-	return nil
-	}
-	set {
-	if let makeCircular = newValue where makeCircular{
-	cornerRadius = min(bounds.width, bounds.height)/2.0
-	}
-        }
-    }
+    
+    
+    
+    
 }
 
 // from https://forums.developer.apple.com/thread/14468
@@ -166,7 +201,8 @@ class Underlined: UITextField {
     func drawLines(){
         var border = CALayer()
         let width = CGFloat(2.0)
-        border.borderColor = UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0).CGColor
+        border.borderColor = UIColor.darkGrayColor().CGColor
+            //UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0).CGColor
         border.frame = CGRect(x: 0, y: frame.size.height - width, width: frame.size.width, height: width)
         border.borderWidth = width
         layer.addSublayer(border)

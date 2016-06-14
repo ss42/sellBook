@@ -223,7 +223,7 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
     func populateFields()
     {
         bookTitle.text = detailBook?.title
-        authors.text = "By: " + (detailBook?.webAuthors)!
+        authors.text = "  By: " + (detailBook?.webAuthors)!
         ISBN.text = "ISBN: " + (detailBook?.webISBN)!
         //retailPrice.text = detailBook?.webPrice
         bookDescription.text = "Description: " + (detailBook?.webDescription)!
