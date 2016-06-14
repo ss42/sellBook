@@ -29,7 +29,7 @@ class EditProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        /*
         //blur background
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
@@ -39,7 +39,7 @@ class EditProfileViewController: UIViewController {
         //view.sendSubviewToBack(blurEffectView)
         view.addSubview(blurEffectView)
         view.addSubview(popUpView)
-        
+        */
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)

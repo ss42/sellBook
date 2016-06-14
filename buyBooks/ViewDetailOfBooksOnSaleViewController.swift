@@ -42,7 +42,7 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
         super.viewDidLoad()
         //self.subject.delegate = self
         populateFields()
-        
+        /*
         //sets the background as image
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         
@@ -53,7 +53,7 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
         blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
         view.addSubview(blurEffectView)
         view.addSubview(popUpView)
-        
+        */
 
     }
     override func viewWillAppear(animated: Bool) {
