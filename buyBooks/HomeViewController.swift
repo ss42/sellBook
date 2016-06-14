@@ -566,57 +566,5 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
     }
 }
 
-    /*func loadImage()
-    {
-        let requestURL: NSURL = NSURL(string: tempString)!
-        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(urlRequest) {
-            (data, response, error) -> Void in
-            
-            let httpResponse = response as! NSHTTPURLResponse
-            let statusCode = httpResponse.statusCode
-            
-            if (statusCode == 200) {
-                print("Everyone is fine, file downloaded successfully.")
-                do{
-                    
-                    let picture = UIImage(data:data!)
-                    self.bookImage = picture
- 
-                }catch {
-                    print("Error with picture: \(error)")
-                }
- 
-            }
-        }
-        task.resume()
-    }
-    
-    */
-  /*
-    func load_image(url:String)->UIImage
-    {
-        let tempString = url
-        let urlString = tempString
-        let imgURL: NSURL = NSURL(string: urlString)!
-        let request: NSURLRequest = NSURLRequest(URL: imgURL)
-        var tempimage:UIImage?
-        NSURLConnection.sendAsynchronousRequest(
-            request, queue: NSOperationQueue.mainQueue(),
-            completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
-                if error == nil {
-                    tempimage = (UIImage(data: data!))
-                    print("loaded image")
-                }
-                else{
-                    print("image load failed?")
-                    self.load_image("http://i.imgur.com/zTFEK3c.png")
-                }
-        })
-        print("before return")
-        return tempimage!
-    }
-    
-    */
+
    

@@ -57,21 +57,8 @@ class EditBooksViewController: UIViewController {
         // add more if needed
         
         loadDataFromPreviousViewController()
-        /*
         
-        
-        //sets the background as image
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
-        
-        //sets the background blur
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
-        view.addSubview(blurEffectView)
-        view.addSubview(topView)
-        view.addSubview(bottomView)
- */
+
     }
   
     
@@ -130,19 +117,20 @@ class EditBooksViewController: UIViewController {
     
     func calculateSliderPosition() -> Float{
         let val = currentUserDictionary["bookCondition"] as? String
-        if val == "okay"{
+        if val == "Used - Fair"{
             return 10
         }
-        else if val == "Average"{
+        else if val == "Used - Very Good"{
             return 37
         }
-        else if val == "Very Good"{
+        else if val == "Used - Excellent"{
             return 63
         }
-        else if val == "Excellent"{
+        else if val == "New"{
             return 90
         }
         return 0
+      
     }
 
     // done for wednesday
@@ -202,16 +190,16 @@ class EditBooksViewController: UIViewController {
     
     @IBAction func bookCondition(sender: UISlider) {
         if bookConditionSlider.value < 25{
-            bookCondition.text = "okay"
+            bookCondition.text = "Used - Fair"
         }
         else if bookConditionSlider.value > 25 && bookConditionSlider.value < 50{
-            bookCondition.text = "Average"
+            bookCondition.text = "Used - Very Good"
         }
         else if bookConditionSlider.value > 50 && bookConditionSlider.value < 75 {
-            bookCondition.text = "Very Good"
+            bookCondition.text = "Used - Excellent"
         }
         else if bookConditionSlider.value > 75 {
-            bookCondition.text = "Excellent"
+            bookCondition.text = "New"
         }
         
         
