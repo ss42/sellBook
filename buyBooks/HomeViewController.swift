@@ -528,6 +528,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
             cell.bannerImage.hidden = false
             cell.postedTime.hidden = true
         }
+        else{
+            cell.postedTime.hidden = false
+            cell.postedTime.text = self.timeElapsed(book!.postedTime!)
+        }
 
         print("after getimage")
         
