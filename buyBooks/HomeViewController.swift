@@ -509,12 +509,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
         cache!.getImage(tempString, imageView: cell.mainImage, defaultImage: "noun_9280_cc")
         
         // if the book is less than a week old then it is new
-        if (timeElapsedinSeconds(book!.postedTime!) < 60 * 60 * 24 * 7){
+        /*if (timeElapsedinSeconds(book!.postedTime!) < 60 * 60 * 24 * 7){
             // TODO: make a banner image for new books
             //cell.bannerImage.image = UIImage(named: "male")
             
             cell.bannerImage.hidden = false
-        }
+        }*/
         // TODO make a banner image for sold books
         if(book!.bookStatus == "sold")
         {

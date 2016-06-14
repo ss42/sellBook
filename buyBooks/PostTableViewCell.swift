@@ -35,6 +35,13 @@ class PostTableViewCell: UITableViewCell {
     
     
     
+    override func prepareForReuse() {
+        //super.prepareForReuse()
+        //bannerImage.image = nil
+        //bannerImage.hidden = true
+        //bannerImage = nil
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
