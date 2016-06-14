@@ -230,7 +230,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         
         cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2
         cell.profileImage.clipsToBounds = true
-        cell.yearPublished.text = book!.publishedYear
+        //cell.yearPublished.text = book!.publishedYear
         
         var tempString = book!.webBookThumbnail!
         if (tempString.hasPrefix("http:")){
