@@ -18,6 +18,7 @@ class AboutViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        detail.text = "This app was made by Sanjay and Rahul! To get in touch with us please send us an email or with your favorite social media timesink!"
         /*
         //blur background
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
@@ -28,7 +29,7 @@ class AboutViewController: UIViewController {
         //view.sendSubviewToBack(blurEffectView)
         // TODO: change this about title and maybe add some buttons here
         // TODO: add what we need to add for the facebook and the google apis
-        detail.text = "This app was made by Sanjay and Rahul! To get in touch with us please send us an email or with your favorite social media timesink!"
+        
         view.addSubview(blurEffectView)
         view.addSubview(stackView)        
         */

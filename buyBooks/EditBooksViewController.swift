@@ -29,6 +29,7 @@ class EditBooksViewController: UIViewController {
     
     @IBOutlet weak var bookCondition: UILabel!
     
+    @IBOutlet weak var relistBookButton: UIButton!
     var currentUserDictionary = [String:AnyObject]()
     
     func dismissKeyboard(){
@@ -56,6 +57,8 @@ class EditBooksViewController: UIViewController {
         // add more if needed
         
         loadDataFromPreviousViewController()
+        /*
+        
         
         //sets the background as image
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
@@ -68,6 +71,7 @@ class EditBooksViewController: UIViewController {
         view.addSubview(blurEffectView)
         view.addSubview(topView)
         view.addSubview(bottomView)
+ */
     }
   
     
@@ -88,6 +92,8 @@ class EditBooksViewController: UIViewController {
              self.currentUserDictionary["email"] = snapshot.value!["email"] as! String
              self.currentUserDictionary["profilePhoto"] = snapshot.value!["profilePhoto"] as! String
              self.currentUserDictionary["postedTime"] = snapshot.value!["postedTime"] as! String
+            self.currentUserDictionary["timeOfMail"] = snapshot.value!["timeOfMail"] as! String
+            
             self.populateData()
         })
      
@@ -101,7 +107,26 @@ class EditBooksViewController: UIViewController {
         // may need to change photo (5/26)
         // possibly move the slider to some position (5/26)
         bookConditionSlider.value = calculateSliderPosition()
+        relistBookButton.hidden = true
+        if timeElapsedinSeconds(currentUserDictionary["postedTime"] as! String) > 60*60*24*30
+        {
+            relistBookButton.hidden = false
+        }
+        
+        
     }
+    
+    func timeElapsedinSeconds(date: String)-> Double{
+        
+        let dateformatter = NSDateFormatter()
+        dateformatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateformatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let postedDate  = dateformatter.dateFromString(date)!
+        
+        let elapsedTimeInSeconds = NSDate().timeIntervalSinceDate(postedDate)
+        return elapsedTimeInSeconds
+    }
+
     
     func calculateSliderPosition() -> Float{
         let val = currentUserDictionary["bookCondition"] as? String
@@ -215,7 +240,10 @@ class EditBooksViewController: UIViewController {
             
             self.displayConfirmAlertMessage("Sale confirmed!", message: "Thank you for using the Book-Rack app! Please relist the book if the sale falls through (also rate us on the app store)")
         })
-        /*self.setDictValues()
+        
+        /*
+        self.setDictValues()
+        
         self.updatePostOnDatabase()
         
         navigationController?.popViewControllerAnimated(true)
@@ -250,14 +278,27 @@ class EditBooksViewController: UIViewController {
         self.presentViewController(myAlert, animated: true, completion: nil);
     }
     
+    func displayRelistBookMessage(title: String, message: String){
+        let myAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let relistAction = UIAlertAction(title: "Confirm relisting of book", style: UIAlertActionStyle.Default, handler: reListButton) // change title
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: cancelButton)
+        
+        myAlert.addAction(relistAction)
+        myAlert.addAction(cancelAction)
+        self.presentViewController(myAlert, animated: true, completion: nil)
+        
+    }
+    
     
     func confirmButton(alert:UIAlertAction!)
     {
         print("ok")
-        //captureSession.startRunning()
         self.currentUserDictionary["bookStatus"] = "sold"
         self.setDictValues()
         self.updatePostOnDatabase()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.dataChangedForHomeAndSearch = true
+        appDelegate.dataChangedForMyBooks = true
         
         navigationController?.popViewControllerAnimated(true)
     }
@@ -285,10 +326,44 @@ class EditBooksViewController: UIViewController {
         self.currentUserDictionary["bookStatus"] = "deleted"
         self.setDictValues()
         self.updatePostOnDatabase()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.dataChangedForHomeAndSearch = true
+        appDelegate.dataChangedForMyBooks = true
         
         navigationController?.popViewControllerAnimated(true)
     }
     
+    func reListButton(alert:UIAlertAction!)
+    {
+        print("relisting")
+        self.currentUserDictionary["bookStatus"] = "default"
+        self.currentUserDictionary["postedTime"] = getCurrentTime()
+        self.setDictValues()
+        self.updatePostOnDatabase()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.dataChangedForHomeAndSearch = true
+        appDelegate.dataChangedForMyBooks = true
+        navigationController?.popViewControllerAnimated(true)
+        
+    }
+    
+    
+    
+    @IBAction func relistBook(sender: AnyObject) {
+        print("pressed relist button, popup should show")
+        // TODO move into an alert menu thing
+        //dispatch_async(dispatch_get_main_queue(), {
+            
+            self.displayRelistBookMessage("Would you like to relist this book?", message: "If your book has been listed for more than three months it will be hidden, please relist your book (perhaps at a more attractive price) if you want it to be displayed again.")
+       // })
+        
+        /*self.currentUserDictionary["bookStatus"] = "default"
+        self.currentUserDictionary["postedTime"] = getCurrentTime()
+        self.setDictValues()
+        self.updatePostOnDatabase()
+        navigationController?.popViewControllerAnimated(true)
+        */
+    }
     
     /*func alert(title: String, msg: String){
         
@@ -299,7 +374,13 @@ class EditBooksViewController: UIViewController {
         
     }*/
 
-    
+    func getCurrentTime()-> String{
+        let todaysDate:NSDate = NSDate()
+        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let currentTimeAndDate:String = dateFormatter.stringFromDate(todaysDate)
+        return currentTimeAndDate
+    }
 }
 
 extension EditBooksViewController: UITextFieldDelegate{

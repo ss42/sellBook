@@ -17,11 +17,9 @@ class SellBooksViewController: UIViewController {
     
     @IBOutlet weak var detail: UITextView!
     
-    @IBOutlet weak var price: UITextField!
-    
-    @IBOutlet weak var bookConditionSlider: UISlider!
-    
-    @IBOutlet weak var bookCondition: UILabel!
+    @IBOutlet weak var authors: UITextField!
+    @IBOutlet weak var yearPublished: UITextField!
+
     
     var currentUserDictionary: NSDictionary?
     var bookInfoDict = [String:String]()
@@ -29,8 +27,6 @@ class SellBooksViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        bookConditionSlider.minimumValue = 0
-        bookConditionSlider.maximumValue = 100
         
                 // Do any additional setup after loading the view.
     }
@@ -87,21 +83,7 @@ class SellBooksViewController: UIViewController {
         let currentTimeAndDate:String = dateFormatter.stringFromDate(todaysDate)
         return currentTimeAndDate
     }
-    
-    @IBAction func bookCondition(sender: UISlider) {
-        if bookConditionSlider.value < 25{
-            bookCondition.text = "okay"
-        }
-        else if bookConditionSlider.value > 25 && bookConditionSlider.value < 50{
-            bookCondition.text = "Average"
-        }
-        else if bookConditionSlider.value > 50 && bookConditionSlider.value < 75 {
-            bookCondition.text = "Very Good"
-        }
-        else if bookConditionSlider.value > 75 {
-            bookCondition.text = "Excellent"
-        }
-    }
+
     
     func setDict(){
         //self.bookInfoDict["bookCondition"] = self.bookCondition.text!
@@ -111,12 +93,37 @@ class SellBooksViewController: UIViewController {
         // we can get these from search results later 5/31
         self.bookInfoDict["isbn"] = "N/A"
         self.bookInfoDict["authors"] = "some author"
+        //TODO make this a string and then check to see if it is the default string before we go try to load a url (if it is the default then skip webload and just do uiimage named etc.)
         self.bookInfoDict["imageURL"] = "http://i.imgur.com/zTFEK3c.png"
+        // TODO: needs to be validated or some kind of default value
+        self.bookInfoDict["authors"] = self.authors.text!
+        self.bookInfoDict["publishedDate"] = self.yearPublished.text!
+        
+        
+        // TODO: do something with this, maybe give a space to enter or just cut it out alltogether
+        self.bookInfoDict["pageCount"] = "N/A"
+        
+        
         
     }
     
+    
+    // TODO: add slide gesture that calls this button
     @IBAction func donePressed(sender: AnyObject) {
         //self.getCurrentSellerInfo()
+        if (self.authors.text!.characters.count < 2)
+        {
+            // show error or something
+        }
+        if (self.yearPublished.text!.characters.count < 4)
+        {
+            // show error( give option to enter a default year, if publication year is unknown (maybe))
+        }
+        
+        if (self.authors.text!.characters.count >= 2 && self.yearPublished.text!.characters.count >= 4)
+        {
+            // now we can do self.setDict and perform segue
+        }
         self.setDict()
         self.performSegueWithIdentifier("toSetPrice", sender: nil)
 

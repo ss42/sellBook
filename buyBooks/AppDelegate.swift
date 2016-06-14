@@ -35,7 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // previous line for setting a default text font and size
         
         
+        let DefaultButtonColor = UIButton(type: UIButtonType.System).titleColorForState(.Normal)
         
+        // TODO: change tab bar colors
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.darkTextColor()], forState:.Normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: DefaultButtonColor!], forState:.Selected)
         
         
         

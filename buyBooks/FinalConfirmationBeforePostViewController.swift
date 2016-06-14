@@ -91,7 +91,9 @@ class FinalConfirmationBeforePostViewController: UIViewController {
         ISBN.text = bookInfoDict["isbn"]
         //retailPrice.text = "fix later"
         //
+        
         pageCount.text = "Page Count: " + bookInfoDict["pageCount"]!
+        
         bookCondition.text = "Book is in " + bookInfoDict["bookCondition"]! + " condition."
         ourPrice.text = "$ " +  bookInfoDict["price"]!
         bookImage.image = image

@@ -168,7 +168,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             return timeToShow
             
         } else if elapsedTimeInSeconds > secondInDays{
-            dateformatter.dateFormat = "EEE."
+            dateformatter.dateFormat = "EEEE"
             // print("first if statement Time Elapsed > secinds indays ")
             let timeToShow: String = dateformatter.stringFromDate(postedDate)
             return timeToShow
@@ -203,7 +203,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             let sellerProfilePhoto = snapshot.value!["profilePhoto"] as! String
             
             let postedTime = snapshot.value!["postedTime"] as! String
-            let elapsedTime = self.timeElapsed(postedTime)
+            let elapsedTime = postedTime//self.timeElapsed(postedTime)
             let isbn = snapshot.value!["isbn"] as! String
             let pageCount = snapshot.value!["pageCount"] as! String
             let authors = snapshot.value!["authors"] as! String
@@ -216,24 +216,27 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             let bookStatus = snapshot.value!["bookStatus"] as! String
     
             print(title)
-            
-            if (bookStatus != "deleted" && bookStatus != "sold"){
+            // TODO: make sure that we want books to be hidden if they were posted more than a month ago
+            if (bookStatus != "deleted"){
+                //&& (self.timeElapsedinSeconds(postedTime) < 60*60*24*30)){ //&& bookStatus != "sold"){
                 
                 
                 let timeOfMail = snapshot.value!["timeOfMail"] as! String
                 
                 //let condition = Book.howShouldBookBeDisplayed(timeOfMail, bookStatus: bookStatus)
                 
-                if self.shouldBookBeDisplayed(bookStatus, timeOfMail: timeOfMail)
-                {
+                //if self.shouldBookBeDisplayed(bookStatus, timeOfMail: timeOfMail)
+                
                     let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
                     let tempBook = Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus)
                 
-                
-                    self.sellBookArray.insertObject(tempBook, atIndex: 0)//.addObject(tempBook)
-                    
-                    
+                if (self.timeElapsedinSeconds(postedTime) < 60*60*24*30 || (bookStatus == "sold" && self.timeElapsedinSeconds(postedTime) < 60*60*24*90)){
+                    self.sellBookArray.insertObject(tempBook, atIndex: 0)
                 }
+                    //self.sellBookArray.insertObject(tempBook, atIndex: 0)//.addObject(tempBook)
+                    
+                    
+                
             }
             else
             {
@@ -471,16 +474,20 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
         return img
     }
     
+    
+    // TODO fix imageloading problem (the banners and the main images sometimes, can be reproduced by scrolling down then switching the tab bars and then scrolling up)
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
         
         let cell: PostTableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell") as! PostTableViewCell
+        cell.bannerImage.hidden = true
+        cell.mainImage.image = UIImage(named: "male")
         
         let book = sellBookArray[indexPath.row] as? Book
         cell.fullName.text = (book!.sellerInfo?.fullName)
         cell.title.text = book!.title
         cell.authors.text = "  By: " + book!.webAuthors!
-        cell.postedTime.text = book!.postedTime
+        cell.postedTime.text = self.timeElapsed(book!.postedTime!)
         cell.price.text = "$ " + String(book!.price!)
        
         cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2
@@ -494,13 +501,31 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
         }
         let name = book!.sellerInfo?.email
         cell.profileImage.setImageWithString(book!.sellerInfo?.fullName, color: UIColor.init(hexString: User.generateColor(name!)))
-        if (book!.bookStatus == "sold"){
+        /*if (book!.bookStatus == "sold"){
             cell.yearPublished.text = "SOLD"
-        }
-        
-        //cell.banner.image = setBanner(book!)
+        }*/
+                //cell.banner.image = setBanner(book!)
         
         cache!.getImage(tempString, imageView: cell.mainImage, defaultImage: "noun_9280_cc")
+        
+        // if the book is less than a week old then it is new
+        if (timeElapsedinSeconds(book!.postedTime!) < 60 * 60 * 24 * 7){
+            // TODO: make a banner image for new books
+            //cell.bannerImage.image = UIImage(named: "male")
+            
+            cell.bannerImage.hidden = false
+        }
+        // TODO make a banner image for sold books
+        if(book!.bookStatus == "sold")
+        {
+            print("sold book seen")
+           // cell.bannerImage.image = UIImage(named: "male")
+            //cache!.getImage(<#T##url: String##String#>, defaultImage: <#T##String#>)
+            cell.bannerImage.image = UIImage(named: "fixedBanner")
+            cell.bannerImage.hidden = false
+            cell.postedTime.hidden = true
+        }
+
         print("after getimage")
         
         activityView.stopAnimating()

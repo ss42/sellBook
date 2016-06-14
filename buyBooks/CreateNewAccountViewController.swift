@@ -33,7 +33,7 @@ class CreateNewAccountViewController: UIViewController {
         //a tap dissmisses the keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
-        
+        /*
         //sets the background as image
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         
@@ -44,7 +44,7 @@ class CreateNewAccountViewController: UIViewController {
         blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
         view.addSubview(blurEffectView)
         view.addSubview(stackView)
-        view.addSubview(cancelButton)
+        view.addSubview(cancelButton)*/
 
     }
     

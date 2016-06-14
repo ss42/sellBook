@@ -15,7 +15,20 @@ class DataHoldingTabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // changes the bars background color
+        UITabBar.appearance().barTintColor = UIColor.whiteColor()
+        //tintcolor changes the selected button's color when you touch it
+       // UITabBar.appearance().tintColor = UIColor.blueColor()
+        // makes everything a solid color, otherwise it would blend with the background
+        UITabBar.appearance().translucent = false
 
+        // loop sets the color of every custom tab bar item as some color (light blue)
+        for item in self.tabBar.items! as [UITabBarItem] {
+            if let image = item.image {
+                item.image = image.imageWithColor(UIColor.darkTextColor()).imageWithRenderingMode(.AlwaysOriginal)
+            }
+        }
+        
         // Do any additional setup after loading the view.
     }
 
