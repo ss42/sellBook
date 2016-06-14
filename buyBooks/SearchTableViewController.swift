@@ -37,6 +37,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         self.cache = tbvc.cache
         self.sellBookArray = tbvc.sellBookArray
         
+        
         self.resultsSearchController = UISearchController(searchResultsController: nil)
         self.resultsSearchController.searchResultsUpdater = self
         
@@ -49,7 +50,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         self.tableView.tableHeaderView = self.resultsSearchController.searchBar
         
         self.tableView.rowHeight = 155
-        tableView.separatorStyle = .None
+        //tableView.separatorStyle = .None
         tableView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
         navigationController?.hidesBarsOnSwipe = true
 
@@ -237,22 +238,10 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
             tempString.insert("s", atIndex: tempString.startIndex.advancedBy(4))
             print(tempString)
         }
-        let name = book!.sellerInfo?.email
-        cell.profileImage.setImageWithString(cell.fullName.text, color: UIColor.init(hexString: User.generateColor(name!)))
+        let name = book!.sellerInfo?.fullName
+        cell.profileImage.setImageWithString(name, color: UIColor.init(hexString: User.generateColor(name!)))
         
-        /*
-        if (book!.bookStatus == "sold"){
-            cell.yearPublished.text = "SOLD"
-        }
-        else if(book!.bookStatus == "reserved")
-        {
-            cell.yearPublished.text = "reserved"
-        }
-        else if(book!.bookStatus == "deleted")
-        {
-            cell.yearPublished.text = "deleted" // should be elsewhere, before making the cell probably
-            
-        }*/
+   
         
         cache!.getImage(tempString, imageView: cell.mainImage, defaultImage: "noun_9280_cc")
         print("after getimage")
@@ -321,50 +310,6 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
     }
     
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

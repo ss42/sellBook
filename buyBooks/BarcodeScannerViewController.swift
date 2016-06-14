@@ -300,22 +300,7 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
                     
                     let picture = UIImage(data:data!)
                     self.bookImage = picture
-                    
-                    
-                    
-                    
-                    
-                    
-                   
-                    
-                    
-                    
-                
-                
-                
-                
-                
-                
+
                 
                 
             }
@@ -334,18 +319,7 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         }
         return top!
     }
-    /*- (UIViewController*) topMostController
-    {
-    UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    
-    while (topController.presentedViewController) {
-    topController = topController.presentedViewController;
-    }
-    
-    return topController;
-    }
-    
-    */
+
 
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){

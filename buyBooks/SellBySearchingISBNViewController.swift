@@ -77,19 +77,7 @@ class SellBySearchingISBNViewController: UIViewController {
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(SellBySearchingISBNViewController.respondToSwipeGesture(_:)))
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(swipeLeft)
-        /*
-        //sets an image as background
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
-        
-        //blurs the background
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
-        //view.sendSubviewToBack(blurEffectView)
-        view.addSubview(blurEffectView)
-        view.addSubview(stackView)
-        view.addSubview(titleLabel)*/
+   
     }
 
     override func didReceiveMemoryWarning() {

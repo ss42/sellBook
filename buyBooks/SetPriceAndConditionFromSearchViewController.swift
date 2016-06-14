@@ -28,8 +28,17 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
     
     //bookInfoDict = ["isbn" : ISBN, "bookTitle" : "", "description" : "", "authors": "", "imageURL": "", "pageCount": ""]
     @IBAction func continuePressed(sender: AnyObject) {
-        self.bookInfoDict["bookCondition"] = bookCondition.text
-        self.bookInfoDict["price"] = price.text
+        let checkPrice = price.text
+        
+        
+        if price.text != "" && Double(checkPrice!) != nil{
+            self.bookInfoDict["bookCondition"] = bookCondition.text
+            self.bookInfoDict["price"] = price.text
+        }
+        else {
+            showError("Field Missing", message: "Please enter the price you want to sell for")
+        }
+        
         
     }
     
@@ -49,7 +58,7 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
     
     @IBAction func bookCondition(sender: UISlider) {
         if bookConditionSlider.value < 25{
-            bookCondition.text = "Used - Good"
+            bookCondition.text = "Used - Fair"
         }
         else if bookConditionSlider.value > 25 && bookConditionSlider.value < 50{
             bookCondition.text = "Used - Very Good"
@@ -111,18 +120,7 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
-        /*
-        //sets the background as image
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
-        
-        //sets the background blur
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
-        view.addSubview(blurEffectView)
-        view.addSubview(popView)
-         */
+      
         populateData()
         
         // Do any additional setup after loading the view.
@@ -146,14 +144,11 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func showError(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
     }
-    */
 
 }

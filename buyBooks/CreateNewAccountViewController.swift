@@ -14,7 +14,6 @@ class CreateNewAccountViewController: UIViewController {
     
     
     @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var passwordField2: UITextField!
