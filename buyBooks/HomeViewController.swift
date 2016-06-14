@@ -63,7 +63,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         cache = tbvc.cache
         
         // get the data from firebase
-        fetchPost()
+        //fetchPost()
            //     tableView.separatorStyle = .None
 
         // prepare the table view
@@ -135,13 +135,14 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        if appDelegate.dataChangedForHomeAndSearch{
+        if appDelegate.dataChangedForHomeAndSearch == true{
             //appDelegate.mainDic=response.mutableCopy() as? NSMutableDictionary
             sellBookArray = []
             fetchPost()
             tableView.reloadData()
             appDelegate.dataChangedForHomeAndSearch = false
             tbvc.sellBookArray = self.sellBookArray
+            print("searched for new data")
         }
         else{
             print("data didnt change")
