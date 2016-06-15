@@ -59,47 +59,70 @@ class EditProfileViewController: UIViewController {
     @IBAction func changePassword(sender: AnyObject) {
        // if let user = FIRAuth.auth()?.currentUser{
          //   FIRUser.updatePassword(user)}
+        var okToChange:Bool = false
         if (oldPassword.text!.characters.count >= 6)
         {
+            okToChange = true
+            
             FIRAuth.auth()?.signInWithEmail(user!.email!, password: oldPassword.text!, completion: {
                 localUser, error in
-
-            
-                if (localUser != nil)
+                print("before password check")
+                if error != nil{
+                    self.passwordChangeAlertEntryError("error", message: "Incorrect Password!")
+                    okToChange = false
+                    
+                }
+                else
                 {
-                    if self.newPassword.text! == self.repeatNewPassword.text!
+                    print("in else block, the password should have been correct")
+                    if (localUser != nil)
                     {
-                        if self.newPassword.text!.characters.count >= 6
+                        if self.newPassword.text! == self.repeatNewPassword.text!
                         {
-                            self.user?.updatePassword(self.newPassword.text!)
+                            if self.newPassword.text!.characters.count >= 6
                             {
-                                error2 in
-                                
-                                    if error2 != nil
-                                    {
-                                        print(error2)
-                                        self.passwordChangeAlertEntryError("error", message: "There was some strange error, please try again (this should not be seen)!")
-                                        //TODO make a popup that says some error
-                                    }
-                                
+                                self.user?.updatePassword(self.newPassword.text!)
+                                {
+                                    error2 in
+                                    
+                                        if error2 != nil
+                                        {
+                                            print(error2)
+                                            self.passwordChangeAlertEntryError("error", message: "There was some strange error, please try again (this should not be seen)!")
+                                            okToChange = false
+                                            //TODO make a popup that says some error
+                                        }
+                                        else
+                                        {
+                                            okToChange = true
+                                        }
+                                    
+                                }
+                            }
+                            else
+                            {
+                                self.passwordChangeAlertEntryError("error", message: "New password is not long enough!")
+                                okToChange = false
+                                print("new password not long enough")
                             }
                         }
                         else
                         {
-                            self.passwordChangeAlertEntryError("error", message: "New password is not long enough!")
-                            print("new password not long enough")
+                            okToChange = false
+                            self.passwordChangeAlertEntryError("error", message: "New passwords do not match!")
+                            print("new password mismatch")
                         }
                     }
                     else
                     {
-                        self.passwordChangeAlertEntryError("error", message: "New passwords do not match!")
-                        print("new password mismatch")
+                        okToChange = false
+                        self.passwordChangeAlertEntryError("error", message: "Not signed in!")
+                        print("not signed in")
                     }
                 }
-                else
-                {
-                    self.passwordChangeAlertEntryError("error", message: "Not signed in!")
-                    print("not signed in")
+                if okToChange == true{
+                    self.passwordChangeAlertError("Password changed", message: "Your password has been successfully changed!")
+                    NSUserDefaults.standardUserDefaults().setValue(false, forKey: "isUserLoggedIn")
                 }
             })
         
@@ -109,7 +132,6 @@ class EditProfileViewController: UIViewController {
         }
         // segue name = "passwordResetted"
         // TODO lets make a popup or segue out of here, right now we have to hit cancel to actually get out of here
-        self.passwordChangeAlertError("Password changed", message: "Your password has been successfully changed!")
 
         print("password changed")
         

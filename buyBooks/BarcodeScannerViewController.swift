@@ -59,6 +59,17 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         
         // this is the back button, it sits on top of the camera stuff
         view.addSubview(backButtonView);
+        /*
+        var brackets = UIView.init(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
+        var border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.darkGrayColor().CGColor
+        //UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0).CGColor
+        border.frame = CGRect(x: 0, y: brackets.frame.size.height - width, width: brackets.frame.size.width, height: width)
+        border.borderWidth = width
+        brackets.addSubview(border)
+        */
+        
         
         captureSession.startRunning();
     }

@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import Firebase
 
 class ForgotPasswordViewController: UIViewController {
     
     
+    var ref = FIRDatabase.database().reference()
+    
+    
 
     @IBOutlet weak var emailTextField: UITextField!
+    
+    
     
     
     override func viewDidLoad() {
@@ -32,31 +38,43 @@ class ForgotPasswordViewController: UIViewController {
     }
 
     @IBAction func sendPressed(sender: AnyObject) {
-        //let email = emailTextField.text
-      /**  DataService.dataService.userRef.resetPasswordForUser(email, withCompletionBlock: { error in
+        let email = emailTextField.text
+        
+       FIRAuth.auth()?.sendPasswordResetWithEmail(email!) { error in
             if error != nil {
                 self.alertShow("Ops", message: "Email do not match.")
             } else {
-                self.alertShow("Sucess", message: "Temporary Password sent to your email")
-                self.performCustomSegue()
+                
+                self.alertSuccessShow("Sucess", message: "Temporary Password sent to your email")
+                //self.performCustomSegue()
 
             }
-        })
- **/
+        }
+ 
         
     }
     
-    func performCustomSegue(){
+    func performCustomSegue(action:UIAlertAction){
         
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc: UIViewController = storyboard.instantiateViewControllerWithIdentifier("Login")
-        self.presentViewController(vc, animated: true, completion: nil)
+        let vc: UIViewController = storyboard.instantiateViewControllerWithIdentifier("LoginView")
+        dispatch_async(dispatch_get_main_queue(), {
+            self.presentViewController(vc, animated: true, completion: nil)
+        })
+        
     }
     
     func alertShow(title: String, message: String) {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    func alertSuccessShow(title: String, message: String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: performCustomSegue)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
     }
