@@ -84,13 +84,20 @@ class LoginViewController: UIViewController {
             
         } else {
             
-            //TO DO: - Show error
             self.signInErrorAlert("Empty Field", message: "Please enter your email and password to sign in.")
  
-           // Error.showError("test", "hello")
         }
   
     }
+    
+
+    /**
+     Shows an alert pop up
+     
+     - parameter title: title of the error
+     - parameter message: body of the message
+  
+     */
     func signInErrorAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)

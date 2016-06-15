@@ -34,10 +34,10 @@ extension UITextField{
 
 class UnderlinedLabel: UILabel {
     
-    @IBInspectable var leftLine: Bool = true { didSet{ drawLines() } }
-    @IBInspectable var rightLine: Bool = true { didSet{ drawLines() } }
+    @IBInspectable var leftLine: Bool = false { didSet{ drawLines() } }
+    @IBInspectable var rightLine: Bool = false { didSet{ drawLines() } }
     @IBInspectable var bottomLine: Bool = false { didSet{ drawLines() } }
-    @IBInspectable var topLine: Bool = true { didSet{ drawLines() } }
+    @IBInspectable var topLine: Bool = false { didSet{ drawLines() } }
     
     func drawLines(){
         var border = CALayer()

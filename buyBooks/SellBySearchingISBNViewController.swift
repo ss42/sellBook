@@ -210,11 +210,7 @@ class SellBySearchingISBNViewController: UIViewController {
                             self.displayMyAlertMessage("Not Found", message: "Please Try Again.")
                         })
                     }
-                    //task.suspend()
-                    //self.performSegueWithIdentifier("cameraToDetail", sender: nil)
-                    // there should be a segue here, that sends the dictionary.
-                    
-                    // maybe to some kind of conformation page
+                   
                 }catch {
                     print("Error with Json: \(error)")
                 }
@@ -255,7 +251,9 @@ class SellBySearchingISBNViewController: UIViewController {
     }
     
     
-    // MARK:- fetchImage (takes the url and converts to a UIImage)
+    /**
+     Converts a url to an UIImage
+     */
     func fetchImage(){
         
         var tempString = self.bookInfoDict["imageURL"]!

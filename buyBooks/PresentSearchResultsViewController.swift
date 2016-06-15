@@ -37,18 +37,7 @@ class PresentSearchResultsViewController: UIViewController {
         populateFields()
         
         bookDescription.textColor = UIColor.darkGrayColor()
-      /*
-        //sets the background as image
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
-        
-        //sets the background blur
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
-        view.addSubview(blurEffectView)
-        view.addSubview(popupView)*/
-
+      
     }
  
     
@@ -58,7 +47,12 @@ class PresentSearchResultsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-        func load_image()
+    
+    /**
+     Loads image from url asynchronously
+     */
+    
+    func load_image()
     {
         var tempString = self.bookInfoDict["imageURL"]!
         if (tempString.hasPrefix("http:")){
@@ -77,24 +71,21 @@ class PresentSearchResultsViewController: UIViewController {
         })
         
     }
+    
+    
     func populateFields(){
         
-        // bookInfoDict = ["isbn" : ISBN, "title" : "", "description" : "", "authors": "", "imageURL": "", "pageCount": ""]
        bookTitle.text = self.bookInfoDict["bookTitle"]!
         
-            self.bookDescription.text = self.bookInfoDict["description"]
+        self.bookDescription.text = self.bookInfoDict["description"]
         year.text = "Year: " + bookInfoDict["publishedDate"]!
         
         authors.text = "By: " + bookInfoDict["authors"]!
         ISBN.text = "ISBN: " + bookInfoDict["isbn"]!
         //retailPrice.text = "fix later"
-        //
+    
         pageCount.text = "Page Count: " + bookInfoDict["pageCount"]!
-        print("populated fields")
-        
-        print(bookTitle.text!)
-        print(ISBN.text!)
-        
+        //TODO do we need to do this?
         dispatch_async(dispatch_get_main_queue(), {
             self.load_image()
         })

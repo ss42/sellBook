@@ -15,9 +15,12 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
     var previewLayer: AVCaptureVideoPreviewLayer!
     var bookInfoDict = [String:String]()
     var bookImage:UIImage?
+    var bookAPI = "https://www.googleapis.com/books/v1/volumes?q=isbn:"
+
     
     @IBOutlet weak var backButtonView: UIView!
     
+    @IBOutlet weak var bracketView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,17 +62,10 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         
         // this is the back button, it sits on top of the camera stuff
         view.addSubview(backButtonView);
-        /*
-        var brackets = UIView.init(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
-        var border = CALayer()
-        let width = CGFloat(2.0)
-        border.borderColor = UIColor.darkGrayColor().CGColor
-        //UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0).CGColor
-        border.frame = CGRect(x: 0, y: brackets.frame.size.height - width, width: brackets.frame.size.width, height: width)
-        border.borderWidth = width
-        brackets.addSubview(border)
-        */
         
+        //TODO custom draw recct for this
+        view.addSubview(bracketView)
+
         
         captureSession.startRunning();
     }
@@ -153,7 +149,7 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
     
     func lookUpData(ISBN:String)
     {
-        let lookupURL = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN
+        let lookupURL = bookAPI + ISBN
         print(lookupURL)
         bookInfoDict = ["isbn" : ISBN, "bookTitle" : "", "description" : "", "authors": "", "imageURL": "", "pageCount": ""]
     
@@ -308,27 +304,14 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
             if (statusCode == 200) {
                 print("Everyone is fine, file downloaded successfully.")
                 
-                    
                     let picture = UIImage(data:data!)
                     self.bookImage = picture
 
-                
-                
             }
             
             
         }
         task.resume()
-    }
-
-    
-    
-    func topController() ->UIViewController{
-        var top = UIApplication.sharedApplication().keyWindow?.rootViewController
-        while ((top!.presentedViewController) != nil){
-            top = top!.presentedViewController
-        }
-        return top!
     }
 
 

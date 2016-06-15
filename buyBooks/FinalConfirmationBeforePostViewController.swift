@@ -22,7 +22,7 @@ class FinalConfirmationBeforePostViewController: UIViewController {
     
     @IBOutlet weak var ISBN: UILabel!
     
-    @IBOutlet weak var retailPrice: UILabel!
+    //TODO remove this @IBOutlet weak var retailPrice: UILabel!
     
     @IBOutlet weak var bookDescription: UITextView!
     
@@ -38,6 +38,8 @@ class FinalConfirmationBeforePostViewController: UIViewController {
     
     @IBAction func confirmPressed(sender: AnyObject) {
         getCurrentSellerInfo()
+        
+        //TODO Needs comment
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         //appDelegate.dataChangedForMyBooks = true // if this is set true a newly created book will be listed twice.
         appDelegate.dataChangedForHomeAndSearch = true
@@ -81,57 +83,32 @@ class FinalConfirmationBeforePostViewController: UIViewController {
     
     func populateFields(){
         
-        // bookInfoDict = ["isbn" : ISBN, "title" : "", "description" : "", "authors": "", "imageURL": "", "pageCount": ""]
         bookTitle.text = self.bookInfoDict["bookTitle"]
-        
         bookDescription.text = self.bookInfoDict["description"]
-        
-        
         authors.text = "By: " + bookInfoDict["authors"]!
         ISBN.text = bookInfoDict["isbn"]
-        //retailPrice.text = "fix later"
-        //
-        
         pageCount.text = "Page Count: " + bookInfoDict["pageCount"]!
-        
         bookCondition.text = "Book is in " + bookInfoDict["bookCondition"]! + " condition."
         ourPrice.text = "$ " +  bookInfoDict["price"]!
         bookImage.image = image
         yearPublished.text = bookInfoDict["publishedDate"]
-        
-        
-        print("populated fields")
-        
         print(bookTitle.text!)
         print(ISBN.text!)
         
-       
-        
-        print("populated????")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //TO DO remove this
         if image == nil{
             print("no image! we shouldnt see this!")
         }
+        
+        
         populateFields()
         
-        /*
-        //sets the background as image
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
-        
-        //sets the background blur
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
-        view.addSubview(blurEffectView)
-        view.addSubview(popupView)
-        //.addSubview(signUp)
-         */
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -184,14 +161,12 @@ class FinalConfirmationBeforePostViewController: UIViewController {
         print("here")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+  
+    
+    //TODO  try to fix the following error
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     2016-06-14 21:10:11.898 buyBooks[526:94062] <UIView: 0x128a15c30; frame = (0 0; 375 667); autoresize = W+H; layer = <CALayer: 0x128a15a50>>'s window is not equal to <buyBooks.DataHoldingTabBarViewController: 0x128a3e0d0>'s view's window!
+     2016-06-14 21:10:11.900 buyBooks[526:94062] Attempting to load the view of a view controller while it is deallocating is not allowed and may result in undefined behavior (<UISearchController: 0x128a61f40>)
+     */
 
 }

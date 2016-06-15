@@ -45,19 +45,30 @@ class ForgotPasswordViewController: UIViewController {
                 self.alertShow("Ops", message: "Email do not match.")
             } else {
                 
+                
+                //TODO can't do this..
                 self.alertSuccessShow("Sucess", message: "Temporary Password sent to your email")
-                //self.performCustomSegue()
 
             }
         }
  
         
     }
+   
+    
+    
+    /**
+     segue through storyboard ID
+     
+     - parameter action: Happens inside alert controller
+     */
     
     func performCustomSegue(action:UIAlertAction){
         
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc: UIViewController = storyboard.instantiateViewControllerWithIdentifier("LoginView")
+        
+        //TODO check this again.
         dispatch_async(dispatch_get_main_queue(), {
             self.presentViewController(vc, animated: true, completion: nil)
         })

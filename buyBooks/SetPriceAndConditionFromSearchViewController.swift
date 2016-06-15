@@ -26,11 +26,12 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
     var bookInfoDict = [String:String]()
     var image:UIImage?
     
-    //bookInfoDict = ["isbn" : ISBN, "bookTitle" : "", "description" : "", "authors": "", "imageURL": "", "pageCount": ""]
+
     @IBAction func continuePressed(sender: AnyObject) {
+        
+        
         let checkPrice = price.text
-        
-        
+        //checking if the textfield is empty and also checking for non-numeric
         if price.text != "" && Double(checkPrice!) != nil{
             self.bookInfoDict["bookCondition"] = bookCondition.text
             self.bookInfoDict["price"] = price.text
@@ -42,19 +43,7 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
-        
-        if segue.identifier == "finalConfirmation"{
-            let vc = segue.destinationViewController as! FinalConfirmationBeforePostViewController
-            
-            vc.bookInfoDict = self.bookInfoDict
-            vc.image = self.bookImage.image
-            //vc.bookImage.image = self.bookImage!
-            //self.presentViewController(vc, animated: true, completion: nil)
-            print("going to detail view")
-        }
-    }
-    
+
     
     @IBAction func bookCondition(sender: UISlider) {
         if bookConditionSlider.value < 25{
@@ -88,6 +77,10 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
         bookAuthors.text = ("By, " + self.bookInfoDict["authors"]!)
         
     }
+    
+    /**
+     Loads image from url asynchronously
+     */
     func load_image()
     {
         var tempString = self.bookInfoDict["imageURL"]!
@@ -110,6 +103,8 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         if image == nil{
             load_image()
         }
@@ -123,21 +118,11 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
       
         populateData()
         
-        // Do any additional setup after loading the view.
     }
     
     func dismissKeyboard(){
         view.endEditing(true)
     }
-    
-    /*func doneButton(sender: UIButton){
-        print("pressed done button")
-        self.resignFirstResponder()
-        self.price.
-        
-    
-    }
-*/
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -150,5 +135,15 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
     }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        
+        if segue.identifier == "finalConfirmation"{
+            let vc = segue.destinationViewController as! FinalConfirmationBeforePostViewController
+            
+            vc.bookInfoDict = self.bookInfoDict
+            vc.image = self.bookImage.image
+        }
+    }
+    
 
 }
