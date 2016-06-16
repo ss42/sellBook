@@ -25,7 +25,6 @@
 		107D794E1D022CE200661B91 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 107D794B1D022CE200661B91 /* FBSDKCoreKit.framework */; };
 		107D794F1D022CE200661B91 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 107D794C1D022CE200661B91 /* FBSDKLoginKit.framework */; };
 		107D79501D022CE200661B91 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 107D794D1D022CE200661B91 /* FBSDKShareKit.framework */; };
-		107D79521D02316B00661B91 /* FaceBookLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107D79511D02316B00661B91 /* FaceBookLoginViewController.swift */; };
 		10AEB4D61CFF96850037E744 /* UIImageView+Letters.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AEB4D51CFF96850037E744 /* UIImageView+Letters.m */; };
 		10C6E6FA1CF65BC3007BFF69 /* MyBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E6F91CF65BC3007BFF69 /* MyBooksViewController.swift */; };
 		10C6E6FC1CF65C55007BFF69 /* MyBooksViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E6FB1CF65C55007BFF69 /* MyBooksViewCell.swift */; };
@@ -75,6 +74,7 @@
 		1039F4FB1CFEA14E0012C2C6 /* ViewDetailOfBooksOnSaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewDetailOfBooksOnSaleViewController.swift; sourceTree = "<group>"; };
 		1039F4FD1CFEABB00012C2C6 /* CustomViewIBDesignable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewIBDesignable.swift; sourceTree = "<group>"; };
 		105330B61CFF9BB0000EC461 /* buyBooks-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "buyBooks-Bridging-Header.h"; sourceTree = "<group>"; };
+		1054916F1D11FDAB0015FA54 /* buyBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = buyBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1063A9C51CF3A67500BFB4E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1063A9C71CF3A67500BFB4E0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1063A9CA1CF3A67500BFB4E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -86,7 +86,6 @@
 		107D794B1D022CE200661B91 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		107D794C1D022CE200661B91 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		107D794D1D022CE200661B91 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
-		107D79511D02316B00661B91 /* FaceBookLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceBookLoginViewController.swift; sourceTree = "<group>"; };
 		10AEB4D41CFF96850037E744 /* UIImageView+Letters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Letters.h"; sourceTree = "<group>"; };
 		10AEB4D51CFF96850037E744 /* UIImageView+Letters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Letters.m"; sourceTree = "<group>"; };
 		10B91E111CF3CDBD005D19B3 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
@@ -109,7 +108,6 @@
 		10DA6EE51CFD5C1600D64DB2 /* CreateNewAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewAccountViewController.swift; sourceTree = "<group>"; };
 		10DA6EE71CFD5C3C00D64DB2 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		10DA6EE91CFD5DFD00D64DB2 /* SellBySearchingISBNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellBySearchingISBNViewController.swift; sourceTree = "<group>"; };
-		10E2FD3F1CF3D21900B6EAE0 /* buyBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = buyBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10E2FD401CF3DA7300B6EAE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		10E2FD441CF3DCA700B6EAE0 /* SellBooksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellBooksViewController.swift; sourceTree = "<group>"; };
 		10E68C5C1D0DD366007FFD83 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -209,7 +207,7 @@
 				1063A9C41CF3A67500BFB4E0 /* buyBooks */,
 				ED97D7F9542E3B60A031376C /* Pods */,
 				096C3B1E53E3F3FDA579203F /* Frameworks */,
-				10E2FD3F1CF3D21900B6EAE0 /* buyBooks.app */,
+				1054916F1D11FDAB0015FA54 /* buyBooks.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -219,7 +217,6 @@
 				102C91221D0778E300D5B9F1 /* Settings */,
 				1063A9C51CF3A67500BFB4E0 /* AppDelegate.swift */,
 				1063A9C91CF3A67500BFB4E0 /* Main.storyboard */,
-				107D79511D02316B00661B91 /* FaceBookLoginViewController.swift */,
 				10F8E0221D00EF9A00C944CD /* finishedStuff */,
 				1039F4F61CFEA02E0012C2C6 /* Sell Books */,
 				10E2FD431CF3DAA900B6EAE0 /* Supporting Files */,
@@ -370,7 +367,7 @@
 			);
 			name = buyBooks;
 			productName = buyBooks;
-			productReference = 10E2FD3F1CF3D21900B6EAE0 /* buyBooks.app */;
+			productReference = 1054916F1D11FDAB0015FA54 /* buyBooks.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -513,7 +510,6 @@
 				10C6E7031CF79FEF007BFF69 /* BarcodeScannerViewController.swift in Sources */,
 				10C6E6FA1CF65BC3007BFF69 /* MyBooksViewController.swift in Sources */,
 				1063A9C61CF3A67500BFB4E0 /* AppDelegate.swift in Sources */,
-				107D79521D02316B00661B91 /* FaceBookLoginViewController.swift in Sources */,
 				10C6E6FE1CF670A2007BFF69 /* EditBooksViewController.swift in Sources */,
 				10F8E01F1D00D01800C944CD /* SearchTableViewController.swift in Sources */,
 				10F8E0211D00DD7900C944CD /* DataHoldingTabBarViewController.swift in Sources */,
@@ -648,6 +644,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				STRIPFLAGS = "-ObjC flag";
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "buyBooks/buyBooks-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -672,6 +669,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				STRIPFLAGS = "-ObjC flag";
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "buyBooks/buyBooks-Bridging-Header.h";
 			};
 			name = Release;

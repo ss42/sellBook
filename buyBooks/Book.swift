@@ -39,7 +39,6 @@ class Book{
     var pictures: String?
     var condition: String?
     var postedTime: String?
-    //var detail: String?
     var postId: String?
     var webDescription: String?
     var webPrice: String?
@@ -48,12 +47,10 @@ class Book{
     var webPageCount: String?
     var webISBN: String?
     var publishedYear: String?
-    //var bookSold:Bool?
     var bookStatus:String?
     // added to calculate how long ago the mail was sent
     var timeOfMail:String?
-    // TODO: create superimposed images (banner in the table view, in the corner of each cell)
-    //var superimposedImage:String?
+
     
     
     
@@ -67,7 +64,6 @@ class Book{
         self.pictures = pictures
         self.condition = condition
         self.postedTime = postedTime
-        //self.detail = detail
         self.postId = postId
         self.webPageCount = pageCount
         self.webDescription = description
@@ -78,74 +74,7 @@ class Book{
         self.bookStatus = status
         self.timeOfMail = " "
     }
-    
-    
-    
-    
-       //bookInfoDict = ["isbn" : ISBN, "title" : "", "description" : "", "authors": "", "imageURL": "", "pageCount": ""]
 
-    /*init(user: User, info: Dictionary<String, String>)
-    {
-        self.sellerInfo = user
-        self.webISBN = info["isbn"]
-        self.webTitle = info["title"]
-        self.webDescription = info["description"]
-        self.webAuthors = info["authors"]
-        self.webBookThumbnail = info["imageURL"]
-        self.webPageCount = info["pageCount"]
-        self.webPrice = "IMPLIMENT LATER"
-        self.postId = 
-    }
- 
- init(user: User, title: String, price: Double, pictures: String, condition: String, postedTime: String, postId:String)
- {
- self.sellerInfo = user
- self.title = title
- self.price = price
- self.pictures = pictures
- self.condition = condition
- self.postedTime = postedTime
- // self.detail = detail
- self.postId = postId
- //self.webPageCount =
- }
- init(user: User, title: String, price: Double, pictures: String, condition: String, postedTime: String, postId:String, isbn:String, authors: String, imageURL: String, pageCount:String, description:String, yearPublished:String)
- {
- self.sellerInfo = user
- self.title = title
- self.price = price
- self.pictures = pictures
- self.condition = condition
- self.postedTime = postedTime
- //self.detail = detail
- self.postId = postId
- self.webPageCount = pageCount
- self.webDescription = description
- self.webBookThumbnail = imageURL
- self.webAuthors = authors
- self.webISBN = isbn
- self.publishedYear = yearPublished
- 
- }
- /*init(user: User, title: String, price: Double, pictures: String, condition: String, postedTime: String, postId:String, isbn:String, authors: String, imageURL: String, pageCount:String, description:String, yearPublished:String, sold:Bool)
- {
- self.sellerInfo = user
- self.title = title
- self.price = price
- self.pictures = pictures
- self.condition = condition
- self.postedTime = postedTime
- //self.detail = detail
- self.postId = postId
- self.webPageCount = pageCount
- self.webDescription = description
- self.webBookThumbnail = imageURL
- self.webAuthors = authors
- self.webISBN = isbn
- self.publishedYear = yearPublished
- self.bookSold = sold
- }**/
- */
 }
 
 

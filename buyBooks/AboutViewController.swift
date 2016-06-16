@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class AboutViewController: UIViewController {
+class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate{
 
     
     @IBOutlet weak var stackView: UIStackView!
@@ -28,5 +29,73 @@ class AboutViewController: UIViewController {
     }
     
 
+    @IBAction func contactUs(sender: AnyObject) {
+        
+        
+        let ourEmail = "smc.bookrack@gmail.com"
+        if MFMailComposeViewController.canSendMail(){
+            let subjectText = ""
+            let bodyText = ""
+            
+            let toRecipients = [ourEmail]
+            
+            let mc: MFMailComposeViewController = MFMailComposeViewController()
+            mc.mailComposeDelegate = self
+            mc.setSubject(subjectText)
+            mc.setMessageBody(bodyText, isHTML: false)
+            mc.setToRecipients(toRecipients)
+            print("Sending mail")
+            
+            self.presentViewController(mc, animated: true, completion: nil)
+        }
+        else{
+            print("No email service")
+        }
+
+    }
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        
+        switch result.rawValue{
+        case MFMailComposeResultCancelled.rawValue:
+            print("cancelled mail")
+            alert("Ooops", msg: "Mail Cancelled")
+        case MFMailComposeResultSent.rawValue:
+            
+            //alert("Yes!", msg: "Mail Sent!")
+            print("mail was sent")
+            
+        case MFMailComposeResultSaved.rawValue:
+            
+            alert("Yes!", msg: "Mail Saved!")
+        case MFMailComposeResultFailed.rawValue:
+            
+            alert("Ooops", msg: "Mail Failed!")
+            
+        default:
+            print("default case")
+            break
+            
+        }
+        
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        //
+    }
+    /**
+     alert to be displayed as a popup
+     
+     - parameter title: title of alert box
+     - parameter msg: Message string to be displayed
+     
+     */
+    func alert(title: String, msg: String){
+        
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: title, style: .Default, handler: nil))
+        
+        presentViewController(alertController, animated: true, completion: nil)
+        
+    }
 
 }

@@ -380,13 +380,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
             
             
             // add more options
-            let shareAlertController = UIAlertController(title: "share something (Temp)", message: "stuff (change)", preferredStyle: .ActionSheet)
-            let faceBookShareAction = UIAlertAction(title: "facebook", style: UIAlertActionStyle.Default){(action) -> Void in
+            let shareAlertController = UIAlertController(title: "Share with your friends.", message: "", preferredStyle: .ActionSheet)
+            let faceBookShareAction = UIAlertAction(title: "Facebook", style: UIAlertActionStyle.Default){(action) -> Void in
             
                 self.setFacebookMessage(book)
                 self.currIndex = indexPath
                 self.facebookShare()
-        }
+            }
         
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default){(action)-> Void in
                 
@@ -417,6 +417,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
         
     
         }
+        shareAction.backgroundColor = UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0)
         return [shareAction]
         
         

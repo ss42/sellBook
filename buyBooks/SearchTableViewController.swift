@@ -8,10 +8,12 @@
 
 import UIKit
 import Firebase
+import Social
+import MessageUI
 
 
 // very similar to home view controller, it loads all of its data from the superview (dataholdingtabbarviewcontroller. Maybe this is a really bad way of doing this.)
-class SearchTableViewController: UITableViewController, UISearchResultsUpdating {
+class SearchTableViewController: UITableViewController, UISearchResultsUpdating, MFMessageComposeViewControllerDelegate {
 
     var cache:ImageLoadingWithCache?
     var ref = FIRDatabase.database().reference()
@@ -20,6 +22,12 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
     var sellBookArray: NSMutableArray = []
     var filteredSellBookArray = [Book]()
     
+    
+    // string that holds the facebook message
+    var facebookMessageString:String?
+    
+    // currently selected index in the tableview
+    var currIndex:NSIndexPath?
    /* func viewWillDisappear(animated: Bool) {
         //dispatch_async(dispatch_get_main_queue(), {
             self.resultsSearchController.active = false
@@ -322,6 +330,108 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         }
         
     }
+    
+    
+    func facebookShare()
+    {
+        if (FBSDKAccessToken.currentAccessToken() != nil)
+        {
+            // User is already logged in, do work such as go to next view controller.
+            print("logged in?")
+            if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){ // this works, but it checks the app (to see if you are logged in) first.
+                let facebookComposer = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+                facebookComposer.setInitialText(self.facebookMessageString!)
+                let cell:PostTableViewCell = tableView.cellForRowAtIndexPath(currIndex!) as! PostTableViewCell
+                let image = cell.mainImage.image
+                
+                facebookComposer.addImage(image)
+                
+                
+                
+                
+                self.presentViewController(facebookComposer, animated: true, completion: nil)
+            }
+        }
+        else
+        {
+            print("else")
+            let loginView : FBSDKLoginButton = FBSDKLoginButton()
+            
+            loginView.readPermissions = ["public_profile", "email", "user_friends"]
+            loginView.sendActionsForControlEvents(.TouchUpInside)
+        }
+    }
+    
+    // TODO: function that formulates messages based on which book you selected
+    func setFacebookMessage(book:Book)
+    {
+        print("making facebook message")
+        self.facebookMessageString = book.title! + ", by " + book.webAuthors! + " is currently listed for $" + String(book.price)
+    }
+    
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        
+        let book = self.sellBookArray[indexPath.row] as! Book
+        // TODO: these are never called i dont think, because of how the slide action behaves. I'm not sure how we are going to get it to know which row the button was slid out at
+        
+        
+        let shareAction = UITableViewRowAction(style: .Normal, title: "Share"){(action: UITableViewRowAction!, indexPath: NSIndexPath) -> Void in
+            
+            
+            
+            // add more options
+            let shareAlertController = UIAlertController(title: "Share with your friends.", message: "", preferredStyle: .ActionSheet)
+            let faceBookShareAction = UIAlertAction(title: "Facebook", style: UIAlertActionStyle.Default){(action) -> Void in
+                
+                self.setFacebookMessage(book)
+                self.currIndex = indexPath
+                self.facebookShare()
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default){(action)-> Void in
+                
+            }
+            
+            let textAction = UIAlertAction(title: "Text", style: UIAlertActionStyle.Default){(action)-> Void in
+                //do stuff
+                
+                let msgVC = MFMessageComposeViewController()
+                msgVC.body = "Hello World"// create a message similiar to view detail view controllers message or facebook's message
+                msgVC.recipients = [" "]
+                msgVC.messageComposeDelegate = self
+                self.presentViewController(msgVC, animated: true, completion: nil)
+            }
+            
+            
+            
+            
+            shareAlertController.addAction(faceBookShareAction)
+            
+            shareAlertController.addAction(textAction)
+            shareAlertController.addAction(cancelAction)
+            
+            
+            self.presentViewController(shareAlertController, animated: true, completion: nil)
+            
+            
+            
+            
+        }
+        shareAction.backgroundColor = UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0)
+        return [shareAction]
+        
+        
+        
+    }
+    
+    func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        tableView.reloadData()
+    }
+    
+    
     
 
 

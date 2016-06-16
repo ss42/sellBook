@@ -111,7 +111,8 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
     
     @IBAction func sendMail(sender:UIButton){
         
-        
+        let ourEmail = "smc.bookrack@gmail.com"
+
         let sellerEmail = getSellerEmail()
         if MFMailComposeViewController.canSendMail(){
             let subjectText = generateSubjectForEmail()
@@ -121,8 +122,7 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
             
             let mc: MFMailComposeViewController = MFMailComposeViewController()
             mc.mailComposeDelegate = self
-            // TODO: set this to be our email
-            //mc.setCcRecipients(<#T##ccRecipients: [String]?##[String]?#>)
+            mc.setCcRecipients([ourEmail])
             mc.setSubject(subjectText)
             mc.setMessageBody(bodyText, isHTML: false)
             mc.setToRecipients(toRecipients)
