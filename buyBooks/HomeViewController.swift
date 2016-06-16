@@ -31,7 +31,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     var cache:ImageLoadingWithCache?//
     
     // activity indicator, stopped when images load
-    var activityView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+    var activityView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -45,6 +45,9 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     // currently selected index in the tableview
     var currIndex:NSIndexPath?
+    
+    // check for first load
+    var firstLoad:Bool = false
 
     // we load the data into the superview here, this will be used in the serach vc
     override func viewWillDisappear(animated: Bool) {
@@ -63,7 +66,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         cache = tbvc.cache
         
         // get the data from firebase
-        //fetchPost()
+        fetchPost()
            //     tableView.separatorStyle = .None
 
         // prepare the table view
@@ -88,6 +91,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         self.view.addSubview(activityView)
         
         tbvc.sellBookArray = self.sellBookArray
+        
         
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -116,7 +120,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        if appDelegate.dataChangedForHomeAndSearch == true || sellBookArray.count == 0{
+        if ((appDelegate.dataChangedForHomeAndSearch == true)){ //|| sellBookArray.count == 0)){
             //appDelegate.mainDic=response.mutableCopy() as? NSMutableDictionary
             sellBookArray = []
             fetchPost()

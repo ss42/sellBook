@@ -334,11 +334,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     
     func facebookShare()
     {
-        if (FBSDKAccessToken.currentAccessToken() != nil)
-        {
-            // User is already logged in, do work such as go to next view controller.
-            print("logged in?")
-            if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){ // this works, but it checks the app (to see if you are logged in) first.
+       
                 let facebookComposer = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
                 facebookComposer.setInitialText(self.facebookMessageString!)
                 let cell:PostTableViewCell = tableView.cellForRowAtIndexPath(currIndex!) as! PostTableViewCell
@@ -350,17 +346,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
                 
                 
                 self.presentViewController(facebookComposer, animated: true, completion: nil)
-            }
         }
-        else
-        {
-            print("else")
-            let loginView : FBSDKLoginButton = FBSDKLoginButton()
-            
-            loginView.readPermissions = ["public_profile", "email", "user_friends"]
-            loginView.sendActionsForControlEvents(.TouchUpInside)
-        }
-    }
     
     // TODO: function that formulates messages based on which book you selected
     func setFacebookMessage(book:Book)
