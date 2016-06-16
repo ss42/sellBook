@@ -4,6 +4,11 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Italic.ttf">
+            <string>OpenSans-Italic</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -18,15 +23,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BOOK-RACK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7f3-Lp-x2Z">
-                                <rect key="frame" x="197.5" y="276" width="205" height="48"/>
+                                <rect key="frame" x="197" y="276" width="205" height="48"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="35"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Made for Saint Mary's College of California" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VZy-sx-GZg">
+                                <rect key="frame" x="20" y="344" width="560" height="25"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Italic" family="Open Sans" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="VZy-sx-GZg" firstAttribute="top" secondItem="7f3-Lp-x2Z" secondAttribute="bottom" constant="20" id="1U3-L2-a8h"/>
                             <constraint firstItem="7f3-Lp-x2Z" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="GQb-8N-vSX"/>
+                            <constraint firstAttribute="trailing" secondItem="VZy-sx-GZg" secondAttribute="trailing" constant="20" id="SH4-6Z-iWT"/>
+                            <constraint firstItem="VZy-sx-GZg" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" id="c4a-OH-tab"/>
                             <constraint firstItem="7f3-Lp-x2Z" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="mhl-AS-TwV"/>
                         </constraints>
                     </view>

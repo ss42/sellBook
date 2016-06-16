@@ -93,26 +93,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    
-    /*func load_image(url:String)
-    {
-        var tempString = url
-        if (tempString.hasPrefix("http:")){
-            tempString.insert("s", atIndex: tempString.startIndex.advancedBy(4))
-            print(tempString)
-        }
-        let urlString = tempString
-        let imgURL: NSURL = NSURL(string: urlString)!
-        let request: NSURLRequest = NSURLRequest(URL: imgURL)
-        NSURLConnection.sendAsynchronousRequest(
-            request, queue: NSOperationQueue.mainQueue(),
-            completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
-                if error == nil {
-                    self.bookImage.image = UIImage(data: data!)
-                }
-        })
-        
-    }*/
+  
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -396,7 +377,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
                 //do stuff
                 
                 let msgVC = MFMessageComposeViewController()
-                msgVC.body = "Hello World"// create a message similiar to view detail view controllers message or facebook's message
+                msgVC.body = "Hey, \n" + "I have this book for sale please check this app."// create a message similiar to view detail view controllers message or facebook's message
                 msgVC.recipients = [" "]
                 msgVC.messageComposeDelegate = self
                 self.presentViewController(msgVC, animated: true, completion: nil)
