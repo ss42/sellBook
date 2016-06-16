@@ -313,11 +313,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
     //TODO: Fix facebook message and picture
     func facebookShare()
     {
-        if (FBSDKAccessToken.currentAccessToken() != nil)
-        {
+        //if (FBSDKAccessToken.currentAccessToken() != nil)
+        //{
             // User is already logged in, do work such as go to next view controller.
-            print("logged in?")
-            if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){ // this works, but it checks the app (to see if you are logged in) first.
+           // print("logged in?")
+            //if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){ // this works, but it checks the app (to see if you are logged in) first.
                 let facebookComposer = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
                 facebookComposer.setInitialText(self.facebookMessageString!)
                 let cell:PostTableViewCell = tableView.cellForRowAtIndexPath(currIndex!) as! PostTableViewCell
@@ -329,7 +329,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
 
                 
                 self.presentViewController(facebookComposer, animated: true, completion: nil)
-            }
+            /*}
         }
         else
         {
@@ -338,7 +338,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
             
             loginView.readPermissions = ["public_profile", "email", "user_friends"]
             loginView.sendActionsForControlEvents(.TouchUpInside)
-        }
+        }*/
     }
     
     // TODO: function that formulates messages based on which book you selected
