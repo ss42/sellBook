@@ -56,6 +56,8 @@ class EditProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // TODO: return on the failed cases and send a popup at the end that says "password changed"
+    
     @IBAction func changePassword(sender: AnyObject) {
        // if let user = FIRAuth.auth()?.currentUser{
          //   FIRUser.updatePassword(user)}

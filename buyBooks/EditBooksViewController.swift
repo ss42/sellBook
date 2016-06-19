@@ -238,7 +238,6 @@ class EditBooksViewController: UIViewController {
  */
     }
     
-    // TODO: this should set something that causes the home vc to reload data.
     @IBAction func donePressed(sender: AnyObject) {
         //self.getCurrentSellerInfo()
         self.setDictValues()
@@ -336,10 +335,9 @@ class EditBooksViewController: UIViewController {
     }
     
     
-    
+    // TODO: why did we remove dispatch_async?
     @IBAction func relistBook(sender: AnyObject) {
         print("pressed relist button, popup should show")
-        // TODO move into an alert menu thing
         //dispatch_async(dispatch_get_main_queue(), {
             
             self.displayRelistBookMessage("Would you like to relist this book?", message: "If your book has been listed for more than three months it will be hidden, please relist your book (perhaps at a more attractive price) if you want it to be displayed again.")

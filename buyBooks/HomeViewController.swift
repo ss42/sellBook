@@ -350,6 +350,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
     {
         print("making facebook message")
         self.facebookMessageString = book.title! + ", by " + book.webAuthors! + " is currently listed for $" + String(book.price)
+        print(self.facebookMessageString)
+        
     }
         
     
@@ -514,6 +516,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
             cell.bannerImage.hidden = false
             cell.postedTime.hidden = true
         }
+            // TODO: else if its a new book we can maybe have a new book banner, maybe if it is your book and it is new we can have a special animated banner
         else{
             cell.postedTime.hidden = false
             cell.postedTime.text = self.timeElapsed(book!.postedTime!)
