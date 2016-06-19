@@ -28,6 +28,8 @@ class CreateNewAccountViewController: UIViewController {
         passwordField.delegate = self
         passwordField2.delegate = self
         firstName.delegate = self
+        
+        
 
         //a tap dissmisses the keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
@@ -55,8 +57,9 @@ class CreateNewAccountViewController: UIViewController {
         let password = passwordField.text
         let password2 = passwordField2.text
         let userName = firstName.text
+        let isValid: Bool = (email?.hasSuffix("@stmarys-ca.edu"))!
         
-        if (email != "" && password != "" && password2 != "" && userName != "") && (password == password2){
+        if (email != "" && password != "" && password2 != "" && userName != "") && (password == password2) && isValid{
             
             // Set Email and Password for the New User.
             
@@ -88,12 +91,19 @@ class CreateNewAccountViewController: UIViewController {
                     
                     
                     
-                    
+                    // TODO: since we insist on email verification we should have a popup that tells them to verify their email if it is unverified, also this should happen on the other pages when they are in a signed up, but unverified state.
+                    // probably nsuserdefaults
                     self.performSegueWithIdentifier("NewUserLoggedIn", sender: nil)
                 }
             })
             
-        } else {
+        }
+        else if (isValid == false)
+        {
+           signupErrorAlert("Oops!", message: "Please enter a valid @stmarys-ca.edu email!")
+        }
+        else
+        {
             signupErrorAlert("Oops!", message: "Don't forget to enter your email, password, and your first name!")
         }
         
