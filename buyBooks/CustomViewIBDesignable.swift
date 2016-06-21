@@ -40,7 +40,7 @@ class UnderlinedLabel: UILabel {
     @IBInspectable var topLine: Bool = false { didSet{ drawLines() } }
     
     func drawLines(){
-        var border = CALayer()
+        let border = CALayer()
         let width = CGFloat(2.0)
         border.borderColor = UIColor.darkGrayColor().CGColor
         //UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0).CGColor
@@ -199,7 +199,7 @@ class Underlined: UITextField {
     @IBInspectable var topLine: Bool = true { didSet{ drawLines() } }
     
     func drawLines(){
-        var border = CALayer()
+        let border = CALayer()
         let width = CGFloat(2.0)
         border.borderColor = UIColor.darkGrayColor().CGColor
             //UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0).CGColor
@@ -218,7 +218,7 @@ class UnderlinedButton: UIButton {
     @IBInspectable var topLine: Bool = true { didSet{ drawLines() } }
     
     func drawLines(){
-        var border = CALayer()
+        let border = CALayer()
         let width = CGFloat(2.0)
         border.borderColor = UIColor.darkGrayColor().CGColor
         border.frame = CGRect(x: 0, y: frame.size.height - width, width: frame.size.width, height: width)
@@ -236,7 +236,7 @@ class UnderlinedStackView: UIStackView {
     @IBInspectable var topLine: Bool = true { didSet{ drawLines() } }
     
     func drawLines(){
-        var border = CALayer()
+        let border = CALayer()
         let width = CGFloat(2.0)
         border.borderColor = UIColor.darkGrayColor().CGColor
         border.frame = CGRect(x: 0, y: frame.size.height - width, width: frame.size.width, height: width)

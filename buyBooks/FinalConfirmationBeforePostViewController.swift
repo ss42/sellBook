@@ -37,6 +37,9 @@ class FinalConfirmationBeforePostViewController: UIViewController {
     @IBOutlet weak var yearPublished: UILabel!
     
     @IBAction func confirmPressed(sender: AnyObject) {
+        
+        
+        
         getCurrentSellerInfo()
         
         //TODO Needs comment

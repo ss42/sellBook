@@ -62,29 +62,7 @@ class SellBooksViewController: UIViewController {
         
     }
     
-    /*func getCurrentSellerInfo(){
-        if let user = FIRAuth.auth()?.currentUser {
-            //change this later to full name
-            print(user.email)
-            print(user.photoURL)
-            let name = user.email
-            let email = user.email
-            let uid = user.uid
-            let profileImage = "male"
-            //let uid = user.uid
-            
-            let postId = ref.child("SellBooksPost").childByAutoId()
-            
-            currentUserDictionary = ["fullName": name!, "email": email!, "profilePhoto": profileImage, "bookTitle": bookTitle.text!, "bookDetail": detail.text!, "bookCondition": bookCondition.text!, "price": price.text!, "imageURL": "male", "postedTime": getCurrentTime(), "uid":uid, "SellBooksPostId": postId.key]
-            // moved from donePressed
-            //currentUserDictionary = []
-            postId.setValue(currentUserDictionary)
-        } else {
-            // No user is signed in.
-            
-        }
-
-    }*/
+   
     
     func getCurrentTime()-> String{
         let todaysDate:NSDate = NSDate()
@@ -96,9 +74,7 @@ class SellBooksViewController: UIViewController {
 
     
     func setDict(){
-        //self.bookInfoDict["bookCondition"] = self.bookCondition.text!
         self.bookInfoDict["bookTitle"] = self.bookTitle.text!
-        //self.bookInfoDict["price"] = self.price.text!
         self.bookInfoDict["description"] = self.detail.text!
         // we can get these from search results later 5/31
         self.bookInfoDict["isbn"] = "N/A"
@@ -121,23 +97,45 @@ class SellBooksViewController: UIViewController {
     // TODO: add slide gesture that calls this button
     @IBAction func donePressed(sender: AnyObject) {
         //self.getCurrentSellerInfo()
-        if (self.authors.text!.characters.count < 2)
+        if (self.authors.text!.characters.count < 1)
         {
-            // show error or something
+            self.displayMyAlertMessage("Authors missing", message: "Field Required *")
+            authors.attributedPlaceholder = NSAttributedString(string:"Enter the authors",
+                                                               attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
         }
         if (self.yearPublished.text!.characters.count < 4)
         {
-            // show error( give option to enter a default year, if publication year is unknown (maybe))
+            self.displayMyAlertMessage("Year Published Missing", message: "Field Required *")
+            yearPublished.attributedPlaceholder = NSAttributedString(string: "Enter the year book was published" ,attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
-        if (self.authors.text!.characters.count >= 2 && self.yearPublished.text!.characters.count >= 4)
+        if self.bookTitle.text == "" {
+            self.displayMyAlertMessage("Book Title missing", message: "Field Required *")
+            bookTitle.attributedPlaceholder = NSAttributedString(string: "Enter the Title of the Book" ,attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        
+        if (self.authors.text!.characters.count >= 2 && self.yearPublished.text!.characters.count >= 4 && self.bookTitle != "")
         {
-            // now we can do self.setDict and perform segue
+            self.setDict()
+            self.performSegueWithIdentifier("toSetPrice", sender: nil)
         }
-        self.setDict()
-        self.performSegueWithIdentifier("toSetPrice", sender: nil)
-
         
+        
+    }
+    
+    //to display alert for errors
+    func displayMyAlertMessage(title: String, message: String) {
+        let myAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: sayOk)
+        myAlert.addAction(okAction)
+        print("here1")
+        self.presentViewController(myAlert, animated: true, completion: nil);
+            }
+    
+    func sayOk(alert: UIAlertAction!)
+    {
+        print("ok, okay, o k")
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
