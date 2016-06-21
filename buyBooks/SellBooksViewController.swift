@@ -20,12 +20,17 @@ class SellBooksViewController: UIViewController {
     @IBOutlet weak var authors: UITextField!
     @IBOutlet weak var yearPublished: UITextField!
 
+    var firstEdit: Bool = true
     
     var currentUserDictionary: NSDictionary?
     var bookInfoDict = [String:String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        detail.delegate = self
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
 
         bookTitle.attributedPlaceholder = NSAttributedString(string: "Enter the Title of the Book" ,attributes: [NSForegroundColorAttributeName: UIColor.darkGrayColor()])
         authors.attributedPlaceholder = NSAttributedString(string:"Enter the authors",
@@ -38,6 +43,9 @@ class SellBooksViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func dismissKeyboard(){
+        view.endEditing(true)
+    }
     
     override func viewDidAppear(animated: Bool)
     {
@@ -161,6 +169,12 @@ extension SellBooksViewController: UITextFieldDelegate{
         
     }
     
+    
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+       
+    }
+    
     func textFieldShouldClear(textField: UITextField) -> Bool {
         return true
     }
@@ -173,5 +187,18 @@ extension SellBooksViewController: UITextFieldDelegate{
     }
     
     
+    
+}
+extension SellBooksViewController: UITextViewDelegate{
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        print("first edit")
+        if firstEdit == true
+        {
+            textView.text = ""
+            firstEdit = false
+            print("first edit ??")
+        }
+    }
     
 }

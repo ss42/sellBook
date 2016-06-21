@@ -82,7 +82,7 @@ class FinalConfirmationBeforePostViewController: UIViewController {
         
         bookTitle.text = self.bookInfoDict["bookTitle"]
         bookDescription.text = self.bookInfoDict["description"]
-        authors.text = "By: " + bookInfoDict["authors"]!
+        authors.text = "  By: " + bookInfoDict["authors"]!
         ISBN.text = bookInfoDict["isbn"]
         pageCount.text = "Page Count: " + bookInfoDict["pageCount"]!
         bookCondition.text = bookInfoDict["bookCondition"]

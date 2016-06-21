@@ -80,7 +80,7 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
     func populateData(){
         bookImage.image = image
         bookTitle.text = self.bookInfoDict["bookTitle"]
-        bookAuthors.text = ("By, " + self.bookInfoDict["authors"]!)
+        bookAuthors.text = ("  By, " + self.bookInfoDict["authors"]!)
         
     }
     
