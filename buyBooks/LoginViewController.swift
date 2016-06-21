@@ -74,10 +74,22 @@ class LoginViewController: UIViewController {
                     
                     // Be sure the correct uid is stored.
                     print("successfully signing in")
-                    NSUserDefaults.standardUserDefaults().setValue(true, forKey: "isUserLoggedIn")
-                    self.performSegueWithIdentifier("loginToHomeSegue", sender: nil)
+                    if (user?.emailVerified == true)
+                    {
+                        NSUserDefaults.standardUserDefaults().setValue(true, forKey: "isUserLoggedIn")
+                        self.performSegueWithIdentifier("loginToHomeSegue", sender: nil)
+
+                    }
+                    else
+                    {
+                        self.signInErrorAlert("Email verification required!", message: "Please check your @stmarys-ca.edu")
+                    }
+                    // TODO i dont know what the req thing is, why is it here?
+                    
+                    /*self.performSegueWithIdentifier("loginToHomeSegue", sender: nil)
                     let req = user?.profileChangeRequest()
                     req?.photoURL = NSURL(string: "google.com")
+ */
                 }
                 
             })

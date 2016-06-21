@@ -75,7 +75,8 @@ class CreateNewAccountViewController: UIViewController {
                 }
                 else
                 {
-                    NSUserDefaults.standardUserDefaults().setValue(true, forKey: "isUserLoggedIn")
+                    // TODO: we cannot be logged in right away, our account has to be verified!!!
+                    //NSUserDefaults.standardUserDefaults().setValue(true, forKey: "isUserLoggedIn")
                         let changeRequest = authData!.profileChangeRequest()
                     
                         changeRequest.displayName = userName
@@ -93,9 +94,13 @@ class CreateNewAccountViewController: UIViewController {
                     
                     // TODO: since we insist on email verification we should have a popup that tells them to verify their email if it is unverified, also this should happen on the other pages when they are in a signed up, but unverified state.
                     // probably nsuserdefaults
-                    self.performSegueWithIdentifier("NewUserLoggedIn", sender: nil)
+                    self.signupErrorAlert("check your email", message: "Please check your @stmarys-ca.edu email and verify your account!")
+                    // TODO: this should be a popup with a handler that segues us!!!
+                    //self.performSegueWithIdentifier("NewUserLoggedIn", sender: nil)
+                    authData?.sendEmailVerificationWithCompletion(nil)
                 }
             })
+            
             
         }
         else if (isValid == false)
