@@ -36,6 +36,13 @@ class MyBooksViewController: UIViewController  {
             destinationVC.postId = (sellBookArray[indexPath.row] as! Book).postId!
             
         }
+        else if segue.identifier == "popfromMyBooks"{
+            let vc = segue.destinationViewController
+            let controller = vc.popoverPresentationController
+            if controller != nil{
+                controller?.delegate = self
+            }
+        }
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -213,7 +220,7 @@ class MyBooksViewController: UIViewController  {
     
 }
 
-extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource, MFMessageComposeViewControllerDelegate{
+extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource, MFMessageComposeViewControllerDelegate, UIPopoverPresentationControllerDelegate{
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -252,12 +259,7 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource, MFM
             print(tempString)
         }
         let name = book!.sellerInfo?.email
-       // cell.profileImage.setImageWithString(cell.fullName.text, color: UIColor.init(hexString: User.generateColor(name!)))
-        
-        
-        /*if (book!.bookSold == true){
-            cell.yearPublished.text = "SOLD" // remove this
-        }*/
+       
         
         if (book!.bookStatus == "sold"){
             cell.yearPublished.text = "SOLD"
@@ -368,6 +370,10 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource, MFM
         self.dismissViewControllerAnimated(true, completion: nil)
         tableView.reloadData()
     }
-    
+    // for the popover in the upper right
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle
+    {
+        return .None
+    }
     
 }

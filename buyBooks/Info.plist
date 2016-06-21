@@ -46,6 +46,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>OpenSans-LightItalic.ttf</string>
 		<string>Nexa Light.otf</string>
 		<string>Nexa Bold.otf</string>
 		<string>OstrichSans-Light.otf</string>

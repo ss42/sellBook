@@ -31,17 +31,23 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
         
         
         let checkPrice = price.text
+        if checkPrice?.characters.count > 3 {
+            price.text = ""
+            
+        }
         //checking if the textfield is empty and also checking for non-numeric
         if price.text != "" && Double(checkPrice!) != nil{
             self.bookInfoDict["bookCondition"] = bookCondition.text
             self.bookInfoDict["price"] = price.text
         }
         else {
-            showError("Field Missing", message: "Please enter the price you want to sell for")
+            showError("Check the price.", message: "Please enter the price you want to sell for")
         }
         
         
     }
+    
+    
     
 
     

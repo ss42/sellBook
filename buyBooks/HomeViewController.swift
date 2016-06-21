@@ -258,11 +258,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             return true
         }
         let mailTime = timeElapsedinSeconds(timeOfMail)
-        
-        /*if status == "dormant"
-        {
-            return false
-        }*/
+    
         if status == "default"
         {
             return true
@@ -317,11 +313,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
     //TODO: Fix facebook message and picture
     func facebookShare()
     {
-        //if (FBSDKAccessToken.currentAccessToken() != nil)
-        //{
-            // User is already logged in, do work such as go to next view controller.
-           // print("logged in?")
-            //if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){ // this works, but it checks the app (to see if you are logged in) first.
+       
                 let facebookComposer = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
                 facebookComposer.setInitialText(self.facebookMessageString!)
                 let cell:PostTableViewCell = tableView.cellForRowAtIndexPath(currIndex!) as! PostTableViewCell
@@ -333,16 +325,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
 
                 
                 self.presentViewController(facebookComposer, animated: true, completion: nil)
-            /*}
-        }
-        else
-        {
-            print("else")
-            let loginView : FBSDKLoginButton = FBSDKLoginButton()
-            
-            loginView.readPermissions = ["public_profile", "email", "user_friends"]
-            loginView.sendActionsForControlEvents(.TouchUpInside)
-        }*/
+  
     }
     
     // TODO: function that formulates messages based on which book you selected

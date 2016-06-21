@@ -71,9 +71,6 @@ class FinalConfirmationBeforePostViewController: UIViewController {
             tempDict["bookStatus"] = "default"
             tempDict["timeOfMail"] = " "
             
-            //currentUserDictionary = ["fullName": name!, "email": email!, "profilePhoto": profileImage, "bookTitle": bookTitle.text!, "bookDetail": detail.text!, "bookCondition": bookCondition.text!, "price": price.text!, "bookImage": "male", "postedTime": "5:50", "uid":uid, "SellBooksPostId": postId.key]
-            // moved from donePressed
-            //currentUserDictionary = []
             postId.setValue(tempDict)
         } else {
             // No user is signed in.
@@ -88,7 +85,7 @@ class FinalConfirmationBeforePostViewController: UIViewController {
         authors.text = "By: " + bookInfoDict["authors"]!
         ISBN.text = bookInfoDict["isbn"]
         pageCount.text = "Page Count: " + bookInfoDict["pageCount"]!
-        bookCondition.text = "Book is in " + bookInfoDict["bookCondition"]! + " condition."
+        bookCondition.text = bookInfoDict["bookCondition"]
         ourPrice.text = "$ " +  bookInfoDict["price"]!
         bookImage.image = image
         yearPublished.text = bookInfoDict["publishedDate"]

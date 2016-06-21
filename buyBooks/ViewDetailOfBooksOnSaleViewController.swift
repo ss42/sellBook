@@ -42,18 +42,7 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
         super.viewDidLoad()
         //self.subject.delegate = self
         populateFields()
-        /*
-        //sets the background as image
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
-        
-        //sets the background blur
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
-        view.addSubview(blurEffectView)
-        view.addSubview(popUpView)
-        */
+   
 
     }
     override func viewWillAppear(animated: Bool) {
@@ -71,17 +60,10 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
     
     func getCurrentBuyerName()->String{
         if let user = FIRAuth.auth()?.currentUser {
-            //change this later to full name
-            /*print(user.email)
-            print(user.photoURL)
-            let name = user.email
-            let email = user.email
-            let uid = user.uid
-            let profileImage = "male"*/
-            //let uid = user.uid
+           
             let temp = user.email! // switch to user.displayName
             return temp
-            //temp.substringToIndex(temp.endIndex.predecessor().predecessor().predecessor().predecessor().predecessor())
+            
         }
         return ""
     }
@@ -178,7 +160,9 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
         alert("Ooops", msg: "Mail Cancelled")
         case MFMailComposeResultSent.rawValue:
             
-            //alert("Yes!", msg: "Mail Sent!")
+            dispatch_async(dispatch_get_main_queue(), {
+                self.alert("OK", msg: "Mail Sent!")
+            })
             print("mail was sent")
             updateMailTimeForBook()
             
