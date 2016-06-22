@@ -63,7 +63,7 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         // this is the back button, it sits on top of the camera stuff
         view.addSubview(backButtonView);
         
-        //TODO custom draw recct for this
+        //TODO-NEXT version custom draw recct for this
         view.addSubview(bracketView)
 
         

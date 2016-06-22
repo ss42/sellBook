@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let DefaultButtonColor = UIButton(type: UIButtonType.System).titleColorForState(.Normal)
         
-        // TODO: change tab bar colors
+        // change tab bar colors
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.darkTextColor()], forState:.Normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: DefaultButtonColor!], forState:.Selected)
         

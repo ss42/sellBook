@@ -86,7 +86,7 @@ class FinalConfirmationBeforePostViewController: UIViewController {
         bookTitle.text = self.bookInfoDict["bookTitle"]
         bookDescription.text = self.bookInfoDict["description"]
         authors.text = "  By: " + bookInfoDict["authors"]!
-        ISBN.text = bookInfoDict["isbn"]
+        ISBN.text = "ISBN: " + bookInfoDict["isbn"]!
         pageCount.text = "Page Count: " + bookInfoDict["pageCount"]!
         bookCondition.text = bookInfoDict["bookCondition"]
         ourPrice.text = "$ " +  bookInfoDict["price"]!
@@ -109,6 +109,9 @@ class FinalConfirmationBeforePostViewController: UIViewController {
         populateFields()
         
 
+    }
+    override func viewDidLayoutSubviews() {
+        self.bookDescription.setContentOffset(CGPointZero, animated: false)
     }
 
     override func didReceiveMemoryWarning() {

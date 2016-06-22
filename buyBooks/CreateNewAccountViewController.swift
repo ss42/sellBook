@@ -35,10 +35,12 @@ class CreateNewAccountViewController: UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         //changes the placeholder's text color
+        
+        firstName.attributedPlaceholder = NSAttributedString(string: "Enter your name" ,attributes: [NSForegroundColorAttributeName: UIColor.darkGrayColor()])
         emailField.attributedPlaceholder = NSAttributedString(string: "Enter SMC email Address" ,attributes: [NSForegroundColorAttributeName: UIColor.darkGrayColor()])
         passwordField.attributedPlaceholder = NSAttributedString(string:"Enter Password",
                                                                  attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()])
-        firstName.attributedPlaceholder = NSAttributedString(string: "Enter your name" ,attributes: [NSForegroundColorAttributeName: UIColor.darkGrayColor()])
+        
         passwordField2.attributedPlaceholder = NSAttributedString(string:"Enter Password again",
                                                                  attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()])
 
@@ -75,8 +77,7 @@ class CreateNewAccountViewController: UIViewController {
                 }
                 else
                 {
-                    // TODO: we cannot be logged in right away, our account has to be verified!!!
-                    //NSUserDefaults.standardUserDefaults().setValue(true, forKey: "isUserLoggedIn")
+                    
                         let changeRequest = authData!.profileChangeRequest()
                     
                         changeRequest.displayName = userName
@@ -88,16 +89,16 @@ class CreateNewAccountViewController: UIViewController {
                             } else {
                                 // Profile updated.
                             }
-                    }
+                        }
                     
-                    
+                    authData?.sendEmailVerificationWithCompletion(nil)
+
                     
                     // TODO: since we insist on email verification we should have a popup that tells them to verify their email if it is unverified, also this should happen on the other pages when they are in a signed up, but unverified state.
                     // probably nsuserdefaults
                     self.signupErrorAlert("check your email", message: "Please check your @stmarys-ca.edu email and verify your account!")
                     // TODO: this should be a popup with a handler that segues us!!!
                     //self.performSegueWithIdentifier("NewUserLoggedIn", sender: nil)
-                    authData?.sendEmailVerificationWithCompletion(nil)
                 }
             })
             

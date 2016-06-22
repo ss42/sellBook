@@ -15,7 +15,6 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var signUp: UIButton!
     
     override func viewDidLoad() {
@@ -84,12 +83,6 @@ class LoginViewController: UIViewController {
                     {
                         self.signInErrorAlert("Email verification required!", message: "Please check your @stmarys-ca.edu")
                     }
-                    // TODO i dont know what the req thing is, why is it here?
-                    
-                    /*self.performSegueWithIdentifier("loginToHomeSegue", sender: nil)
-                    let req = user?.profileChangeRequest()
-                    req?.photoURL = NSURL(string: "google.com")
- */
                 }
                 
             })

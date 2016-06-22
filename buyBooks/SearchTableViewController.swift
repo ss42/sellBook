@@ -360,8 +360,6 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         
         
         let book = self.sellBookArray[indexPath.row] as! Book
-        // TODO: these are never called i dont think, because of how the slide action behaves. I'm not sure how we are going to get it to know which row the button was slid out at
-        
         
         let shareAction = UITableViewRowAction(style: .Normal, title: "Share"){(action: UITableViewRowAction!, indexPath: NSIndexPath) -> Void in
             

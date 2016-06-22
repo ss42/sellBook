@@ -25,6 +25,7 @@
 		107D794E1D022CE200661B91 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 107D794B1D022CE200661B91 /* FBSDKCoreKit.framework */; };
 		107D794F1D022CE200661B91 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 107D794C1D022CE200661B91 /* FBSDKLoginKit.framework */; };
 		107D79501D022CE200661B91 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 107D794D1D022CE200661B91 /* FBSDKShareKit.framework */; };
+		108C816E1D1A4C5B006D903F /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108C816D1D1A4C5B006D903F /* PrivacyPolicyViewController.swift */; };
 		10AEB4D61CFF96850037E744 /* UIImageView+Letters.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AEB4D51CFF96850037E744 /* UIImageView+Letters.m */; };
 		10C6E6FA1CF65BC3007BFF69 /* MyBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E6F91CF65BC3007BFF69 /* MyBooksViewController.swift */; };
 		10C6E6FC1CF65C55007BFF69 /* MyBooksViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E6FB1CF65C55007BFF69 /* MyBooksViewCell.swift */; };
@@ -86,6 +87,7 @@
 		107D794B1D022CE200661B91 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		107D794C1D022CE200661B91 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		107D794D1D022CE200661B91 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		108C816D1D1A4C5B006D903F /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		10AEB4D41CFF96850037E744 /* UIImageView+Letters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Letters.h"; sourceTree = "<group>"; };
 		10AEB4D51CFF96850037E744 /* UIImageView+Letters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Letters.m"; sourceTree = "<group>"; };
 		10B91E111CF3CDBD005D19B3 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				102C91231D0778FF00D5B9F1 /* SettingsViewController.swift */,
+				108C816D1D1A4C5B006D903F /* PrivacyPolicyViewController.swift */,
 				102C91251D07808D00D5B9F1 /* AboutViewController.swift */,
 				102C91271D07809A00D5B9F1 /* EditProfileViewController.swift */,
 			);
@@ -507,6 +510,7 @@
 				10C6E7071CF8DEC3007BFF69 /* CreatePostMethodSelectionVIewController.swift in Sources */,
 				10AEB4D61CFF96850037E744 /* UIImageView+Letters.m in Sources */,
 				1063A9F51CF3B1DB00BFB4E0 /* Book.swift in Sources */,
+				108C816E1D1A4C5B006D903F /* PrivacyPolicyViewController.swift in Sources */,
 				10C6E7031CF79FEF007BFF69 /* BarcodeScannerViewController.swift in Sources */,
 				10C6E6FA1CF65BC3007BFF69 /* MyBooksViewController.swift in Sources */,
 				1063A9C61CF3A67500BFB4E0 /* AppDelegate.swift in Sources */,

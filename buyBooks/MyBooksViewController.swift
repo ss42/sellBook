@@ -263,6 +263,7 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource, MFM
         
         if (book!.bookStatus == "sold"){
             cell.yearPublished.text = "SOLD"
+            cell.yearPublished.textColor = UIColor.redColor()
         }
         
         

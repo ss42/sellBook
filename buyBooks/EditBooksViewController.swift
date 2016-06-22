@@ -209,11 +209,9 @@ class EditBooksViewController: UIViewController {
         self.currentUserDictionary["description"] = detail.text
         self.currentUserDictionary["price"] = price.text
         self.currentUserDictionary["bookTitle"] = bookTitle.text
-        // maybe change "sold" to "no"
     }
     
     @IBAction func deletePost(sender: UIButton) {
-        // later
         dispatch_async(dispatch_get_main_queue(), {
             
             self.displayDeleteAlertMessage("Listing deleted!", message: "If you deleted the post in error, please relist it!")
@@ -223,19 +221,11 @@ class EditBooksViewController: UIViewController {
     
     
     @IBAction func confirmSale(sender: AnyObject) {
-        //self.currentUserDictionary["bookStatus"] = "sold"
         dispatch_async(dispatch_get_main_queue(), {
             
             self.displayConfirmAlertMessage("Sale confirmed!", message: "Thank you for using the Book-Rack app! Please relist the book if the sale falls through (also rate us on the app store)")
         })
         
-        /*
-        self.setDictValues()
-        
-        self.updatePostOnDatabase()
-        
-        navigationController?.popViewControllerAnimated(true)
- */
     }
     
     @IBAction func donePressed(sender: AnyObject) {
@@ -293,7 +283,7 @@ class EditBooksViewController: UIViewController {
     
     func cancelButton(alert:UIAlertAction!)
     {
-        self.dismissViewControllerAnimated(true, completion: nil)
+       // self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     func displayDeleteAlertMessage(title: String, message: String) {
@@ -338,17 +328,9 @@ class EditBooksViewController: UIViewController {
     // TODO: why did we remove dispatch_async?
     @IBAction func relistBook(sender: AnyObject) {
         print("pressed relist button, popup should show")
-        //dispatch_async(dispatch_get_main_queue(), {
             
             self.displayRelistBookMessage("Would you like to relist this book?", message: "If your book has been listed for more than three months it will be hidden, please relist your book (perhaps at a more attractive price) if you want it to be displayed again.")
-       // })
-        
-        /*self.currentUserDictionary["bookStatus"] = "default"
-        self.currentUserDictionary["postedTime"] = getCurrentTime()
-        self.setDictValues()
-        self.updatePostOnDatabase()
-        navigationController?.popViewControllerAnimated(true)
-        */
+     
     }
     
     /*func alert(title: String, msg: String){

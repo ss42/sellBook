@@ -27,8 +27,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var price: UILabel!
     
     @IBOutlet weak var bannerImage: UIImageView!
-    // TODO: unmark this when we are ready to do the banner
-    //@IBOutlet weak var banner:UIImageView!
+   
     
     @IBOutlet weak var yearPublished: UILabel!
     
@@ -36,10 +35,7 @@ class PostTableViewCell: UITableViewCell {
     
     
     override func prepareForReuse() {
-        //super.prepareForReuse()
-        //bannerImage.image = nil
-        //bannerImage.hidden = true
-        //bannerImage = nil
+        
     }
     
     override func awakeFromNib() {
