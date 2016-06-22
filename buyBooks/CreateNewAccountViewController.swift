@@ -94,7 +94,8 @@ class CreateNewAccountViewController: UIViewController {
                     
                     // TODO: since we insist on email verification we should have a popup that tells them to verify their email if it is unverified, also this should happen on the other pages when they are in a signed up, but unverified state.
                     // probably nsuserdefaults
-                    self.signupErrorAlert("check your email", message: "Please check your @stmarys-ca.edu email and verify your account!")
+                    //self.signupErrorAlert("check your email", message: "Please check your @stmarys-ca.edu email and verify your account!")
+                    self.alertSuccessShow("check your email", message: "Please check your @stmarys-ca.edu email and verify your account!")
                     // TODO: this should be a popup with a handler that segues us!!!
                     //self.performSegueWithIdentifier("NewUserLoggedIn", sender: nil)
                     authData?.sendEmailVerificationWithCompletion(nil)
@@ -113,6 +114,31 @@ class CreateNewAccountViewController: UIViewController {
         }
         
     }
+    
+    
+    func alertSuccessShow(title: String, message: String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let action = UIAlertAction(title: "Back Home", style: .Default, handler: performCustomSegue)
+        alert.addAction(action)
+        dispatch_async(dispatch_get_main_queue(), {
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        })
+    }
+    
+    func performCustomSegue(action:UIAlertAction){
+        
+        
+        
+        //TODO check this again.
+        dispatch_async(dispatch_get_main_queue(), {
+            self.performSegueWithIdentifier("NewUserLoggedIn", sender: nil)
+
+        })
+        
+    }
+    
     
     @IBAction func cancelCreateAccount(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: {})
