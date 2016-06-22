@@ -10,6 +10,9 @@
 import UIKit
 import Firebase
 
+
+
+
 class CreateNewAccountViewController: UIViewController {
     
     
@@ -79,9 +82,26 @@ class CreateNewAccountViewController: UIViewController {
                 {
                     
                         let changeRequest = authData!.profileChangeRequest()
+
                     
-                        changeRequest.displayName = userName
+                        let capitalizedUsername = userName?.localizedCapitalizedString
+                    // TODO: capitalize things properly? maybe.
+                        /*let charIndex = userName?.startIndex.advancedBy(0)
+                        let char = userName![charIndex!]
+                        let userName2 = s!.stringByReplacingCharactersInRange(s!.startIndex..<s!.startIndex.successor(), withString: String(char).capitalizedString)
+                    print("userName2: " + userName2)
+                    print("userName: " + userName!)
+                    */
+                    if (capitalizedUsername != nil){
+                        
                     
+                        changeRequest.displayName = capitalizedUsername!
+                    }else{
+                        changeRequest.displayName = email
+                        // this shouldnt happen if fields are validated
+                    }
+                    
+
                     
                         changeRequest.commitChangesWithCompletion { error in
                             if error != nil {
@@ -120,12 +140,20 @@ class CreateNewAccountViewController: UIViewController {
     func alertSuccessShow(title: String, message: String) {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        let action = UIAlertAction(title: "Back Home", style: .Default, handler: performCustomSegue)
-        alert.addAction(action)
+        let home = UIAlertAction(title: "Back Home", style: .Default, handler: performCustomSegue)
+        let logInPage = UIAlertAction(title: "Sign in", style: .Default, handler: goToLogin)
+        alert.addAction(home)
+        alert.addAction(logInPage)
         dispatch_async(dispatch_get_main_queue(), {
             
             self.presentViewController(alert, animated: true, completion: nil)
         })
+    }
+    
+    func goToLogin(action:UIAlertAction){
+        dispatch_async(dispatch_get_main_queue(),{
+                self.performSegueWithIdentifier("toLogin", sender: nil)
+            })
     }
     
     func performCustomSegue(action:UIAlertAction){

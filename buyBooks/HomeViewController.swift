@@ -51,7 +51,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
 
     // we load the data into the superview here, this will be used in the serach vc
     override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(false)
+        super.viewWillDisappear(animated)
 
         let tbvc = self.tabBarController as! DataHoldingTabBarViewController // going to get data from here instead.
         tbvc.sellBookArray = self.sellBookArray
@@ -66,7 +66,9 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         cache = tbvc.cache
         
         // get the data from firebase
-        fetchPost()
+        print("in view did load")
+        
+        //fetchPost()
            //     tableView.separatorStyle = .None
 
         // prepare the table view
@@ -74,6 +76,10 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         self.tableView.dataSource = self
         tableView.backgroundColor = UIColor.whiteColor()
         tableView.rowHeight = 155
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.dataChangedForHomeAndSearch = true
+        appDelegate.dataChangedForMyBooks = true
         
         // populate the table
         tableView.reloadData()
@@ -83,7 +89,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         
         //Activity Indicator
-        activityView.color = UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0)
+        activityView.color = UIColor.redColor()//(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0)
         activityView.center = self.view.center
         
         activityView.startAnimating()
@@ -112,7 +118,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
-        
+        print("in view will appear")
         
         let tbvc = self.tabBarController as! DataHoldingTabBarViewController
         
@@ -120,7 +126,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        if ((appDelegate.dataChangedForHomeAndSearch == true)){ //|| sellBookArray.count == 0)){
+        if ((appDelegate.dataChangedForHomeAndSearch == true )){ //|| sellBookArray.count == 0)){
             //appDelegate.mainDic=response.mutableCopy() as? NSMutableDictionary
             sellBookArray = []
             fetchPost()
@@ -132,7 +138,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         else{
             print("data didnt change")
             // TODO: why did i set our array to be our superviews array? It may have been important!
-            //self.sellBookArray = tbvc.sellBookArray
+            self.sellBookArray = tbvc.sellBookArray
             
         }
         tableView.reloadData()
@@ -320,8 +326,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
                 let image = cell.mainImage.image
                 
                 facebookComposer.addImage(image)
-                
-                   
+                // TODO make this our actual url!
+                //facebookComposer.addURL(NSURL(string: "http://facebook.com"))
+        
 
                 
                 self.presentViewController(facebookComposer, animated: true, completion: nil)
@@ -332,7 +339,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
     func setFacebookMessage(book:Book)
     {
         print("making facebook message")
-        self.facebookMessageString = book.title! + ", by " + book.webAuthors! + " is currently listed for $" + String(book.price)
+        self.facebookMessageString = book.title! + ", by " + book.webAuthors! + " is currently listed for $"
+        self.facebookMessageString = self.facebookMessageString! + String(book.price!)
         print(self.facebookMessageString)
         
     }

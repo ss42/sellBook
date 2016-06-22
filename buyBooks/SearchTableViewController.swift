@@ -130,7 +130,9 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
                 let tempBook = Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus)
                 
                 
-                self.sellBookArray.insertObject(tempBook, atIndex: 0)
+                if (self.timeElapsedinSeconds(postedTime) < 60*60*24*30 || (bookStatus == "sold" && self.timeElapsedinSeconds(postedTime) < 60*60*24*90)){
+                    self.sellBookArray.insertObject(tempBook, atIndex: 0)
+                }
             }
             else
             {
@@ -141,6 +143,16 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         })
         
         
+    }
+    func timeElapsedinSeconds(date: String)-> Double{
+        
+        let dateformatter = NSDateFormatter()
+        dateformatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateformatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let postedDate  = dateformatter.dateFromString(date)!
+        
+        let elapsedTimeInSeconds = NSDate().timeIntervalSinceDate(postedDate)
+        return elapsedTimeInSeconds
     }
 
     override func didReceiveMemoryWarning() {

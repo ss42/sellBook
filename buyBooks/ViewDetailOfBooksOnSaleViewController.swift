@@ -161,7 +161,7 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
         case MFMailComposeResultSent.rawValue:
             
             dispatch_async(dispatch_get_main_queue(), {
-                self.alert("OK", msg: "Mail Sent!")
+                self.alert("Congratulations!", msg: "Your email has been sent to the seller of this book!")
             })
             print("mail was sent")
             updateMailTimeForBook()

@@ -243,6 +243,8 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource, MFM
         let cell: MyBooksViewCell = tableView.dequeueReusableCellWithIdentifier("BookCell") as! MyBooksViewCell
         
         let book = sellBookArray[indexPath.row] as? Book
+        //reset color
+        cell.yearPublished.textColor = UIColor.darkTextColor()
        // cell.fullName.text = book!.sellerInfo?.fullName
         cell.title.text = book!.title
         cell.authors.text = "By: " + book!.webAuthors!

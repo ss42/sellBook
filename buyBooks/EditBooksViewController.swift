@@ -228,16 +228,61 @@ class EditBooksViewController: UIViewController {
         
     }
     
+    func displayMyAlertMessage(title: String, message: String) {
+        let myAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
+        myAlert.addAction(okAction)
+        self.presentViewController(myAlert, animated: true, completion: nil);
+    }
+
+    
+    func areFieldsOK()->Bool{
+        var ok: Bool = true
+        if (self.bookTitle.text!.characters.count < 1)
+        {
+            ok = false
+            self.displayMyAlertMessage("Title missing", message: "Field Required *")
+            bookTitle.attributedPlaceholder = NSAttributedString(string:"Enter the Title!",
+                                                               attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        if (self.detail.text!.characters.count < 1)
+        {
+            ok = false
+
+            self.displayMyAlertMessage("Book Details Missing", message: "Please enter something!")
+            //detail.attributedPlaceholder = NSAttributedString(string: "Enter the year book was published" ,attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        if self.price.text?.characters.count > 3{
+            self.price.text = ""
+        }
+        
+        if self.price.text == "" {
+            ok = false
+
+            self.displayMyAlertMessage("Price missing or Invalid", message: "Please enter a maximum of three digits!")
+            price.attributedPlaceholder = NSAttributedString(string: "Set the price!" ,attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        
+        
+        return ok
+    }
+    
     @IBAction func donePressed(sender: AnyObject) {
         //self.getCurrentSellerInfo()
-        self.setDictValues()
-        self.updatePostOnDatabase()
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.dataChangedForHomeAndSearch = true
-        appDelegate.dataChangedForMyBooks = true
-        //self.performSegueWithIdentifier("myBookListings", sender: nil)
-        navigationController?.popViewControllerAnimated(true)
-
+        // TODO: make sure nothing is totally empty
+        
+        
+        if (areFieldsOK() == true)
+        {
+            self.setDictValues()
+            self.updatePostOnDatabase()
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.dataChangedForHomeAndSearch = true
+            appDelegate.dataChangedForMyBooks = true
+            //self.performSegueWithIdentifier("myBookListings", sender: nil)
+            navigationController?.popViewControllerAnimated(true)
+        }
         // try different segue types to make sure that the navbar and stuff works
         
         

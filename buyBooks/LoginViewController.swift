@@ -81,6 +81,7 @@ class LoginViewController: UIViewController {
                     }
                     else
                     {
+                        
                         self.signInErrorAlert("Email verification required!", message: "Please check your @stmarys-ca.edu")
                     }
                 }
@@ -107,7 +108,10 @@ class LoginViewController: UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
-        presentViewController(alert, animated: true, completion: nil)
+        dispatch_async(dispatch_get_main_queue(), {
+
+            self.presentViewController(alert, animated: true, completion: nil)
+        })
     }
     
     // MARK: - Dissmisses keyboard
