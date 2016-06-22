@@ -17,6 +17,9 @@ class PrivacyPolicyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        privacy.textColor = UIColor.darkGrayColor()
        
         
     }
