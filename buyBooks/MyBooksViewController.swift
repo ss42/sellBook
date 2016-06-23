@@ -57,6 +57,8 @@ class MyBooksViewController: UIViewController  {
         self.tableView.dataSource = self
         fetchPost()
         tableView.reloadData()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.dataChangedForMyBooks = false
         
         navigationController?.hidesBarsOnSwipe = true
 
@@ -85,7 +87,7 @@ class MyBooksViewController: UIViewController  {
         super.viewWillAppear(animated)
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        if appDelegate.dataChangedForMyBooks{
+        if (appDelegate.dataChangedForMyBooks == true){
             
             
             //appDelegate.mainDic=response.mutableCopy() as? NSMutableDictionary
