@@ -85,13 +85,7 @@ class CreateNewAccountViewController: UIViewController {
 
                     
                         let capitalizedUsername = userName?.localizedCapitalizedString
-                    // TODO: capitalize things properly? maybe.
-                        /*let charIndex = userName?.startIndex.advancedBy(0)
-                        let char = userName![charIndex!]
-                        let userName2 = s!.stringByReplacingCharactersInRange(s!.startIndex..<s!.startIndex.successor(), withString: String(char).capitalizedString)
-                    print("userName2: " + userName2)
-                    print("userName: " + userName!)
-                    */
+                    
                     if (capitalizedUsername != nil){
                         
                     
@@ -114,12 +108,9 @@ class CreateNewAccountViewController: UIViewController {
                     authData?.sendEmailVerificationWithCompletion(nil)
 
                     
-                    // TODO: since we insist on email verification we should have a popup that tells them to verify their email if it is unverified, also this should happen on the other pages when they are in a signed up, but unverified state.
-                    // probably nsuserdefaults
-                    //self.signupErrorAlert("check your email", message: "Please check your @stmarys-ca.edu email and verify your account!")
+                   
                     self.alertSuccessShow("check your email", message: "Please check your @stmarys-ca.edu email and verify your account!")
-                    // TODO: this should be a popup with a handler that segues us!!!
-                    //self.performSegueWithIdentifier("NewUserLoggedIn", sender: nil)
+                   
                 }
             })
             
@@ -160,7 +151,6 @@ class CreateNewAccountViewController: UIViewController {
         
         
         
-        //TODO check this again.
         dispatch_async(dispatch_get_main_queue(), {
             self.performSegueWithIdentifier("NewUserLoggedIn", sender: nil)
 

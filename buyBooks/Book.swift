@@ -11,15 +11,7 @@ import Foundation
 
 class Book{
     
-    // TODO: finish these cases and create a function for the initializer to set the value based on time and the string passed in
-    enum bookDisplayConditions{
-        case defaultCase
-        case confirmedSold
-        case mailSentToBuyer
-        case deleted
-        case dorment
-        
-    }
+    
     
     // function not used
     static func howShouldBookBeDisplayed(timeOfMail:String, bookStatus:String)->String{

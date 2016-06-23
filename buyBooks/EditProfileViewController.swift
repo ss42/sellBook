@@ -56,7 +56,6 @@ class EditProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // TODO: return on the failed cases and send a popup at the end that says "password changed"
     
     @IBAction func changePassword(sender: AnyObject) {
        // if let user = FIRAuth.auth()?.currentUser{
@@ -92,7 +91,6 @@ class EditProfileViewController: UIViewController {
                                             print(error2)
                                             self.passwordChangeAlertEntryError("error", message: "There was some strange error, please try again (this should not be seen)!")
                                             okToChange = false
-                                            //TODO make a popup that says some error
                                         }
                                         else
                                         {

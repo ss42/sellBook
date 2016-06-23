@@ -14,7 +14,6 @@ import MessageUI
 
 //import SDWebImage
 
-// TODO: make background white color
 
 class HomeViewController: UIViewController, UIPopoverPresentationControllerDelegate{
     
@@ -68,7 +67,8 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         // get the data from firebase
         print("in view did load")
         
-        //fetchPost()
+        fetchPost()
+        
            //     tableView.separatorStyle = .None
 
         // prepare the table view
@@ -78,7 +78,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         tableView.rowHeight = 155
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.dataChangedForHomeAndSearch = true
+        appDelegate.dataChangedForHomeAndSearch = false
         appDelegate.dataChangedForMyBooks = true
         
         // populate the table
@@ -137,7 +137,6 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         }
         else{
             print("data didnt change")
-            // TODO: why did i set our array to be our superviews array? It may have been important!
             self.sellBookArray = tbvc.sellBookArray
             
         }

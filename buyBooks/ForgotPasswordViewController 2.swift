@@ -47,6 +47,7 @@ class ForgotPasswordViewController: UIViewController {
                 
                 
                 //TODO can't do this..
+                // rahul: does this work as intended?
                 self.alertSuccessShow("Sucess", message: "Temporary Password sent to your email")
 
             }
@@ -68,7 +69,6 @@ class ForgotPasswordViewController: UIViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc: UIViewController = storyboard.instantiateViewControllerWithIdentifier("LoginView")
         
-        //TODO check this again.
         dispatch_async(dispatch_get_main_queue(), {
             self.presentViewController(vc, animated: true, completion: nil)
         })

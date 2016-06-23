@@ -22,7 +22,6 @@ class FinalConfirmationBeforePostViewController: UIViewController {
     
     @IBOutlet weak var ISBN: UILabel!
     
-    //TODO remove this @IBOutlet weak var retailPrice: UILabel!
     
     @IBOutlet weak var bookDescription: UITextView!
     
