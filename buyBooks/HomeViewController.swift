@@ -141,6 +141,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             self.sellBookArray = tbvc.sellBookArray
             
         }
+        
         tableView.reloadData()
  
     }

@@ -232,6 +232,8 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
     }
     
 
-    
+    override func viewDidLayoutSubviews() {
+        self.bookDescription.setContentOffset(CGPointZero, animated: false)
+    }
 
 }
