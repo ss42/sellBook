@@ -181,8 +181,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     // get the data from firebase
     func fetchPost()
     {
-        //let tempUser = User(fullName: "test", email: "test@test.com", profileImage: "none")
-        //self.sellBookArray.addObject(Book(user: tempUser , title: "fgdfg", price: 5.0, pictures: "none", condition: "ok", postedTime: "time", detail: "detail"))
+        print("fetching post")
         ref.child("SellBooksPost").queryOrderedByKey().observeEventType(.ChildAdded, withBlock: {
             snapshot in
             

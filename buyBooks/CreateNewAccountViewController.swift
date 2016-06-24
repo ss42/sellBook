@@ -16,7 +16,7 @@ import Firebase
 class CreateNewAccountViewController: UIViewController {
     
     
-    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var passwordField2: UITextField!
@@ -152,16 +152,17 @@ class CreateNewAccountViewController: UIViewController {
         
         
         dispatch_async(dispatch_get_main_queue(), {
-            self.performSegueWithIdentifier("NewUserLoggedIn", sender: nil)
+            let vc: UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("LoginView")
+            
+            
+            self.presentViewController(vc, animated: true, completion: nil)
 
         })
         
     }
     
     
-    @IBAction func cancelCreateAccount(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: {})
-    }
+   
     
   
      // MARK: - signupErrorAlert 
@@ -171,6 +172,21 @@ class CreateNewAccountViewController: UIViewController {
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func viewPrivacyPolicy(sender: AnyObject) {
+        
+        let vc: UIViewController = storyboard!.instantiateViewControllerWithIdentifier("PrivacyPolicy")
+        
+        
+        self.presentViewController(vc, animated: true, completion: nil)
+    }
+    
+    @IBAction func cancelPressed(sender: AnyObject) {
+        
+        let vc: UIViewController = storyboard!.instantiateViewControllerWithIdentifier("LoginView")
+        
+        self.presentViewController(vc, animated: true, completion: nil)
     }
     
      // MARK: - dismissKeyboard
@@ -189,11 +205,37 @@ extension CreateNewAccountViewController: UITextFieldDelegate{
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
         return true
     }
+ /*
+    func textFieldDidBeginEditing(textField: UITextField) {
+        animateViewMoving(true, moveValue: 100)
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        animateViewMoving(false, moveValue: 100)
+    }
+    
+    // Lifting the view up
+    func animateViewMoving (up:Bool, moveValue :CGFloat){
+        let movementDuration:NSTimeInterval = 0.3
+        let movement:CGFloat = ( up ? -moveValue : moveValue)
+        UIView.beginAnimations( "animateView", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration )
+        self.view.frame = CGRectOffset(self.view.frame, 0,  movement)
+        UIView.commitAnimations()
+    }*/
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
+        scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
         return false
     }
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if (textField == passwordField) || (textField == passwordField2){
+            scrollView.setContentOffset(CGPointMake(0, 250), animated: true)
+            
+        }
+    }
     
     
 }

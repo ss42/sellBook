@@ -33,6 +33,7 @@
 		10C6E7031CF79FEF007BFF69 /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E7021CF79FEF007BFF69 /* BarcodeScannerViewController.swift */; };
 		10C6E7071CF8DEC3007BFF69 /* CreatePostMethodSelectionVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E7061CF8DEC3007BFF69 /* CreatePostMethodSelectionVIewController.swift */; };
 		10C6E7091CF8EA18007BFF69 /* PresentSearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E7081CF8EA18007BFF69 /* PresentSearchResultsViewController.swift */; };
+		10CBFC201D1DCD98009DB78B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10CBFC1F1D1DCD98009DB78B /* GoogleService-Info.plist */; };
 		10D0FFF31D063EBC00726041 /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 10D0FFEE1D0627EB00726041 /* SF-UI-Text-Regular.otf */; };
 		10D0FFF41D063ECD00726041 /* SF-UI-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 10D0FFF01D06280900726041 /* SF-UI-Display-Light.otf */; };
 		10D0FFF51D063ECD00726041 /* SF-UI-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 10D0FFF11D06281300726041 /* SF-UI-Display-Regular.otf */; };
@@ -45,7 +46,6 @@
 		10DA6EE61CFD5C1600D64DB2 /* CreateNewAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DA6EE51CFD5C1600D64DB2 /* CreateNewAccountViewController.swift */; };
 		10DA6EE81CFD5C3C00D64DB2 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DA6EE71CFD5C3C00D64DB2 /* PostTableViewCell.swift */; };
 		10DA6EEA1CFD5DFD00D64DB2 /* SellBySearchingISBNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DA6EE91CFD5DFD00D64DB2 /* SellBySearchingISBNViewController.swift */; };
-		10E2FD411CF3DA7300B6EAE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10E2FD401CF3DA7300B6EAE0 /* GoogleService-Info.plist */; };
 		10E2FD451CF3DCA700B6EAE0 /* SellBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E2FD441CF3DCA700B6EAE0 /* SellBooksViewController.swift */; };
 		10E68C661D0DD37A007FFD83 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 10E68C5C1D0DD366007FFD83 /* OpenSans-Bold.ttf */; };
 		10E68C671D0DD37A007FFD83 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 10E68C5D1D0DD366007FFD83 /* OpenSans-BoldItalic.ttf */; };
@@ -98,6 +98,7 @@
 		10C6E7021CF79FEF007BFF69 /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
 		10C6E7061CF8DEC3007BFF69 /* CreatePostMethodSelectionVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostMethodSelectionVIewController.swift; sourceTree = "<group>"; };
 		10C6E7081CF8EA18007BFF69 /* PresentSearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentSearchResultsViewController.swift; sourceTree = "<group>"; };
+		10CBFC1F1D1DCD98009DB78B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		10D0FFEE1D0627EB00726041 /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		10D0FFEF1D06280100726041 /* SF-UI-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Light.otf"; sourceTree = "<group>"; };
 		10D0FFF01D06280900726041 /* SF-UI-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Light.otf"; sourceTree = "<group>"; };
@@ -110,7 +111,6 @@
 		10DA6EE51CFD5C1600D64DB2 /* CreateNewAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewAccountViewController.swift; sourceTree = "<group>"; };
 		10DA6EE71CFD5C3C00D64DB2 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		10DA6EE91CFD5DFD00D64DB2 /* SellBySearchingISBNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellBySearchingISBNViewController.swift; sourceTree = "<group>"; };
-		10E2FD401CF3DA7300B6EAE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		10E2FD441CF3DCA700B6EAE0 /* SellBooksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellBooksViewController.swift; sourceTree = "<group>"; };
 		10E68C5C1D0DD366007FFD83 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		10E68C5D1D0DD366007FFD83 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -160,7 +160,6 @@
 			isa = PBXGroup;
 			children = (
 				102C91231D0778FF00D5B9F1 /* SettingsViewController.swift */,
-				108C816D1D1A4C5B006D903F /* PrivacyPolicyViewController.swift */,
 				102C91251D07808D00D5B9F1 /* AboutViewController.swift */,
 				102C91271D07809A00D5B9F1 /* EditProfileViewController.swift */,
 			);
@@ -233,6 +232,7 @@
 		1063A9F01CF3B05D00BFB4E0 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				108C816D1D1A4C5B006D903F /* PrivacyPolicyViewController.swift */,
 				10DA6EE51CFD5C1600D64DB2 /* CreateNewAccountViewController.swift */,
 				10DA6EE11CFD5BFE00D64DB2 /* ForgotPasswordViewController 2.swift */,
 				10DA6EE31CFD5C1000D64DB2 /* LoginViewController.swift */,
@@ -317,9 +317,9 @@
 				10D0FFF21D06287100726041 /* SF-UI-Display-Thin.otf */,
 				1039F4FD1CFEABB00012C2C6 /* CustomViewIBDesignable.swift */,
 				10D0FFEF1D06280100726041 /* SF-UI-Text-Light.otf */,
-				10E2FD401CF3DA7300B6EAE0 /* GoogleService-Info.plist */,
 				10D0FFEE1D0627EB00726041 /* SF-UI-Text-Regular.otf */,
 				10B91E111CF3CDBD005D19B3 /* Firebase.h */,
+				10CBFC1F1D1DCD98009DB78B /* GoogleService-Info.plist */,
 				1063A9D11CF3A67500BFB4E0 /* Info.plist */,
 				10AEB4D41CFF96850037E744 /* UIImageView+Letters.h */,
 				10AEB4D51CFF96850037E744 /* UIImageView+Letters.m */,
@@ -429,11 +429,11 @@
 				10D0FFF31D063EBC00726041 /* SF-UI-Text-Regular.otf in Resources */,
 				924F0D711D0502F200F46D1F /* Nexa Bold.otf in Resources */,
 				924F0D721D0502F200F46D1F /* Nexa Light.otf in Resources */,
+				10CBFC201D1DCD98009DB78B /* GoogleService-Info.plist in Resources */,
 				1006FE071D0169EC0015A206 /* OstrichSans-Light.otf in Resources */,
 				1006FE081D0169EC0015A206 /* ostrich-regular.ttf in Resources */,
 				1006FE041D0168570015A206 /* Keytin-Light.ttf in Resources */,
 				1063A9D01CF3A67500BFB4E0 /* LaunchScreen.storyboard in Resources */,
-				10E2FD411CF3DA7300B6EAE0 /* GoogleService-Info.plist in Resources */,
 				1063A9CD1CF3A67500BFB4E0 /* Assets.xcassets in Resources */,
 				1063A9CB1CF3A67500BFB4E0 /* Main.storyboard in Resources */,
 			);
@@ -651,6 +651,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "buyBooks/buyBooks-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -675,6 +676,7 @@
 				STRIPFLAGS = "-ObjC flag";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "buyBooks/buyBooks-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

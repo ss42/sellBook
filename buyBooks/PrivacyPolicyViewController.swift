@@ -31,5 +31,11 @@ class PrivacyPolicyViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         self.privacy.setContentOffset(CGPointZero, animated: false)
     }
+    
+    @IBAction func cancelPressed(sender: AnyObject) {
+        let vc: UIViewController = storyboard!.instantiateViewControllerWithIdentifier("CreateNewAccount")
+        self.presentViewController(vc, animated: true, completion: nil)
+    }
+    
 
 }

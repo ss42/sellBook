@@ -114,6 +114,13 @@ class LoginViewController: UIViewController {
         })
     }
     
+    @IBAction func signUpPressed(sender: AnyObject) {
+        
+        let vc: UIViewController = storyboard!.instantiateViewControllerWithIdentifier("CreateNewAccount")
+        
+        
+        self.presentViewController(vc, animated: true, completion: nil)
+    }
     // MARK: - Dissmisses keyboard
     func dismissKeyboard(){
         view.endEditing(true)
