@@ -127,7 +127,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
             if (bookStatus != "deleted"){
                 
                 let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
-                let tempBook = Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus)
+                let tempBook = Book(user: sellerInfo, title: title, price: Int(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus)
                 
                 
                 if (self.timeElapsedinSeconds(postedTime) < 60*60*24*30 || (bookStatus == "sold" && self.timeElapsedinSeconds(postedTime) < 60*60*24*90)){
@@ -441,6 +441,33 @@ class ImageLoadingWithCache {
         if let img = imageCache[url] {
             imageView.image = img
         } else {
+            
+            let session = NSURLSession.sharedSession()
+            let imgURL: NSURL = NSURL(string: url)!
+            let request: NSURLRequest = NSURLRequest(URL: imgURL)
+            let task = session.dataTaskWithRequest(request){(data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+                if error == nil {
+                    let image = UIImage(data: data!)
+                    self.imageCache[url] = image
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        imageView.image = image
+                        print("sent image to view")
+                    })
+                }
+                else {
+                    imageView.image = UIImage(named: defaultImage)
+                    print("load failed")
+                }
+
+            }
+            task.resume()
+        }
+    }
+    /*func getImage1(url: String, imageView: UIImageView, defaultImage: String) {
+        if let img = imageCache[url] {
+            imageView.image = img
+        } else {
             let request: NSURLRequest = NSURLRequest(URL: NSURL(string: url)!)
             let mainQueue = NSOperationQueue.mainQueue()
             
@@ -460,7 +487,7 @@ class ImageLoadingWithCache {
                 }
             })
         }
-    }
+    }*/
     func getImage(url:String, defaultImage:String)->UIImage{
         if let img = imageCache[url]{
             return img

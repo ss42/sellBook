@@ -190,7 +190,7 @@ class MyBooksViewController: UIViewController  {
             if (bookStatus != "deleted"){
                 
                 let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
-                let tempBook = Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus)
+                let tempBook = Book(user: sellerInfo, title: title, price: Int(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus)
                 
                 
                 self.sellBookArray.insertObject(tempBook, atIndex: 0)

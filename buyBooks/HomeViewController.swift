@@ -220,7 +220,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 //if self.shouldBookBeDisplayed(bookStatus, timeOfMail: timeOfMail)
                 
                     let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
-                    let tempBook = Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus)
+                    let tempBook = Book(user: sellerInfo, title: title, price: Int(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus)
                 
                 if (self.timeElapsedinSeconds(postedTime) < 60*60*24*30 || (bookStatus == "sold" && self.timeElapsedinSeconds(postedTime) < 60*60*24*90)){
                     self.sellBookArray.insertObject(tempBook, atIndex: 0)

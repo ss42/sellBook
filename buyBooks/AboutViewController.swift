@@ -19,7 +19,7 @@ class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        detail.text = "This app was made by Sanjay and Rahul! To get in touch with us please send us an email or with your favorite social media timesink!"
+        detail.text = "BOOK-RACK was made by Sanjay and Rahul. We made this app our friends of Saint Marys College of California to exchange book within themselves. To get in touch with us please send us an email or with your favorite social media timesink! Thank you for using BOOK-RACK!"
    
     }
 

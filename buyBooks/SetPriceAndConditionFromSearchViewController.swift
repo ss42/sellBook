@@ -95,15 +95,15 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
             print(tempString)
         }
         let urlString = tempString
+        let session = NSURLSession.sharedSession()
         let imgURL: NSURL = NSURL(string: urlString)!
         let request: NSURLRequest = NSURLRequest(URL: imgURL)
-        NSURLConnection.sendAsynchronousRequest(
-            request, queue: NSOperationQueue.mainQueue(),
-            completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
-                if error == nil {
-                    self.bookImage.image = UIImage(data: data!)
-                }
-        })
+        let task = session.dataTaskWithRequest(request){(data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+            if error == nil {
+                self.bookImage.image = UIImage(data: data!)
+            }
+        }
+        task.resume()
         
     }
     

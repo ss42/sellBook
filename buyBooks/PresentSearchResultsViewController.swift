@@ -63,6 +63,26 @@ class PresentSearchResultsViewController: UIViewController {
             print(tempString)
         }
         let urlString = tempString
+        let session = NSURLSession.sharedSession()
+        let imgURL: NSURL = NSURL(string: urlString)!
+        let request: NSURLRequest = NSURLRequest(URL: imgURL)
+        let task = session.dataTaskWithRequest(request){(data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+            if error == nil {
+                self.bookImage.image = UIImage(data: data!)
+            }
+        }
+        task.resume()
+        
+    }
+    /*
+    func load_image1()
+    {
+        var tempString = self.bookInfoDict["imageURL"]!
+        if (tempString.hasPrefix("http:")){
+            tempString.insert("s", atIndex: tempString.startIndex.advancedBy(4))
+            print(tempString)
+        }
+        let urlString = tempString
         let imgURL: NSURL = NSURL(string: urlString)!
         let request: NSURLRequest = NSURLRequest(URL: imgURL)
         NSURLConnection.sendAsynchronousRequest(
@@ -73,7 +93,7 @@ class PresentSearchResultsViewController: UIViewController {
                 }
         })
         
-    }
+    }*/
     
     
     func populateFields(){
