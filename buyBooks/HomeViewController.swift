@@ -373,9 +373,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
                 //do stuff
                 
                 let msgVC = MFMessageComposeViewController()
-                msgVC.body = "Hey, \n" + "I have this book for sale please check this app."// create a message similiar to view detail view controllers message or facebook's message
+                msgVC.body = "Hey, \n" + "I have this book " +  "'\(book.title!)'"  + " for sale. Please check BOOK-RACK app to buy and sell books."// create a message similiar to view detail view controllers message or facebook's message
                 msgVC.recipients = [" "]
+                
+                
+                //TODO: attach phooto
+                let imageURL = NSURL(string: book.pictures!)
+                print(imageURL)
+                msgVC.addAttachmentURL(imageURL!, withAlternateFilename: "test")
                 msgVC.messageComposeDelegate = self
+                
                 self.presentViewController(msgVC, animated: true, completion: nil)
             }
             
