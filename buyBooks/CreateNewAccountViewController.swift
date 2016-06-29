@@ -224,15 +224,20 @@ extension CreateNewAccountViewController: UITextFieldDelegate{
         self.view.frame = CGRectOffset(self.view.frame, 0,  movement)
         UIView.commitAnimations()
     }*/
+    func textFieldDidEndEditing(textField: UITextField) {
+        self.view.endEditing(true)
+        scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+
+    }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
-        return false
+        return true
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
         if (textField == passwordField) || (textField == passwordField2){
-            scrollView.setContentOffset(CGPointMake(0, 250), animated: true)
+            scrollView.setContentOffset(CGPointMake(0, 150), animated: true)
             
         }
     }

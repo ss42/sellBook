@@ -19,7 +19,7 @@ class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        detail.text = "BOOK-RACK was made by Sanjay and Rahul. We made this app for our friends at Saint Marys College of California to exchange book within themselves. To get in touch with us please send us an email or with your favorite social media timesink! Thank you for using BOOK-RACK!"
+        detail.text = "BOOK-RACK was made by Sanjay and Rahul. We made this app for our friends at Saint Marys College of California to exchange textbooks. To get in touch with us please send us an email or with your favorite social media timesink! Thank you for using BOOK-RACK!"
    
     }
 
@@ -49,6 +49,7 @@ class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate
             self.presentViewController(mc, animated: true, completion: nil)
         }
         else{
+            
             print("No email service")
         }
 
@@ -61,7 +62,7 @@ class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate
             alert("Ooops", msg: "Mail Cancelled")
         case MFMailComposeResultSent.rawValue:
             
-            //alert("Yes!", msg: "Mail Sent!")
+            alert("Thank you!", msg: "Mail Sent!")
             print("mail was sent")
             
         case MFMailComposeResultSaved.rawValue:

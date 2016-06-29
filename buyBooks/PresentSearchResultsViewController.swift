@@ -68,7 +68,10 @@ class PresentSearchResultsViewController: UIViewController {
         let request: NSURLRequest = NSURLRequest(URL: imgURL)
         let task = session.dataTaskWithRequest(request){(data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
             if error == nil {
+                dispatch_async(dispatch_get_main_queue(), {
+
                 self.bookImage.image = UIImage(data: data!)
+                })
             }
         }
         task.resume()

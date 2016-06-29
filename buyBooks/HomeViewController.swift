@@ -30,7 +30,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     var cache:ImageLoadingWithCache?//
     
     // activity indicator, stopped when images load
-    var activityView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    var activityView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -66,8 +66,8 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         // get the data from firebase
         print("in view did load")
-        
         fetchPost()
+
         
            //     tableView.separatorStyle = .None
 
@@ -89,12 +89,14 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         
         //Activity Indicator
-        activityView.color = UIColor.redColor()//(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0)
+        activityView.color = UIColor.darkTextColor()//(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0)
         activityView.center = self.view.center
+        
         
         activityView.startAnimating()
         
         self.view.addSubview(activityView)
+
         
         tbvc.sellBookArray = self.sellBookArray
         
@@ -143,8 +145,33 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         tableView.reloadData()
  
+ 
     }
     
+   /* override func viewDidAppear(animated: Bool) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let tbvc = self.tabBarController as! DataHoldingTabBarViewController
+
+        if ((appDelegate.dataChangedForHomeAndSearch == true )){ //|| sellBookArray.count == 0)){
+            //appDelegate.mainDic=response.mutableCopy() as? NSMutableDictionary
+            sellBookArray = []
+            fetchPost()
+            tableView.reloadData()
+            appDelegate.dataChangedForHomeAndSearch = false
+            tbvc.sellBookArray = self.sellBookArray
+            print("searched for new data")
+        }
+        else{
+            print("data didnt change")
+            self.sellBookArray = tbvc.sellBookArray
+            
+        }
+        
+        tableView.reloadData()
+        super.viewDidAppear(animated)
+        
+    }
+ */
     // format the time
     func timeElapsed(date: String)-> String{
         
@@ -373,14 +400,22 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
                 //do stuff
                 
                 let msgVC = MFMessageComposeViewController()
-                msgVC.body = "Hey, \n" + "I have this book " +  "'\(book.title!)'"  + " for sale. Please check BOOK-RACK app to buy and sell books."// create a message similiar to view detail view controllers message or facebook's message
+                msgVC.body = "Hey, \n" + "I have this book " +  "'\(book.title!)'"  + " for sale, it is currently listed for $\(book.price!). Please check BOOK-RACK app to buy and sell books."// create a message similiar to view detail view controllers message or facebook's message
                 msgVC.recipients = [" "]
                 
                 
                 //TODO: attach phooto
-                let imageURL = NSURL(string: book.pictures!)
+                /*let imageURL = NSURL(string: book.pictures!)
                 print(imageURL)
                 msgVC.addAttachmentURL(imageURL!, withAlternateFilename: "test")
+ */
+                //let imageData = self.cache?.getImage(book.pictures!, defaultImage: "male")
+                let cell:PostTableViewCell = tableView.cellForRowAtIndexPath(indexPath) as! PostTableViewCell
+                let imageData = cell.mainImage.image
+                //(self.sellBookArray[indexPath.row] as! PostTableViewCell).mainImage
+                let convertedImage = UIImagePNGRepresentation(imageData!)
+                
+                msgVC.addAttachmentData(convertedImage!, typeIdentifier: "image/png", filename: "Book thumbnail.jpeg")
                 msgVC.messageComposeDelegate = self
                 
                 self.presentViewController(msgVC, animated: true, completion: nil)
@@ -414,7 +449,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // maybe sort the array here?
-        if sellBookArray.count == 0 {
+        /*if sellBookArray.count == 0 {
             print("sell book array is empty")
             activityView.stopAnimating()
 
@@ -427,6 +462,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
             return sellBookArray.count
         
         }
+ */
+        
+        return sellBookArray.count
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //

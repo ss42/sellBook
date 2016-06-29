@@ -17,6 +17,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var signUp: UIButton!
     
+    //TODO: fill in @stmarys-ca.edu for them
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

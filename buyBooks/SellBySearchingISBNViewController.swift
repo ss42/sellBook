@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SellBySearchingISBNViewController: UIViewController {
+class SellBySearchingISBNViewController: UIViewController, UITextFieldDelegate {
     
     var bookInfoDict = [String:String]()
     var bookImage:UIImage?
@@ -18,6 +18,7 @@ class SellBySearchingISBNViewController: UIViewController {
     @IBOutlet weak var isbnTextfield: UITextField!
     @IBOutlet weak var cancelButton: UIButton!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     var bookAPI = "https://www.googleapis.com/books/v1/volumes?q=isbn:"
     
     var activityView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
@@ -58,9 +59,22 @@ class SellBySearchingISBNViewController: UIViewController {
             }
         }
     }
+    
+    func setUpISBNTextField()
+    {
+        isbnTextfield.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
+        isbnTextfield.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor).active = true
+        isbnTextfield.widthAnchor.constraintEqualToAnchor(view.widthAnchor, constant: -24).active = true
+        //isbnTextfield.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
+    }
+    
+    
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        isbnTextfield.delegate = self
+       //setUpISBNTextField()
+        
         
         isbnTextfield.attributedPlaceholder = NSAttributedString(string:"Enter your 10 or 13 digit ISBN number",
         attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()])
@@ -297,7 +311,32 @@ class SellBySearchingISBNViewController: UIViewController {
             print("going to detail view")
         }
     }
+    func textFieldShouldClear(textField: UITextField) -> Bool {
+        return true
+    }
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+        return true
+    }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        //isbnTextfield.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor).active = true
+        scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+        return false
+    }
+    func textFieldDidEndEditing(textField: UITextField) {
+        self.view.endEditing(true)
+        scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+        
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if (textField == isbnTextfield) {
+            //isbnTextfield.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor).active = false
+            scrollView.setContentOffset(CGPointMake(0, 150), animated: true)
+            
+        }
+    }
 
 
 }
