@@ -25,6 +25,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var displayName: UILabel!
     
     @IBOutlet weak var popUpView: UIStackView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var email = ""
     var user:FIRUser?
@@ -185,10 +186,7 @@ class EditProfileViewController: UIViewController {
 }
 
 extension EditProfileViewController: UITextFieldDelegate{
-    func textFieldDidEndEditing(textField: UITextField) {
-        //add something may be?
-        
-    }
+   
     
     func textFieldShouldClear(textField: UITextField) -> Bool {
         return true
@@ -196,11 +194,23 @@ extension EditProfileViewController: UITextFieldDelegate{
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
         return true
     }
+   
+    func textFieldDidEndEditing(textField: UITextField) {
+        self.view.endEditing(true)
+        scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+        
+    }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        self.view.endEditing(true)
+        scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
         return true
     }
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if (textField == newPassword) || (textField == repeatNewPassword){
+            scrollView.setContentOffset(CGPointMake(0, 250), animated: true)
+        }
+    }
     
     
 }
