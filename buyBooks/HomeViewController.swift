@@ -392,7 +392,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
                 self.facebookShare()
             }
         
-            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default){(action)-> Void in
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel){(action)-> Void in
                 
             }
             

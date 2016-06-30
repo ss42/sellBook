@@ -211,7 +211,7 @@ class EditBooksViewController: UIViewController {
         self.currentUserDictionary["bookTitle"] = bookTitle.text
     }
     
-    @IBAction func deletePost(sender: UIButton) {
+    func deletePost() {
         dispatch_async(dispatch_get_main_queue(), {
             
             self.displayDeleteAlertMessage("Listing deleted!", message: "If you deleted the post in error, please relist it!")
@@ -220,7 +220,7 @@ class EditBooksViewController: UIViewController {
     
     
     
-    @IBAction func confirmSale(sender: AnyObject) {
+    func confirmSale() {
         dispatch_async(dispatch_get_main_queue(), {
             
             self.displayConfirmAlertMessage("Sale confirmed!", message: "Thank you for using the Book-Rack app! Please relist the book if the sale falls through (also rate us on the app store)")
@@ -386,6 +386,28 @@ class EditBooksViewController: UIViewController {
         presentViewController(alertController, animated: true, completion: nil)
         
     }*/
+    @IBAction func deletePressed(sender: AnyObject) {
+        
+        let deleteAlertController = UIAlertController(title: "Delete your Listing?", message: "Press on delete to remove listing or press on confirm sale to mark your listing as SOLD", preferredStyle: .ActionSheet)
+        let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.Default){(action) -> Void in
+            self.deletePost()
+        }
+        let confirmSaleAction = UIAlertAction(title: "Confirm Sale", style: UIAlertActionStyle.Default){(action) -> Void in
+            self.confirmSale()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+        
+        deleteAlertController.addAction(deleteAction)
+        deleteAlertController.addAction(confirmSaleAction)
+        deleteAlertController.addAction(cancelAction)
+        
+        
+        self.presentViewController(deleteAlertController, animated: true, completion: nil)
+        
+
+
+        
+    }
 
     func getCurrentTime()-> String{
         let todaysDate:NSDate = NSDate()
