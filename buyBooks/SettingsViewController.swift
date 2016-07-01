@@ -74,8 +74,14 @@ class SettingsViewController: UIViewController {
     }
 
     @IBAction func signOutPressed(sender: AnyObject) {
-        try! FIRAuth.auth()!.signOut()
-        NSUserDefaults.standardUserDefaults().setValue(false, forKey: "isUserLoggedIn")
+        do{
+            try FIRAuth.auth()?.signOut()
+            NSUserDefaults.standardUserDefaults().setValue(false, forKey: "isUserLoggedIn")
+        }catch let logoutError{
+            print(logoutError)
+        }
+        
+        
 
         performSegueWithIdentifier("signOutToHome", sender: nil)
     }

@@ -18,13 +18,18 @@ class MyBooksViewController: UIViewController  {
     var cache:ImageLoadingWithCache?
 
     var ref = FIRDatabase.database().reference()
+    var postRef = FIRDatabase.database().reference().child("SellBooksPost")
+
     var activityView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
 
+    var currentIndex: NSIndexPath?
     
     // currently selected index in the tableview
     var currIndex:NSIndexPath?
     // string that holds the facebook message
     var facebookMessageString:String?
+    
+    var tempDict = [String: String]()
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "editBook"
@@ -184,13 +189,14 @@ class MyBooksViewController: UIViewController  {
             let postID = snapshot.value!["SellBooksPostId"] as! String
             //let bookSold = snapshot.value!["bookSold"] as! String
             let bookStatus = snapshot.value!["bookStatus"] as! String
-            
+            let timeOfMail = snapshot.value!["timeOfMail"] as! String
+
             
             print(title)
             if (bookStatus != "deleted"){
                 
                 let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
-                let tempBook = Book(user: sellerInfo, title: title, price: Int(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus)
+                let tempBook = Book(user: sellerInfo, title: title, price: Int(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus, timeOfMail: timeOfMail)
                 
                 
                 self.sellBookArray.insertObject(tempBook, atIndex: 0)
@@ -243,6 +249,7 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource, MFM
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: MyBooksViewCell = tableView.dequeueReusableCellWithIdentifier("BookCell") as! MyBooksViewCell
+        cell.yearPublished.backgroundColor = UIColor.clearColor()
         
         let book = sellBookArray[indexPath.row] as? Book
         //reset color
@@ -266,8 +273,9 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource, MFM
        
         
         if (book!.bookStatus == "sold"){
-            cell.yearPublished.text = "SOLD"
-            cell.yearPublished.textColor = UIColor.redColor()
+            cell.yearPublished.text = "SOLD!"
+            cell.yearPublished.backgroundColor = UIColor.redColor()
+            cell.yearPublished.textColor = UIColor.whiteColor()
         }
         
         
@@ -300,9 +308,7 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource, MFM
         let image = cell.mainImage.image
         
         facebookComposer.addImage(image)
-        
-        
-        
+       
         
         self.presentViewController(facebookComposer, animated: true, completion: nil)
     }
@@ -319,62 +325,153 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource, MFM
         
         
         let book = self.sellBookArray[indexPath.row] as! Book
-        // TODO: these are never called i dont think, because of how the slide action behaves. I'm not sure how we are going to get it to know which row the button was slid out at
-        
-        
+        currentIndex = indexPath
+       
         let shareAction = UITableViewRowAction(style: .Normal, title: "Share"){(action: UITableViewRowAction!, indexPath: NSIndexPath) -> Void in
-            
-            
-            
-            // add more options
-            let shareAlertController = UIAlertController(title: "Share with your friends.", message: "", preferredStyle: .ActionSheet)
-            let faceBookShareAction = UIAlertAction(title: "Facebook", style: UIAlertActionStyle.Default){(action) -> Void in
-                
-                self.setFacebookMessage(book)
-                self.currIndex = indexPath
-                self.facebookShare()
-            }
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default){(action)-> Void in
-                
-            }
-            
-            let textAction = UIAlertAction(title: "Text", style: UIAlertActionStyle.Default){(action)-> Void in
-                //do stuff
-                
-                let msgVC = MFMessageComposeViewController()
-                msgVC.body = "Hello World"// create a message similiar to view detail view controllers message or facebook's message
-                msgVC.recipients = [" "]
-                msgVC.messageComposeDelegate = self
-                self.presentViewController(msgVC, animated: true, completion: nil)
-            }
-            
-            
-            
-            
-            shareAlertController.addAction(faceBookShareAction)
-            
-            shareAlertController.addAction(textAction)
-            shareAlertController.addAction(cancelAction)
-            
-            
-            self.presentViewController(shareAlertController, animated: true, completion: nil)
-            
-            
-            
+          self.shareActionController(indexPath, book: book)
+         
             
         }
+        
+        let deleteAction = UITableViewRowAction(style: .Normal, title: "Delete"){(action: UITableViewRowAction!, indexPath: NSIndexPath) -> Void in
+            self.deleteActionController(indexPath, book: book)
+            
+            
+            
+
+        }
+        let markSoldAction = UITableViewRowAction(style: .Normal, title: "Sold"){(action: UITableViewRowAction!, indexPath: NSIndexPath) -> Void in
+            self.soldActionController(indexPath, book: book)
+
+            
+        }
+        
+        deleteAction.backgroundColor = UIColor.redColor()
         shareAction.backgroundColor = UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0)
-        return [shareAction]
+        markSoldAction.backgroundColor = UIColor.lightGrayColor()
+        return [shareAction, deleteAction, markSoldAction]
+      
         
+    }
+    func soldActionController(indexPath: NSIndexPath, book: Book){
         
+        tempDict["SellBooksPostId"] = book.postId
+        dispatch_async(dispatch_get_main_queue(), {
+            
+            self.displayDeleteAlertMessage("Listing deleted!", message: "If you deleted the post in error, please relist it!")
+        })
+
+       
         
     }
     
+    func shareActionController(indexPath: NSIndexPath, book: Book){
+        // add more options
+        let shareAlertController = UIAlertController(title: "Share with your friends.", message: "", preferredStyle: .ActionSheet)
+        let faceBookShareAction = UIAlertAction(title: "Facebook", style: UIAlertActionStyle.Default){(action) -> Void in
+            
+            self.setFacebookMessage(book)
+            self.currIndex = indexPath
+            self.facebookShare()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default){(action)-> Void in
+            
+        }
+        
+        let textAction = UIAlertAction(title: "Text", style: UIAlertActionStyle.Default){(action)-> Void in
+            //do stuff
+            
+            let msgVC = MFMessageComposeViewController()
+            msgVC.body = "Hey, \n" + "I have this book " +  "'\(book.title!)'"  + " for sale, it is currently listed for $\(book.price)." + " Please check BOOK-RACK app to buy and sell books."
+            msgVC.recipients = [" "]
+            let cell:MyBooksViewCell = self.tableView.cellForRowAtIndexPath(indexPath) as! MyBooksViewCell
+            let imageData = cell.mainImage.image
+            //(self.sellBookArray[indexPath.row] as! PostTableViewCell).mainImage
+            let convertedImage = UIImagePNGRepresentation(imageData!)
+            
+            msgVC.addAttachmentData(convertedImage!, typeIdentifier: "image/png", filename: "Book thumbnail.jpeg")
+            msgVC.messageComposeDelegate = self
+            self.presentViewController(msgVC, animated: true, completion: nil)
+        }
+      
+        shareAlertController.addAction(faceBookShareAction)
+        
+        shareAlertController.addAction(textAction)
+        shareAlertController.addAction(cancelAction)
+        
+        
+        self.presentViewController(shareAlertController, animated: true, completion: nil)
+        
+    }
+    
+    func displayConfirmAlertMessage(title: String, message: String) {
+        let myAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title: "Confirm Sale of Book", style: UIAlertActionStyle.Default, handler: confirmButton) // change title
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: cancelButton)
+        
+        myAlert.addAction(okAction)
+        myAlert.addAction(cancelAction)
+        self.presentViewController(myAlert, animated: true, completion: nil);
+    }
+    func deleteActionController(indexPath: NSIndexPath, book: Book){
+        
+        tempDict["SellBooksPostId"] = book.postId
+        dispatch_async(dispatch_get_main_queue(), {
+            
+            self.displayDeleteAlertMessage("Listing deleted!", message: "If you deleted the post in error, please relist it!")
+        })
+    }
+    func confirmButton(alert:UIAlertAction!)
+    {
+        self.tempDict["bookStatus"] = "sold"
+        postRef.child(tempDict["SellBooksPostId"]!).updateChildValues(self.tempDict)
+
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.dataChangedForHomeAndSearch = true
+        appDelegate.dataChangedForMyBooks = true
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.reloadData()
+        })
+    }
+    func deleteButton(alert:UIAlertAction!)
+    {
+       
+        self.tempDict["bookStatus"] = "deleted"
+        postRef.child(tempDict["SellBooksPostId"]!).updateChildValues(self.tempDict)
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.dataChangedForHomeAndSearch = true
+        appDelegate.dataChangedForMyBooks = true
+        self.sellBookArray.removeObjectAtIndex(currentIndex!.row)
+        tableView.deleteRowsAtIndexPaths([currentIndex!], withRowAnimation: UITableViewRowAnimation.Automatic)
+
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.reloadData()
+        })
+    }
+    
+    
+    func displayDeleteAlertMessage(title: String, message: String) {
+        let myAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title: "Confirm Deletion", style: UIAlertActionStyle.Default, handler: deleteButton) // change title
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: cancelButton)
+        
+        myAlert.addAction(okAction)
+        myAlert.addAction(cancelAction)
+        self.presentViewController(myAlert, animated: true, completion: nil);
+    }
+  
+    func cancelButton(alert:UIAlertAction!)
+    {
+        // self.dismissViewControllerAnimated(true, completion: nil)
+    }
     func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
         self.dismissViewControllerAnimated(true, completion: nil)
         tableView.reloadData()
     }
+    
     // for the popover in the upper right
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle
     {

@@ -60,6 +60,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       // CustomNavigation.customNavBarForHome()
         
         let tbvc = self.tabBarController as! DataHoldingTabBarViewController // going to get data from here instead.
         cache = tbvc.cache
@@ -247,7 +248,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 //if self.shouldBookBeDisplayed(bookStatus, timeOfMail: timeOfMail)
                 
                     let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
-                    let tempBook = Book(user: sellerInfo, title: title, price: Int(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus)
+                let tempBook = Book(user: sellerInfo, title: title, price: Int(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus, timeOfMail: timeOfMail)
                 
                 if (self.timeElapsedinSeconds(postedTime) < 60*60*24*30 || (bookStatus == "sold" && self.timeElapsedinSeconds(postedTime) < 60*60*24*90)){
                     self.sellBookArray.insertObject(tempBook, atIndex: 0)
@@ -329,6 +330,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         }
     }
     
+    
 
 
 
@@ -400,7 +402,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
                 //do stuff
                 
                 let msgVC = MFMessageComposeViewController()
-                msgVC.body = "Hey, \n" + "I have this book " +  "'\(book.title!)'"  + " for sale, it is currently listed for $\(book.price!). Please check BOOK-RACK app to buy and sell books."// create a message similiar to view detail view controllers message or facebook's message
+                msgVC.body = "Hey, \n" + "I have this book " +  "'\(book.title!)'"  + " for sale, it is currently listed for $\(book.price)." + " Please check BOOK-RACK app to buy and sell books."
                 msgVC.recipients = [" "]
                 
                 

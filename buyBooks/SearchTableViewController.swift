@@ -121,13 +121,14 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
             let postID = snapshot.value!["SellBooksPostId"] as! String
             //let bookSold = snapshot.value!["bookSold"] as! String
             let bookStatus = snapshot.value!["bookStatus"] as! String
-            
+            let timeOfMail = snapshot.value!["timeOfMail"] as! String
+
             
             print(title)
             if (bookStatus != "deleted"){
                 
                 let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
-                let tempBook = Book(user: sellerInfo, title: title, price: Int(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus)
+                let tempBook = Book(user: sellerInfo, title: title, price: Int(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus, timeOfMail: timeOfMail)
                 
                 
                 if (self.timeElapsedinSeconds(postedTime) < 60*60*24*30 || (bookStatus == "sold" && self.timeElapsedinSeconds(postedTime) < 60*60*24*90)){
@@ -386,7 +387,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
                 self.facebookShare()
             }
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default){(action)-> Void in
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel){(action)-> Void in
                 
             }
             
@@ -394,8 +395,13 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
                 //do stuff
                 
                 let msgVC = MFMessageComposeViewController()
-                msgVC.body = "Hello World"// create a message similiar to view detail view controllers message or facebook's message
+                msgVC.body = "Hey, \n" + "I have this book " +  "'\(book.title!)'"  + " for sale, it is currently listed for $\(book.price)." + " Please check BOOK-RACK app to buy and sell books."
                 msgVC.recipients = [" "]
+                let cell:PostTableViewCell = tableView.cellForRowAtIndexPath(indexPath) as! PostTableViewCell
+                let imageData = cell.mainImage.image
+                let convertedImage = UIImagePNGRepresentation(imageData!)
+                
+                msgVC.addAttachmentData(convertedImage!, typeIdentifier: "image/png", filename: "Book thumbnail.jpeg")
                 msgVC.messageComposeDelegate = self
                 self.presentViewController(msgVC, animated: true, completion: nil)
             }

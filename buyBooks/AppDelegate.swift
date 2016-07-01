@@ -41,37 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.darkTextColor()], forState:.Normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: DefaultButtonColor!], forState:.Selected)
         
+        CustomNavigation.customNavBarForOthersBesideHome()
         
         
-        
-        
-        UINavigationBar.appearance().barTintColor = UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0)//UIColor(red: 41/255, green: 176/255, blue: 206/255, alpha: 1.0) // this changes the heading thing
-        
-        //UINavigationBar.appearance().tintColor = UIColor.blackColor() // this changes the icons on the nav bar (changes the color of them).
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-        
-        
-        
-        // used to print all font names and their internal identifiers
-        /*for family: String in UIFont.familyNames()
-        {
-            print("\(family)")
-            for names: String in UIFont.fontNamesForFamilyName(family)
-            {
-                print("==\(names)")
-            }
-        }
-        */
-                
-        if let barFont = UIFont(name: "Avenir Light", size: 22.0){
-            print("font stuff")
-            //UINavigationBar.appearance().titleTextAttributes = [ NSFontAttributeName: barFont]
-
-            let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: barFont]
-            UINavigationBar.appearance().titleTextAttributes = titleDict as? [String : AnyObject]
-            print("after setting font for navbar")
-        }
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         // Override point for customization after application launch.

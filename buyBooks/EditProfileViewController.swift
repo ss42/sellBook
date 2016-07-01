@@ -25,6 +25,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var displayName: UILabel!
     
     @IBOutlet weak var popUpView: UIStackView!
+    
     @IBOutlet weak var scrollView: UIScrollView!
     
     var email = ""

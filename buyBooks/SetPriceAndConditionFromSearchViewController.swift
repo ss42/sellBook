@@ -42,15 +42,12 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
         }
         else {
             showError("Check the price.", message: "Please enter the price you want to sell for")
+            price.borderColor = UIColor.redColor()
         }
         
         
     }
-    
-    
-    
-
-    
+   
     @IBAction func bookCondition(sender: UISlider) {
         if bookConditionSlider.value < 25{
             bookCondition.text = "Used - Fair"
@@ -72,11 +69,7 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
         self.view.endEditing(true)
         return false
     }
-    
-    
-    
-    
-    
+
     func populateData(){
         bookImage.image = image
         bookTitle.text = self.bookInfoDict["bookTitle"]

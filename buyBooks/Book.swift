@@ -48,7 +48,7 @@ class Book{
     
     
     
-    init(user: User, title: String, price: Int, pictures: String, condition: String, postedTime: String, postId:String, isbn:String, authors: String, imageURL: String, pageCount:String, description:String, yearPublished:String, status:String)
+    init(user: User, title: String, price: Int, pictures: String, condition: String, postedTime: String, postId:String, isbn:String, authors: String, imageURL: String, pageCount:String, description:String, yearPublished:String, status:String, timeOfMail: String)
     {
         self.sellerInfo = user
         self.title = title

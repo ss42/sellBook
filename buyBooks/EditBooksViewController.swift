@@ -18,7 +18,6 @@ class EditBooksViewController: UIViewController {
     
     
     @IBOutlet weak var bottomView: UIStackView!
-    @IBOutlet weak var topView: UIStackView!
     @IBOutlet weak var bookTitle: UITextField!
     
     @IBOutlet weak var detail: UITextView!
@@ -30,6 +29,9 @@ class EditBooksViewController: UIViewController {
     @IBOutlet weak var bookCondition: UILabel!
     
     @IBOutlet weak var relistBookButton: UIButton!
+
+    @IBOutlet weak var confirmChanges: UIButton!
+    
     var currentUserDictionary = [String:AnyObject]()
     
     func dismissKeyboard(){
@@ -43,6 +45,9 @@ class EditBooksViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      
+        
+       
         
         // tap to hide keyboard
         // TODO: add keyboard hiding by hitting the return key, its around here somewhere
@@ -57,6 +62,27 @@ class EditBooksViewController: UIViewController {
         // add more if needed
         
         loadDataFromPreviousViewController()
+        
+
+    }
+    
+   
+    
+    func disable(){
+        if let status = currentUserDictionary["bookStatus"] as? String{
+            if status == "sold" {
+                print(status)
+                bookTitle.enabled = false
+                price.enabled = false
+                bookConditionSlider.enabled = false
+                detail.editable = false
+                relistBookButton.hidden = false
+                confirmChanges.enabled = false
+                
+            }
+            
+        }
+        print(currentUserDictionary["bookStatus"] as! String)
         
 
     }
@@ -80,6 +106,7 @@ class EditBooksViewController: UIViewController {
              self.currentUserDictionary["profilePhoto"] = snapshot.value!["profilePhoto"] as! String
              self.currentUserDictionary["postedTime"] = snapshot.value!["postedTime"] as! String
             self.currentUserDictionary["timeOfMail"] = snapshot.value!["timeOfMail"] as! String
+            self.currentUserDictionary["bookStatus"] = snapshot.value!["bookStatus"] as! String
             
             self.populateData()
         })
@@ -91,17 +118,19 @@ class EditBooksViewController: UIViewController {
         detail.text = currentUserDictionary["description"] as? String
         price.text = currentUserDictionary["price"] as? String
         bookCondition.text = currentUserDictionary["bookCondition"] as? String
-        // may need to change photo (5/26)
-        // possibly move the slider to some position (5/26)
         bookConditionSlider.value = calculateSliderPosition()
         relistBookButton.hidden = true
+        relistButtonSelector()
+        
+    }
+    
+    func relistButtonSelector(){
         if timeElapsedinSeconds(currentUserDictionary["postedTime"] as! String) > 60*60*24*30
         {
             relistBookButton.hidden = false
         }
-        
-        
     }
+    
     
     func timeElapsedinSeconds(date: String)-> Double{
         
@@ -147,6 +176,9 @@ class EditBooksViewController: UIViewController {
     {
         let isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn");
         
+        //if book is sold, it disables all the controls while it make the relist button appear
+        disable()
+        
         if(!isUserLoggedIn)
         {
             //make the user sign in first
@@ -158,29 +190,7 @@ class EditBooksViewController: UIViewController {
         
     }
     
-    /*func getCurrentSellerInfo(){
-        if let user = FIRAuth.auth()?.currentUser {
-            //change this later to full name
-            print(user.email)
-            print(user.photoURL)
-            let name = user.email
-            let email = user.email
-            let uid = user.uid
-            let profileImage = "male"
-            //let uid = user.uid
-            
-            let postId = ref.child("SellBooksPost").childByAutoId()
-            
-            currentUserDictionary = ["fullName": name!, "email": email!, "profilePhoto": profileImage, "bookTitle": bookTitle.text!, "bookDetail": detail.text!, "bookCondition": bookCondition.text!, "price": price.text!, "bookImage": "male", "postedTime": "5:50", "uid":uid, "SellBooksPostId": postId.key]
-            // moved from donePressed
-            //currentUserDictionary = []
-            postId.setValue(currentUserDictionary)
-        } else {
-            // No user is signed in.
-        }
-        
-    }
-    */
+
     
     func updatePostOnDatabase()
     {
@@ -423,6 +433,7 @@ extension EditBooksViewController: UITextFieldDelegate{
         //add something may be?
         
     }
+   
     
     func textFieldShouldClear(textField: UITextField) -> Bool {
         return true
