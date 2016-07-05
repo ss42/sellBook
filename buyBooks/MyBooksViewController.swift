@@ -357,7 +357,7 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource, MFM
         tempDict["SellBooksPostId"] = book.postId
         dispatch_async(dispatch_get_main_queue(), {
             
-            self.displayDeleteAlertMessage("Listing deleted!", message: "If you deleted the post in error, please relist it!")
+            self.displayConfirmAlertMessage("Book Sold?", message: "Press Confirm to mark your book sold")
         })
 
        
@@ -430,15 +430,15 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource, MFM
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.dataChangedForHomeAndSearch = true
         appDelegate.dataChangedForMyBooks = true
-        dispatch_async(dispatch_get_main_queue(), {
-            self.tableView.reloadData()
-        })
+        self.tableView.reloadData()
+        
     }
     func deleteButton(alert:UIAlertAction!)
     {
        
         self.tempDict["bookStatus"] = "deleted"
         postRef.child(tempDict["SellBooksPostId"]!).updateChildValues(self.tempDict)
+        
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.dataChangedForHomeAndSearch = true
         appDelegate.dataChangedForMyBooks = true
