@@ -32,12 +32,13 @@ class User{
     }
     
     static func generateColor(sellerName:String)->String{
+        let arr = ["9FB4CC", "DB7705", "63A69F", "910DFF", "AAD8B0", "FFB25C", "7A0C40", "C9D787", "7ECEFD", "CCCC52", "FF7F00", "EA2E49", "F2594B", "A1E8D9", "CFC291"]
+
         let len = sellerName.hash
-        var num = len%14
+        var num = len % (arr.count - 1)
         if num < 0{
             num = num * (-1)
         }
-        let arr = ["9FB4CC", "DB7705", "63A69F", "910DFF", "AAD8B0", "FFB25C", "7A0C40", "C9D787", "7ECEFD", "CCCC52", "FF7F00", "EA2E49", "F2594B", "A1E8D9", "CFC291"]
         return arr[num]
        
     }

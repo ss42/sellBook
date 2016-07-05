@@ -388,14 +388,7 @@ class EditBooksViewController: UIViewController {
      
     }
     
-    /*func alert(title: String, msg: String){
-        
-        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: title, style: .Default, handler: nil))
-        
-        presentViewController(alertController, animated: true, completion: nil)
-        
-    }*/
+
     @IBAction func deletePressed(sender: AnyObject) {
         
         let deleteAlertController = UIAlertController(title: "Delete your Listing?", message: "Press on delete to remove listing or press on confirm sale to mark your listing as SOLD", preferredStyle: .ActionSheet)

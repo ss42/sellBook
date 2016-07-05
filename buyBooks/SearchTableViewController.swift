@@ -95,16 +95,13 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     }
     func fetchPost()
     {
-        //let tempUser = User(fullName: "test", email: "test@test.com", profileImage: "none")
-        //self.sellBookArray.addObject(Book(user: tempUser , title: "fgdfg", price: 5.0, pictures: "none", condition: "ok", postedTime: "time", detail: "detail"))
+       
         let uid = getUID()
         ref.child("SellBooksPost").queryOrderedByChild("uid").queryEqualToValue(uid).observeEventType(.ChildAdded, withBlock: {
             snapshot in
             
             let title = snapshot.value!["bookTitle"] as! String
-            //let detail = snapshot.value!["bookDetail"] as! String
             let condition = snapshot.value!["bookCondition"] as! String
-            let bookImage = snapshot.value!["imageURL"] as! String
             let price = snapshot.value!["price"] as! String
             let sellerName = snapshot.value!["fullName"] as! String
             let sellerEmail = snapshot.value!["email"] as! String
@@ -119,7 +116,6 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
             let description = snapshot.value!["description"] as! String
             let publishedDate = snapshot.value!["publishedDate"] as! String
             let postID = snapshot.value!["SellBooksPostId"] as! String
-            //let bookSold = snapshot.value!["bookSold"] as! String
             let bookStatus = snapshot.value!["bookStatus"] as! String
             let timeOfMail = snapshot.value!["timeOfMail"] as! String
 
@@ -128,7 +124,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
             if (bookStatus != "deleted"){
                 
                 let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
-                let tempBook = Book(user: sellerInfo, title: title, price: Int(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus, timeOfMail: timeOfMail)
+                let tempBook = Book(user: sellerInfo, title: title, price: Int(price)!, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus, timeOfMail: timeOfMail)
                 
                 
                 if (self.timeElapsedinSeconds(postedTime) < 60*60*24*30 || (bookStatus == "sold" && self.timeElapsedinSeconds(postedTime) < 60*60*24*90)){
@@ -160,6 +156,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     func getUID() -> String
     {
         if let user = FIRAuth.auth()?.currentUser{
@@ -169,6 +166,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
             return "no id???"
         }
     }
+    
     func timeElapsed(date: String)-> String{
         
         let dateformatter = NSDateFormatter()
@@ -176,12 +174,8 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         dateformatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let postedDate  = dateformatter.dateFromString(date)!
         
-        
         let elapsedTimeInSeconds = NSDate().timeIntervalSinceDate(postedDate)
-        
-        
         let secondInDays: NSTimeInterval = 60 * 60 * 24
-        
         
         if elapsedTimeInSeconds > 7 * secondInDays {
             dateformatter.dateFormat = "MM/dd/yy"
@@ -248,12 +242,9 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         cell.fullName.text = book!.sellerInfo?.fullName
         cell.title.text = book!.title
         cell.authors.text = "By: " + book!.webAuthors!
-        //cell.postedTime.text = book!.postedTime
         cell.price.text = "$ " + String(book!.price!)
-        
         cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2
         cell.profileImage.clipsToBounds = true
-        //cell.yearPublished.text = book!.publishedYear
         
         var tempString = book!.webBookThumbnail!
         if (tempString.hasPrefix("http:")){
@@ -262,17 +253,10 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         }
         let name = book!.sellerInfo?.fullName
         cell.profileImage.setImageWithString(name, color: UIColor.init(hexString: User.generateColor(name!)))
-        
-   
-        
         cache!.getImage(tempString, imageView: cell.mainImage, defaultImage: "noun_9280_cc")
-        print("after getimage")
         
         if(book!.bookStatus == "sold")
         {
-            print("sold book seen")
-            // cell.bannerImage.image = UIImage(named: "male")
-            //cache!.getImage(<#T##url: String##String#>, defaultImage: <#T##String#>)
             cell.bannerImage.image = UIImage(named: "fixedBanner")
             cell.bannerImage.hidden = false
             cell.postedTime.hidden = true
@@ -438,69 +422,3 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
 
 
 }
-
-class ImageLoadingWithCache {
-    
-    var imageCache = [String:UIImage]()
-    
-    func getImage(url: String, imageView: UIImageView, defaultImage: String) {
-        if let img = imageCache[url] {
-            imageView.image = img
-        } else {
-            
-            let session = NSURLSession.sharedSession()
-            let imgURL: NSURL = NSURL(string: url)!
-            let request: NSURLRequest = NSURLRequest(URL: imgURL)
-            let task = session.dataTaskWithRequest(request){(data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
-                if error == nil {
-                    let image = UIImage(data: data!)
-                    self.imageCache[url] = image
-                    
-                    dispatch_async(dispatch_get_main_queue(), {
-                        imageView.image = image
-                        print("sent image to view")
-                    })
-                }
-                else {
-                    imageView.image = UIImage(named: defaultImage)
-                    print("load failed")
-                }
-
-            }
-            task.resume()
-        }
-    }
-    /*func getImage1(url: String, imageView: UIImageView, defaultImage: String) {
-        if let img = imageCache[url] {
-            imageView.image = img
-        } else {
-            let request: NSURLRequest = NSURLRequest(URL: NSURL(string: url)!)
-            let mainQueue = NSOperationQueue.mainQueue()
-            
-            NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
-                if error == nil {
-                    let image = UIImage(data: data!)
-                    self.imageCache[url] = image
-                    
-                    dispatch_async(dispatch_get_main_queue(), {
-                        imageView.image = image
-                        print("sent image to view")
-                    })
-                }
-                else {
-                    imageView.image = UIImage(named: defaultImage)
-                    print("load failed")
-                }
-            })
-        }
-    }*/
-    func getImage(url:String, defaultImage:String)->UIImage{
-        if let img = imageCache[url]{
-            return img
-        }
-        else{
-            return UIImage(named: "male")!
-        }
-    }
-}
-

@@ -28,7 +28,6 @@ class Book{
     var sellerInfo: User?
     var title: String?
     var price: Int?
-    var pictures: String?
     var condition: String?
     var postedTime: String?
     var postId: String?
@@ -48,12 +47,11 @@ class Book{
     
     
     
-    init(user: User, title: String, price: Int, pictures: String, condition: String, postedTime: String, postId:String, isbn:String, authors: String, imageURL: String, pageCount:String, description:String, yearPublished:String, status:String, timeOfMail: String)
+    init(user: User, title: String, price: Int,  condition: String, postedTime: String, postId:String, isbn:String, authors: String, imageURL: String, pageCount:String, description:String, yearPublished:String, status:String, timeOfMail: String)
     {
         self.sellerInfo = user
         self.title = title
         self.price = price
-        self.pictures = pictures
         self.condition = condition
         self.postedTime = postedTime
         self.postId = postId

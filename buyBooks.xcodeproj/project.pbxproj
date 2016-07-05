@@ -27,6 +27,7 @@
 		107D79501D022CE200661B91 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 107D794D1D022CE200661B91 /* FBSDKShareKit.framework */; };
 		108C816E1D1A4C5B006D903F /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108C816D1D1A4C5B006D903F /* PrivacyPolicyViewController.swift */; };
 		10AEB4D61CFF96850037E744 /* UIImageView+Letters.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AEB4D51CFF96850037E744 /* UIImageView+Letters.m */; };
+		10BF5F881D2C4AFA00F7D621 /* ImageLoadingWithCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BF5F871D2C4AFA00F7D621 /* ImageLoadingWithCache.swift */; };
 		10C6E6FA1CF65BC3007BFF69 /* MyBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E6F91CF65BC3007BFF69 /* MyBooksViewController.swift */; };
 		10C6E6FC1CF65C55007BFF69 /* MyBooksViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E6FB1CF65C55007BFF69 /* MyBooksViewCell.swift */; };
 		10C6E6FE1CF670A2007BFF69 /* EditBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6E6FD1CF670A2007BFF69 /* EditBooksViewController.swift */; };
@@ -92,6 +93,7 @@
 		10AEB4D51CFF96850037E744 /* UIImageView+Letters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Letters.m"; sourceTree = "<group>"; };
 		10B91E111CF3CDBD005D19B3 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
 		10B91E121CF3CDD3005D19B3 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		10BF5F871D2C4AFA00F7D621 /* ImageLoadingWithCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoadingWithCache.swift; sourceTree = "<group>"; };
 		10C6E6F91CF65BC3007BFF69 /* MyBooksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBooksViewController.swift; sourceTree = "<group>"; };
 		10C6E6FB1CF65C55007BFF69 /* MyBooksViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBooksViewCell.swift; sourceTree = "<group>"; };
 		10C6E6FD1CF670A2007BFF69 /* EditBooksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBooksViewController.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				1063A9CE1CF3A67500BFB4E0 /* LaunchScreen.storyboard */,
 				10B91E121CF3CDD3005D19B3 /* module.modulemap */,
 				105330B61CFF9BB0000EC461 /* buyBooks-Bridging-Header.h */,
+				10BF5F871D2C4AFA00F7D621 /* ImageLoadingWithCache.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -521,6 +524,7 @@
 				102C91261D07808D00D5B9F1 /* AboutViewController.swift in Sources */,
 				1063A9F71CF3B1EF00BFB4E0 /* User.swift in Sources */,
 				102C91281D07809A00D5B9F1 /* EditProfileViewController.swift in Sources */,
+				10BF5F881D2C4AFA00F7D621 /* ImageLoadingWithCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

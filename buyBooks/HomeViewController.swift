@@ -216,12 +216,11 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             let title = snapshot.value!["bookTitle"] as! String
             //let detail = snapshot.value!["bookDetail"] as! String
             let condition = snapshot.value!["bookCondition"] as! String
-            let bookImage = snapshot.value!["imageURL"] as! String
+           // let bookImage = snapshot.value!["imageURL"] as! String
             let price = snapshot.value!["price"] as! String
             let sellerName = snapshot.value!["fullName"] as! String
             let sellerEmail = snapshot.value!["email"] as! String
             let sellerProfilePhoto = snapshot.value!["profilePhoto"] as! String
-            
             let postedTime = snapshot.value!["postedTime"] as! String
             let elapsedTime = postedTime//self.timeElapsed(postedTime)
             let isbn = snapshot.value!["isbn"] as! String
@@ -230,12 +229,12 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             let imageURL = snapshot.value!["imageURL"] as! String
             let description = snapshot.value!["description"] as! String
             let publishedDate = snapshot.value!["publishedDate"] as! String
-            let postID = snapshot.value!["SellBooksPostId"] as! String
+            let postId = snapshot.value!["SellBooksPostId"] as! String
             
             
             let bookStatus = snapshot.value!["bookStatus"] as! String
     
-            print(title)
+           // print(title)
             // TODO: make sure that we want books to be hidden if they were posted more than a month ago
             if (bookStatus != "deleted"){
                 //&& (self.timeElapsedinSeconds(postedTime) < 60*60*24*30)){ //&& bookStatus != "sold"){
@@ -243,28 +242,27 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 
                 let timeOfMail = snapshot.value!["timeOfMail"] as! String
                 
-                //let condition = Book.howShouldBookBeDisplayed(timeOfMail, bookStatus: bookStatus)
                 
-                //if self.shouldBookBeDisplayed(bookStatus, timeOfMail: timeOfMail)
+                let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
+                print(sellerName)
+                print(title)
+                print(timeOfMail)
+                print(price)
+                print(bookStatus)
                 
-                    let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
-                let tempBook = Book(user: sellerInfo, title: title, price: Int(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus, timeOfMail: timeOfMail)
+                
+                let tempBook = Book(user: sellerInfo, title: title, price: Int(price)!, condition: condition, postedTime: elapsedTime, postId: postId, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus, timeOfMail: timeOfMail)
                 
                 if (self.timeElapsedinSeconds(postedTime) < 60*60*24*30 || (bookStatus == "sold" && self.timeElapsedinSeconds(postedTime) < 60*60*24*90)){
                     self.sellBookArray.insertObject(tempBook, atIndex: 0)
                 }
-                    //self.sellBookArray.insertObject(tempBook, atIndex: 0)//.addObject(tempBook)
-                    
-                    
                 
             }
             else
             {
                 print("saw a deleted book")
             }
-            //self.sellBookArray.addObject(Book(user: sellerInfo, title: title, price: Double(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: ""))
-
-            
+           
             self.tableView.reloadData()
             })
         

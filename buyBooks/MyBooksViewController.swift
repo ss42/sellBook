@@ -172,7 +172,6 @@ class MyBooksViewController: UIViewController  {
             let title = snapshot.value!["bookTitle"] as! String
             //let detail = snapshot.value!["bookDetail"] as! String
             let condition = snapshot.value!["bookCondition"] as! String
-            let bookImage = snapshot.value!["imageURL"] as! String
             let price = snapshot.value!["price"] as! String
             let sellerName = snapshot.value!["fullName"] as! String
             let sellerEmail = snapshot.value!["email"] as! String
@@ -196,7 +195,7 @@ class MyBooksViewController: UIViewController  {
             if (bookStatus != "deleted"){
                 
                 let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
-                let tempBook = Book(user: sellerInfo, title: title, price: Int(price)!, pictures: bookImage, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus, timeOfMail: timeOfMail)
+                let tempBook = Book(user: sellerInfo, title: title, price: Int(price)!, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus, timeOfMail: timeOfMail)
                 
                 
                 self.sellBookArray.insertObject(tempBook, atIndex: 0)
