@@ -118,10 +118,20 @@ class LoginViewController: UIViewController {
     
     @IBAction func signUpPressed(sender: AnyObject) {
         
-        let vc: UIViewController = storyboard!.instantiateViewControllerWithIdentifier("CreateNewAccount")
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
+        let iPhoneName = appDelegate.deviceName
+        var vc:UIViewController?
+        if iPhoneName == "iPhone 4s"{
+             vc = storyboard!.instantiateViewControllerWithIdentifier("CreateNewAccount2")
+        }
+        else{
+            vc = storyboard!.instantiateViewControllerWithIdentifier("CreateNewAccount")
+        }
         
         
-        self.presentViewController(vc, animated: true, completion: nil)
+        
+        self.presentViewController(vc!, animated: true, completion: nil)
     }
     // MARK: - Dissmisses keyboard
     func dismissKeyboard(){

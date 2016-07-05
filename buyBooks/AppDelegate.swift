@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var dataChangedForMyBooks: Bool = true
 
     var cache = ImageLoadingWithCache()
+    
+    var deviceName:String?
 
         // crash fix maybe
     override init() {
@@ -30,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         //FIRApp.configure()
         print("after config")
+        deviceName = UIDevice.currentDevice().modelName
         //UILabel.appearance().substituteFontName = "SF-UI-Text-Regular"
         
         // previous line for setting a default text font and size
