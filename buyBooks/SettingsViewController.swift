@@ -60,7 +60,7 @@ class SettingsViewController: UIViewController {
         if let user = FIRAuth.auth()?.currentUser {
             //change this later to full name
             print(user.email)
-            print(user.photoURL)
+            //print(user.photoURL)
             usernameLabel.text = user.displayName
             emailLabel.text = user.email
             //let uid = user.uid

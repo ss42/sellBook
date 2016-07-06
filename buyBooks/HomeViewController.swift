@@ -17,6 +17,15 @@ import MessageUI
 
 class HomeViewController: UIViewController, UIPopoverPresentationControllerDelegate{
     
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+    }()
+    
+    
 
     // firebase ref
     var ref = FIRDatabase.database().reference()
@@ -58,9 +67,29 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
     }
     
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        // Do some reloading of data and update the table view's data source
+        // Fetch more objects from a web service, for example...
+        
+        // Simply adding an object to the data source for this example
+        /*let newMovie = Movie(title: "Serenity", genre: "Sci-fi")
+        movies.append(newMovie)
+        
+        movies.sort() { $0.title < $1.title }
+        */
+        print("refreshed data")
+        sellBookArray = []
+        fetchPost()
+        
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        // CustomNavigation.customNavBarForHome()
+        // for pull to refresh
+        self.tableView.addSubview(self.refreshControl)
         
         let tbvc = self.tabBarController as! DataHoldingTabBarViewController // going to get data from here instead.
         cache = tbvc.cache
@@ -341,6 +370,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
         tableView.reloadData()
     }
     
+    
+    
+    
+    
     // facebook stuff, checks to see if logged in and then posts a message. We currently need to change the message and the picture that is posted
     //TODO: Fix facebook message and picture
     func facebookShare()
@@ -400,7 +433,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
                 //do stuff
                 
                 let msgVC = MFMessageComposeViewController()
-                msgVC.body = "Hey, \n" + "I have this book " +  "'\(book.title!)'"  + " for sale, it is currently listed for $\(book.price)." + " Please check BOOK-RACK app to buy and sell books."
+                msgVC.body = "Hey, \n" + "I have this book " +  "'\(book.title!)'"  + " for sale, it is currently listed for $\(book.price!)." + " Please check BOOK-RACK app to buy and sell books."
                 msgVC.recipients = [" "]
                 
                 
@@ -499,8 +532,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
         return img
     }
     
-    
-    // TODO fix imageloading problem (the banners and the main images sometimes, can be reproduced by scrolling down then switching the tab bars and then scrolling up)
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
         

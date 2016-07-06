@@ -14,6 +14,13 @@ import MessageUI
 
 class MyBooksViewController: UIViewController  {
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+    }()
+    
     //TODO: relisting of books
     var cache:ImageLoadingWithCache?
 
@@ -30,6 +37,25 @@ class MyBooksViewController: UIViewController  {
     var facebookMessageString:String?
     
     var tempDict = [String: String]()
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        // Do some reloading of data and update the table view's data source
+        // Fetch more objects from a web service, for example...
+        
+        // Simply adding an object to the data source for this example
+        /*let newMovie = Movie(title: "Serenity", genre: "Sci-fi")
+         movies.append(newMovie)
+         
+         movies.sort() { $0.title < $1.title }
+         */
+        print("refreshed data")
+        sellBookArray = []
+        fetchPost()
+        
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "editBook"
@@ -56,6 +82,8 @@ class MyBooksViewController: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.addSubview(self.refreshControl)
+
         let tbvc = self.tabBarController as! DataHoldingTabBarViewController // going to get data from here instead.
         cache = tbvc.cache
         self.tableView.delegate = self
@@ -348,8 +376,12 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource, MFM
         deleteAction.backgroundColor = UIColor.redColor()
         shareAction.backgroundColor = UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0)
         markSoldAction.backgroundColor = UIColor.lightGrayColor()
-        return [shareAction, deleteAction, markSoldAction]
-      
+        if book.bookStatus == "sold"{
+            return [deleteAction]
+        }
+        else{
+            return [shareAction, deleteAction, markSoldAction]
+        }
         
     }
     func soldActionController(indexPath: NSIndexPath, book: Book){
@@ -382,7 +414,7 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource, MFM
             //do stuff
             
             let msgVC = MFMessageComposeViewController()
-            msgVC.body = "Hey, \n" + "I have this book " +  "'\(book.title!)'"  + " for sale, it is currently listed for $\(book.price)." + " Please check BOOK-RACK app to buy and sell books."
+            msgVC.body = "Hey, \n" + "I have this book " +  "'\(book.title!)'"  + " for sale, it is currently listed for $\(book.price!)." + " Please check BOOK-RACK app to buy and sell books."
             msgVC.recipients = [" "]
             let cell:MyBooksViewCell = self.tableView.cellForRowAtIndexPath(indexPath) as! MyBooksViewCell
             let imageData = cell.mainImage.image
@@ -430,8 +462,12 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource, MFM
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.dataChangedForHomeAndSearch = true
         appDelegate.dataChangedForMyBooks = true
-        self.tableView.reloadData()
+        print("confirmation of sale!")
+        (self.sellBookArray[currentIndex!.row] as! Book).bookStatus = "sold"
         
+        tableView.beginUpdates()
+        tableView.reloadRowsAtIndexPaths([currentIndex!], withRowAnimation: .Automatic)
+        tableView.endUpdates()
     }
     func deleteButton(alert:UIAlertAction!)
     {

@@ -14,6 +14,7 @@ class EditBooksViewController: UIViewController {
     
     
     var ref = FIRDatabase.database().reference().child("SellBooksPost")
+    var statsRef = FIRDatabase.database().reference().child("Statistics")
     var postId: String?
     
     
@@ -33,6 +34,7 @@ class EditBooksViewController: UIViewController {
     @IBOutlet weak var confirmChanges: UIButton!
     
     var currentUserDictionary = [String:AnyObject]()
+    var refetchData:Bool = true
     
     func dismissKeyboard(){
         view.endEditing(true)
@@ -60,9 +62,9 @@ class EditBooksViewController: UIViewController {
         self.price.delegate = self
         self.bookTitle.delegate = self
         // add more if needed
-        
-        loadDataFromPreviousViewController()
-        
+        if refetchData == true{
+            loadDataFromPreviousViewController()
+        }
 
     }
     
@@ -107,6 +109,11 @@ class EditBooksViewController: UIViewController {
              self.currentUserDictionary["postedTime"] = snapshot.value!["postedTime"] as! String
             self.currentUserDictionary["timeOfMail"] = snapshot.value!["timeOfMail"] as! String
             self.currentUserDictionary["bookStatus"] = snapshot.value!["bookStatus"] as! String
+            self.currentUserDictionary["uid"] = snapshot.value!["uid"] as! String
+            self.currentUserDictionary["authors"] = snapshot.value!["authors"] as! String
+            self.currentUserDictionary["isbn"] = snapshot.value!["isbn"] as! String
+            self.currentUserDictionary["pageCount"] = snapshot.value!["pageCount"] as! String
+            self.currentUserDictionary["publishedDate"] = snapshot.value!["publishedDate"] as! String
             
             self.populateData()
         })
@@ -370,14 +377,59 @@ class EditBooksViewController: UIViewController {
         print("relisting")
         self.currentUserDictionary["bookStatus"] = "default"
         self.currentUserDictionary["postedTime"] = getCurrentTime()
+        // delete post and then repost it so it is in the proper spot
         self.setDictValues()
-        self.updatePostOnDatabase()
+        //ref.child(postId!).removeValue()//updateChildValues(self.currentUserDictionary)
+        deleteAndRepost()
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.dataChangedForHomeAndSearch = true
         appDelegate.dataChangedForMyBooks = true
-        navigationController?.popViewControllerAnimated(true)
+        self.postId = self.currentUserDictionary["SellBooksPostId"] as? String
+        refetchData = false
+       // navigationController?.popViewControllerAnimated(true)
         
     }
+    
+    func deleteAndRepost(){
+        let newPostID = ref.childByAutoId()
+        currentUserDictionary["SellBooksPostId"] = newPostID.key
+
+        
+        newPostID.setValue(currentUserDictionary)
+
+        ref.child(postId!).removeValue()//updateChildValues(self.currentUserDictionary)
+
+    }
+    
+    func getCurrentSellerInfo()-> [String:AnyObject]{
+        var tempDict = self.currentUserDictionary
+
+        if let user = FIRAuth.auth()?.currentUser {
+            //change this later to full name
+            print(user.email)
+            print(user.photoURL)
+            let name = user.displayName
+            let email = user.email
+            let uid = user.uid
+            let profileImage = "male"
+            //let uid = user.uid
+            
+            let postId = ref.child("SellBooksPost").childByAutoId()
+            var tempDict = self.currentUserDictionary
+            tempDict["uid"] = uid
+            tempDict["SellBooksPostId"] = postId.key
+            tempDict["postedTime"] = getCurrentTime()
+            tempDict["bookStatus"] = "default"
+            tempDict["timeOfMail"] = " "
+            
+            
+        } else {
+            // No user is signed in.
+        }
+        return tempDict
+        
+    }
+
     
     
     // TODO: why did we remove dispatch_async?
@@ -401,7 +453,12 @@ class EditBooksViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
         
         deleteAlertController.addAction(deleteAction)
-        deleteAlertController.addAction(confirmSaleAction)
+        
+        // if sold dont show confirm sale
+        if ((self.currentUserDictionary["bookStatus"] as! String) != "sold")
+        {
+            deleteAlertController.addAction(confirmSaleAction)
+        }
         deleteAlertController.addAction(cancelAction)
         
         

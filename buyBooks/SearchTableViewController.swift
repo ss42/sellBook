@@ -17,7 +17,35 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
 
     var cache:ImageLoadingWithCache?
     var ref = FIRDatabase.database().reference()
+    
+    
+    
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        // Do some reloading of data and update the table view's data source
+        // Fetch more objects from a web service, for example...
+        
+        // Simply adding an object to the data source for this example
+        /*let newMovie = Movie(title: "Serenity", genre: "Sci-fi")
+         movies.append(newMovie)
+         
+         movies.sort() { $0.title < $1.title }
+         */
+        print("refreshed data")
+        sellBookArray = []
+        fetchPost()
+        
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
 
+    /*lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+    }()
+*/
    
     var sellBookArray: NSMutableArray = []
     var filteredSellBookArray = [Book]()
@@ -40,6 +68,8 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.refreshControl?.addTarget(self, action: #selector(SearchTableViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+
         
         let tbvc = self.tabBarController as! DataHoldingTabBarViewController // going to get data from here instead.
         self.cache = tbvc.cache
@@ -108,7 +138,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
             let sellerProfilePhoto = snapshot.value!["profilePhoto"] as! String
             
             let postedTime = snapshot.value!["postedTime"] as! String
-            let elapsedTime = self.timeElapsed(postedTime)
+            let elapsedTime = postedTime//self.timeElapsed(postedTime)
             let isbn = snapshot.value!["isbn"] as! String
             let pageCount = snapshot.value!["pageCount"] as! String
             let authors = snapshot.value!["authors"] as! String
@@ -223,7 +253,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         //return 0
     }
 
-    
+    // TODO, STRANGE: this is an override func, and scrolling is very slow on the simulator, in the home vc this funcion is not an override.
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> PostTableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("searchCell") as! PostTableViewCell
         var book:Book?
@@ -379,7 +409,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
                 //do stuff
                 
                 let msgVC = MFMessageComposeViewController()
-                msgVC.body = "Hey, \n" + "I have this book " +  "'\(book.title!)'"  + " for sale, it is currently listed for $\(book.price)." + " Please check BOOK-RACK app to buy and sell books."
+                msgVC.body = "Hey, \n" + "I have this book " +  "'\(book.title!)'"  + " for sale, it is currently listed for $\(book.price!)." + " Please check BOOK-RACK app to buy and sell books."
                 msgVC.recipients = [" "]
                 let cell:PostTableViewCell = tableView.cellForRowAtIndexPath(indexPath) as! PostTableViewCell
                 let imageData = cell.mainImage.image
