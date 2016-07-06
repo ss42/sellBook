@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "delete-2.png",
+      "filename" : "waste_filled.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "delete-1.png",
+      "filename" : "waste_filled-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "delete.png",
+      "filename" : "waste_filled-2.png",
       "scale" : "3x"
     }
   ],

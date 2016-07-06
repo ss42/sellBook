@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.darkTextColor()], forState:.Normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: DefaultButtonColor!], forState:.Selected)
         
-        CustomNavigation.customNavBarForOthersBesideHome()
+        CustomNavigation.customNavBar()
         
         
         

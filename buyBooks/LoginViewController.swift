@@ -23,6 +23,9 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         
+      
+        
+        
         emailField.delegate = self
         
         //changes the placeholder's text color
@@ -57,15 +60,18 @@ class LoginViewController: UIViewController {
     
     // ## WARNING May be get all the user info at once and use it thru out the viewcontroller
     @IBAction func login(sender: AnyObject) {
-        let email = emailField.text
+        var email = emailField.text
         let password = passwordField.text
         
         if email != "" && password != "" {
+            
+            email = email! + "@stmarys-ca.edu"
             
             // Login with the Firebase's authUser method
             
             FIRAuth.auth()?.signInWithEmail(email!, password: password!, completion: {
                 user, error in
+                
                 
                 if error != nil {
                     print("error signing in")
@@ -120,12 +126,14 @@ class LoginViewController: UIViewController {
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
-        let iPhoneName = appDelegate.deviceName
+        let iPhoneName = appDelegate.deviceName!
         var vc:UIViewController?
-        if iPhoneName == "iPhone 4s"{
+        if iPhoneName == "iPhone 4s" || iPhoneName == "iPhone 5s"{
+            print(iPhoneName)
              vc = storyboard!.instantiateViewControllerWithIdentifier("CreateNewAccount2")
         }
         else{
+            print(iPhoneName)
             vc = storyboard!.instantiateViewControllerWithIdentifier("CreateNewAccount")
         }
         
