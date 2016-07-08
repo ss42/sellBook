@@ -12,6 +12,7 @@ import Firebase
 class SellBooksViewController: UIViewController {
     var ref = FIRDatabase.database().reference()
 
+    @IBOutlet weak var scrollView: UIScrollView!
 
     @IBOutlet weak var bookTitle: UITextField!
     
@@ -189,7 +190,8 @@ extension SellBooksViewController: UITextFieldDelegate{
 }
 extension SellBooksViewController: UITextViewDelegate{
     
-    func textViewDidBeginEditing(textView: UITextView) {
+
+    func textViewDidEndEditing(textView: UITextView) {
         print("first edit")
         if firstEdit == true
         {
@@ -197,6 +199,24 @@ extension SellBooksViewController: UITextViewDelegate{
             firstEdit = false
             print("first edit ??")
         }
+        self.view.endEditing(true)
+        scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+        
     }
+    /*
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+        return true
+    }*/
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        print("textfield did begin editting")
+        if textView == detail{
+            print("lifting the view")
+            scrollView.setContentOffset(CGPointMake(0, 100), animated: true)
+        }
+    }
+    
     
 }

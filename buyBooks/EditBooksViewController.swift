@@ -12,6 +12,7 @@ import Firebase
 
 class EditBooksViewController: UIViewController {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var ref = FIRDatabase.database().reference().child("SellBooksPost")
     var statsRef = FIRDatabase.database().reference().child("Statistics")
@@ -479,22 +480,28 @@ class EditBooksViewController: UIViewController {
 }
 
 extension EditBooksViewController: UITextFieldDelegate{
-    func textFieldDidEndEditing(textField: UITextField) {
-        //add something may be?
-        
-    }
-   
     
     func textFieldShouldClear(textField: UITextField) -> Bool {
         return true
     }
-    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
-        return true
+   
+   
+    func textFieldDidEndEditing(textField: UITextField) {
+        self.view.endEditing(true)
+        scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+        
     }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        print("keyboard should go away")
         self.view.endEditing(true)
+        scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
         return true
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if (textField == price){
+            scrollView.setContentOffset(CGPointMake(0, 150), animated: true)
+            
+        }
     }
     
     

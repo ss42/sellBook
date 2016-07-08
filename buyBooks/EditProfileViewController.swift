@@ -24,7 +24,6 @@ class EditProfileViewController: UIViewController {
     
     @IBOutlet weak var displayName: UILabel!
     
-    @IBOutlet weak var popUpView: UIStackView!
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -51,6 +50,9 @@ class EditProfileViewController: UIViewController {
     
         repeatNewPassword.attributedPlaceholder = NSAttributedString(string:"Enter Password Again",
                                                                  attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()])
+        repeatNewPassword.delegate = self
+        newPassword.delegate = self
+        oldPassword.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -169,7 +171,7 @@ class EditProfileViewController: UIViewController {
             let username = user.email
             email = user.email!
             displayName.text = user.displayName
-           // let uid = user.uid
+           
             profileImage.setImageWithString(displayName.text, color: UIColor.init(hexString: User.generateColor(displayName.text!)))
             return true
         }
@@ -189,12 +191,7 @@ class EditProfileViewController: UIViewController {
 extension EditProfileViewController: UITextFieldDelegate{
    
     
-    func textFieldShouldClear(textField: UITextField) -> Bool {
-        return true
-    }
-    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
-        return true
-    }
+   
    
     func textFieldDidEndEditing(textField: UITextField) {
         self.view.endEditing(true)
@@ -208,8 +205,10 @@ extension EditProfileViewController: UITextFieldDelegate{
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        if (textField == newPassword) || (textField == repeatNewPassword){
-            scrollView.setContentOffset(CGPointMake(0, 250), animated: true)
+        print("textfield did begin editting")
+        if textField == repeatNewPassword{
+            print("lifting the view")
+            scrollView.setContentOffset(CGPointMake(0, 100), animated: true)
         }
     }
     
