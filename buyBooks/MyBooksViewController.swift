@@ -414,7 +414,7 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource, MFM
             //do stuff
             
             let msgVC = MFMessageComposeViewController()
-            msgVC.body = "Hey, \n" + "I have this book " +  "'\(book.title!)'"  + " for sale, it is currently listed for $\(book.price!)." + " Please check BOOK-RACK app to buy and sell books."
+            msgVC.body = "Hey, \n" + "I have this book " +  "'\(book.title!)'"  + " for sale, it is currently listed for $\(book.price!)." + " Please check out the BOOK-RACK app to buy and sell books at SMC!"
             msgVC.recipients = [" "]
             let cell:MyBooksViewCell = self.tableView.cellForRowAtIndexPath(indexPath) as! MyBooksViewCell
             let imageData = cell.mainImage.image

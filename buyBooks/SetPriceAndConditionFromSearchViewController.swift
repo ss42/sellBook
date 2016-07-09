@@ -10,6 +10,7 @@ import UIKit
 
 class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var popView: UIView!
     @IBOutlet weak var bookImage: UIImageView!
     
@@ -65,10 +66,7 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
         
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
-    }
+    
 
     func populateData(){
         bookImage.image = image
@@ -145,4 +143,30 @@ class SetPriceAndConditionFromSearchViewController: UIViewController, UITextFiel
     }
     
 
+
+
+
+    
+    
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        self.view.endEditing(true)
+        scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+        
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+        return true
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        print("textfield did begin editting")
+        if textField == price{
+            print("lifting the view")
+            scrollView.setContentOffset(CGPointMake(0, 100), animated: true)
+        }
+    }
+    
+    
 }

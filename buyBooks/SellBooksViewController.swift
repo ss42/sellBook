@@ -192,13 +192,7 @@ extension SellBooksViewController: UITextViewDelegate{
     
 
     func textViewDidEndEditing(textView: UITextView) {
-        print("first edit")
-        if firstEdit == true
-        {
-            textView.text = ""
-            firstEdit = false
-            print("first edit ??")
-        }
+        
         self.view.endEditing(true)
         scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
         
@@ -211,6 +205,11 @@ extension SellBooksViewController: UITextViewDelegate{
     }*/
     
     func textViewDidBeginEditing(textView: UITextView) {
+        if firstEdit == true
+        {
+            textView.text = ""
+            firstEdit = false
+        }
         print("textfield did begin editting")
         if textView == detail{
             print("lifting the view")

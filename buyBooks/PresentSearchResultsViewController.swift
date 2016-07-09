@@ -77,27 +77,7 @@ class PresentSearchResultsViewController: UIViewController {
         task.resume()
         
     }
-    /*
-    func load_image1()
-    {
-        var tempString = self.bookInfoDict["imageURL"]!
-        if (tempString.hasPrefix("http:")){
-            tempString.insert("s", atIndex: tempString.startIndex.advancedBy(4))
-            print(tempString)
-        }
-        let urlString = tempString
-        let imgURL: NSURL = NSURL(string: urlString)!
-        let request: NSURLRequest = NSURLRequest(URL: imgURL)
-        NSURLConnection.sendAsynchronousRequest(
-            request, queue: NSOperationQueue.mainQueue(),
-            completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
-                if error == nil {
-                    self.bookImage.image = UIImage(data: data!)
-                }
-        })
-        
-    }*/
-    
+
     
     func populateFields(){
         

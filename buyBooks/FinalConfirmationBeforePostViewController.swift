@@ -11,6 +11,7 @@ import Firebase
 
 class FinalConfirmationBeforePostViewController: UIViewController {
     var ref = FIRDatabase.database().reference()
+    var statisticsRef = FIRDatabase.database().reference().child("Statistics")
 
     var bookInfoDict = [String:String]()
     var image:UIImage?
@@ -40,7 +41,6 @@ class FinalConfirmationBeforePostViewController: UIViewController {
         
         
         getCurrentSellerInfo()
-        
         //TODO Needs comment
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         //appDelegate.dataChangedForMyBooks = true // if this is set true a newly created book will be listed twice.
@@ -50,6 +50,8 @@ class FinalConfirmationBeforePostViewController: UIViewController {
 
         
     }
+    
+    
     
     func getCurrentSellerInfo(){
         if let user = FIRAuth.auth()?.currentUser {
@@ -74,6 +76,8 @@ class FinalConfirmationBeforePostViewController: UIViewController {
             tempDict["timeOfMail"] = " "
             
             postId.setValue(tempDict)
+            updateStatistics()
+
         } else {
             // No user is signed in.
         }
@@ -163,7 +167,27 @@ class FinalConfirmationBeforePostViewController: UIViewController {
         print("here")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-  
+    
+    
+    func updateStatistics(){
+        print("updating statistics")
+        var numberOfPost = ["BooksPostedForSale": 0]
+        statisticsRef.observeSingleEventOfType(.Value, withBlock: {
+            snapshot in
+            print("inside block")
+            let number = snapshot.value!["BooksPostedForSale"] as? Int
+                print("inside if statement")
+            numberOfPost["BooksPostedForSale"] = (number!)
+            
+            
+            print("right before update")
+            numberOfPost["BooksPostedForSale"] = Int(numberOfPost["BooksPostedForSale"]!) + 1
+            print(numberOfPost["BooksPostedForSale"])
+            self.statisticsRef.updateChildValues(numberOfPost)
+        })
+        
+       print("done with everything")
+    }
     
     //TODO  try to fix the following error
     /*

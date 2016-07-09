@@ -20,7 +20,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(HomeViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
         return refreshControl
     }()
@@ -433,7 +433,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
                 //do stuff
                 
                 let msgVC = MFMessageComposeViewController()
-                msgVC.body = "Hey, \n" + "I have this book " +  "'\(book.title!)'"  + " for sale, it is currently listed for $\(book.price!)." + " Please check BOOK-RACK app to buy and sell books."
+                msgVC.body = "Hey, \n" + "I have this book " +  "'\(book.title!)'"  + " for sale, it is currently listed for $\(book.price!)." + " Please check out the BOOK-RACK app to buy and sell books at SMC!"
                 msgVC.recipients = [" "]
                 
                 

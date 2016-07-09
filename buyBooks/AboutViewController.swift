@@ -54,6 +54,12 @@ class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate
         }
 
     }
+    @IBAction func viewPrivacyPolicy(sender: AnyObject) {
+        let vc: UIViewController = storyboard!.instantiateViewControllerWithIdentifier("PrivacyPolicyForAbout")
+        
+        
+        self.presentViewController(vc, animated: true, completion: nil)
+    }
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         
         switch result.rawValue{

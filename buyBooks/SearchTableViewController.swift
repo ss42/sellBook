@@ -106,7 +106,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
 
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        if appDelegate.dataChangedForHomeAndSearch
+        if appDelegate.dataChangedForHomeAndSearch == true
         {
             sellBookArray = []
             fetchPost()
@@ -127,7 +127,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     {
        
         let uid = getUID()
-        ref.child("SellBooksPost").queryOrderedByChild("uid").queryEqualToValue(uid).observeEventType(.ChildAdded, withBlock: {
+        ref.child("SellBooksPost").queryOrderedByKey().observeEventType(.ChildAdded, withBlock: {
             snapshot in
             
             let title = snapshot.value!["bookTitle"] as! String
@@ -409,7 +409,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
                 //do stuff
                 
                 let msgVC = MFMessageComposeViewController()
-                msgVC.body = "Hey, \n" + "I have this book " +  "'\(book.title!)'"  + " for sale, it is currently listed for $\(book.price!)." + " Please check BOOK-RACK app to buy and sell books."
+                msgVC.body = "Hey, \n" + "I have this book " +  "'\(book.title!)'"  + " for sale, it is currently listed for $\(book.price!)." + " Please check out the BOOK-RACK app to buy and sell books at SMC!"
                 msgVC.recipients = [" "]
                 let cell:PostTableViewCell = tableView.cellForRowAtIndexPath(indexPath) as! PostTableViewCell
                 let imageData = cell.mainImage.image

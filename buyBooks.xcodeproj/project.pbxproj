@@ -14,6 +14,7 @@
 		102C91281D07809A00D5B9F1 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102C91271D07809A00D5B9F1 /* EditProfileViewController.swift */; };
 		1039F4FC1CFEA14E0012C2C6 /* ViewDetailOfBooksOnSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039F4FB1CFEA14E0012C2C6 /* ViewDetailOfBooksOnSaleViewController.swift */; };
 		1039F4FE1CFEABB00012C2C6 /* CustomViewIBDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039F4FD1CFEABB00012C2C6 /* CustomViewIBDesignable.swift */; };
+		105891221D306D6A00BF2C2A /* PrivacyPolicyForAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105891211D306D6A00BF2C2A /* PrivacyPolicyForAboutViewController.swift */; };
 		1063A9C61CF3A67500BFB4E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1063A9C51CF3A67500BFB4E0 /* AppDelegate.swift */; };
 		1063A9C81CF3A67500BFB4E0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1063A9C71CF3A67500BFB4E0 /* HomeViewController.swift */; };
 		1063A9CB1CF3A67500BFB4E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1063A9C91CF3A67500BFB4E0 /* Main.storyboard */; };
@@ -71,6 +72,7 @@
 		1039F4FD1CFEABB00012C2C6 /* CustomViewIBDesignable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewIBDesignable.swift; sourceTree = "<group>"; };
 		105330B61CFF9BB0000EC461 /* buyBooks-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "buyBooks-Bridging-Header.h"; sourceTree = "<group>"; };
 		1054916F1D11FDAB0015FA54 /* buyBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = buyBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		105891211D306D6A00BF2C2A /* PrivacyPolicyForAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyForAboutViewController.swift; sourceTree = "<group>"; };
 		1063A9C51CF3A67500BFB4E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1063A9C71CF3A67500BFB4E0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1063A9CA1CF3A67500BFB4E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -195,6 +197,36 @@
 			name = "Menu(Popover)";
 			sourceTree = "<group>";
 		};
+		1058911F1D3034B700BF2C2A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				10E68C5D1D0DD366007FFD83 /* OpenSans-BoldItalic.ttf */,
+				10E68C5C1D0DD366007FFD83 /* OpenSans-Bold.ttf */,
+				10E68C5E1D0DD366007FFD83 /* OpenSans-ExtraBold.ttf */,
+				10E68C5F1D0DD366007FFD83 /* OpenSans-ExtraBoldItalic.ttf */,
+				10E68C601D0DD366007FFD83 /* OpenSans-Italic.ttf */,
+				10E68C611D0DD366007FFD83 /* OpenSans-Light.ttf */,
+				10E68C621D0DD366007FFD83 /* OpenSans-LightItalic.ttf */,
+				10E68C631D0DD366007FFD83 /* OpenSans-Regular.ttf */,
+				10E68C641D0DD366007FFD83 /* OpenSans-Semibold.ttf */,
+				10E68C651D0DD366007FFD83 /* OpenSans-SemiboldItalic.ttf */,
+				1006FE061D0169BC0015A206 /* OstrichSans-Light.otf */,
+				924F0D6F1D0502A000F46D1F /* Nexa Bold.otf */,
+				924F0D701D0502A000F46D1F /* Nexa Light.otf */,
+				1006FE051D01699F0015A206 /* ostrich-regular.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		105891201D3034D700BF2C2A /* Profile pic String Colors */ = {
+			isa = PBXGroup;
+			children = (
+				10AEB4D51CFF96850037E744 /* UIImageView+Letters.m */,
+				10AEB4D41CFF96850037E744 /* UIImageView+Letters.h */,
+			);
+			name = "Profile pic String Colors";
+			sourceTree = "<group>";
+		};
 		1063A9B91CF3A67500BFB4E0 = {
 			isa = PBXGroup;
 			children = (
@@ -211,7 +243,9 @@
 				102C91221D0778E300D5B9F1 /* Settings */,
 				1063A9C51CF3A67500BFB4E0 /* AppDelegate.swift */,
 				1063A9C91CF3A67500BFB4E0 /* Main.storyboard */,
-				10F8E0221D00EF9A00C944CD /* finishedStuff */,
+				1063A9F11CF3B07100BFB4E0 /* Model */,
+				10F8E0201D00DD7900C944CD /* DataHoldingTabBarViewController.swift */,
+				10F8E0221D00EF9A00C944CD /* Search */,
 				1039F4F61CFEA02E0012C2C6 /* Sell Books */,
 				10E2FD431CF3DAA900B6EAE0 /* Supporting Files */,
 				1063A9CC1CF3A67500BFB4E0 /* Assets.xcassets */,
@@ -225,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				108C816D1D1A4C5B006D903F /* PrivacyPolicyViewController.swift */,
+				105891211D306D6A00BF2C2A /* PrivacyPolicyForAboutViewController.swift */,
 				10DA6EE51CFD5C1600D64DB2 /* CreateNewAccountViewController.swift */,
 				10DA6EE11CFD5BFE00D64DB2 /* ForgotPasswordViewController 2.swift */,
 				10DA6EE31CFD5C1000D64DB2 /* LoginViewController.swift */,
@@ -280,6 +315,7 @@
 		10E2FD421CF3DA9200B6EAE0 /* Home Page */ = {
 			isa = PBXGroup;
 			children = (
+				1039F4FA1CFEA0E00012C2C6 /* Menu(Popover) */,
 				10C6E7011CF6752C007BFF69 /* view all books */,
 				10C6E7001CF6751E007BFF69 /* view my books */,
 			);
@@ -290,26 +326,12 @@
 			isa = PBXGroup;
 			children = (
 				10BF5F891D2C622D00F7D621 /* GetDeviceName.swift */,
-				10E68C5C1D0DD366007FFD83 /* OpenSans-Bold.ttf */,
-				10E68C5D1D0DD366007FFD83 /* OpenSans-BoldItalic.ttf */,
-				10E68C5E1D0DD366007FFD83 /* OpenSans-ExtraBold.ttf */,
-				10E68C5F1D0DD366007FFD83 /* OpenSans-ExtraBoldItalic.ttf */,
-				10E68C601D0DD366007FFD83 /* OpenSans-Italic.ttf */,
-				10E68C611D0DD366007FFD83 /* OpenSans-Light.ttf */,
-				10E68C621D0DD366007FFD83 /* OpenSans-LightItalic.ttf */,
-				10E68C631D0DD366007FFD83 /* OpenSans-Regular.ttf */,
-				10E68C641D0DD366007FFD83 /* OpenSans-Semibold.ttf */,
-				10E68C651D0DD366007FFD83 /* OpenSans-SemiboldItalic.ttf */,
-				1006FE061D0169BC0015A206 /* OstrichSans-Light.otf */,
-				924F0D6F1D0502A000F46D1F /* Nexa Bold.otf */,
-				924F0D701D0502A000F46D1F /* Nexa Light.otf */,
-				1006FE051D01699F0015A206 /* ostrich-regular.ttf */,
+				1058911F1D3034B700BF2C2A /* Fonts */,
 				1039F4FD1CFEABB00012C2C6 /* CustomViewIBDesignable.swift */,
 				10B91E111CF3CDBD005D19B3 /* Firebase.h */,
 				10CBFC1F1D1DCD98009DB78B /* GoogleService-Info.plist */,
 				1063A9D11CF3A67500BFB4E0 /* Info.plist */,
-				10AEB4D41CFF96850037E744 /* UIImageView+Letters.h */,
-				10AEB4D51CFF96850037E744 /* UIImageView+Letters.m */,
+				105891201D3034D700BF2C2A /* Profile pic String Colors */,
 				1063A9CE1CF3A67500BFB4E0 /* LaunchScreen.storyboard */,
 				10B91E121CF3CDD3005D19B3 /* module.modulemap */,
 				105330B61CFF9BB0000EC461 /* buyBooks-Bridging-Header.h */,
@@ -318,15 +340,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		10F8E0221D00EF9A00C944CD /* finishedStuff */ = {
+		10F8E0221D00EF9A00C944CD /* Search */ = {
 			isa = PBXGroup;
 			children = (
 				10F8E01E1D00D01800C944CD /* SearchTableViewController.swift */,
-				1063A9F11CF3B07100BFB4E0 /* Model */,
-				1039F4FA1CFEA0E00012C2C6 /* Menu(Popover) */,
-				10F8E0201D00DD7900C944CD /* DataHoldingTabBarViewController.swift */,
 			);
-			name = finishedStuff;
+			name = Search;
 			sourceTree = "<group>";
 		};
 		ED97D7F9542E3B60A031376C /* Pods */ = {
@@ -495,6 +514,7 @@
 				1063A9F51CF3B1DB00BFB4E0 /* Book.swift in Sources */,
 				108C816E1D1A4C5B006D903F /* PrivacyPolicyViewController.swift in Sources */,
 				10C6E7031CF79FEF007BFF69 /* BarcodeScannerViewController.swift in Sources */,
+				105891221D306D6A00BF2C2A /* PrivacyPolicyForAboutViewController.swift in Sources */,
 				10C6E6FA1CF65BC3007BFF69 /* MyBooksViewController.swift in Sources */,
 				1063A9C61CF3A67500BFB4E0 /* AppDelegate.swift in Sources */,
 				10C6E6FE1CF670A2007BFF69 /* EditBooksViewController.swift in Sources */,

@@ -20,6 +20,7 @@ class EditBooksViewController: UIViewController {
     
     
     @IBOutlet weak var bottomView: UIStackView!
+    @IBOutlet weak var markBookSoldButton: UIButton!
     @IBOutlet weak var bookTitle: UITextField!
     
     @IBOutlet weak var detail: UITextView!
@@ -64,7 +65,7 @@ class EditBooksViewController: UIViewController {
         self.bookTitle.delegate = self
         // add more if needed
         if refetchData == true{
-            loadDataFromPreviousViewController()
+            loadData()
         }
 
     }
@@ -74,18 +75,18 @@ class EditBooksViewController: UIViewController {
     func disable(){
         if let status = currentUserDictionary["bookStatus"] as? String{
             if status == "sold" {
-                print(status)
                 bookTitle.enabled = false
                 price.enabled = false
                 bookConditionSlider.enabled = false
                 detail.editable = false
-                relistBookButton.hidden = false
-                confirmChanges.enabled = false
+                // TODO: we hid the relist button, maybe we will put it back someday
+                //relistBookButton.hidden = false
+                markBookSoldButton.hidden = true
+                confirmChanges.hidden = true
                 
             }
             
         }
-        print(currentUserDictionary["bookStatus"] as! String)
         
 
     }
@@ -94,9 +95,11 @@ class EditBooksViewController: UIViewController {
     
     //let book:
     
-    func loadDataFromPreviousViewController(){
+    func loadData(){
         //fetchAndPopulateData(postId!)
-        ref.child(postId!).observeEventType(.Value, withBlock:{
+        
+        print(postId)
+        ref.child(postId!).observeSingleEventOfType(.Value, withBlock:{
             snapshot in
             
              self.currentUserDictionary["bookTitle"] = snapshot.value!["bookTitle"] as! String
@@ -127,18 +130,23 @@ class EditBooksViewController: UIViewController {
         price.text = currentUserDictionary["price"] as? String
         bookCondition.text = currentUserDictionary["bookCondition"] as? String
         bookConditionSlider.value = calculateSliderPosition()
-        relistBookButton.hidden = true
-        relistButtonSelector()
+        //relistBookButton.hidden = true
+        //relistButtonSelector()
+        disable()
         
     }
     
     func relistButtonSelector(){
         if timeElapsedinSeconds(currentUserDictionary["postedTime"] as! String) > 60*60*24*30
         {
-            relistBookButton.hidden = false
+            //relistBookButton.hidden = false
         }
     }
     
+    @IBAction func markSold(sender: AnyObject) {
+        self.confirmSale()
+        
+    }
     
     func timeElapsedinSeconds(date: String)-> Double{
         
@@ -182,18 +190,7 @@ class EditBooksViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool)
     {
-        let isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn");
-        
-        //if book is sold, it disables all the controls while it make the relist button appear
-        disable()
-        
-        if(!isUserLoggedIn)
-        {
-            //make the user sign in first
-            print("here")
-            let ViewController = self.storyboard!.instantiateViewControllerWithIdentifier("LoginView") as! LoginViewController
-            self.presentViewController(ViewController, animated: true, completion: nil)
-        }
+        loadData()
         
         
     }
@@ -317,19 +314,6 @@ class EditBooksViewController: UIViewController {
         myAlert.addAction(cancelAction)
         self.presentViewController(myAlert, animated: true, completion: nil);
     }
-    
-    func displayRelistBookMessage(title: String, message: String){
-        let myAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        let relistAction = UIAlertAction(title: "Confirm relisting of book", style: UIAlertActionStyle.Default, handler: reListButton) // change title
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: cancelButton)
-        
-        myAlert.addAction(relistAction)
-        myAlert.addAction(cancelAction)
-        self.presentViewController(myAlert, animated: true, completion: nil)
-        
-    }
-    
-    
     func confirmButton(alert:UIAlertAction!)
     {
         print("ok")
@@ -346,7 +330,38 @@ class EditBooksViewController: UIViewController {
     
     func cancelButton(alert:UIAlertAction!)
     {
-       // self.dismissViewControllerAnimated(true, completion: nil)
+        // self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func displayRelistBookMessage(title: String, message: String){
+        let myAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let relistAction = UIAlertAction(title: "Confirm relisting of book", style: UIAlertActionStyle.Default, handler: reListButton) // change title
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: cancelButton)
+        
+        myAlert.addAction(relistAction)
+        myAlert.addAction(cancelAction)
+        self.presentViewController(myAlert, animated: true, completion: nil)
+        
+    }
+    
+    
+    func reListButton(alert:UIAlertAction!)
+    {
+        print("relisting")
+        self.currentUserDictionary["bookStatus"] = "default"
+        self.currentUserDictionary["postedTime"] = getCurrentTime()
+        // delete post and then repost it so it is in the proper spot
+        self.setDictValues()
+        //ref.child(postId!).removeValue()//updateChildValues(self.currentUserDictionary)
+        deleteAndRepost()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.dataChangedForHomeAndSearch = true
+        appDelegate.dataChangedForMyBooks = true
+        self.postId = self.currentUserDictionary["SellBooksPostId"] as? String
+        refetchData = false
+        
+        navigationController?.popViewControllerAnimated(true)
+        
     }
 
     func displayDeleteAlertMessage(title: String, message: String) {
@@ -373,23 +388,7 @@ class EditBooksViewController: UIViewController {
         navigationController?.popViewControllerAnimated(true)
     }
     
-    func reListButton(alert:UIAlertAction!)
-    {
-        print("relisting")
-        self.currentUserDictionary["bookStatus"] = "default"
-        self.currentUserDictionary["postedTime"] = getCurrentTime()
-        // delete post and then repost it so it is in the proper spot
-        self.setDictValues()
-        //ref.child(postId!).removeValue()//updateChildValues(self.currentUserDictionary)
-        deleteAndRepost()
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.dataChangedForHomeAndSearch = true
-        appDelegate.dataChangedForMyBooks = true
-        self.postId = self.currentUserDictionary["SellBooksPostId"] as? String
-        refetchData = false
-       // navigationController?.popViewControllerAnimated(true)
-        
-    }
+   
     
     func deleteAndRepost(){
         let newPostID = ref.childByAutoId()
@@ -461,7 +460,10 @@ class EditBooksViewController: UIViewController {
             deleteAlertController.addAction(confirmSaleAction)
         }
         deleteAlertController.addAction(cancelAction)
-        
+        if let popoverController = deleteAlertController.popoverPresentationController {
+            popoverController.barButtonItem = sender as? UIBarButtonItem
+        }
+        //self.presentViewController(alertController, animated: true, completion: nil)
         
         self.presentViewController(deleteAlertController, animated: true, completion: nil)
         

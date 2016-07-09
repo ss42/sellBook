@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
         emailField.delegate = self
         
         //changes the placeholder's text color
-        emailField.attributedPlaceholder = NSAttributedString(string:"Enter email here.",
+        emailField.attributedPlaceholder = NSAttributedString(string:"Enter SMC username (ex: ram11)",
                                                                attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()])
         passwordField.attributedPlaceholder = NSAttributedString(string:"Password",
                                                                attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()])

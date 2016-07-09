@@ -64,7 +64,7 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         view.addSubview(backButtonView);
         
         //TODO-NEXT version custom draw recct for this
-        view.addSubview(bracketView)
+    //view.addSubview(bracketView)
 
         
         captureSession.startRunning();
