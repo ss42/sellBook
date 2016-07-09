@@ -402,16 +402,15 @@ class EditBooksViewController: UIViewController {
     }
     
     func getCurrentSellerInfo()-> [String:AnyObject]{
-        var tempDict = self.currentUserDictionary
+        let tempDict = self.currentUserDictionary
 
         if let user = FIRAuth.auth()?.currentUser {
             //change this later to full name
             print(user.email)
             print(user.photoURL)
-            let name = user.displayName
-            let email = user.email
+        //    let name = user.displayName
+           // let email = user.email
             let uid = user.uid
-            let profileImage = "male"
             //let uid = user.uid
             
             let postId = ref.child("SellBooksPost").childByAutoId()

@@ -104,5 +104,18 @@ class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate
         presentViewController(alertController, animated: true, completion: nil)
         
     }
+    @IBAction func instagram(sender: AnyObject) {
+        print("instagram")
+        let instagramHooks = "instagram://user?username=smc.bookrack"
+        let instagramUrl = NSURL(string: instagramHooks)
+        if UIApplication.sharedApplication().canOpenURL(instagramUrl!)
+        {
+            UIApplication.sharedApplication().openURL(instagramUrl!)
+            
+        } else {
+            //redirect to safari because the user doesn't have Instagram
+            UIApplication.sharedApplication().openURL(NSURL(string: "http://instagram.com/smc.bookrack")!)
+        }
+    }
 
 }

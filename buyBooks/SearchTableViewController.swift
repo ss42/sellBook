@@ -126,7 +126,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     func fetchPost()
     {
        
-        let uid = getUID()
+        //let uid = getUID()
         ref.child("SellBooksPost").queryOrderedByKey().observeEventType(.ChildAdded, withBlock: {
             snapshot in
             

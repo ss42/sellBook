@@ -120,7 +120,6 @@
             <string>OpenSans-Light</string>
             <string>OpenSans-Light</string>
             <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
         </mutableArray>
         <mutableArray key="OpenSans-LightItalic.ttf">
             <string>OpenSansLight-Italic</string>
@@ -130,7 +129,6 @@
             <string>OpenSansLight-Italic</string>
         </mutableArray>
         <mutableArray key="OpenSans-Regular.ttf">
-            <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
@@ -360,7 +358,7 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="3"/>
+                                                <real key="value" value="2"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -547,116 +545,137 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="nxN-w3-jWG">
-                                <rect key="frame" x="20" y="70" width="560" height="461"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="els-iv-GtD">
+                                <rect key="frame" x="20" y="411" width="560" height="120"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7IM-QZ-ZUz">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pXn-iK-YnM">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="20"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="ikJ-ZW-sQv"/>
+                                            <constraint firstAttribute="height" constant="20" id="bBO-DG-SVs"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="25"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ws-6i-t7i">
-                                        <rect key="frame" x="0.0" y="80" width="560" height="171"/>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Privacy Policy">
+                                                    <attributes>
+                                                        <color key="NSColor" red="1" green="0.32750135149999998" blue="0.20356457750000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <font key="NSFont" size="12" name="OpenSans"/>
+                                                        <integer key="NSUnderline" value="1"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                        <connections>
+                                            <action selector="viewPrivacyPolicy:" destination="pFI-PN-aG7" eventType="touchUpInside" id="Y1L-sj-owg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tA9-E8-QpA">
+                                        <rect key="frame" x="0.0" y="30" width="560" height="40"/>
+                                        <color key="backgroundColor" red="0.50588235290000005" green="0.77647058820000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" priority="250" constant="239" id="Y3b-CQ-B88"/>
+                                            <constraint firstAttribute="height" constant="40" id="D9D-1s-Kab"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="14"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="els-iv-GtD">
-                                        <rect key="frame" x="0.0" y="281" width="560" height="180"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="n0d-K0-6aC">
-                                                <rect key="frame" x="0.0" y="0.0" width="560" height="50"/>
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insta" translatesAutoresizingMaskIntoConstraints="NO" id="TWb-mN-PI0">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="50" id="YPA-om-PWo"/>
-                                                            <constraint firstAttribute="height" constant="50" id="kYJ-eo-Nzj"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Follow us on Instagram!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j66-fJ-HFN">
-                                                        <rect key="frame" x="56" y="0.0" width="504" height="50"/>
-                                                        <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="18"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXn-iK-YnM">
-                                                <rect key="frame" x="0.0" y="60" width="560" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="bBO-DG-SVs"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
-                                                <state key="normal" title="Privacy Policy">
-                                                    <color key="titleColor" red="1" green="0.32750135149999998" blue="0.20356457750000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="viewPrivacyPolicy:" destination="pFI-PN-aG7" eventType="touchUpInside" id="Y1L-sj-owg"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tA9-E8-QpA">
-                                                <rect key="frame" x="0.0" y="90" width="560" height="40"/>
-                                                <color key="backgroundColor" red="0.50588235290000005" green="0.77647058820000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="D9D-1s-Kab"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="18"/>
-                                                <state key="normal" title="Contact BOOK-RACK Team">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="contactUs:" destination="pFI-PN-aG7" eventType="touchUpInside" id="fJm-sg-BOD"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDS-wO-fN4">
-                                                <rect key="frame" x="0.0" y="140" width="560" height="40"/>
-                                                <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="18"/>
-                                                <state key="normal" title="Cancel">
-                                                    <color key="titleColor" red="0.50588235290000005" green="0.77647058820000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="0.50588235290000005" green="0.77647058820000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="2"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="cancelPressed:" destination="hkc-E3-Yp2" eventType="touchUpInside" id="UM7-cx-afV"/>
-                                                    <segue destination="OlM-dk-EJm" kind="show" id="w3s-S2-ev9"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="n0d-K0-6aC" firstAttribute="centerX" secondItem="els-iv-GtD" secondAttribute="centerX" id="I2M-h8-bCW"/>
-                                            <constraint firstItem="tA9-E8-QpA" firstAttribute="height" secondItem="cDS-wO-fN4" secondAttribute="height" id="uLd-he-Vi3"/>
-                                        </constraints>
-                                    </stackView>
+                                        <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="18"/>
+                                        <state key="normal" title="Contact BOOK-RACK Team">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="contactUs:" destination="pFI-PN-aG7" eventType="touchUpInside" id="fJm-sg-BOD"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDS-wO-fN4">
+                                        <rect key="frame" x="0.0" y="80" width="560" height="40"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="18"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" red="0.50588235290000005" green="0.77647058820000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.50588235290000005" green="0.77647058820000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="cancelPressed:" destination="hkc-E3-Yp2" eventType="touchUpInside" id="UM7-cx-afV"/>
+                                            <segue destination="OlM-dk-EJm" kind="show" id="w3s-S2-ev9"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="tA9-E8-QpA" firstAttribute="height" secondItem="cDS-wO-fN4" secondAttribute="height" id="uLd-he-Vi3"/>
+                                </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7IM-QZ-ZUz">
+                                <rect key="frame" x="20" y="40" width="560" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ikJ-ZW-sQv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="25"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ws-6i-t7i">
+                                <rect key="frame" x="20" y="110" width="560" height="219"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="750" constant="210.5" id="Y3b-CQ-B88"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VYI-Ns-Ifr">
+                                <rect key="frame" x="224" y="351" width="182" height="40"/>
+                                <state key="normal" title="Follow Us on Instagram!">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Follow Us on Instagram!">
+                                            <attributes>
+                                                <font key="NSFont" size="17" name="OpenSans-Light"/>
+                                                <integer key="NSUnderline" value="1"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="instagram:" destination="pFI-PN-aG7" eventType="touchUpInside" id="RPP-O7-9wa"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insta" translatesAutoresizingMaskIntoConstraints="NO" id="TWb-mN-PI0">
+                                <rect key="frame" x="179" y="351" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="IoW-33-BrB"/>
+                                    <constraint firstAttribute="width" constant="40" id="ZVv-03-oE5"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="nxN-w3-jWG" firstAttribute="leading" secondItem="EPS-lR-vQ5" secondAttribute="leading" constant="20" id="KII-Lb-4oy"/>
-                            <constraint firstItem="nxN-w3-jWG" firstAttribute="top" secondItem="atL-DK-JTo" secondAttribute="bottom" constant="50" id="S4X-pk-cRY"/>
-                            <constraint firstItem="jJk-2h-ZqJ" firstAttribute="top" secondItem="nxN-w3-jWG" secondAttribute="bottom" constant="20" id="VE1-b4-GxL"/>
-                            <constraint firstAttribute="trailing" secondItem="nxN-w3-jWG" secondAttribute="trailing" constant="20" id="eb1-9F-NCE"/>
+                            <constraint firstItem="7IM-QZ-ZUz" firstAttribute="leading" secondItem="EPS-lR-vQ5" secondAttribute="leading" constant="20" id="1ob-wh-EOe"/>
+                            <constraint firstItem="7IM-QZ-ZUz" firstAttribute="top" secondItem="atL-DK-JTo" secondAttribute="bottom" constant="20" id="26K-3S-Zxs"/>
+                            <constraint firstAttribute="trailing" secondItem="els-iv-GtD" secondAttribute="trailing" constant="20" id="2Gw-DK-yVI"/>
+                            <constraint firstItem="jJk-2h-ZqJ" firstAttribute="top" secondItem="els-iv-GtD" secondAttribute="bottom" constant="20" id="424-4j-5RP"/>
+                            <constraint firstItem="VYI-Ns-Ifr" firstAttribute="centerX" secondItem="EPS-lR-vQ5" secondAttribute="centerX" constant="15" id="4IJ-I3-UYW"/>
+                            <constraint firstAttribute="trailing" secondItem="1Ws-6i-t7i" secondAttribute="trailing" constant="20" id="5fq-0F-TQk"/>
+                            <constraint firstAttribute="trailing" secondItem="7IM-QZ-ZUz" secondAttribute="trailing" constant="20" id="DpR-U2-hlI"/>
+                            <constraint firstItem="TWb-mN-PI0" firstAttribute="top" secondItem="VYI-Ns-Ifr" secondAttribute="top" id="LeG-oX-4wK"/>
+                            <constraint firstItem="VYI-Ns-Ifr" firstAttribute="top" secondItem="1Ws-6i-t7i" secondAttribute="bottom" constant="22" id="TCT-wz-8SA"/>
+                            <constraint firstItem="els-iv-GtD" firstAttribute="top" secondItem="VYI-Ns-Ifr" secondAttribute="bottom" constant="20" id="b67-jg-cQP"/>
+                            <constraint firstItem="els-iv-GtD" firstAttribute="leading" secondItem="EPS-lR-vQ5" secondAttribute="leading" constant="20" id="eMg-65-fs0"/>
+                            <constraint firstItem="TWb-mN-PI0" firstAttribute="bottom" secondItem="VYI-Ns-Ifr" secondAttribute="bottom" id="fPv-ln-Apm"/>
+                            <constraint firstItem="1Ws-6i-t7i" firstAttribute="leading" secondItem="EPS-lR-vQ5" secondAttribute="leading" constant="20" id="r2m-Pi-IhJ"/>
+                            <constraint firstItem="VYI-Ns-Ifr" firstAttribute="leading" secondItem="TWb-mN-PI0" secondAttribute="trailing" constant="5" id="rzf-VR-HTM"/>
+                            <constraint firstItem="1Ws-6i-t7i" firstAttribute="top" secondItem="7IM-QZ-ZUz" secondAttribute="bottom" constant="20" id="zEU-KN-5zC"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="detail" destination="1Ws-6i-t7i" id="cqX-mO-tk6"/>
-                        <outlet property="stackView" destination="nxN-w3-jWG" id="2mH-Ad-TDu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KoW-wP-r5z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -868,7 +887,7 @@
                                                         </state>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="5"/>
+                                                                <real key="value" value="2"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
@@ -884,7 +903,7 @@
                                                         </state>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="5"/>
+                                                                <real key="value" value="2"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                                 <real key="value" value="1"/>
@@ -907,7 +926,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </stackView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1285752007" placeholder="Enter here" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="q25-IT-w77" customClass="Underlined" customModule="buyBooks" customModuleProvider="target">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter here" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="q25-IT-w77" customClass="Underlined" customModule="buyBooks" customModuleProvider="target">
                                                 <rect key="frame" x="10" y="220" width="540" height="40"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -1096,8 +1115,8 @@
                                             <constraint firstItem="oLD-Mw-2zJ" firstAttribute="top" secondItem="2rK-BT-qQe" secondAttribute="top" constant="155" id="wTM-uX-9hx"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sbf-bQ-Bet">
-                                        <rect key="frame" x="0.0" y="470" width="540" height="84"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sbf-bQ-Bet">
+                                        <rect key="frame" x="0.0" y="476" width="540" height="84"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHE-Wm-Qhm">
                                                 <rect key="frame" x="0.0" y="0.0" width="540" height="37"/>
@@ -1144,8 +1163,8 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="247" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="748" misplaced="YES" editable="NO" text="DESCRIPTION HERE." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HTL-D2-vfq">
-                                        <rect key="frame" x="0.0" y="235" width="540" height="215"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="247" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="748" editable="NO" text="DESCRIPTION HERE." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HTL-D2-vfq">
+                                        <rect key="frame" x="0.0" y="235" width="540" height="221"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="14"/>
@@ -1845,6 +1864,9 @@
                                                                 <integer key="value" value="8"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="changePassword:" destination="izN-aR-ymI" eventType="touchUpInside" id="A1t-L8-cX6"/>
@@ -1962,8 +1984,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sh6-yc-TyV">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sh6-yc-TyV">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tak-v1-M2Q">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -2063,6 +2085,11 @@
                                                         <state key="normal" title="Confirm Changes">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="donePressed:" destination="mBs-VY-AxC" eventType="touchUpInside" id="Mqn-Ue-v9g"/>
                                                             <action selector="donePressed:" destination="zlR-YJ-Y4J" eventType="touchUpInside" id="ifF-wf-Nd9"/>
@@ -2078,6 +2105,11 @@
                                                                 <state key="normal" title="Mark Book as Sold!">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="2"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="markSold:" destination="zlR-YJ-Y4J" eventType="touchUpInside" id="u0x-b7-5u0"/>
                                                                 </connections>
@@ -2187,6 +2219,11 @@
                                         <state key="normal" title="Sign In">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="EEh-jB-N9b"/>
@@ -2213,7 +2250,7 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="0.0"/>
+                                                <real key="value" value="2"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <variation key="default">
@@ -2282,7 +2319,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Jy3-2D-x0o">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="40"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ss42" placeholder="St. Mary's username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pRw-FL-Y6X" customClass="Underlined" customModule="buyBooks" customModuleProvider="target">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="St. Mary's username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pRw-FL-Y6X" customClass="Underlined" customModule="buyBooks" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="560" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="DNs-Bo-fCH"/>
@@ -2299,7 +2336,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="5F0-h9-M86">
                                         <rect key="frame" x="0.0" y="55" width="560" height="40"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="111111" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="sjY-fP-jBc" customClass="Underlined" customModule="buyBooks" customModuleProvider="target">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="sjY-fP-jBc" customClass="Underlined" customModule="buyBooks" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="560" height="40"/>
                                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
@@ -2358,8 +2395,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="v9I-lX-3cD">
-                                <rect key="frame" x="40" y="277" width="520" height="84"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="v9I-lX-3cD">
+                                <rect key="frame" x="40" y="278" width="520" height="84"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exY-Z0-G1K">
                                         <rect key="frame" x="0.0" y="0.0" width="520" height="37"/>
@@ -2370,7 +2407,7 @@
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="5"/>
+                                                <real key="value" value="2"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -2387,7 +2424,7 @@
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="5"/>
+                                                <real key="value" value="2"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="1"/>
@@ -2411,8 +2448,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter the email here.." textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="39v-hP-huh" customClass="Underlined" customModule="buyBooks" customModuleProvider="target">
-                                <rect key="frame" x="40" y="187" width="520" height="40"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter the email here.." textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="39v-hP-huh" customClass="Underlined" customModule="buyBooks" customModuleProvider="target">
+                                <rect key="frame" x="40" y="188" width="520" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Xlh-nU-rCc"/>
@@ -2602,7 +2639,7 @@
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="8"/>
+                                                        <integer key="value" value="2"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
@@ -2625,6 +2662,9 @@
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                         <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="2"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <variation key="default">
@@ -2717,7 +2757,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OjM-aZ-NuA">
                                 <rect key="frame" x="0.0" y="28" width="600" height="505"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Copyright (c) 2016 Sanjay Shrestha and Rahul Murthy
+                                <string key="text">Copyright (c) 2016 Sanjay Shrestha and Rahul Murthy
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -2731,7 +2771,7 @@ BOOK-RACK also maintains a record of when you post any book for sale.
 
 BOOK-RACK may interact with your phone's SMS inbox for the sole purpose for you to able to share post through SMS or FACEBOOK. WE WILL NOT ACCESS THE CONTENTS OF ANY OTHER SMS.
 
-We promise not to share your email or any other data that you share with anyone else.</mutableString>
+We promise not to share your email or any other data that you share with anyone else.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -2796,7 +2836,7 @@ We promise not to share your email or any other data that you share with anyone 
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="d0l-Cq-33s">
                                 <rect key="frame" x="0.0" y="28" width="600" height="505"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Copyright (c) 2016 Sanjay Shrestha and Rahul Murthy
+                                <string key="text">Copyright (c) 2016 Sanjay Shrestha and Rahul Murthy
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -2810,7 +2850,7 @@ BOOK-RACK also maintains a record of when you post any book for sale.
 
 BOOK-RACK may interact with your phone's SMS inbox for the sole purpose for you to able to share post through SMS or FACEBOOK. WE WILL NOT ACCESS THE CONTENTS OF ANY OTHER SMS.
 
-We promise not to share your email or any other data that you share with anyone else.</mutableString>
+We promise not to share your email or any other data that you share with anyone else.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -2846,8 +2886,8 @@ We promise not to share your email or any other data that you share with anyone 
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="146" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bmm-ML-yeP">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="146" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bmm-ML-yeP">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="649"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookCell" rowHeight="146" id="ghI-GD-g0w" customClass="MyBooksViewCell" customModule="buyBooks" customModuleProvider="target">
@@ -3156,6 +3196,11 @@ We promise not to share your email or any other data that you share with anyone 
                             <constraint firstAttribute="trailing" secondItem="hKn-d1-3mW" secondAttribute="trailing" constant="10" id="pnm-Yc-Jlp"/>
                             <constraint firstAttribute="trailing" secondItem="leC-CA-NXV" secondAttribute="trailing" constant="10" id="qS1-Iz-2F5"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -3289,7 +3334,7 @@ We promise not to share your email or any other data that you share with anyone 
                                                             </constraints>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="alj-1M-ohf">
-                                                            <rect key="frame" x="0.0" y="40" width="480" height="51"/>
+                                                            <rect key="frame" x="0.0" y="40" width="480" height="50"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NV1-Vs-ffe">
                                                                     <rect key="frame" x="0.0" y="13" width="420" height="25"/>
@@ -3319,7 +3364,7 @@ We promise not to share your email or any other data that you share with anyone 
                                                             </subviews>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="sTY-ib-gi1">
-                                                            <rect key="frame" x="0.0" y="91" width="480" height="39"/>
+                                                            <rect key="frame" x="0.0" y="90" width="480" height="40"/>
                                                             <fontDescription key="fontDescription" name="OpenSansLight-Italic" family="Open Sans" pointSize="13"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -3895,19 +3940,19 @@ We promise not to share your email or any other data that you share with anyone 
         <image name="book_stack" width="26" height="26"/>
         <image name="delete" width="25" height="25"/>
         <image name="home-1" width="24" height="24"/>
-        <image name="insta" width="600" height="400"/>
+        <image name="insta" width="40" height="40"/>
         <image name="noun_9280_cc" width="700" height="700"/>
         <image name="password_filled" width="25" height="25"/>
         <image name="search_filled" width="25" height="25"/>
         <image name="settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="vsN-8Y-nv3"/>
         <segue reference="4EH-s4-9A2"/>
-        <segue reference="w3s-S2-ev9"/>
         <segue reference="MwP-Jt-xX6"/>
-        <segue reference="Qfq-pA-Sw7"/>
-        <segue reference="DCY-SC-luQ"/>
-        <segue reference="qI3-R4-zK5"/>
+        <segue reference="wCK-p9-2SF"/>
+        <segue reference="dc7-Ir-OFE"/>
         <segue reference="qlc-ZO-5h4"/>
+        <segue reference="qI3-R4-zK5"/>
     </inferredMetricsTieBreakers>
 </document>

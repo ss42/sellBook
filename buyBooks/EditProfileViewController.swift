@@ -168,7 +168,7 @@ class EditProfileViewController: UIViewController {
             //change this later to full name
             print(user.email)
             print(user.photoURL)
-            let username = user.email
+            //let username = user.email
             email = user.email!
             displayName.text = user.displayName
            

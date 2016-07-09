@@ -40,7 +40,7 @@ class CreateNewAccountViewController: UIViewController {
         //changes the placeholder's text color
         
         firstName.attributedPlaceholder = NSAttributedString(string: "Enter your name" ,attributes: [NSForegroundColorAttributeName: UIColor.darkGrayColor()])
-        emailField.attributedPlaceholder = NSAttributedString(string: "Enter SMC email Address" ,attributes: [NSForegroundColorAttributeName: UIColor.darkGrayColor()])
+        emailField.attributedPlaceholder = NSAttributedString(string: "Enter SMC username" ,attributes: [NSForegroundColorAttributeName: UIColor.darkGrayColor()])
         passwordField.attributedPlaceholder = NSAttributedString(string:"Enter Password",
                                                                  attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()])
         
@@ -58,16 +58,16 @@ class CreateNewAccountViewController: UIViewController {
      // MARK: - Create account with Firebase
     
     @IBAction func createAccount(sender: AnyObject) {
-        let email = emailField.text
+        var email = emailField.text
         let password = passwordField.text
         let password2 = passwordField2.text
         let userName = firstName.text
-        let isValid: Bool = (email?.hasSuffix("@stmarys-ca.edu"))!
+        //let isValid: Bool = (email?.hasSuffix("@stmarys-ca.edu"))!
         
-        if (email != "" && password != "" && password2 != "" && userName != "") && (password == password2) && isValid{
+        if (email != "" && password != "" && password2 != "" && userName != "") && (password == password2){
             
             // Set Email and Password for the New User.
-            
+            email = email! + "@stmarys-ca.edu"
             FIRAuth.auth()!.createUserWithEmail(email!, password: password!, completion: {
                 (authData, error) -> Void in
                 
@@ -116,10 +116,7 @@ class CreateNewAccountViewController: UIViewController {
             
             
         }
-        else if (isValid == false)
-        {
-           signupErrorAlert("Oops!", message: "Please enter a valid @stmarys-ca.edu email!")
-        }
+      
         else
         {
             signupErrorAlert("Oops!", message: "Don't forget to enter your email, password, and your first name!")
@@ -143,8 +140,10 @@ class CreateNewAccountViewController: UIViewController {
     
     func goToLogin(action:UIAlertAction){
         dispatch_async(dispatch_get_main_queue(),{
-                self.performSegueWithIdentifier("toLogin", sender: nil)
-            })
+            let vc: UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("LoginView")
+            
+            
+            self.presentViewController(vc, animated: true, completion: nil)            })
     }
     
     func performCustomSegue(action:UIAlertAction){
@@ -152,10 +151,7 @@ class CreateNewAccountViewController: UIViewController {
         
         
         dispatch_async(dispatch_get_main_queue(), {
-            let vc: UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("LoginView")
             
-            
-            self.presentViewController(vc, animated: true, completion: nil)
 
         })
         
