@@ -85,6 +85,17 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         refreshControl.endRefreshing()
     }
     
+    func prepareTableView(){
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        tableView.backgroundColor = UIColor.whiteColor()
+        tableView.rowHeight = 155
+    }
+    
+    func prepareAndStartActivityIndicator(){
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        // CustomNavigation.customNavBarForHome()
@@ -241,6 +252,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         print("fetching post")
         ref.child("SellBooksPost").queryOrderedByKey().observeEventType(.ChildAdded, withBlock: {
             snapshot in
+            print("in snapshot")
             
             let title = snapshot.value!["bookTitle"] as! String
             //let detail = snapshot.value!["bookDetail"] as! String
@@ -270,14 +282,10 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 
                 
                 let timeOfMail = snapshot.value!["timeOfMail"] as! String
-                
+                print("non deleted book")
                 
                 let sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
-                print(sellerName)
-                print(title)
-                print(timeOfMail)
-                print(price)
-                print(bookStatus)
+                
                 
                 
                 let tempBook = Book(user: sellerInfo, title: title, price: Int(price)!, condition: condition, postedTime: elapsedTime, postId: postId, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus, timeOfMail: timeOfMail)
@@ -573,7 +581,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
             
             cell.bannerImage.hidden = false
         }*/
-        // TODO make a banner image for sold books
         if(book!.bookStatus == "sold")
         {
             print("sold book seen")

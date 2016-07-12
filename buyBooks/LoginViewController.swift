@@ -69,6 +69,7 @@ class LoginViewController: UIViewController {
             
             // Login with the Firebase's authUser method
             
+            // TODO replace nsuserdefaults with firebase current user thing from https://firebase.google.com/docs/reference/ios/firebaseauth/interface_f_i_r_auth.html#ad68f58c2984dc0418daed4f3aab8d52f
             FIRAuth.auth()?.signInWithEmail(email!, password: password!, completion: {
                 user, error in
                 

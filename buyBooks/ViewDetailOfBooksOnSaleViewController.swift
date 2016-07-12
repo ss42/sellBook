@@ -82,7 +82,7 @@ class ViewDetailOfBooksOnSaleViewController: UIViewController, MFMailComposeView
         messageString = messageString + getCurrentBuyerName() + " would like to purchase your book: " + (detailBook?.title)!
             
         messageString = messageString + " at your listed price of $" + String((detailBook?.price)!)
-        messageString = messageString + ".\n\n" + "Please send them a reply with how you would like to meet them and continue with your transaction of selling your book or otherwise conclude your transaction. \n\n\n Sincerely, \n The BookSelling App Team" // change our signiture
+        messageString = messageString + ".\n\n" + "Please send them a reply with how you would like to meet (WHEN, WHERE, HOW) to continue with your transaction. \n\n\n Sincerely, \n The BOOK-RACK Team" // change our signiture
         messageString = messageString + "\n\n\n\n Note: Please mark your book as Sold after you complete your transaction. "
         print(messageString)
         return messageString

@@ -120,6 +120,7 @@
             <string>OpenSans-Light</string>
             <string>OpenSans-Light</string>
             <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
         </mutableArray>
         <mutableArray key="OpenSans-LightItalic.ttf">
             <string>OpenSansLight-Italic</string>
@@ -866,13 +867,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qa5-w9-xwY">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qa5-w9-xwY">
                                 <rect key="frame" x="0.0" y="80" width="600" height="520"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jx0-ov-fzw">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jx0-ov-fzw">
                                         <rect key="frame" x="20" y="20" width="560" height="480"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ulT-AL-Goo">
+                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ulT-AL-Goo">
                                                 <rect key="frame" x="10" y="380" width="540" height="90"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rNX-aX-aXe">
@@ -926,7 +927,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </stackView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter here" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="q25-IT-w77" customClass="Underlined" customModule="buyBooks" customModuleProvider="target">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter here" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="q25-IT-w77" customClass="Underlined" customModule="buyBooks" customModuleProvider="target">
                                                 <rect key="frame" x="10" y="220" width="540" height="40"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -966,7 +967,7 @@
                                     <constraint firstItem="Jx0-ov-fzw" firstAttribute="top" secondItem="qa5-w9-xwY" secondAttribute="top" constant="20" id="s1P-Vo-FNN"/>
                                 </constraints>
                             </scrollView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search By ISBN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfF-Ln-Lhi">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Search By ISBN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfF-Ln-Lhi">
                                 <rect key="frame" x="20" y="40" width="560" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="15F-7q-5PX"/>
@@ -1223,7 +1224,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e9R-eg-24P">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e9R-eg-24P">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="95E-lK-h51">
@@ -1482,7 +1483,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="c1K-1v-TNA">
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="c1K-1v-TNA">
                                 <rect key="frame" x="10" y="20" width="580" height="173"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BBP-fL-7dL">
@@ -1647,8 +1648,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="245" verticalCompressionResistancePriority="747" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kIR-Ek-GT4">
-                                <rect key="frame" x="20" y="205" width="560" height="287"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="245" verticalCompressionResistancePriority="747" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kIR-Ek-GT4">
+                                <rect key="frame" x="20" y="205" width="560" height="267"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="authors" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Lgr-bf-fpI">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="40"/>
@@ -1664,8 +1665,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="249" horizontalCompressionResistancePriority="747" verticalCompressionResistancePriority="748" editable="NO" text="Description: " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3FW-Jg-Nue">
-                                        <rect key="frame" x="0.0" y="40" width="560" height="247"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="249" horizontalCompressionResistancePriority="747" verticalCompressionResistancePriority="748" misplaced="YES" editable="NO" text="Description: " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3FW-Jg-Nue">
+                                        <rect key="frame" x="0.0" y="40" width="560" height="227"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="14"/>
@@ -3334,7 +3335,7 @@ We promise not to share your email or any other data that you share with anyone 
                                                             </constraints>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="alj-1M-ohf">
-                                                            <rect key="frame" x="0.0" y="40" width="480" height="50"/>
+                                                            <rect key="frame" x="0.0" y="40" width="480" height="51"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NV1-Vs-ffe">
                                                                     <rect key="frame" x="0.0" y="13" width="420" height="25"/>
@@ -3364,7 +3365,7 @@ We promise not to share your email or any other data that you share with anyone 
                                                             </subviews>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="sTY-ib-gi1">
-                                                            <rect key="frame" x="0.0" y="90" width="480" height="40"/>
+                                                            <rect key="frame" x="0.0" y="91" width="480" height="39"/>
                                                             <fontDescription key="fontDescription" name="OpenSansLight-Italic" family="Open Sans" pointSize="13"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -3461,7 +3462,7 @@ We promise not to share your email or any other data that you share with anyone 
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5uH-9T-lzt">
                                 <rect key="frame" x="0.0" y="51" width="175" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="18"/>
                                 <state key="normal" title="  ISBN entry">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -3947,12 +3948,12 @@ We promise not to share your email or any other data that you share with anyone 
         <image name="settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vsN-8Y-nv3"/>
-        <segue reference="4EH-s4-9A2"/>
-        <segue reference="MwP-Jt-xX6"/>
-        <segue reference="wCK-p9-2SF"/>
-        <segue reference="dc7-Ir-OFE"/>
-        <segue reference="qlc-ZO-5h4"/>
+        <segue reference="tlo-HV-xWX"/>
+        <segue reference="yec-Je-6Yg"/>
         <segue reference="qI3-R4-zK5"/>
+        <segue reference="Qfq-pA-Sw7"/>
+        <segue reference="dc7-Ir-OFE"/>
+        <segue reference="MwP-Jt-xX6"/>
+        <segue reference="qlc-ZO-5h4"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -95,7 +95,7 @@ class SellBooksViewController: UIViewController {
     }
     
     
-    // TODO: add slide gesture that calls this button
+    // FUTURE/TODO: add slide gesture that calls this button
     @IBAction func donePressed(sender: AnyObject) {
         //self.getCurrentSellerInfo()
         if (self.authors.text!.characters.count < 1)
