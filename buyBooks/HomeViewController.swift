@@ -45,7 +45,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     @IBOutlet weak var tableView: UITableView!
     
     // holds an array of books, loaded from firebase
-    var sellBookArray: NSMutableArray = []
+    var sellBookArray = [Book]()
     
     
     // string that holds the facebook message
@@ -62,7 +62,8 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         super.viewWillDisappear(animated)
 
         let tbvc = self.tabBarController as! DataHoldingTabBarViewController // going to get data from here instead.
-        tbvc.sellBookArray = self.sellBookArray
+        // FIX THIS
+        //tbvc.sellBookArray = self.sellBookArray
         
         
     }
@@ -79,24 +80,76 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         */
         print("refreshed data")
         sellBookArray = []
-        fetchPost()
+        //fetchPost()
         
         self.tableView.reloadData()
         refreshControl.endRefreshing()
     }
     
-    func prepareTableView(){
+    
+    
+    func prepareLayout(){
+        self.tableView.addSubview(self.refreshControl)
+        
+        let tbvc = self.tabBarController as! DataHoldingTabBarViewController // going to get data from here instead.
+        cache = tbvc.cache
+
+        // prepare the table view
         self.tableView.delegate = self
         self.tableView.dataSource = self
         tableView.backgroundColor = UIColor.whiteColor()
         tableView.rowHeight = 155
-    }
-    
-    func prepareAndStartActivityIndicator(){
         
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.dataChangedForHomeAndSearch = false
+        appDelegate.dataChangedForMyBooks = true
+        
+        // populate the table
+        tableView.reloadData()
+        
+        // for hiding the nav bar when we scroll
+        navigationController?.hidesBarsOnSwipe = true
+        
+        
+        //Activity Indicator
+        activityView.color = UIColor.darkTextColor()//(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0)
+        activityView.center = self.view.center
+        
+        
+        activityView.startAnimating()
+        
+        self.view.addSubview(activityView)
+        
+        
+        //tbvc.sellBookArray = self.sellBookArray
+        
+
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        self.prepareLayout()
+        
+        ref.child("SellBooksPost").observeEventType(.Value, withBlock: { snapshot in
+            print("in snapshot")
+            var newBooks = [Book]()
+            for item in snapshot.children{
+                let title = item.value!["bookTitle"] as! String
+                print(title)
+                let book = Book(snapshot: item as! FIRDataSnapshot)
+                
+                if book.valid == true{
+                   // newBooks.append(book) //TODO: this probably has to be inserted at position zero
+                    newBooks.insert(book, atIndex: 0)
+                }
+            }
+            self.sellBookArray = newBooks
+            self.tableView.reloadData()
+        })
+        
+    }
+    
+    /*override func viewDidLoad() {
         super.viewDidLoad()
        // CustomNavigation.customNavBarForHome()
         // for pull to refresh
@@ -145,6 +198,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         // Do any additional setup after loading the view, typically from a nib.
     }
+ */
     
   
 
@@ -162,7 +216,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     {
         super.viewWillAppear(animated)
         print("in view will appear")
-        
+        /*
         let tbvc = self.tabBarController as! DataHoldingTabBarViewController
         
         
@@ -175,17 +229,17 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             fetchPost()
             tableView.reloadData()
             appDelegate.dataChangedForHomeAndSearch = false
-            tbvc.sellBookArray = self.sellBookArray
+            //tbvc.sellBookArray = self.sellBookArray
             print("searched for new data")
         }
         else{
             print("data didnt change")
-            self.sellBookArray = tbvc.sellBookArray
+            //self.sellBookArray = tbvc.sellBookArray
             
         }
         
         tableView.reloadData()
- 
+ */
  
     }
     
@@ -291,7 +345,8 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 let tempBook = Book(user: sellerInfo, title: title, price: Int(price)!, condition: condition, postedTime: elapsedTime, postId: postId, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus, timeOfMail: timeOfMail)
                 
                 if (self.timeElapsedinSeconds(postedTime) < 60*60*24*30 || (bookStatus == "sold" && self.timeElapsedinSeconds(postedTime) < 60*60*24*90)){
-                    self.sellBookArray.insertObject(tempBook, atIndex: 0)
+                    // FIX THIS
+                    //self.sellBookArray.insertObject(tempBook, atIndex: 0)
                 }
                 
             }
@@ -565,7 +620,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, MFMess
             tempString.insert("s", atIndex: tempString.startIndex.advancedBy(4))
             print(tempString)
         }
-        let name = book!.sellerInfo?.fullName
+        var name = book!.sellerInfo?.fullName
+        if name == nil{
+            name = "None"
+        }
         cell.profileImage.setImageWithString(name, color: UIColor.init(hexString: User.generateColor(name!)))
         /*if (book!.bookStatus == "sold"){
             cell.yearPublished.text = "SOLD"

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 
 class Book{
@@ -41,10 +42,78 @@ class Book{
     var bookStatus:String?
     // added to calculate how long ago the mail was sent
     var timeOfMail:String?
+    var valid:Bool?
 
     
+    init(snapshot: FIRDataSnapshot){
+        
+        
+        self.title = snapshot.value!["bookTitle"] as! String
+        //let detail = snapshot.value!["bookDetail"] as! String
+        self.condition = snapshot.value!["bookCondition"] as! String
+        // let bookImage = snapshot.value!["imageURL"] as! String
+        self.price = Int(snapshot.value!["price"] as! String)
+        let sellerName = snapshot.value!["fullName"] as! String
+        let sellerEmail = snapshot.value!["email"] as! String
+        let sellerProfilePhoto = snapshot.value!["profilePhoto"] as! String
+        self.postedTime = snapshot.value!["postedTime"] as! String
+        let elapsedTime = postedTime//self.timeElapsed(postedTime)
+        self.webISBN = snapshot.value!["isbn"] as! String
+        self.webPageCount = snapshot.value!["pageCount"] as! String
+        self.webAuthors = snapshot.value!["authors"] as! String
+        self.webBookThumbnail = snapshot.value!["imageURL"] as! String
+        self.webDescription = snapshot.value!["description"] as! String
+        self.publishedYear = snapshot.value!["publishedDate"] as! String
+        self.postId = snapshot.value!["SellBooksPostId"] as! String
+        
+        
+        self.bookStatus = snapshot.value!["bookStatus"] as! String
+        
+        // print(title)
+        // TODO: make sure that we want books to be hidden if they were posted more than a month ago
+        if (bookStatus != "deleted"){
+            //&& (self.timeElapsedinSeconds(postedTime) < 60*60*24*30)){ //&& bookStatus != "sold"){
+            
+            
+            self.timeOfMail = " "
+            print("non deleted book")
+            
+            self.sellerInfo = User(fullName: sellerName, email: sellerEmail, profileImage: sellerProfilePhoto)
+            
+            
+            
+            //let tempBook = Book(user: sellerInfo, title: title, price: Int(price)!, condition: condition, postedTime: elapsedTime, postId: postId, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus, timeOfMail: timeOfMail)
+            
+            if (self.timeElapsedinSeconds(postedTime!) < 60*60*24*30 || (bookStatus == "sold" && self.timeElapsedinSeconds(postedTime!) < 60*60*24*90)){
+                self.valid = true
+                // FIX THIS
+                //self.sellBookArray.insertObject(tempBook, atIndex: 0)
+            }
+            else
+            {
+                self.valid = false
+            }
+            
+        }
+        else
+        {
+            print("saw a deleted book")
+            self.valid = false
+        }
+        
+ 
+    }
     
-    
+    func timeElapsedinSeconds(date: String)-> Double{
+        
+        let dateformatter = NSDateFormatter()
+        dateformatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateformatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let postedDate  = dateformatter.dateFromString(date)!
+        
+        let elapsedTimeInSeconds = NSDate().timeIntervalSinceDate(postedDate)
+        return elapsedTimeInSeconds
+    }
     
     
     init(user: User, title: String, price: Int,  condition: String, postedTime: String, postId:String, isbn:String, authors: String, imageURL: String, pageCount:String, description:String, yearPublished:String, status:String, timeOfMail: String)

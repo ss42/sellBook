@@ -47,7 +47,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     }()
 */
    
-    var sellBookArray: NSMutableArray = []
+    var sellBookArray = [Book]()
     var filteredSellBookArray = [Book]()
     
     
@@ -65,15 +65,10 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     // TODO: add default search results or something so that its not empty
     var resultsSearchController = UISearchController()
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.refreshControl?.addTarget(self, action: #selector(SearchTableViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
-
-        
+    func prepareLayout(){
         let tbvc = self.tabBarController as! DataHoldingTabBarViewController // going to get data from here instead.
         self.cache = tbvc.cache
-        self.sellBookArray = tbvc.sellBookArray
+        //self.sellBookArray = tbvc.sellBookArray
         
         
         self.resultsSearchController = UISearchController(searchResultsController: nil)
@@ -91,16 +86,40 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         //tableView.separatorStyle = .None
         tableView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
         navigationController?.hidesBarsOnSwipe = true
-
+        
         
         resultsSearchController.searchBar.barTintColor = UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0)
+
         
-        self.tableView.reloadData()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.refreshControl?.addTarget(self, action: #selector(SearchTableViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+
         
+        
+        prepareLayout()
+        ref.child("SellBooksPost").observeEventType(.Value, withBlock: { snapshot in
+            print("in snapshot")
+            var newBooks = [Book]()
+            for item in snapshot.children{
+                let title = item.value!["bookTitle"] as! String
+                print(title)
+                let book = Book(snapshot: item as! FIRDataSnapshot)
+                
+                if book.valid == true{
+                    // newBooks.append(book) //TODO: this probably has to be inserted at position zero
+                    newBooks.insert(book, atIndex: 0)
+                }
+            }
+            self.sellBookArray = newBooks
+            self.tableView.reloadData()
+        })
         
 
     }
-    override func viewWillAppear(animated: Bool) {
+    /*override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         let tbvc = self.tabBarController as! DataHoldingTabBarViewController
 
@@ -123,6 +142,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         
         
     }
+ */
     func fetchPost()
     {
        
@@ -158,7 +178,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
                 
                 
                 if (self.timeElapsedinSeconds(postedTime) < 60*60*24*30 || (bookStatus == "sold" && self.timeElapsedinSeconds(postedTime) < 60*60*24*90)){
-                    self.sellBookArray.insertObject(tempBook, atIndex: 0)
+                    //self.sellBookArray.insertObject(tempBook, atIndex: 0)
                 }
             }
             else
@@ -304,7 +324,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         super.viewWillDisappear(false)
         
         let tbvc = self.tabBarController as! DataHoldingTabBarViewController // going to get data from here instead.
-        tbvc.sellBookArray = self.sellBookArray
+        //tbvc.sellBookArray = self.sellBookArray
         
         
     }

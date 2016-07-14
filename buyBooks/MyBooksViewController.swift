@@ -78,23 +78,22 @@ class MyBooksViewController: UIViewController  {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var sellBookArray: NSMutableArray = []
+    var sellBookArray = [Book]()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func prepareLayout(){
         self.tableView.addSubview(self.refreshControl)
-
+        
         let tbvc = self.tabBarController as! DataHoldingTabBarViewController // going to get data from here instead.
         cache = tbvc.cache
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        fetchPost()
+        //fetchPost()
         tableView.reloadData()
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.dataChangedForMyBooks = false
         
         navigationController?.hidesBarsOnSwipe = true
-
+        
         //Activity Indicator
         activityView.color = UIColor(red: 129/255, green: 198/255, blue: 250/255, alpha: 1.0)
         activityView.center = self.view.center
@@ -102,11 +101,33 @@ class MyBooksViewController: UIViewController  {
         activityView.startAnimating()
         
         self.view.addSubview(activityView)
-        //fetchPost()
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        prepareLayout()
+        
+        // TODO check login against firebase here!
+        let uid = getUID()
 
+        ref.child("SellBooksPost").queryOrderedByChild("uid").queryEqualToValue(uid).observeEventType(.Value, withBlock: { snapshot in
+            print("in snapshot")
+            var newBooks = [Book]()
+            for item in snapshot.children{
+                let title = item.value!["bookTitle"] as! String
+                print(title)
+                let book = Book(snapshot: item as! FIRDataSnapshot)
+                
+                if book.valid == true{
+                    // newBooks.append(book) //TODO: this probably has to be inserted at position zero
+                    newBooks.insert(book, atIndex: 0)
+                }
+            }
+            self.sellBookArray = newBooks
+            self.tableView.reloadData()
+        })
         
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {
@@ -114,28 +135,7 @@ class MyBooksViewController: UIViewController  {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
-        navigationController?.hidesBarsOnSwipe = true
-
-        super.viewWillAppear(animated)
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        if (appDelegate.dataChangedForMyBooks == true){
-            
-            
-            //appDelegate.mainDic=response.mutableCopy() as? NSMutableDictionary
-            sellBookArray = []
-            fetchPost()
-            tableView.reloadData()
-            appDelegate.dataChangedForMyBooks = false
-        }
-        else{
-            print("data didnt change")
-        }
- 
-        
-        tableView.reloadData() // this saves us from a crash
-    }
+    
     //Do the following if the user want to sell a book
     override func viewDidAppear(animated: Bool)
     {
@@ -226,7 +226,7 @@ class MyBooksViewController: UIViewController  {
                 let tempBook = Book(user: sellerInfo, title: title, price: Int(price)!, condition: condition, postedTime: elapsedTime, postId: postID, isbn: isbn, authors: authors, imageURL: imageURL, pageCount: pageCount, description: description, yearPublished: publishedDate, status: bookStatus, timeOfMail: timeOfMail)
                 
                 
-                self.sellBookArray.insertObject(tempBook, atIndex: 0)
+               // self.sellBookArray.insertObject(tempBook, atIndex: 0)
             }
             else
             {
@@ -478,8 +478,8 @@ extension MyBooksViewController: UITableViewDelegate, UITableViewDataSource, MFM
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.dataChangedForHomeAndSearch = true
         appDelegate.dataChangedForMyBooks = true
-        self.sellBookArray.removeObjectAtIndex(currentIndex!.row)
-        tableView.deleteRowsAtIndexPaths([currentIndex!], withRowAnimation: UITableViewRowAnimation.Automatic)
+        //self.sellBookArray.removeObjectAtIndex(currentIndex!.row)
+        //tableView.deleteRowsAtIndexPaths([currentIndex!], withRowAnimation: UITableViewRowAnimation.Automatic)
 
         dispatch_async(dispatch_get_main_queue(), {
             self.tableView.reloadData()

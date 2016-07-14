@@ -8,6 +8,8 @@
 
 import UIKit
 
+// TODO main thread the slide up when entering the isbn, also be sure to put in a popup that yells at you when the field is blank or less than ten characters!
+
 class SellBySearchingISBNViewController: UIViewController, UITextFieldDelegate {
     
     var bookInfoDict = [String:String]()
@@ -118,7 +120,11 @@ class SellBySearchingISBNViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(activityView)
 
         if let ISBN = isbnTextfield.text{
-            lookUpData(ISBN)
+            if ISBN.characters.count > 9{
+                
+            
+                lookUpData(ISBN)
+            }
         }
         else{
             //show error

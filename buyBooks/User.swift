@@ -25,9 +25,9 @@ class User{
     }
     init()
     {
-        self.fullName = ""
-        self.email = ""
-        self.profileImage = ""
+        self.fullName = " "
+        self.email = " "
+        self.profileImage = " "
         
     }
     
