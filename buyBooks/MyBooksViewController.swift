@@ -81,7 +81,7 @@ class MyBooksViewController: UIViewController  {
     var sellBookArray = [Book]()
     
     func prepareLayout(){
-        self.tableView.addSubview(self.refreshControl)
+        //self.tableView.addSubview(self.refreshControl)
         
         let tbvc = self.tabBarController as! DataHoldingTabBarViewController // going to get data from here instead.
         cache = tbvc.cache
