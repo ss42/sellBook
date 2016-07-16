@@ -14,6 +14,7 @@
 		102C91281D07809A00D5B9F1 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102C91271D07809A00D5B9F1 /* EditProfileViewController.swift */; };
 		1039F4FC1CFEA14E0012C2C6 /* ViewDetailOfBooksOnSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039F4FB1CFEA14E0012C2C6 /* ViewDetailOfBooksOnSaleViewController.swift */; };
 		1039F4FE1CFEABB00012C2C6 /* CustomViewIBDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039F4FD1CFEABB00012C2C6 /* CustomViewIBDesignable.swift */; };
+		103B99331D39AED300E58331 /* SellBySearchingISBNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103B99321D39AED300E58331 /* SellBySearchingISBNViewController.swift */; };
 		105891221D306D6A00BF2C2A /* PrivacyPolicyForAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105891211D306D6A00BF2C2A /* PrivacyPolicyForAboutViewController.swift */; };
 		1063A9C61CF3A67500BFB4E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1063A9C51CF3A67500BFB4E0 /* AppDelegate.swift */; };
 		1063A9C81CF3A67500BFB4E0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1063A9C71CF3A67500BFB4E0 /* HomeViewController.swift */; };
@@ -42,7 +43,6 @@
 		10DA6EE41CFD5C1000D64DB2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DA6EE31CFD5C1000D64DB2 /* LoginViewController.swift */; };
 		10DA6EE61CFD5C1600D64DB2 /* CreateNewAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DA6EE51CFD5C1600D64DB2 /* CreateNewAccountViewController.swift */; };
 		10DA6EE81CFD5C3C00D64DB2 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DA6EE71CFD5C3C00D64DB2 /* PostTableViewCell.swift */; };
-		10DA6EEA1CFD5DFD00D64DB2 /* SellBySearchingISBNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DA6EE91CFD5DFD00D64DB2 /* SellBySearchingISBNViewController.swift */; };
 		10E2FD451CF3DCA700B6EAE0 /* SellBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E2FD441CF3DCA700B6EAE0 /* SellBooksViewController.swift */; };
 		10E68C661D0DD37A007FFD83 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 10E68C5C1D0DD366007FFD83 /* OpenSans-Bold.ttf */; };
 		10E68C671D0DD37A007FFD83 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 10E68C5D1D0DD366007FFD83 /* OpenSans-BoldItalic.ttf */; };
@@ -70,6 +70,7 @@
 		102C91271D07809A00D5B9F1 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		1039F4FB1CFEA14E0012C2C6 /* ViewDetailOfBooksOnSaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewDetailOfBooksOnSaleViewController.swift; sourceTree = "<group>"; };
 		1039F4FD1CFEABB00012C2C6 /* CustomViewIBDesignable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewIBDesignable.swift; sourceTree = "<group>"; };
+		103B99321D39AED300E58331 /* SellBySearchingISBNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellBySearchingISBNViewController.swift; sourceTree = "<group>"; };
 		105330B61CFF9BB0000EC461 /* buyBooks-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "buyBooks-Bridging-Header.h"; sourceTree = "<group>"; };
 		1054916F1D11FDAB0015FA54 /* buyBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = buyBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		105891211D306D6A00BF2C2A /* PrivacyPolicyForAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyForAboutViewController.swift; sourceTree = "<group>"; };
@@ -104,7 +105,6 @@
 		10DA6EE31CFD5C1000D64DB2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		10DA6EE51CFD5C1600D64DB2 /* CreateNewAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewAccountViewController.swift; sourceTree = "<group>"; };
 		10DA6EE71CFD5C3C00D64DB2 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
-		10DA6EE91CFD5DFD00D64DB2 /* SellBySearchingISBNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellBySearchingISBNViewController.swift; sourceTree = "<group>"; };
 		10E2FD441CF3DCA700B6EAE0 /* SellBooksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellBooksViewController.swift; sourceTree = "<group>"; };
 		10E68C5C1D0DD366007FFD83 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		10E68C5D1D0DD366007FFD83 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 		1039F4F91CFEA0590012C2C6 /* Sell Books by ISBN Search */ = {
 			isa = PBXGroup;
 			children = (
-				10DA6EE91CFD5DFD00D64DB2 /* SellBySearchingISBNViewController.swift */,
+				103B99321D39AED300E58331 /* SellBySearchingISBNViewController.swift */,
 			);
 			name = "Sell Books by ISBN Search";
 			sourceTree = "<group>";
@@ -517,10 +517,10 @@
 				105891221D306D6A00BF2C2A /* PrivacyPolicyForAboutViewController.swift in Sources */,
 				10C6E6FA1CF65BC3007BFF69 /* MyBooksViewController.swift in Sources */,
 				1063A9C61CF3A67500BFB4E0 /* AppDelegate.swift in Sources */,
+				103B99331D39AED300E58331 /* SellBySearchingISBNViewController.swift in Sources */,
 				10C6E6FE1CF670A2007BFF69 /* EditBooksViewController.swift in Sources */,
 				10F8E01F1D00D01800C944CD /* SearchTableViewController.swift in Sources */,
 				10F8E0211D00DD7900C944CD /* DataHoldingTabBarViewController.swift in Sources */,
-				10DA6EEA1CFD5DFD00D64DB2 /* SellBySearchingISBNViewController.swift in Sources */,
 				102C91261D07808D00D5B9F1 /* AboutViewController.swift in Sources */,
 				1063A9F71CF3B1EF00BFB4E0 /* User.swift in Sources */,
 				102C91281D07809A00D5B9F1 /* EditProfileViewController.swift in Sources */,

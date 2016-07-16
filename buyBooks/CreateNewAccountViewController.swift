@@ -148,10 +148,15 @@ class CreateNewAccountViewController: UIViewController {
     
     func performCustomSegue(action:UIAlertAction){
         
-        
+        let vc: UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("home")
         
         dispatch_async(dispatch_get_main_queue(), {
             
+            
+            
+            
+            
+            self.presentViewController(vc, animated: true, completion: nil)
 
         })
         

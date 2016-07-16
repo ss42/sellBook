@@ -177,21 +177,15 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
                                     
                                     
                                     if let volumeInfo = item["volumeInfo"]{
-                                        if let title = volumeInfo["title"]{
+                                        if let title = volumeInfo["title"] as? String{
                                             //assignment
                                             print(title)
-                                            self.bookInfoDict["bookTitle"] = (title as! String)
+                                            self.bookInfoDict["bookTitle"] = (title)
                                         }
-                                        if let bookDescription = volumeInfo["description"]{
+                                        if let bookDescription = volumeInfo["description"] as? String{
                                             //assignment
-                                            
-                                            if bookDescription != nil{
-                                                print(bookDescription)
-                                                self.bookInfoDict["description"] = (bookDescription as! String)
-                                            }
-                                            else{
-                                                self.bookInfoDict["description"] = "Unable to load description from google or this book has no description"
-                                            }
+                                            self.bookInfoDict["description"] = (bookDescription)
+                                           
                                             
                                         }
                                         if let authors = volumeInfo["authors"] as? NSArray{
@@ -205,18 +199,18 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
                                             print(authorArray)
                                             self.bookInfoDict["authors"] = self.concatonateAuthors(authorArray)
                                         }
-                                        if let publishedDate = volumeInfo["publishedDate"]{
-                                            let date = (publishedDate as! String)
+                                        if let publishedDate = volumeInfo["publishedDate"] as? String{
+                                            let date = (publishedDate)
                                             self.bookInfoDict["publishedDate"] = date.substringToIndex(date.startIndex.advancedBy(4))
                                         }
                                         if let picLinks = volumeInfo["imageLinks"]{
-                                            if let imageURL = picLinks!["thumbnail"]{
-                                                self.bookInfoDict["imageURL"] = (imageURL as! String)
+                                            if let imageURL = picLinks!["thumbnail"] as? String{
+                                                self.bookInfoDict["imageURL"] = (imageURL)
                                                 print (imageURL)
                                             }
                                         }
-                                        if let pageCount = volumeInfo["pageCount"]{
-                                            self.bookInfoDict["pageCount"] = String(pageCount!)
+                                        if let pageCount = volumeInfo["pageCount"] as? String{
+                                            self.bookInfoDict["pageCount"] = (pageCount)
                                             print(pageCount)
                                         }
                                         //self.dismissViewControllerAnimated(false, completion: nil)
